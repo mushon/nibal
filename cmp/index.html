@@ -49,7 +49,7 @@
 // detect if running inside an iframe and toggle embedded UI
 try {
   if (window.top && window.top !== window.self) {
-    document.documentElement.classList.add('embedded');
+      document.documentElement.classList.add('embedded');
   }
 } catch(e) {
   // cross-origin top access may throw; assume embedded in that case
@@ -377,7 +377,7 @@ function buildLayerList(){
   cb.addEventListener('change', () => {
     const key = cb.dataset.layerKey;
     // If no key, fallback to direct toggle
-    if (!key) { toggleLayerVisibility(el, cb.checked, { animate: true }); updateHashFromLayerList(); refreshLayerListCheckboxes(); return; }
+  if (!key) { toggleLayerVisibility(el, cb.checked, { animate: true }); try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){} try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){} updateHashFromLayerList(); refreshLayerListCheckboxes(); return; }
 
     // If the user checked the checkbox, just show the layer (remove ~token if present)
     // Do NOT add to showExceptions - only the "Only" button creates +tokens
@@ -392,6 +392,8 @@ function buildLayerList(){
       }
       // show this element
       toggleLayerVisibility(el, true, { animate: true });
+      try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+      try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       refreshLayerListCheckboxes(); updateHashFromLayerList();
       return;
     }
@@ -459,15 +461,22 @@ function buildLayerList(){
             if (!childEl) return;
             toggleLayerVisibility(childEl, false, { animate: false });
           });
+          try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+          try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
           refreshLayerListCheckboxes(); updateHashFromLayerList();
         }).catch(() => { 
+          try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+          try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
           refreshLayerListCheckboxes(); updateHashFromLayerList();
         });
         return;
       }
     }
     // default behavior: toggle element visibility directly
-    toggleLayerVisibility(el, cb.checked, { animate: true }); updateHashFromLayerList(); refreshLayerListCheckboxes();
+    toggleLayerVisibility(el, cb.checked, { animate: true });
+    try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+    try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+    updateHashFromLayerList(); refreshLayerListCheckboxes();
   });
     // "Only" button: make this the only visible layer (implements +key semantics)
     const onlyBtn = document.createElement('button');
@@ -497,15 +506,17 @@ function buildLayerList(){
         parsed.vis = { show: [], hide: [] };
         const token = buildCompactHash(parsed.url, parsed.params, parsed.vis);
         location.hash = '#'+token;
-        // Reapply parsed visibility (which is now empty) so UI updates
-        try { applyVisibilityFromVis({ show: [], hide: [] }, { animate: true }); } catch(e){}
+  // Reapply parsed visibility (which is now empty) so UI updates
+  try { applyVisibilityFromVis({ show: [], hide: [] }, { animate: true }); } catch(e){}
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
         refreshLayerListCheckboxes();
         return;
       }
 
       // Non-root behavior: keep existing +token semantics (show only this subtree)
       const vis = { show: [theKey], hide: [] };
-      try { applyVisibilityFromVis(vis, { animate: true }); } catch(e){ console.warn('applyVisibilityFromVis failed', e); }
+  try { applyVisibilityFromVis(vis, { animate: true }); } catch(e){ console.warn('applyVisibilityFromVis failed', e); }
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       // update the hash token similarly to updateHashFromLayerList but using our vis
   suppressHashFor(120);
       const parsed = parseHash();
@@ -755,7 +766,8 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
       el.style.opacity = '1';
       // Double RAF to ensure overlay updates after opacity change has been committed
       requestAnimationFrame(() => {
-        try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+  try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       });
     });
     // store cancel function
@@ -862,7 +874,7 @@ function applyVisibilityFromVis(vis, opts){
   // Resolve short vis tokens (like 'princess') against layerKeyMap by last-segment
   const rawHides = (vis && Array.isArray(vis.hide)) ? vis.hide.slice() : [];
   const rawShows = (vis && Array.isArray(vis.show)) ? vis.show.slice() : [];
-  const resolveToken = (tok) => {
+    const resolveToken = (tok) => {
     if (!tok) return tok;
     if (String(tok).includes('/')) return tok;
     // find keys whose last segment matches tok
@@ -1632,11 +1644,11 @@ function autoAttachVideoOverlays(){
     try{
       const id = el.id || String(key).split('/').pop();
       if (!id) continue;
-      // Only attach overlays for visible layers
+      // Only attach overlays for displayed layers (allow opacity 0 during fade-in)
       const cs = window.getComputedStyle(el);
-      const isVisible = cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity || '1') > 0.01;
-      // Remove overlay if not visible
-      if (!isVisible && window.overlayManager && typeof window.overlayManager.remove === 'function') {
+      const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden';
+      // Remove overlay if not displayed
+      if (!isDisplayed && window.overlayManager && typeof window.overlayManager.remove === 'function') {
         window.overlayManager.remove(key);
         continue;
       }
@@ -1655,7 +1667,7 @@ function autoAttachVideoOverlays(){
         const embedPath = embedMatch[1];
         url = `/embed/#${embedPath}`;
       }
-      if (url && isVisible){
+      if (url && isDisplayed){
         // Only attach if not already present
         if (!window.overlayManager.items || !window.overlayManager.items.has(key)) {
           console.log('[auto-attach] Attaching video to layer', key, 'with URL', url);
