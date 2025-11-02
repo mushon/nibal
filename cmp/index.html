@@ -1755,30 +1755,34 @@ window.viewerReady = false;
           const d = el.getAttribute('d');
           if (d) {
             const coords = [];
-            const matches = d.matchAll(/([ML])\s*([\d.]+)[,\s]+([\d.]+)/g);
+            // Support negative and decimal values for coordinates
+            const matches = d.matchAll(/([ML])\s*([+-]?\d*\.?\d+)[,\s]+([+-]?\d*\.?\d+)/g);
             for (const match of matches) {
               coords.push({ x: parseFloat(match[2]), y: parseFloat(match[3]) });
               if (coords.length >= 4) break;
             }
             if (coords.length >= 4) {
-              const p0 = mapLocal(coords[0].x, coords[0].y); // bottom-left in this file
-              const p1 = mapLocal(coords[1].x, coords[1].y); // bottom-right
-              const p2 = mapLocal(coords[2].x, coords[2].y); // top-right
-              const p3 = mapLocal(coords[3].x, coords[3].y); // top-left
-              const dx1 = p1.x - p0.x, dy1 = p1.y - p0.y;
-              const dx2 = p3.x - p0.x, dy2 = p3.y - p0.y;
-              width = Math.sqrt(dx1 * dx1 + dy1 * dy1);
-              height = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-              rotation = Math.atan2(dy1, dx1) * (180 / Math.PI);
-              // Anchor at the true top-left corner so translation aligns with expectations
-              const candidates = [p0, p1, p2, p3];
-              const topLeft = candidates.reduce((best, cur) => {
-                if (!best) return cur;
-                if (cur.y < best.y) return cur;
-                if (Math.abs(cur.y - best.y) < 0.5 && cur.x < best.x) return cur;
-                return best;
-              }, null);
-              tx = topLeft.x; ty = topLeft.y;
+              // Map the first four path points to screen coords
+              const pts = [
+                mapLocal(coords[0].x, coords[0].y),
+                mapLocal(coords[1].x, coords[1].y),
+                mapLocal(coords[2].x, coords[2].y),
+                mapLocal(coords[3].x, coords[3].y)
+              ];
+              // Identify corners robustly by y-rank: top pair = two smallest y, bottom pair = two largest y
+              const byY = pts.slice().sort((a,b)=> a.y - b.y);
+              const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x); // [TL, TR]
+              const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x); // [BL, BR]
+              const tlp = topPair[0];
+              const trp = topPair[1];
+              const blp = bottomPair[0];
+              // Compute width/height and rotation (orthonormal axes)
+              const vx = { x: trp.x - tlp.x, y: trp.y - tlp.y };
+              const vy = { x: blp.x - tlp.x, y: blp.y - tlp.y };
+              width = Math.hypot(vx.x, vx.y);
+              height = Math.hypot(vy.x, vy.y);
+              rotation = Math.atan2(vx.y, vx.x) * 180 / Math.PI;
+              tx = tlp.x; ty = tlp.y;
             }
           }
         } catch(e) {/* fall through to bbox */}
@@ -1787,32 +1791,27 @@ window.viewerReady = false;
       // Fallback: use bbox corners mapped through the viewer transform
       if (tx == null || ty == null) {
         if (!bb.width || !bb.height) { overlay.style.display = 'none'; return; }
-        const p0 = mapLocal(bb.x, bb.y);
-        const p1 = mapLocal(bb.x + bb.width, bb.y);
-        const p2 = mapLocal(bb.x + bb.width, bb.y + bb.height);
-        const p3 = mapLocal(bb.x, bb.y + bb.height);
-        const dx = p1.x - p0.x, dy = p1.y - p0.y;
-        const dx2 = p3.x - p0.x, dy2 = p3.y - p0.y;
-        width = Math.sqrt(dx * dx + dy * dy);
-        height = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-        rotation = Math.atan2(dy, dx) * (180 / Math.PI);
-        const candidates = [p0, p1, p2, p3];
-        const topLeft = candidates.reduce((best, cur) => {
-          if (!best) return cur;
-          if (cur.y < best.y) return cur;
-          if (Math.abs(cur.y - best.y) < 0.5 && cur.x < best.x) return cur;
-          return best;
-        }, null);
-        tx = topLeft.x; ty = topLeft.y;
+        const pts = [
+          mapLocal(bb.x, bb.y),
+          mapLocal(bb.x + bb.width, bb.y),
+          mapLocal(bb.x + bb.width, bb.y + bb.height),
+          mapLocal(bb.x, bb.y + bb.height)
+        ];
+        const byY = pts.slice().sort((a,b)=> a.y - b.y);
+        const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x); // [TL, TR]
+        const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x); // [BL, BR]
+        const tlp = topPair[0];
+        const trp = topPair[1];
+        const blp = bottomPair[0];
+        const vx = { x: trp.x - tlp.x, y: trp.y - tlp.y };
+        const vy = { x: blp.x - tlp.x, y: blp.y - tlp.y };
+        width = Math.hypot(vx.x, vx.y);
+        height = Math.hypot(vy.x, vy.y);
+        rotation = Math.atan2(vx.y, vx.x) * 180 / Math.PI;
+        tx = tlp.x; ty = tlp.y;
       }
 
-      // Convert to overlays container local coordinates (subtract container offset)
-      try {
-        const rootRect = root.getBoundingClientRect();
-        tx -= rootRect.left;
-        ty -= rootRect.top;
-      } catch(e) {}
-      // Apply transform: translate to corner, then rotate
+      // Apply unambiguous translate+rotate, with width/height defining scale
       overlay.style.transform = `translate(${tx}px, ${ty}px) rotate(${rotation}deg)`;
       overlay.style.width = Math.max(0.001, width) + 'px';
       overlay.style.height = Math.max(0.001, height) + 'px';
