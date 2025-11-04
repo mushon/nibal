@@ -142,7 +142,7 @@ css: src/theme.css
 {.meta thumb} 
 אלו מורים לכמיליון תושבי צפון הרצועה לעזוב את בתיהם ולעקור לדרום הרצועה תוך 24 שעות.
 
-`בוא ננסה להכניס פה חץ שמפנה מטה?`
+`בוא ננסה להכניס פה חץ שמפנה מטה? אין בקובץ הזה, אבל אולי אפשר לקחת את החץ שמופיע בקובץ של ה9 לספטמבר 2025? -IDF_zone_090925_NEW`
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
     קישור לפרק בדו״ח:
@@ -247,7 +247,7 @@ css: src/theme.css
 
 
 {.meta thumb} 
-[](embed/#vimeo.com%2F1130635381%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines,~oct23-IDF_heatmap,~idf-poly)
 ב-6 במאי 2024, מפיץ הצבא הישראלי צווי פינוי חדשים הדורשים מתושבי רפיח להתפנות.  
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
@@ -264,20 +264,22 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow,+rafah,+bureij,+cities,+villages,+idf-poly-outlines)
+[](embed/#vimeo.com%2F1130635381%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
 במקביל להוצאת צווי הפינוי, ישראל מגבירה את תקיפותיה ברפיח.
 
+
+{.meta} 
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow,+rafah,+bureij,+cities,+villages,+idf-poly-outlines)
 יחד עם כמיליון תושבים, רובם המוחלט עקורים שהגיעו לעיר בחודשים שלפני כן, ניבאל, אחמד וריתא נמלטים מהעיר.
 
 הם מגיעים לאל-בורייג׳ שבמרכז הרצועה, שם הם שוכרים מחסן קטן מחברים. 
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1130642937%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
+[](embed/#vimeo.com%2F1130642937%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "בתים מפח במחנה הפליטים אל-בורייג׳, יוני 2023. (רויטרס)")
 
 החיים במחסן היו קצת יציבים יותר, אבל הייתי ברגשות מעורבים. המרחק מהמשפחה ומהבית שלי גרם לי בדידות וניכור. מצד שני, שמחתי להיות עם בעלי והבת שלי. מתי שהצלחתי, התעדכנתי בטלפון במצב של המשפחה בג׳אבליא.
 
-`להוסיף כיתוב שמסביר שזו אילוסטרציה`
 
 {.testimony typewriter showdate}
 ### Oct 24
@@ -426,7 +428,7 @@ css: src/theme.css
 
 
 {.meta}
-[](tbd/#map-of-path)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+jabalia-al-mawasi(by-car):follow,+jabalia,+al-mawasi,+cities,+villages,+idf-poly-outlines)
 אחרי כחודש של מנוחה והחלמה בבית הוריה, אחמד מבקש מניבאל שתשוב דרומה. 
 
 ניבאל נענית לבקשתו, וחוזרת עם ריתא לאוהל ב״איזור ההומניטרי״ באל-מוואסי.
@@ -446,7 +448,7 @@ css: src/theme.css
 
 
 {.meta}
-[](embed/#vimeo.com%2F1132490042%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
+[](embed/#vimeo.com%2F1132490042%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון האינסטגרם של ניבאל")
 ניבאל מתארת תסכול מתמשך סביב הניסיון להשיג מים ואוכל לה ולריתא במחנה העקורים, תסכול שאחמד מפנה לעתים כלפיה. 
 
 
@@ -469,7 +471,7 @@ css: src/theme.css
 
 
 {.meta}
-[](img/#rita_tent1.jpg)
+[](img/#rita_tent1.jpg "ריתא במחנה העקורים באל-מוואסי")
 במקביל להתבשרותה על הטרגדיה של אחותה, המתיחות בין ניבאל לאחמד מגיעה לשיא.
 
 
@@ -484,7 +486,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](tbd/#what_here?)
+[](img/#jabalia_april_25.jpeg)
 
 המשפחה שוב קיבלה את פנינו באהבה, אבל בבית היה עצב כבד. אני ואחותי, שאיבדה את שלושת ילדיה, ניסינו לנחם אחת את השנייה. 
 לא יכולתי לעשות כלום בעצמי והתקשיתי לטפל בריתא. למרות כל התמיכה שקיבלתי מההורים שלי, הרגשתי שהפכתי לנטל גם עליהם.
@@ -529,7 +531,7 @@ css: src/theme.css
 {.meta thumb} 
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow,+gaza,+deir-al-balah,+cities,+villages,+idf-poly-outlines)
 
-בסוף אוגוסט 2025 יוצאת ישראל במתקפה על העיר עזה. צווי הפינוי שמוציא הצבא דורשים מכ-1.2 מיליון בני אדם לעקור - בתוכם גם ממשפחתה של ניבאל, שנעקרת דרומה, אל מתחם אוהלים בדיר אל-בלח.  
+בסוף אוגוסט 2025 יוצאת ישראל במתקפה על העיר עזה. צווי הפינוי שמוציא הצבא בתחילת ספטמבר דורשים מכ-1.2 מיליון בני אדם לעקור - בתוכם גם ממשפחתה של ניבאל, שנעקרת דרומה, אל מתחם אוהלים בדיר אל-בלח.  
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
     קישור לפרק בדו״ח:
@@ -562,7 +564,7 @@ css: src/theme.css
 
 
 {.meta}
-[](embed/#vimeo.com%2F1130690065%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
+[](embed/#vimeo.com%2F1130690065%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון האינסטגרם של ניבאל")
 גם עם שוך ההפצצות, ניבאל, ריתא ומשפחתן נותרים בסכנת חיים יומיומית. המחסור בקורת גג, יחד עם ההתמודדות עם האובדן המתמשך של בני משפחתה, הרס הבית והנכות הקשה ממשיכים להותיר משקעים בנפשה ובגופה של ניבאל. היא מתארת חוסר יכולת מוחלט לדמיין עתיד עבור עצמה ועבור ריתא.
 
 
