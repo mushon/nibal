@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Inflect SVG Viewer</title>
 <style>
-  html,body{height:100%;margin:0;background:#333;color:#fff;font-family:Helvetica,Arial,sans-serif}
+  html,body{height:100%;margin:0;background:transparent;color:#fff;font-family:Helvetica,Arial,sans-serif}
   #app{position:relative;height:100vh;overflow:hidden}
   #canvas{width:100%;height:100%;position:relative}
   #referenceFrame{position:absolute;pointer-events:none;border:1px solid #0B99FF;box-sizing:border-box;z-index:10}
   #svgContainer{position:absolute;left:0;top:0;right:0;bottom:0;overflow:visible}
-  #controls{position:absolute;right:8px;top:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:6px;color:#fff;font-size:13px}
+  /* HTML overlays container sits above the SVG and follows its transforms */
+  #overlays{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:9}
+  #overlays .overlay{position:absolute;transform-origin:0 0;pointer-events:auto}
+  #controls{position:absolute;right:8px;top:8px;background:rgba(0,0,0,0.06);padding:8px;border-radius:6px;color:#000;font-size:13px}
   #controls label{display:block;margin-bottom:6px;font-size:12px}
   #controls input[type=range]{width:140px}
   #status{position:absolute;left:8px;top:8px;background:rgba(0,0,0,0.5);padding:6px 8px;border-radius:6px;font-size:12px}
@@ -32,6 +35,7 @@
   <div id="canvas">
     <div id="referenceFrame"></div>
     <div id="svgContainer"></div>
+    <div id="overlays" aria-hidden="false"></div>
   </div>
   <div id="controls">
     <button id="reset">Reset view</button>
@@ -45,7 +49,7 @@
 // detect if running inside an iframe and toggle embedded UI
 try {
   if (window.top && window.top !== window.self) {
-    document.documentElement.classList.add('embedded');
+      document.documentElement.classList.add('embedded');
   }
 } catch(e) {
   // cross-origin top access may throw; assume embedded in that case
@@ -318,6 +322,8 @@ async function loadSVG(url){
   // apply any pending visibility instructions now that layers exist
   try { if (pendingVis) { applyVisibilityFromVis(pendingVis, { animate: false }); pendingVis = null; } } catch(e) { console.warn('apply pending vis failed', e); }
     try { window.layerKeyMap = layerKeyMap; } catch(e){}
+  // auto-attach video overlays for layers with vimeo-* or embed-* IDs
+  try { autoAttachVideoOverlays(); } catch(e) { console.warn('auto-attach videos failed', e); }
   } catch (e) {
     console.error(e);
     setStatus('error');
@@ -371,14 +377,11 @@ function buildLayerList(){
   cb.addEventListener('change', () => {
     const key = cb.dataset.layerKey;
     // If no key, fallback to direct toggle
-    if (!key) { toggleLayerVisibility(el, cb.checked, { animate: true }); updateHashFromLayerList(); refreshLayerListCheckboxes(); return; }
+  if (!key) { toggleLayerVisibility(el, cb.checked, { animate: true }); try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){} try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){} updateHashFromLayerList(); refreshLayerListCheckboxes(); return; }
 
-    // If the user checked the checkbox, treat this as an explicit "show" (exception)
-    // and add it to showExceptions so the hash emits a +token for this layer. Do not
-    // implicitly hide other layers as a side-effect.
+    // If the user checked the checkbox, just show the layer (remove ~token if present)
+    // Do NOT add to showExceptions - only the "Only" button creates +tokens
     if (cb.checked === true) {
-      // add as explicit exception/show
-      showExceptions.add(key);
       // ensure ancestor chain is visible so this layer can be seen
       const parts = key.split('/');
       for (let i = 0; i < parts.length - 1; i++) {
@@ -389,11 +392,13 @@ function buildLayerList(){
       }
       // show this element
       toggleLayerVisibility(el, true, { animate: true });
+      try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+      try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       refreshLayerListCheckboxes(); updateHashFromLayerList();
       return;
     }
 
-    // If the user unchecked the checkbox and it was previously an explicit exception,
+    // If the user unchecked the checkbox and it was previously an explicit exception (+token),
     // remove it from showExceptions and reapply parsed visibility.
     if (cb.checked === false && showExceptions.has(key)) {
       // Remove explicit +token for this key from the hash and in-memory exceptions.
@@ -456,13 +461,22 @@ function buildLayerList(){
             if (!childEl) return;
             toggleLayerVisibility(childEl, false, { animate: false });
           });
+          try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+          try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
           refreshLayerListCheckboxes(); updateHashFromLayerList();
-        }).catch(() => { refreshLayerListCheckboxes(); updateHashFromLayerList(); });
+        }).catch(() => { 
+          try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+          try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+          refreshLayerListCheckboxes(); updateHashFromLayerList();
+        });
         return;
       }
     }
     // default behavior: toggle element visibility directly
-    toggleLayerVisibility(el, cb.checked, { animate: true }); updateHashFromLayerList(); refreshLayerListCheckboxes();
+    toggleLayerVisibility(el, cb.checked, { animate: true });
+    try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+    try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+    updateHashFromLayerList(); refreshLayerListCheckboxes();
   });
     // "Only" button: make this the only visible layer (implements +key semantics)
     const onlyBtn = document.createElement('button');
@@ -492,15 +506,17 @@ function buildLayerList(){
         parsed.vis = { show: [], hide: [] };
         const token = buildCompactHash(parsed.url, parsed.params, parsed.vis);
         location.hash = '#'+token;
-        // Reapply parsed visibility (which is now empty) so UI updates
-        try { applyVisibilityFromVis({ show: [], hide: [] }, { animate: true }); } catch(e){}
+  // Reapply parsed visibility (which is now empty) so UI updates
+  try { applyVisibilityFromVis({ show: [], hide: [] }, { animate: true }); } catch(e){}
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
         refreshLayerListCheckboxes();
         return;
       }
 
       // Non-root behavior: keep existing +token semantics (show only this subtree)
       const vis = { show: [theKey], hide: [] };
-      try { applyVisibilityFromVis(vis, { animate: true }); } catch(e){ console.warn('applyVisibilityFromVis failed', e); }
+  try { applyVisibilityFromVis(vis, { animate: true }); } catch(e){ console.warn('applyVisibilityFromVis failed', e); }
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       // update the hash token similarly to updateHashFromLayerList but using our vis
   suppressHashFor(120);
       const parsed = parseHash();
@@ -717,13 +733,19 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
   try { el.removeAttribute && el.removeAttribute('display'); } catch(e){}
   el.style.display = 'inline';
     el.style.visibility = '';
-    // ensure starting opacity 0
+    // Start with no transition and opacity 0
     el.style.transition = 'none';
     el.style.opacity = '0';
-    // force layout
+    // Force layout
     void el.getBoundingClientRect();
-    // then transition to 1
-  el.style.transition = `opacity ${duration}ms ${SOFT_EASE}`; 
+    // Update overlays to get opacity:0 with no transition
+    try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+    // Now set up the transition
+  el.style.transition = `opacity ${duration}ms ${SOFT_EASE}`;
+    // Force layout again so transition is registered
+    void el.getBoundingClientRect();
+    // Update overlays to copy the transition property (opacity still at 0)
+    try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
     let finished = false;
     const onEnd = (ev) => {
       if (ev && ev.propertyName !== 'opacity') return;
@@ -734,30 +756,51 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
       el.style.transition = '';
       el.style.opacity = '';
       __fadeCancels.delete(el);
+      // Update overlays after visibility change completes
+      try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       resolve();
     };
     el.addEventListener('transitionend', onEnd);
     // start fade
-    requestAnimationFrame(() => { el.style.opacity = '1'; });
+    requestAnimationFrame(() => { 
+      el.style.opacity = '1';
+      // Double RAF to ensure overlay updates after opacity change has been committed
+      requestAnimationFrame(() => {
+  try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(); } catch(e){}
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+      });
+    });
     // store cancel function
     __fadeCancels.set(el, () => {
       if (!finished) { el.removeEventListener('transitionend', onEnd); finished = true; }
       __fadeCancels.delete(el);
       el.style.transition = '';
       el.style.opacity = '';
+      // Update overlays when animation is cancelled
+      try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       resolve();
     });
     return;
   }
 
   // hide: fade to 0 then set display none
-  el.style.transition = `opacity ${duration}ms ${SOFT_EASE}`;
-  // ensure starting opacity is 1
+  // Start with no transition, just ensure opacity is 1
+  el.style.transition = 'none';
   if (!el.style.opacity) {
     // if no inline opacity, set to computed value or 1
     const comp = window.getComputedStyle(el).opacity;
     el.style.opacity = comp || '1';
   }
+  // Force layout
+  void el.getBoundingClientRect();
+  // Update overlays to get opacity:1 with no transition
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+  // Now set up the transition
+  el.style.transition = `opacity ${duration}ms ${SOFT_EASE}`;
+  // Force layout so transition is registered
+  void el.getBoundingClientRect();
+  // Update overlays to copy the transition property (opacity still at 1)
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
   let finished = false;
   const onEndHide = (ev) => {
     if (ev && ev.propertyName !== 'opacity') return;
@@ -785,11 +828,19 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
       try { el.setAttribute && el.setAttribute('display', 'none'); } catch(e){}
     }
     __fadeCancels.delete(el);
+    // Update overlays after visibility change completes
+    try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
     resolve();
   };
   el.addEventListener('transitionend', onEndHide);
   // start fade out
-  requestAnimationFrame(() => { el.style.opacity = '0'; });
+  requestAnimationFrame(() => { 
+    el.style.opacity = '0';
+    // Double RAF to ensure overlay updates after opacity change has been committed
+    requestAnimationFrame(() => {
+      try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+    });
+  });
   __fadeCancels.set(el, () => {
     if (!finished) { el.removeEventListener('transitionend', onEndHide); finished = true; }
     __fadeCancels.delete(el);
@@ -809,6 +860,8 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
       el.style.display = 'none';
       try { el.setAttribute && el.setAttribute('display', 'none'); } catch(e){}
     }
+    // Update overlays when animation is cancelled
+    try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
     resolve();
   });
   });
@@ -821,7 +874,7 @@ function applyVisibilityFromVis(vis, opts){
   // Resolve short vis tokens (like 'princess') against layerKeyMap by last-segment
   const rawHides = (vis && Array.isArray(vis.hide)) ? vis.hide.slice() : [];
   const rawShows = (vis && Array.isArray(vis.show)) ? vis.show.slice() : [];
-  const resolveToken = (tok) => {
+    const resolveToken = (tok) => {
     if (!tok) return tok;
     if (String(tok).includes('/')) return tok;
     // find keys whose last segment matches tok
@@ -930,24 +983,31 @@ function applyVisibilityFromVis(vis, opts){
           el.style.pointerEvents = 'none';
         } catch(e){}
         try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = false; } catch(e){}
-        // still continue to next entry; children will be handled below
+        // Remove overlay if present
+        if (window.overlayManager && typeof window.overlayManager.remove === 'function') window.overlayManager.remove(key);
         continue;
       }
       // otherwise keep parent visible; children control visibility
       toggleLayerVisibility(el, true, { animate: false });
       try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = true; } catch(e){}
+      // Ensure overlay is attached if needed (autoAttachVideoOverlays will handle this)
       continue;
     }
 
     let visible = true;
     if (showExceptions.has(key) || showSet.has(key)) visible = true;
-  else if (parentsWithExceptions.has(key)) visible = true;
-  else if (expandedHideSet.has(key)) visible = false;
+    else if (parentsWithExceptions.has(key)) visible = true;
+    else if (expandedHideSet.has(key)) visible = false;
     else visible = true;
     toggleLayerVisibility(el, visible, { animate: animateGlobally ? true : false });
     // update corresponding checkbox immediately if present
     try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = Boolean(visible); } catch(e){}
+    // Remove overlay if hiding, ensure attached if showing (autoAttachVideoOverlays will re-attach)
+    if (!visible && window.overlayManager && typeof window.overlayManager.remove === 'function') window.overlayManager.remove(key);
   }
+  // After all visibility changes, re-attach overlays for visible layers
+  if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
+  if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
 
   // For each parent with exceptions, hide its direct children except the ones explicitly shown
   parentsWithExceptions.forEach(parentKey => {
@@ -1214,6 +1274,9 @@ function render(){
   
   // Update reference frame display (called here for consistency, also called on resize)
   updateReferenceFrame();
+
+  // Update HTML overlays to match current SVG transform
+  try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
 }
 
 // simple tweening helper for numeric state transitions
@@ -1550,18 +1613,72 @@ window.addEventListener('hashchange', ()=>{
   // if URL changed, load new svg immediately
   if (parsed.url && parsed.url !== currentUrl) {
     currentUrl = parsed.url;
-    loadSVG(currentUrl);
+    loadSVG(currentUrl).then(()=>{
+      if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
+      if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
+    });
     return;
   }
   // if same URL but params changed, animate to new params
   if (parsed.url === currentUrl) {
-  if (parsed.params) animateTo(mergeWithDefaults(parsed.params), 800).catch(()=>{});
+    if (parsed.params) animateTo(mergeWithDefaults(parsed.params), 800).catch(()=>{});
     if (parsed.vis) {
       if (!svgEl) { pendingVis = parsed.vis; }
-      else { try { applyVisibilityFromVis(parsed.vis, { animate: true }); } catch(e){} }
+      else {
+        try {
+          applyVisibilityFromVis(parsed.vis, { animate: true });
+          // After visibility changes, update overlays to ensure fade in/out
+          if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
+        } catch(e){}
+      }
     }
+    // Always re-attach overlays in case layers changed
+    if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
   }
 });
+
+// Auto-attach video overlays based on layer IDs
+function autoAttachVideoOverlays(){
+  if (!window.overlayManager || !layerKeyMap) return;
+  for (const [key, el] of layerKeyMap.entries()){
+    try{
+      const id = el.id || String(key).split('/').pop();
+      if (!id) continue;
+      // Only attach overlays for displayed layers (allow opacity 0 during fade-in)
+      const cs = window.getComputedStyle(el);
+      const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden';
+      // Remove overlay if not displayed
+      if (!isDisplayed && window.overlayManager && typeof window.overlayManager.remove === 'function') {
+        window.overlayManager.remove(key);
+        continue;
+      }
+      // Match patterns: vimeo-1234567, embed-vimeo.com%2F1234567, etc.
+      let url = null;
+      // Pattern: vimeo-1234567 -> /embed/#vimeo.com%2F1234567/autoplay,loop,cover
+      const vimeoMatch = id.match(/^vimeo-(\d+)$/i);
+      if (vimeoMatch){
+        const videoId = vimeoMatch[1];
+        url = `/embed/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
+      }
+      // Pattern: embed-* -> extract full embed URL from id
+      // e.g., embed-vimeo.com%2F1234567 or embed-vimeo.com%2F1234567%2Fautoplay
+      const embedMatch = id.match(/^embed-(.+)$/i);
+      if (embedMatch && !url){
+        const embedPath = embedMatch[1];
+        url = `/embed/#${embedPath}`;
+      }
+      if (url && isDisplayed){
+        // Only attach if not already present
+        if (!window.overlayManager.items || !window.overlayManager.items.has(key)) {
+          console.log('[auto-attach] Attaching video to layer', key, 'with URL', url);
+          window.overlayManager.attachIframe(key, url);
+        }
+      } else if (window.overlayManager && typeof window.overlayManager.remove === 'function') {
+        window.overlayManager.remove(key);
+      }
+    }catch(e){ console.warn('[auto-attach] Failed for key', key, e); }
+  }
+}
 
 // Update reference frame and SVG transform on window resize
 window.addEventListener('resize', () => {
@@ -1572,6 +1689,342 @@ window.addEventListener('resize', () => {
 });
 
 window.viewerReady = false;
+</script>
+
+<!-- Overlay manager: position HTML/iframe layers to follow SVG elements -->
+<script>
+(function(){
+  const root = document.getElementById('overlays');
+  const items = new Map(); // key -> { target: SVGElement, el: HTMLElement|SVGForeignObjectElement, mode: 'html'|'svg-fo' }
+
+  function getTargetForKey(key){
+    if (!key) return null;
+    // Prefer layerKeyMap (built by viewer) for hierarchical keys
+    if (window.layerKeyMap && typeof window.layerKeyMap.get === 'function'){
+      const el = window.layerKeyMap.get(key);
+      if (el) return el;
+    }
+    // Fallback: search by plain id in current svg
+    try{
+      if (window.svgEl && typeof window.svgEl.querySelector === 'function'){
+        const byId = window.svgEl.querySelector('#'+CSS.escape(String(key)));
+        if (byId) return byId;
+      }
+    }catch(e){}
+    try{
+      const byIdDoc = document.getElementById(String(key));
+      if (byIdDoc && byIdDoc.ownerSVGElement) return byIdDoc;
+    }catch(e){}
+    return null;
+  }
+
+  function updateOne(key){
+    const item = items.get(key);
+    if (!item || !item.target || !item.el) return;
+    const el = item.target;
+    const overlay = item.el;
+    try{
+      // If this overlay is an SVG foreignObject (in-SVG), compute geometry in SVG units
+      const isSvgFO = overlay && overlay.namespaceURI === 'http://www.w3.org/2000/svg' && overlay.tagName.toLowerCase() === 'foreignobject';
+      if (isSvgFO) {
+        const bb = el.getBBox();
+        if (!bb) { overlay.setAttribute('display','none'); return; }
+        // Map local quad to root SVG coordinates using getCTM
+        const ctm = (typeof el.getCTM === 'function') ? el.getCTM() : null;
+        const mapLocalSvg = (x, y) => {
+          if (ctm) {
+            const p = new DOMPoint(x, y).matrixTransform(ctm);
+            return { x: p.x, y: p.y };
+          }
+          return { x, y };
+        };
+
+        // Prefer path corners when available
+        let tlp, trp, blp, width, height, rotation;
+        if (el.tagName === 'path' && el.getAttribute) {
+          try {
+            const d = el.getAttribute('d');
+            if (d) {
+              const coords = [];
+              const matches = d.matchAll(/([ML])\s*([+-]?\d*\.?\d+)[,\s]+([+-]?\d*\.?\d+)/g);
+              for (const m of matches) { coords.push({ x: parseFloat(m[2]), y: parseFloat(m[3]) }); if (coords.length >= 4) break; }
+              if (coords.length >= 4) {
+                const pts = [
+                  mapLocalSvg(coords[0].x, coords[0].y),
+                  mapLocalSvg(coords[1].x, coords[1].y),
+                  mapLocalSvg(coords[2].x, coords[2].y),
+                  mapLocalSvg(coords[3].x, coords[3].y)
+                ];
+                const byY = pts.slice().sort((a,b)=> a.y - b.y);
+                const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x);
+                const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x);
+                tlp = topPair[0]; trp = topPair[1]; blp = bottomPair[0];
+              }
+            }
+          } catch(e) {/* fallback to bbox */}
+        }
+        if (!tlp || !trp || !blp) {
+          const pts = [
+            mapLocalSvg(bb.x, bb.y),
+            mapLocalSvg(bb.x + bb.width, bb.y),
+            mapLocalSvg(bb.x + bb.width, bb.y + bb.height),
+            mapLocalSvg(bb.x, bb.y + bb.height)
+          ];
+          const byY = pts.slice().sort((a,b)=> a.y - b.y);
+          const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x);
+          const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x);
+          tlp = topPair[0]; trp = topPair[1]; blp = bottomPair[0];
+        }
+        const vx = { x: trp.x - tlp.x, y: trp.y - tlp.y };
+        const vy = { x: blp.x - tlp.x, y: blp.y - tlp.y };
+        width = Math.hypot(vx.x, vx.y);
+        height = Math.hypot(vy.x, vy.y);
+        rotation = Math.atan2(vx.y, vx.x) * 180 / Math.PI;
+
+        // Apply to foreignObject
+        overlay.removeAttribute('display');
+        overlay.setAttribute('x', String(tlp.x));
+        overlay.setAttribute('y', String(tlp.y));
+        overlay.setAttribute('width', String(Math.max(0.001, width)));
+        overlay.setAttribute('height', String(Math.max(0.001, height)));
+        overlay.setAttribute('transform', `rotate(${rotation} ${tlp.x} ${tlp.y})`);
+
+        // Mirror visibility/opacity/transition
+        const cs = window.getComputedStyle(el);
+        const targetVisibility = cs.visibility || 'visible';
+        const targetDisplay = (cs.display === 'none') ? 'none' : 'inline';
+        const elTransition = el.style.transition || '';
+        const elOpacity = el.style.opacity || cs.opacity || '1';
+        overlay.style.transition = elTransition;
+        overlay.style.opacity = elOpacity;
+        overlay.style.visibility = targetVisibility;
+        if (targetDisplay === 'none' || parseFloat(elOpacity) < 0.01 && (!elTransition || elTransition === 'none')) {
+          overlay.setAttribute('display','none');
+        } else {
+          overlay.removeAttribute('display');
+        }
+        return; // SVG-FO path handled
+      }
+      const bb = el.getBBox();
+      if (!bb) { overlay.style.display = 'none'; return; }
+
+      // Recreate the same CSS transform math used by the viewer's render()
+      const ref = (typeof getReferenceFrame === 'function') ? getReferenceFrame() : {
+        size: Math.min(window.innerWidth || 0, window.innerHeight || 0),
+        centerX: (window.innerWidth || 0) / 2,
+        centerY: (window.innerHeight || 0) / 2
+      };
+      // Use the global svg bbox captured at load/fit, not the element's bbox
+      const vb = (typeof bbox !== 'undefined' && bbox) ? bbox : (svgEl && svgEl.getBBox ? svgEl.getBBox() : bb);
+      // Use the viewer's state (scale/tx/ty) from the global, not window
+      const st = (typeof state !== 'undefined' && state) ? state : { tx: 0, ty: 0, scale: 1 };
+      const scaleToFitInRef = Math.min(ref.size / vb.width, ref.size / vb.height);
+      const viewportScale = st.scale * scaleToFitInRef;
+      const offsetXpx = st.tx * ref.size;
+      const offsetYpx = st.ty * ref.size;
+      const viewportTx = ref.centerX + offsetXpx - (vb.x + vb.width / 2) * viewportScale;
+      const viewportTy = ref.centerY + offsetYpx - (vb.y + vb.height / 2) * viewportScale;
+
+      const mapPoint = (x, y) => ({
+        x: viewportTx + x * viewportScale,
+        y: viewportTy + y * viewportScale
+      });
+      // Apply element's internal SVG transform (if any) before mapping to CSS pixels
+      // getCTM() gives the matrix from the element's local coordinate space to the SVG viewport (pre-CSS)
+      const ctm = (typeof el.getCTM === 'function') ? el.getCTM() : null;
+      const mapLocal = (x, y) => {
+        if (ctm) {
+          const p = new DOMPoint(x, y).matrixTransform(ctm);
+          return mapPoint(p.x, p.y);
+        }
+        return mapPoint(x, y);
+      };
+
+      let width, height, rotation, tx, ty;
+
+      // Prefer true path corners when available
+      if (el.tagName === 'path' && el.getAttribute) {
+        try {
+          const d = el.getAttribute('d');
+          if (d) {
+            const coords = [];
+            // Support negative and decimal values for coordinates
+            const matches = d.matchAll(/([ML])\s*([+-]?\d*\.?\d+)[,\s]+([+-]?\d*\.?\d+)/g);
+            for (const match of matches) {
+              coords.push({ x: parseFloat(match[2]), y: parseFloat(match[3]) });
+              if (coords.length >= 4) break;
+            }
+            if (coords.length >= 4) {
+              // Map the first four path points to screen coords
+              const pts = [
+                mapLocal(coords[0].x, coords[0].y),
+                mapLocal(coords[1].x, coords[1].y),
+                mapLocal(coords[2].x, coords[2].y),
+                mapLocal(coords[3].x, coords[3].y)
+              ];
+              // Identify corners robustly by y-rank: top pair = two smallest y, bottom pair = two largest y
+              const byY = pts.slice().sort((a,b)=> a.y - b.y);
+              const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x); // [TL, TR]
+              const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x); // [BL, BR]
+              const tlp = topPair[0];
+              const trp = topPair[1];
+              const blp = bottomPair[0];
+              // Compute width/height and rotation (orthonormal axes)
+              const vx = { x: trp.x - tlp.x, y: trp.y - tlp.y };
+              const vy = { x: blp.x - tlp.x, y: blp.y - tlp.y };
+              width = Math.hypot(vx.x, vx.y);
+              height = Math.hypot(vy.x, vy.y);
+              rotation = Math.atan2(vx.y, vx.x) * 180 / Math.PI;
+              tx = tlp.x; ty = tlp.y;
+            }
+          }
+        } catch(e) {/* fall through to bbox */}
+      }
+
+      // Fallback: use bbox corners mapped through the viewer transform
+      if (tx == null || ty == null) {
+        if (!bb.width || !bb.height) { overlay.style.display = 'none'; return; }
+        const pts = [
+          mapLocal(bb.x, bb.y),
+          mapLocal(bb.x + bb.width, bb.y),
+          mapLocal(bb.x + bb.width, bb.y + bb.height),
+          mapLocal(bb.x, bb.y + bb.height)
+        ];
+        const byY = pts.slice().sort((a,b)=> a.y - b.y);
+        const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x); // [TL, TR]
+        const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x); // [BL, BR]
+        const tlp = topPair[0];
+        const trp = topPair[1];
+        const blp = bottomPair[0];
+        const vx = { x: trp.x - tlp.x, y: trp.y - tlp.y };
+        const vy = { x: blp.x - tlp.x, y: blp.y - tlp.y };
+        width = Math.hypot(vx.x, vx.y);
+        height = Math.hypot(vy.x, vy.y);
+        rotation = Math.atan2(vx.y, vx.x) * 180 / Math.PI;
+        tx = tlp.x; ty = tlp.y;
+      }
+
+      // Apply unambiguous translate+rotate, with width/height defining scale
+      overlay.style.transform = `translate(${tx}px, ${ty}px) rotate(${rotation}deg)`;
+      overlay.style.width = Math.max(0.001, width) + 'px';
+      overlay.style.height = Math.max(0.001, height) + 'px';
+      
+      // mirror visibility/opacity/transition with smooth transitions
+      const cs = window.getComputedStyle(el);
+      const targetVisibility = cs.visibility || 'visible';
+      const targetDisplay = (cs.display === 'none') ? 'none' : 'block';
+      
+      // Mirror the element's inline styles exactly - this is critical for sync
+      // Use inline style values, not computed, so we get the transition target values
+      const elTransition = el.style.transition || '';
+      const elOpacity = el.style.opacity || cs.opacity || '1';
+      
+      // Always copy the element's transition exactly
+      overlay.style.transition = elTransition;
+      
+      // Mirror opacity from inline style (the target value during transitions)
+      overlay.style.opacity = elOpacity;
+      overlay.style.visibility = targetVisibility;
+      
+      // Keep display:block during fade transitions; only hide when opacity is 0 and no transition
+      const opacityValue = parseFloat(elOpacity);
+      if (targetDisplay === 'none' || (opacityValue < 0.01 && (!elTransition || elTransition === 'none' || elTransition === ''))) {
+        overlay.style.display = 'none';
+      } else {
+        overlay.style.display = 'block';
+      }
+    }catch(e){ /* ignore per-frame errors */ }
+  }
+
+  function update(){
+    for (const k of items.keys()) updateOne(k);
+  }
+
+  function attachToLayer(key, element){
+    try{
+      const target = getTargetForKey(key);
+      if (!target) { console.warn('[overlay] target not found for key', key); return null; }
+      const el = (typeof element === 'function') ? element() : element;
+      if (!el) return null;
+      // Determine mode: use SVG foreignObject for correct z-ordering
+      const isSvgMode = true;
+      if (isSvgMode) {
+        // Build foreignObject with XHTML div+iframe
+        const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+        fo.setAttribute('x','0'); fo.setAttribute('y','0');
+        fo.setAttribute('width','1'); fo.setAttribute('height','1');
+        fo.style.pointerEvents = 'auto';
+        // insert after target so it paints above target but below following siblings
+        try { target.parentNode.insertBefore(fo, target.nextSibling); } catch(e) { try{ target.parentNode.appendChild(fo); }catch(e){} }
+
+        const xhtmlDiv = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+        xhtmlDiv.setAttribute('xmlns','http://www.w3.org/1999/xhtml');
+        xhtmlDiv.style.width = '100%';
+        xhtmlDiv.style.height = '100%';
+        xhtmlDiv.style.pointerEvents = 'auto';
+
+        // If the provided element is an iframe/element, append into xhtmlDiv; else create iframe
+        let iframeEl = el;
+        if (!(el instanceof HTMLIFrameElement)) {
+          const iframe = document.createElement('iframe');
+          iframe.src = '';
+          iframe.setAttribute('frameborder','0');
+          iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.border = '0';
+          iframe.style.display = 'block';
+          iframeEl = iframe;
+        }
+        xhtmlDiv.appendChild(iframeEl);
+        fo.appendChild(xhtmlDiv);
+        // Track item
+        items.set(String(key), { target, el: fo, mode: 'svg-fo' });
+        // Initial update
+        updateOne(String(key));
+        return fo;
+      } else {
+        // Legacy HTML overlay mode
+        el.classList.add('overlay');
+        el.style.position = 'absolute';
+        el.style.left = '0';
+        el.style.top = '0';
+        el.style.transformOrigin = '0 0';
+        el.style.willChange = 'transform,width,height';
+        el.dataset.layerKey = String(key);
+        root && root.appendChild(el);
+        items.set(String(key), { target, el, mode: 'html' });
+        updateOne(String(key));
+        return el;
+      }
+    }catch(e){ return null; }
+  }
+
+  function remove(key){
+    const item = items.get(String(key));
+    if (item) { try{ item.el.remove(); }catch(e){} items.delete(String(key)); }
+  }
+
+  function attachIframe(key, src, attrs){
+    // Build FO overlay and set iframe src
+    const fo = attachToLayer(key, () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = src || '';
+      iframe.setAttribute('frameborder','0');
+      iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = '0';
+      iframe.style.display = 'block';
+      try{ Object.entries(attrs || {}).forEach(([k,v]) => iframe.setAttribute(k, String(v))); }catch(e){}
+      return iframe;
+    });
+    return fo;
+  }
+
+  // Expose API (including items for visibility checks)
+  window.overlayManager = { attachToLayer, attachIframe, update, remove, items };
+})();
 </script>
 </body>
 </html>
