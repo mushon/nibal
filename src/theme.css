@@ -374,7 +374,7 @@ iframe {
         pointer-events: none; /* don't intercept taps when covered */
     }
 
-    body>div::after {
+    body>div#iframe-container:after {
         content: '';
         position: absolute;
         top: 70vh;
