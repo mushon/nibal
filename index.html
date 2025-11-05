@@ -788,7 +788,13 @@
                         // Use the raw href attribute to avoid races where scripts
                         // (e.g. the typewriter) mutate link textContent or href.
                         const rawHref = visibleLink.getAttribute('href');
-                        try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(visibleLink.href); }
+                        // In dual-iframe mode, call setIframeIfPathChanged directly to avoid timeout issues
+                        const isDualMode = document.body.classList.contains('dual-iframe');
+                        if (isDualMode) {
+                            try { const full = new URL(rawHref, window.location.href).href; setIframeIfPathChanged(full); } catch(e){ setIframeIfPathChanged(visibleLink.href); }
+                        } else {
+                            try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(visibleLink.href); }
+                        }
                         try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(visibleLink); } catch(e){}
                         // Start any typewriter animation for the section that contains this link
                         // after the iframe has been asked to load the path. Use a short delay
@@ -864,7 +870,14 @@
                             allLinks.forEach(link => {
                                 const linkHref = link.getAttribute('href');
                                 if (linkHref) {
-                                    try { const full = new URL(linkHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(link.href); }
+                                    // Call setIframeIfPathChanged directly to avoid timeout cancellation
+                                    // (setIframeNext uses single global timeout that gets cancelled by subsequent calls)
+                                    try { 
+                                        const full = new URL(linkHref, window.location.href).href; 
+                                        setIframeIfPathChanged(full); 
+                                    } catch(e){ 
+                                        setIframeIfPathChanged(link.href); 
+                                    }
                                 }
                             });
                             // Set caption from first link
@@ -1234,7 +1247,13 @@
                     document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
                     link.classList.add('active');
                     const rawHref = link.getAttribute('href');
-                    try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(link.href); }
+                    // In dual-iframe mode, call setIframeIfPathChanged directly to avoid timeout issues
+                    const isDualMode = document.body.classList.contains('dual-iframe');
+                    if (isDualMode) {
+                        try { const full = new URL(rawHref, window.location.href).href; setIframeIfPathChanged(full); } catch(e){ setIframeIfPathChanged(link.href); }
+                    } else {
+                        try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(link.href); }
+                    }
                     try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(link); } catch(e){}
                     // (typewriter removed)
                 });
