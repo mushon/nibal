@@ -630,6 +630,9 @@
                         console.log('[IFRAME] Setting background-frame src to:', newHref);
                         console.log('[IFRAME] backgroundFrame element:', backgroundFrame);
                         console.log('[IFRAME] firstBackgroundFrame:', firstBackgroundFrame);
+                        console.log('[IFRAME] lastBackgroundPath:', lastBackgroundPath);
+                        console.log('[IFRAME] newPath:', newPath);
+                        console.log('[IFRAME] Path changed?', newPath !== lastBackgroundPath);
                     }
                     if (newPath !== lastBackgroundPath) {
                         if (firstBackgroundFrame) {
@@ -644,14 +647,24 @@
                                 backgroundFrame.style.opacity = '0';
                                 setTimeout(() => {
                                     backgroundFrame.src = newHref;
+                                    if (window.__inflectDebug) {
+                                        console.log('[IFRAME] Background fade complete, src updated to:', newHref);
+                                    }
                                 }, 400);
                             } else {
                                 backgroundFrame.src = newHref;
+                                if (window.__inflectDebug) {
+                                    console.log('[IFRAME] Background already faded, src updated to:', newHref);
+                                }
                             }
                         }
                         lastBackgroundPath = newPath;
                     } else {
+                        // Hash-only change - update src immediately
                         backgroundFrame.src = newHref;
+                        if (window.__inflectDebug) {
+                            console.log('[IFRAME] Background hash-only change, src updated to:', newHref);
+                        }
                     }
                     // Make foreground inactive if no content
                     if (!lastForegroundPath) {
