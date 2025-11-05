@@ -185,10 +185,16 @@
         });
         
         backgroundFrame.addEventListener('load', () => {
+            if (window.__inflectDebug) {
+                console.log('[IFRAME] background-frame LOADED, setting opacity=1, src was:', backgroundFrame.src);
+            }
             backgroundFrame.style.opacity = '1';
         });
         
         foregroundFrame.addEventListener('load', () => {
+            if (window.__inflectDebug) {
+                console.log('[IFRAME] foreground-frame LOADED, setting opacity=1, src was:', foregroundFrame.src);
+            }
             foregroundFrame.style.opacity = '1';
             // Remove inactive class to enable pointer events
             foregroundFrame.classList.remove('inactive');
@@ -679,16 +685,27 @@
                     }
                 } else {
                     // Route to foreground frame (default for cmp/, img/, vid/, etc.)
+                    if (window.__inflectDebug) {
+                        console.log('[IFRAME] Setting foreground-frame src to:', newHref);
+                        console.log('[IFRAME] foregroundFrame element:', foregroundFrame);
+                        console.log('[IFRAME] firstForegroundFrame:', firstForegroundFrame);
+                    }
                     if (newPath !== lastForegroundPath) {
                         if (firstForegroundFrame) {
                             firstForegroundFrame = false;
                             foregroundFrame.style.opacity = '1';
                             foregroundFrame.src = newHref;
+                            if (window.__inflectDebug) {
+                                console.log('[IFRAME] FIRST foreground frame load, set opacity=1 and src');
+                            }
                         } else {
                             if (foregroundFrame.style.opacity !== '0') {
                                 foregroundFrame.style.opacity = '0';
                                 setTimeout(() => {
                                     foregroundFrame.src = newHref;
+                                    if (window.__inflectDebug) {
+                                        console.log('[IFRAME] Foreground fade-out complete, setting new src');
+                                    }
                                 }, 400);
                             } else {
                                 foregroundFrame.src = newHref;

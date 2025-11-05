@@ -9,6 +9,9 @@ This page demonstrates the new dual-iframe system where map links load in the ba
 
 [](map/#31.52888,34.47937,14,15.0,0 "Jabalia - map loads in background")
 
+[](cmp/#opening.svg/~IDFareas "opening svg")
+
+
 <!-- 
 # Dual Layer Demo: Map + Overlays
 
