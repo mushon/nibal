@@ -724,8 +724,14 @@
         // Schedule iframe updates slightly later to allow DOM mutations (e.g. typewriter)
         let __iframeNextTimeout = null;
         function setIframeNext(href, delay = 60, waitForSection = true){
+            if (window.__inflectDebug) {
+                console.log('[setIframeNext] Called with href:', href, 'delay:', delay, 'waitForSection:', waitForSection);
+            }
             try { if (__iframeNextTimeout) clearTimeout(__iframeNextTimeout); } catch(e){}
             __iframeNextTimeout = setTimeout(() => {
+                if (window.__inflectDebug) {
+                    console.log('[setIframeNext] Timeout fired for:', href);
+                }
                 // Try to find the anchor in the document and its containing section
                 try {
                     if (waitForSection) {
@@ -1259,10 +1265,19 @@
             const firstSection = document.querySelector('main section');
             if (firstSection) {
                 const allLinks = Array.from(firstSection.querySelectorAll('a:not(.dontinflect)'));
+                if (window.__inflectDebug) {
+                    console.log('[INITIAL LOAD] Found', allLinks.length, 'links in first section');
+                    allLinks.forEach((link, i) => {
+                        console.log(`[INITIAL LOAD] Link ${i}:`, link.getAttribute('href'), link.textContent.trim() || '(empty)');
+                    });
+                }
                 allLinks.forEach((link, index) => {
                     if (index === 0) link.classList.add('active');
                     const rawHref = link.getAttribute('href');
                     if (rawHref) {
+                        if (window.__inflectDebug) {
+                            console.log('[INITIAL LOAD] Processing link', index, ':', rawHref);
+                        }
                         try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(link.href); }
                     }
                 });
