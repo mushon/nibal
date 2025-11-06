@@ -1539,8 +1539,20 @@ window.addEventListener('hashchange', () => {
         if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== 'none') {
           map.setLayoutProperty(id, 'visibility', 'none');
         }
+      } else {
+        // If a style layer is NOT explicitly mentioned in the new hash,
+        // restore it to its style default visibility. This ensures that
+        // non-default (toggled) layers are removed unless explicitly kept
+        // in the hash.
+        const defaultVis = styleDefaultVisibility[id] || 'visible';
+        try {
+          if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== defaultVis) {
+            map.setLayoutProperty(id, 'visibility', defaultVis);
+          }
+        } catch (e) {
+          console.warn('[HASHCHANGE] Failed to restore default visibility for', id, e);
+        }
       }
-      // else: leave as-is
     } else {
       if (explicit === '+') {
         if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== 'visible') {
