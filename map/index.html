@@ -1271,6 +1271,13 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId) {
   }, 1000);
   isFreeCameraAnimating = true;
   console.log('[FOLLOW] Animation state set: isFreeCameraAnimating = true');
+  
+  // Make the layer visible at the start of the follow animation
+  if (layerId && map.getLayer(layerId)) {
+    map.setLayoutProperty(layerId, 'visibility', 'visible');
+    console.log('[FOLLOW] Made layer visible:', layerId);
+  }
+  
   // Expose a global cancel to allow immediate stop on hash changes
   if (!window._follow) window._follow = {};
   window._follow.layerId = layerId;
@@ -1483,91 +1490,27 @@ window.addEventListener('hashchange', () => {
     window._suppressNextFollowCancel = false;
     return;
   }
-  if (window._isFollowStarted) return;
   if (!window._lastHashState) window._lastHashState = '';
   const currentHash = window.location.hash;
   if (window._lastHashState === currentHash) return;
   window._lastHashState = currentHash;
 
-  const { camera, layers, dynamicGeojsonToLoad, followId } = parseHash();
-  console.log('[FOLLOW DEBUG] Hash:', window.location.hash, '| followId:', followId, '| layers:', layers, '| dynamicGeojsonToLoad:', dynamicGeojsonToLoad);
-
   // Always cancel any running follow immediately so we can apply new state
   if (isFreeCameraAnimating) {
     try { if (window._follow && typeof window._follow.cancel === 'function') window._follow.cancel(); }
     catch(e) { isFreeCameraAnimating = false; }
+    window._isFollowStarted = false; // Ensure new hash is processed after cancel
   }
+  // Always reset follow started before processing new hash
+  window._isFollowStarted = false;
 
-  // Ensure we have style layers indexed
-  if (!allStyleLayers.length) {
-    allStyleLayers = map.getStyle().layers.map(l => ({ id: l.id, name: l.name }));
-    allStyleLayers.forEach(layer => {
-      if (map.getLayer(layer.id)) {
-        const styleLayer = map.getStyle().layers.find(l => l.id === layer.id);
-        let vis = 'visible';
-        if (styleLayer && styleLayer.layout && typeof styleLayer.layout.visibility !== 'undefined') {
-          vis = styleLayer.layout.visibility;
-        }
-        styleDefaultVisibility[layer.id] = vis;
-      }
-    });
-  }
+  // ...existing code...
 
-  // 1. Change visibility of all layers (style and dynamic)
-  const hashStr = window.location.hash.replace('#', '');
-  const [, layersStr] = hashStr.split('/');
-  const explicitState = {};
-  if (layersStr) {
-    layersStr.split(',').forEach(token => {
-      const match = token.match(/^([+~])([^:]+)(?::follow)?$/);
-      if (!match) return;
-      const [, sign, lname] = match;
-      explicitState[lname] = sign;
-    });
-  }
-  const styleLayerIds = map.getStyle().layers.map(l => l.id);
-  allStyleLayers.forEach(layer => {
-    const id = layer.id;
-    const isStyleLayer = styleLayerIds.includes(id);
-    const explicit = explicitState[id];
-    if (isStyleLayer) {
-      if (explicit === '+') {
-        if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== 'visible') {
-          map.setLayoutProperty(id, 'visibility', 'visible');
-        }
-      } else if (explicit === '~') {
-        if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== 'none') {
-          map.setLayoutProperty(id, 'visibility', 'none');
-        }
-      } else {
-        // If a style layer is NOT explicitly mentioned in the new hash,
-        // restore it to its style default visibility. This ensures that
-        // non-default (toggled) layers are removed unless explicitly kept
-        // in the hash.
-        const defaultVis = styleDefaultVisibility[id] || 'visible';
-        try {
-          if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== defaultVis) {
-            map.setLayoutProperty(id, 'visibility', defaultVis);
-          }
-        } catch (e) {
-          console.warn('[HASHCHANGE] Failed to restore default visibility for', id, e);
-        }
-      }
-    } else {
-      if (explicit === '+') {
-        if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== 'visible') {
-          map.setLayoutProperty(id, 'visibility', 'visible');
-        }
-      } else if (explicit === '~') {
-        if (map.getLayer(id) && map.getLayoutProperty(id, 'visibility') !== 'none') {
-          map.setLayoutProperty(id, 'visibility', 'none');
-        }
-      }
-      // else: leave as-is
-    }
-  });
+  const { camera, layers, dynamicGeojsonToLoad, followId } = parseHash();
+  console.log('[FOLLOW DEBUG] Hash:', window.location.hash, '| followId:', followId, '| layers:', layers, '| dynamicGeojsonToLoad:', dynamicGeojsonToLoad);
+  console.log('[FOLLOW DEBUG] About to process layers and dynamic sources...');
 
-  // 2. Load dynamic layers as needed (GeoJSON/CSV, Sentinel-2, or Wayback)
+  // Load dynamic layers as needed (GeoJSON/CSV, Sentinel-2, or Wayback)
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
     const layersOn = layers || [];
     dynamicGeojsonToLoad.forEach(entry => {
@@ -1584,18 +1527,11 @@ window.addEventListener('hashchange', () => {
       }
       if (!name) return;
       
-      // For external layers (S2, Wayback), don't pre-add to allStyleLayers
-      // Let the individual load functions handle naming and positioning
-      if (!isS2 && !isWayback) {
-        if (!allStyleLayers.some(l => l.id === name)) {
-          allStyleLayers.push({ id: name, name });
-          styleDefaultVisibility[name] = 'visible';
-        }
-      }
-      
-      // Load if not present
+      // Check if layer already exists
       const layerExists = map.getLayer(name);
-      const visibility = layersOn.includes(name) ? 'visible' : 'none';
+      // If this layer will be followed, load it hidden initially - the follow animation will show it
+      const isFollowLayer = (name === followId);
+      const visibility = isFollowLayer ? 'none' : (layersOn.includes(name) ? 'visible' : 'none');
       
       if (isS2 && s2Date) {
         // Sentinel-2 layer
@@ -1618,7 +1554,7 @@ window.addEventListener('hashchange', () => {
       } else {
         // GeoJSON/CSV layer
         if (!layerExists) {
-          console.log('[HASHCHANGE] Loading new layer:', name, 'with sourceHint:', sourceHint);
+          console.log('[HASHCHANGE] Loading new layer:', name, 'with sourceHint:', sourceHint, 'visibility:', visibility);
           loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint });
         } else if (sourceHint) {
           console.log('[HASHCHANGE] Reloading existing layer:', name, 'with sourceHint:', sourceHint);
@@ -1628,48 +1564,6 @@ window.addEventListener('hashchange', () => {
     });
   }
 
-  // 3. Remove external layers (s2:*, wayback:*, or dynamic GeoJSON) that are no longer in the hash
-  const allHashLayers = new Set([...(layers || []), ...(dynamicGeojsonToLoad || []).map(e => typeof e === 'string' ? e : e.name)]);
-  const layersToRemove = [];
-  
-  externalLayers.forEach(layerId => {
-    if (!allHashLayers.has(layerId)) {
-      layersToRemove.push(layerId);
-    }
-  });
-  
-  layersToRemove.forEach(layerId => {
-    console.log('[HASHCHANGE] Removing layer no longer in hash:', layerId);
-    
-    // Remove from map
-    if (map.getLayer(layerId)) {
-      map.removeLayer(layerId);
-    }
-    if (map.getSource(layerId)) {
-      map.removeSource(layerId);
-    }
-    
-    // Remove from tracking
-    externalLayers.delete(layerId);
-    
-    // Remove from allStyleLayers
-    const idx = allStyleLayers.findIndex(l => l.id === layerId);
-    if (idx !== -1) {
-      allStyleLayers.splice(idx, 1);
-    }
-    
-    // Remove from visibility tracking
-    delete styleDefaultVisibility[layerId];
-  });
-  
-  // If any layers were removed, update the layer controls
-  if (layersToRemove.length > 0) {
-    createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
-  }
-
-  // 4. Copy paint and layout properties (handled in loadAndAddOrReplaceGeoJSON)
-  // Already done when loading new geojson layers above
-
   // 5. Fly to hash geolocation (with animation), then start follow only after fly completes
   const flyOpts = {
     center: [camera.center[0], camera.center[1]],
@@ -1678,13 +1572,17 @@ window.addEventListener('hashchange', () => {
     pitch: camera.pitch,
     duration: 1200
   };
-  let flyDone = false;
-  let followReady = false;
-  let tryStartFollow = () => {};
 
+  // Always start follow if followId is present after camera update
+  console.log('[FOLLOW DEBUG] Calling map.flyTo with:', flyOpts);
+  map.flyTo(flyOpts);
   if (followId) {
+    console.log('[FOLLOW DEBUG] followId detected, setting up follow for:', followId);
     // Wait for both flyTo and source readiness before starting follow
-    tryStartFollow = () => {
+    let followReady = false;
+    let flyDone = false;
+    const tryStartFollow = () => {
+      console.log('[FOLLOW DEBUG] tryStartFollow called. flyDone:', flyDone, 'followReady:', followReady);
       if (!flyDone || !followReady) return;
       const src = map.getSource(followId);
       if (!(src && src._data && src._data.features)) {
@@ -1704,6 +1602,8 @@ window.addEventListener('hashchange', () => {
       });
       console.log('[FOLLOW DEBUG] Layer:', followId, 'Geom types:', geomTypes, 'Coords count:', coords.length);
       if (coords.length > 1) {
+        console.log('[FOLLOW DEBUG] Starting new follow animation for:', followId);
+        window._isFollowStarted = true;
         followPathWithFreeCamera(map, coords, () => {
           // On completion: freeze current camera into the hash and remove :follow to avoid jumping back
           const c = map.getCenter();
@@ -1720,6 +1620,7 @@ window.addEventListener('hashchange', () => {
           const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '');
           window._suppressNextFollowCancel = true;
           window.location.replace(newHash);
+          window._isFollowStarted = false;
         }, followId);
       } else {
         console.log('[FOLLOW DEBUG] Not enough coordinates to follow for layer:', followId);
@@ -1727,6 +1628,7 @@ window.addEventListener('hashchange', () => {
     };
     // Listen for flyend
     map.once('moveend', () => {
+      console.log('[FOLLOW DEBUG] map.moveend fired, setting flyDone = true');
       flyDone = true;
       tryStartFollow();
     });
@@ -1734,22 +1636,32 @@ window.addEventListener('hashchange', () => {
     const checkSource = () => {
       const src = map.getSource(followId);
       if (src && src._data && src._data.features) {
+        console.log('[FOLLOW DEBUG] Source', followId, 'is ready with', src._data.features.length, 'features');
         followReady = true;
         tryStartFollow();
         return true;
       }
+      console.log('[FOLLOW DEBUG] Source', followId, 'not ready yet. src:', !!src, 'src._data:', !!(src && src._data), 'features:', !!(src && src._data && src._data.features));
       return false;
     };
     if (!checkSource()) {
+      console.log('[FOLLOW DEBUG] Source not ready, listening for sourcedata events...');
       const onSourceData = (e) => {
+        console.log('[FOLLOW DEBUG] sourcedata event for:', e.sourceId);
         if (e.sourceId === followId && checkSource()) {
+          console.log('[FOLLOW DEBUG] Removing sourcedata listener for:', followId);
           map.off('sourcedata', onSourceData);
         }
       };
       map.on('sourcedata', onSourceData);
+    } else {
+      console.log('[FOLLOW DEBUG] Source already ready, calling tryStartFollow immediately');
+      followReady = true;
+      tryStartFollow();
     }
+  } else {
+    console.log('[FOLLOW DEBUG] No followId in hash, skipping follow setup');
   }
-  map.flyTo(flyOpts);
 });
 </script>
 </body>
