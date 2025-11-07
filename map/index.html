@@ -215,7 +215,45 @@
     }
     #add-layer-form.active { display: block; }
     #add-layer-form label { display:block; font-size:11px; margin:0 0 4px; color:rgba(255,255,255,0.6); }
-    #new-layer-input, #reference-layer-select {
+      .layer-tab {
+        flex: 1;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 4px;
+        padding: 6px 8px;
+        font-size: 12px;
+        cursor: pointer;
+        color: rgba(255,255,255,0.6);
+        font-family: inherit;
+        transition: all 0.15s;
+      }
+      .layer-tab:hover {
+        background: rgba(255,255,255,0.15);
+        color: rgba(255,255,255,0.8);
+      }
+      .layer-tab.active {
+        background: rgba(255,255,255,0.22);
+        border-color: rgba(255,255,255,0.4);
+        color: #fff;
+        font-weight: 500;
+      }
+    #layer-type-select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      font-size: 12px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+    #layer-type-select option { background: #222; color: #fff; }
+    .layer-input-group { margin-bottom: 8px; }
+    #new-layer-input, #satellite-date-input, #reference-layer-select {
       width: 100%;
       box-sizing: border-box;
       padding: 6px 8px;
@@ -227,7 +265,14 @@
       font-family: inherit;
       outline: none;
     }
-    #new-layer-input:focus, #reference-layer-select:focus { border-color: rgba(255,255,255,0.5); }
+    #new-layer-input:focus, #satellite-date-input:focus, #reference-layer-select:focus { border-color: rgba(255,255,255,0.5); }
+    #satellite-date-input {
+      color-scheme: dark;
+      cursor: pointer;
+    }
+    #satellite-date-input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
     #reference-layer-select { margin-top: 8px; cursor: pointer; }
     #reference-layer-select option { background: #222; color: #fff; }
     #add-layer-confirm-btn {
@@ -267,6 +312,32 @@
     #distance-ticker.active {
       display: flex;
     }
+    #wayback-iframe-container {
+      position: fixed;
+      left: 280px;
+      top: 0;
+      width: calc(100% - 280px);
+      height: 100vh;
+      z-index: 999;
+      display: none;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.4);
+    }
+    #wayback-iframe-container.active {
+      display: block;
+    }
+    #wayback-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* Make the date input calendar icon white (WebKit browsers) */
+    #satellite-date-input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+    #satellite-date-input {
+      color-scheme: dark;
+    }
+    /* Container becomes draggable (horizontally) via toolbar */
   </style>
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -280,6 +351,9 @@
 </head>
 <body>
 <div id="map"></div>
+<div id="wayback-iframe-container">
+  <iframe id="wayback-iframe" src="" allow="geolocation" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+</div>
 <div id="layer-controls">
   <div id="layer-controls-header">
     <div class="title-row">
@@ -289,13 +363,30 @@
     </div>
     <p class="hint">Press 'E' to toggle edit mode</p>
     <div id="add-layer-form">
-      <label for="new-layer-input">Add layer (local filename)</label>
-      <input id="new-layer-input" list="local-layer-files" placeholder="Type to search local .geojson files" autocomplete="off" />
-      <datalist id="local-layer-files"></datalist>
-      <label for="reference-layer-select">Position after layer (optional)</label>
-      <select id="reference-layer-select">
-        <option value="">-- No reference (add at top) --</option>
-      </select>
+        <!-- Tab buttons -->
+        <div id="layer-type-tabs" style="display: flex; gap: 4px; margin-bottom: 12px;">
+          <button id="tab-geodata" class="layer-tab active" data-tab="geodata">Geodata</button>
+          <button id="tab-satellite" class="layer-tab" data-tab="satellite">Satellite</button>
+        </div>
+      
+      <!-- GeoJSON/CSV input (default visible) -->
+      <div id="geojson-input-group" class="layer-input-group">
+        <label for="new-layer-input">Layer filename</label>
+        <input id="new-layer-input" list="local-layer-files" placeholder="Type to search local files" autocomplete="off" />
+        <datalist id="local-layer-files"></datalist>
+          <label for="reference-layer-select" style="margin-top: 8px;">Position after layer (optional)</label>
+          <select id="reference-layer-select">
+            <option value="">-- No reference (add at top) --</option>
+          </select>
+      </div>
+      
+        <!-- Satellite date picker (hidden by default) -->
+      <div id="satellite-input-group" class="layer-input-group" style="display:none;">
+        <label for="satellite-date-input">Satellite image date</label>
+        <input id="satellite-date-input" type="date" placeholder="YYYY-MM-DD" />
+  <p class="hint" style="font-size: 11px; margin: 4px 0 0; color: rgba(255,255,255,0.8);">choose the date from the list on the <a id="wayback-open-new" href="https://livingatlas.arcgis.com/wayback/" target="_blank" rel="noopener noreferrer" style="color:#9fd1ff;text-decoration:underline;">Wayback site</a> and enter it in the date picker</p>
+      </div>
+      
       <button id="add-layer-confirm-btn">Add Layer</button>
       <div id="add-layer-error"></div>
     </div>
@@ -408,49 +499,155 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Add layer logic (local only)
+// Add layer logic (supports GeoJSON/CSV and Satellite imagery)
 document.addEventListener('DOMContentLoaded', function() {
-  const input = document.getElementById('new-layer-input');
+  const tabGeodataBtn = document.getElementById('tab-geodata');
+  const tabSatelliteBtn = document.getElementById('tab-satellite');
+  const geojsonGroup = document.getElementById('geojson-input-group');
+  const satelliteGroup = document.getElementById('satellite-input-group');
+  const geojsonInput = document.getElementById('new-layer-input');
+  const satelliteDateInput = document.getElementById('satellite-date-input');
+  const satelliteLatestDateEl = document.getElementById('satellite-latest-date');
   const refSelect = document.getElementById('reference-layer-select');
   const confirmBtn = document.getElementById('add-layer-confirm-btn');
   const errorEl = document.getElementById('add-layer-error');
-  if (!input || !confirmBtn) {
+  
+  if (!confirmBtn) {
     console.warn('[ADD LAYER] UI elements not found');
     return;
   }
+  
+  let currentTab = 'geodata';
+  
+  
+  // Handle tab switching
+  function switchTab(tabName) {
+    currentTab = tabName;
+    
+    // Update tab button states
+    if (tabGeodataBtn && tabSatelliteBtn) {
+      tabGeodataBtn.classList.toggle('active', tabName === 'geodata');
+      tabSatelliteBtn.classList.toggle('active', tabName === 'satellite');
+    }
+    
+    // Show/hide input groups
+    if (geojsonGroup) geojsonGroup.style.display = tabName === 'geodata' ? 'block' : 'none';
+    if (satelliteGroup) satelliteGroup.style.display = tabName === 'satellite' ? 'block' : 'none';
+    
+    // Show/hide Wayback iframe
+    const waybackContainer = document.getElementById('wayback-iframe-container');
+    const waybackIframe = document.getElementById('wayback-iframe');
+    if (tabName === 'satellite') {
+      if (waybackContainer) waybackContainer.classList.add('active');
+      const openLink = document.getElementById('wayback-open-new');
+      const statusEl = document.getElementById('wayback-status');
+      // Initialize/update iframe URL to current map view each time we open
+      if (waybackIframe) {
+        const center = window.map ? window.map.getCenter() : {lng: 34.3537, lat: 31.4238};
+        const zoom = window.map ? Math.round(window.map.getZoom()) : 10;
+        const url = `https://livingatlas.arcgis.com/wayback/#mapCenter=${center.lng.toFixed(5)}%2C${center.lat.toFixed(5)}%2C${zoom}`;
+        try {
+          if (openLink) openLink.href = url;
+          // Always set/update src to ensure it loads
+          waybackIframe.src = url;
+          if (statusEl) statusEl.textContent = 'loading…';
+        } catch(e) {
+          if (statusEl) statusEl.textContent = 'open in new tab';
+        }
+      }
+    } else {
+      if (waybackContainer) waybackContainer.classList.remove('active');
+    }
+  }
+  
+  // Add click handlers to tabs
+  if (tabGeodataBtn) {
+    tabGeodataBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('geodata');
+    });
+  }
+  if (tabSatelliteBtn) {
+    tabSatelliteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('satellite');
+    });
+  }
+  
   function setError(msg) { if (errorEl) errorEl.textContent = msg || ''; }
+  
+  // Capture when opening add-layer form
+  const addLayerToggleBtn = document.getElementById('add-layer-toggle-btn');
+  if (addLayerToggleBtn) {
+    addLayerToggleBtn.addEventListener('click', () => {
+      const form = document.getElementById('add-layer-form');
+      const nowActive = form && form.classList.contains('active');
+      if (nowActive) {
+        // Will close - just hide the Wayback container if visible
+        const waybackContainer = document.getElementById('wayback-iframe-container');
+        if (waybackContainer) waybackContainer.classList.remove('active');
+      }
+    });
+  }
+
   confirmBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    const raw = (input.value || '').trim();
-    const refLayer = refSelect ? refSelect.value.trim() : '';
-    console.log('[ADD LAYER] Clicked, raw input:', raw, 'reference:', refLayer);
     setError('');
-    if (!raw) { setError('Enter a local filename.'); return; }
-    if (!availableLocalLayerFiles.includes(raw)) { 
-      console.warn('[ADD LAYER] Not found in list:', raw);
-      setError('Not found in local .geojson list.'); 
-      return; 
+    
+  const layerType = currentTab === 'satellite' ? 'satellite' : 'geojson';
+    const refLayer = refSelect ? refSelect.value.trim() : '';
+    let layerId = '';
+    let newToken = '';
+    
+    // Build layer ID based on type
+    if (layerType === 'geojson') {
+      const raw = (geojsonInput.value || '').trim();
+      console.log('[ADD LAYER] GeoJSON/CSV, raw input:', raw, 'reference:', refLayer);
+      if (!raw) { setError('Enter a local filename.'); return; }
+      if (!availableLocalLayerFiles.includes(raw)) { 
+        console.warn('[ADD LAYER] Not found in list:', raw);
+        setError('Not found in local files list.'); 
+        return; 
+      }
+      layerId = raw;
+      newToken = `+${layerId}`;
+      if (refLayer) newToken = `+${layerId}(${refLayer})`;
+      
+    } else if (layerType === 'satellite') {
+      const dateValue = ((satelliteDateInput ? satelliteDateInput.value : '') || '').trim();
+      console.log('[ADD LAYER] Satellite, date:', dateValue, 'reference:', refLayer);
+      if (!dateValue) { setError('Select a satellite image date.'); return; }
+      
+      // Convert YYYY-MM-DD to YYYYMMDD
+      const dateStr = dateValue.replace(/-/g, '');
+      layerId = `wayback:${dateStr}`;
+      
+      // Default sourceHint for satellite layers is 'satellite' if not specified
+      const defaultRef = refLayer || 'satellite';
+      newToken = `+${layerId}(${defaultRef})`;
+      console.log('[ADD LAYER] Using sourceHint:', defaultRef);
     }
-    const layerId = raw;
-    if (window.map && window.map.getLayer && window.map.getLayer(layerId)) { 
-      console.warn('[ADD LAYER] Layer already exists:', layerId);
-      setError('Layer already loaded.'); 
-      return; 
+    
+    // Check if layer already exists
+    const layerAlreadyExists = window.map && window.map.getLayer && window.map.getLayer(layerId);
+    if (layerAlreadyExists) {
+      console.warn('[ADD LAYER] Layer already exists:', layerId, '— proceeding to close panel as per new UX.');
     }
-    const existing = window.location.hash.replace('#','');
-    const parts = existing.split('/');
-    const cameraStr = parts[0] || '';
+    
+    // Update hash with new layer
+  const existing = window.location.hash.replace('#','');
+  const parts = existing.split('/');
+  // Keep existing camera string; if none, fall back to current map view
+  let cameraStr = parts[0] || '';
+  if (!cameraStr && window.map) {
+    const c = window.map.getCenter();
+    cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${window.map.getZoom().toFixed(2)},${window.map.getBearing().toFixed(1)},${window.map.getPitch().toFixed(1)}`;
+  }
     let layersStr = parts[1] || '';
     const tokens = layersStr ? layersStr.split(',').filter(t => t.length>0) : [];
     
-    // Build new layer token with optional reference: +layerId or +layerId(refLayer)
-    let newToken = `+${layerId}`;
-    if (refLayer) {
-      newToken = `+${layerId}(${refLayer})`;
-    }
-    
     // Check if layer already exists in tokens and replace, otherwise append
-    const regex = new RegExp(`^[+~]${layerId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?:\\([^)]+\\))?(?::follow(?:\\+\\d+)?)?$`);
+    const regex = new RegExp(`^[+~]${layerId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?:\\([^)]+\\))?(?::follow(?:\\+\\d*)?)?$`);
     const idx = tokens.findIndex(t => regex.test(t));
     if (idx >= 0) tokens[idx] = newToken; else tokens.push(newToken);
     layersStr = tokens.join(',');
@@ -458,13 +655,35 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('[ADD LAYER] Old hash:', existing);
     console.log('[ADD LAYER] New hash:', newHash);
     console.log('[ADD LAYER] New token:', newToken);
+    // Apply new hash with selected layer and restore previous camera view
     window.location.hash = newHash;
-    input.value='';
+    
+    // Clear inputs
+    if (geojsonInput) geojsonInput.value = '';
+    if (satelliteDateInput) satelliteDateInput.value = '';
     if (refSelect) refSelect.value = '';
+    
+    // Hide form and Wayback iframe
     const form = document.getElementById('add-layer-form');
     if (form) form.classList.remove('active');
+    const waybackContainer = document.getElementById('wayback-iframe-container');
+    if (waybackContainer) waybackContainer.classList.remove('active');
+  
   });
+  
+  // Minimal status updates for the Wayback iframe
+  const waybackIframe = document.getElementById('wayback-iframe');
+  const waybackStatus = document.getElementById('wayback-status');
+  if (waybackIframe) {
+    waybackIframe.addEventListener('load', () => {
+      if (waybackStatus) waybackStatus.textContent = '';
+    });
+    waybackIframe.addEventListener('error', () => {
+      if (waybackStatus) waybackStatus.textContent = 'failed to load — open in new tab';
+    });
+  }
 });
+
 
 // Copy link button functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -554,8 +773,8 @@ function parseHash() {
     layersOn = [];
     const layerState = {};
     layersStr.split(',').forEach(token => {
-      // Support +id:follow, ~id:follow, +id(source):follow, +id:follow+offset, and +s2:YYYYMMDD
-      // token examples: +name, ~name, +name:follow, +name:follow+, +name:follow+0, +name:follow+15000, +name(source), +name(source):follow, +s2:20240215
+      // Support +id:follow, ~id:follow, +id(source):follow, +id:follow+offset, and +wayback:YYYYMMDD
+      // token examples: +name, ~name, +name:follow, +name:follow+, +name:follow+0, +name:follow+15000, +name(source), +name(source):follow, +wayback:20240215
       // New: :follow (no ticker), :follow+ or :follow+0 (ticker at 0), :follow+1000 (ticker at 1000m)
       const match = token.match(/^([+~])([^(]+?)(?:\(([^)]+)\))?(?::follow(\+(\d*))?)?$/);
       if (!match) {
@@ -573,21 +792,14 @@ function parseHash() {
     Object.entries(layerState).forEach(([lname, { sign, sourceHint, follow, followOffset: layerFollowOffset, showTicker: layerShowTicker }]) => {
       if (sign === '+') {
         if (!allStyleLayers.some(l => l.id === lname)) {
-          // Check if this is a Sentinel-2 layer (format: s2:YYYYMMDD)
-          const s2Match = lname.match(/^s2:(\d{8})$/);
-          if (s2Match) {
-            const dateStr = s2Match[1];
-            dynamicGeojsonToLoad.push({ name: lname, sourceHint: sourceHint || 'overlay', isS2: true, s2Date: dateStr });
+          // Check if this is a Wayback layer (format: wayback:YYYYMMDD)
+          const waybackMatch = lname.match(/^wayback:(\d{8})$/);
+          if (waybackMatch) {
+            const dateStr = waybackMatch[1];
+            dynamicGeojsonToLoad.push({ name: lname, sourceHint: sourceHint || 'overlay', isWayback: true, waybackDate: dateStr });
           } else {
-            // Check if this is a Wayback layer (format: wayback:YYYYMMDD)
-            const waybackMatch = lname.match(/^wayback:(\d{8})$/);
-            if (waybackMatch) {
-              const dateStr = waybackMatch[1];
-              dynamicGeojsonToLoad.push({ name: lname, sourceHint: sourceHint || 'overlay', isWayback: true, waybackDate: dateStr });
-            } else {
-              // Regular GeoJSON/CSV layer
-              dynamicGeojsonToLoad.push({ name: lname, sourceHint });
-            }
+            // Regular GeoJSON/CSV layer
+            dynamicGeojsonToLoad.push({ name: lname, sourceHint });
           }
         }
         layersOn.push(lname);
@@ -952,190 +1164,6 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
 }
 
 // Helper: Load Sentinel-2 imagery layer by date
-// dateStr: YYYYMMDD format (e.g., "20240215")
-// toLayer: optional { visibility, sourceHint }
-async function loadS2Layer(dateStr, toLayer) {
-  try {
-    console.log('[S2] Loading Sentinel-2 layer for date:', dateStr);
-    
-    const layerId = `s2:${dateStr}`;
-    const sourceId = layerId;
-    
-    // Validate date format
-    if (!/^\d{8}$/.test(dateStr)) {
-      throw new Error('Invalid date format. Expected YYYYMMDD, got: ' + dateStr);
-    }
-    
-    // Parse date string to YYYY-MM-DD format
-    const year = dateStr.substring(0, 4);
-    const month = dateStr.substring(4, 6);
-    const day = dateStr.substring(6, 8);
-    const s2Date = `${year}-${month}-${day}`;
-    
-    // Validate date range (Sentinel-2 started June 2015)
-    const minDate = new Date('2015-06-23');
-    const requestDate = new Date(s2Date);
-    const today = new Date();
-    
-    if (requestDate < minDate) {
-      console.warn('[S2] Date', s2Date, 'is before Sentinel-2 launch (June 23, 2015). No imagery available.');
-    }
-    if (requestDate > today) {
-      console.warn('[S2] Date', s2Date, 'is in the future. No imagery available.');
-    }
-    
-    // Extract sourceHint - default to 'overlay' layer for positioning
-    let sourceHint = 'overlay';
-    if (typeof toLayer === 'object' && toLayer !== null && toLayer.sourceHint) {
-      sourceHint = toLayer.sourceHint;
-    }
-    
-    // Sentinel-2 tile URL via EOX
-    // Using Sentinel-2 L2A True Color - 10m resolution
-    // Available from June 2015 to present, updated twice yearly (summer/winter)
-    // No authentication required for public preview layer, completely free and open
-    // 
-    // Note: Sentinel Hub offers multiple services:
-    // 1. Public WMS service (what we're using) - free, no auth, but watermarked at high zoom
-    // 2. Free tier with API key - 5000 requests/month, no watermark
-    // 3. Paid tier for commercial use
-    //
-    // For this implementation, we use the public Sentinel-2 cloudless mosaic by EOX
-    // which provides best-quality cloud-free imagery compiled from multiple acquisitions
-    const baseYear = parseInt(year);
-    const season = parseInt(month) <= 6 ? 'winter' : 'summer';
-    
-    // EOX Sentinel-2 cloudless - updated yearly
-    // This is a global cloudless mosaic at 10m resolution
-    // Mosaics are typically available with a 1-2 year delay
-    // As of November 2025, the 2024 mosaic is available
-    
-    // Use the requested year, but cap at 2024 (latest available mosaic)
-    const maxAvailableYear = 2024;
-    const mosaicYear = Math.min(baseYear, maxAvailableYear);
-    
-    if (baseYear > maxAvailableYear) {
-      console.warn('[S2] Year', baseYear, 'mosaic not yet available. Using', maxAvailableYear, 'instead.');
-    }
-    
-    const tileUrl = `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-${mosaicYear}_3857/default/g/{z}/{y}/{x}.jpg`;
-    
-    console.log('[S2] Using Sentinel-2 cloudless mosaic for', mosaicYear, '(10m resolution)');
-    console.log('[S2] Tile URL pattern:', tileUrl.replace('{z}/{y}/{x}', 'Z/Y/X'));
-    console.log('[S2] ✓ This is a free, open service with no authentication required');
-    console.log('[S2] ℹ️  Note: Cloudless mosaics are compiled from multiple acquisitions for best quality');
-    
-    // Remove existing layer/source if present
-    if (map.getLayer(layerId)) map.removeLayer(layerId);
-    if (map.getSource(sourceId)) map.removeSource(sourceId);
-    
-    // Add raster source
-    map.addSource(sourceId, {
-      type: 'raster',
-      tiles: [tileUrl],
-      tileSize: 256,
-      minzoom: 0,
-      maxzoom: 13,  // Sentinel-2 cloudless available up to level 13 (10m resolution)
-      attribution: 'Sentinel-2 cloudless by EOX - Contains modified Copernicus Sentinel data'
-    });
-    
-    console.log('[S2] Added raster source:', sourceId);
-    
-    // Visibility
-    let visibility = 'visible';
-    if (typeof toLayer === 'object' && toLayer !== null && toLayer.visibility === 'none') {
-      visibility = 'none';
-    }
-    
-    // Create layer definition
-    const layerDef = {
-      id: layerId,
-      type: 'raster',
-      source: sourceId,
-      layout: { visibility },
-      paint: {
-        'raster-opacity': 1
-      }
-    };
-    
-    // Copy paint properties from source hint if available
-    try {
-      if (sourceHint) {
-        const styleLayer = map.getStyle().layers.find(l => l.id === sourceHint);
-        if (styleLayer && styleLayer.paint && styleLayer.paint['raster-opacity'] !== undefined) {
-          layerDef.paint['raster-opacity'] = styleLayer.paint['raster-opacity'];
-          console.log('[S2] Copied raster-opacity from', sourceHint);
-        }
-      }
-    } catch (ex) {
-      console.warn('[S2] Failed to copy paint from source hint:', ex);
-    }
-    
-    // Add layer positioned right after the source hint layer
-    try {
-      if (sourceHint) {
-        const allLayers = map.getStyle().layers;
-        const sourceIndex = allLayers.findIndex(l => l.id === sourceHint);
-        if (sourceIndex >= 0 && sourceIndex < allLayers.length - 1) {
-          const beforeId = allLayers[sourceIndex + 1].id;
-          console.log('[S2] Placing', layerId, 'right after', sourceHint, '(before', beforeId + ')');
-          map.addLayer(layerDef, beforeId);
-        } else {
-          console.log('[S2] Source layer', sourceHint, 'is last or not found, adding at top');
-          map.addLayer(layerDef);
-        }
-      } else {
-        map.addLayer(layerDef);
-      }
-    } catch (ex) {
-      console.warn('[S2] Failed to add layer with positioning:', ex);
-      map.addLayer(layerDef);
-    }
-    
-    console.log('[S2] Layer loaded:', layerId);
-    
-    // Mark as external layer
-    externalLayers.add(layerId);
-    
-    // Post-load bookkeeping
-    if (visibility === 'none') {
-      map.setLayoutProperty(layerId, 'visibility', 'none');
-    }
-    
-    // Add to allStyleLayers if not present
-    if (!allStyleLayers.some(l => l.id === layerId)) {
-      try {
-        if (sourceHint) {
-          const sourceIdx = allStyleLayers.findIndex(l => l.id === sourceHint);
-          if (sourceIdx >= 0) {
-            allStyleLayers.splice(sourceIdx + 1, 0, { id: layerId, name: `Sentinel-2 ${s2Date}` });
-            console.log('[S2] Inserted', layerId, 'after', sourceHint, 'in UI list');
-          } else {
-            allStyleLayers.push({ id: layerId, name: `Sentinel-2 ${s2Date}` });
-          }
-        } else {
-          allStyleLayers.push({ id: layerId, name: `Sentinel-2 ${s2Date}` });
-        }
-      } catch (ex) {
-        console.warn('[S2] Failed to position layer in list:', ex);
-        allStyleLayers.push({ id: layerId, name: `Sentinel-2 ${s2Date}` });
-      }
-      styleDefaultVisibility[layerId] = 'visible';
-    }
-    
-    // Update layer controls
-    createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
-    
-  } catch (err) {
-    console.error('[S2] ❌ Error loading Sentinel-2 layer:', err);
-    console.error('[S2] This may indicate:');
-    console.error('[S2]   - Invalid date format or date out of range');
-    console.error('[S2]   - Network connectivity issues');
-    console.error('[S2]   - EOX Sentinel-2 service temporary unavailability');
-    console.error('[S2] Valid date range: June 23, 2015 to present');
-  }
-}
-
 // Helper: Load ESRI Wayback imagery layer by date
 // dateStr: YYYYMMDD format (e.g., "20240215")
 // toLayer: optional { visibility, sourceHint }
@@ -1213,8 +1241,8 @@ async function loadWaybackLayer(dateStr, toLayer) {
     console.log('[WAYBACK] ✓ High resolution imagery (up to 30cm in urban areas)');
     console.log('[WAYBACK] ℹ️  Release:', closestRelease.title);
     
-    // Extract sourceHint - default to 'overlay' layer for positioning
-    let sourceHint = 'overlay';
+    // Extract sourceHint - default to 'satellite' layer for positioning (changed from 'overlay')
+    let sourceHint = 'satellite';
     if (typeof toLayer === 'object' && toLayer !== null && toLayer.sourceHint) {
       sourceHint = toLayer.sourceHint;
     }
@@ -1894,23 +1922,18 @@ map.on('load', () => {
   const { dynamicGeojsonToLoad, layers: layersOn } = parseHash();
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
     dynamicGeojsonToLoad.forEach(entry => {
-      let name = null, sourceHint = null, isS2 = false, s2Date = null, isWayback = false, waybackDate = null;
+      let name = null, sourceHint = null, isWayback = false, waybackDate = null;
       if (typeof entry === 'string') {
         name = entry;
       } else if (entry && typeof entry === 'object') {
         name = entry.name;
         sourceHint = entry.sourceHint;
-        isS2 = entry.isS2 || false;
-        s2Date = entry.s2Date || null;
         isWayback = entry.isWayback || false;
         waybackDate = entry.waybackDate || null;
       }
       if (name) {
         const visibility = (layersOn && layersOn.includes(name)) ? 'visible' : 'none';
-        if (isS2 && s2Date) {
-          // Load Sentinel-2 layer
-          loadS2Layer(s2Date, { visibility, sourceHint });
-        } else if (isWayback && waybackDate) {
+        if (isWayback && waybackDate) {
           // Load ESRI Wayback layer
           loadWaybackLayer(waybackDate, { visibility, sourceHint });
         } else {
@@ -2260,7 +2283,8 @@ window.addEventListener('hashchange', () => {
   if (layersStr) {
     const explicitState = {};
     layersStr.split(',').forEach(token => {
-      const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(?::follow)?(?:\+(\d+))?$/);
+      // Updated regex to handle layer names with colons (e.g., s2:20240215, wayback:20240215)
+      const match = token.match(/^([+~])([^(]+?)(?:\(([^)]+)\))?(?::follow(?:\+(\d*))?)?$/);
       if (!match) return;
       const [, sign, lname] = match;
       explicitState[lname] = sign;
@@ -2332,14 +2356,12 @@ window.addEventListener('hashchange', () => {
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
     const layersOn = layers || [];
     dynamicGeojsonToLoad.forEach(entry => {
-      let name = null, sourceHint = null, isS2 = false, s2Date = null, isWayback = false, waybackDate = null;
+      let name = null, sourceHint = null, isWayback = false, waybackDate = null;
       if (typeof entry === 'string') {
         name = entry;
       } else if (entry && typeof entry === 'object') {
         name = entry.name;
         sourceHint = entry.sourceHint;
-        isS2 = entry.isS2 || false;
-        s2Date = entry.s2Date || null;
         isWayback = entry.isWayback || false;
         waybackDate = entry.waybackDate || null;
       }
@@ -2351,16 +2373,7 @@ window.addEventListener('hashchange', () => {
       const isFollowLayer = (name === followId);
       const visibility = isFollowLayer ? 'none' : (layersOn.includes(name) ? 'visible' : 'none');
       
-      if (isS2 && s2Date) {
-        // Sentinel-2 layer
-        if (!layerExists) {
-          console.log('[HASHCHANGE] Loading new Sentinel-2 layer:', name);
-          loadS2Layer(s2Date, { visibility, sourceHint });
-        } else if (sourceHint) {
-          console.log('[HASHCHANGE] Reloading Sentinel-2 layer:', name, 'with sourceHint:', sourceHint);
-          loadS2Layer(s2Date, { visibility, sourceHint });
-        }
-      } else if (isWayback && waybackDate) {
+      if (isWayback && waybackDate) {
         // ESRI Wayback layer
         if (!layerExists) {
           console.log('[HASHCHANGE] Loading new Wayback layer:', name);
