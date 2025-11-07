@@ -195,17 +195,17 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow,+family-home,+gaza,+cities,+villages,+idf-poly-outlines)
+[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines)
 אבא של ניבאל מסיע אותה לעיר עזה.
 
 
 {.meta} 
-[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+gaza,+nuseirat,+cities,+villages,+idf-poly-outlines)
+[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+s.gaza,+nuseirat,+cities,+villages,+idf-poly-outlines)
 משם ניבאל ממשיכה ברגל לדרום הרצועה, כשהיא סוחבת את ריתא בת החצי שנה בחיקה. 
 
 
 {.meta} 
-[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+gaza,+nuseirat,+rafah,+cities,+villages,+idf-poly-outlines)
+[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+s.gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+s.gaza,+nuseirat,+rafah,+cities,+villages,+idf-poly-outlines)
 באיזור א-נוסייראת הן מתאחדות עם אחמד, אותו לא ראו מזה כחצי שנה.
 
 משם, שלושתם ממשיכים אל האוהל של אחמד ברפיח.
@@ -576,7 +576,7 @@ css: src/theme.css
 
 
 {.meta thumb} 
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow,+gaza,+deir-al-balah,+cities,+villages,+idf-poly-outlines)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow,+s.gaza,+deir-al-balah,+cities,+villages,+idf-poly-outlines)
 
 בסוף אוגוסט 2025 יוצאת ישראל במתקפה על העיר עזה. 
 

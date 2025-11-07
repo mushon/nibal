@@ -1328,31 +1328,59 @@ function updateHash(map, visibleLayers) {
   }
 }
 
+// Debounce helper for expensive operations
+let createLayerControlsTimeout = null;
+function createLayerControlsDebounced(map, visibleLayers) {
+  if (createLayerControlsTimeout) clearTimeout(createLayerControlsTimeout);
+  createLayerControlsTimeout = setTimeout(() => {
+    createLayerControls(map, visibleLayers);
+  }, 10);
+}
+
+// Cache for parsed hash state to avoid redundant parsing
+let cachedHashString = '';
+let cachedHashState = null;
+
 // Create layer controls
 function createLayerControls(map, visibleLayers) {
   const container = document.getElementById('layer-list');
   if (!container) return;
-  container.innerHTML = '';
+  
+  // Performance: Build HTML in array then join once
+  const htmlParts = [];
   let foundLayer = false;
+  
   // Always reflect the current style visibility for checkboxes
   // Parse current hash for explicit toggles and :follow flags
   const hash = window.location.hash.replace('#', '');
   const [, layersStr] = hash.split('/');
-  const explicitState = {};
-  const followState = {}; // Track which layers have :follow
-  const followOffsets = {}; // Track follow offset values
-  if (layersStr) {
-    layersStr.split(',').forEach(token => {
-      // Match pattern: +layerName or +layerName(source) or +layerName:follow or +layerName(source):follow+15000
-      const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(?:\+(\d+))?)?$/);
-      if (!match) return;
-      const [, sign, lname, sourceHint, followFlag, offset] = match;
-      explicitState[lname] = sign;
-      if (followFlag) {
-        followState[lname] = true;
-        followOffsets[lname] = offset ? parseInt(offset, 10) : 0;
-      }
-    });
+  
+  // Performance: Use cached parse result if hash hasn't changed
+  let explicitState, followState, followOffsets;
+  if (cachedHashString === hash && cachedHashState) {
+    explicitState = cachedHashState.explicitState;
+    followState = cachedHashState.followState;
+    followOffsets = cachedHashState.followOffsets;
+  } else {
+    explicitState = {};
+    followState = {}; // Track which layers have :follow
+    followOffsets = {}; // Track follow offset values
+    if (layersStr) {
+      layersStr.split(',').forEach(token => {
+        // Match pattern: +layerName or +layerName(source) or +layerName:follow or +layerName(source):follow+15000
+        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(?:\+(\d+))?)?$/);
+        if (!match) return;
+        const [, sign, lname, sourceHint, followFlag, offset] = match;
+        explicitState[lname] = sign;
+        if (followFlag) {
+          followState[lname] = true;
+          followOffsets[lname] = offset ? parseInt(offset, 10) : 0;
+        }
+      });
+    }
+    // Cache the result
+    cachedHashString = hash;
+    cachedHashState = { explicitState, followState, followOffsets };
   }
   // Include all style layers and any geojson-above-* layers
   const allLayers = [
@@ -1412,13 +1440,17 @@ function createLayerControls(map, visibleLayers) {
         buttonHtml += ` <button data-reset="${layer.id}" title="Reset to style default">↻</button>`;
       }
       
-      // Wrap the checkbox, label, and button in a span for easy removal
-      container.innerHTML += `<span class="layer-list-item" data-layer-item="${layer.id}"><label style="${labelStyle}"><input type="checkbox" data-layer="${layer.id}" ${checked}> ${label}</label>${buttonHtml}</span>`;
+      // Performance: Push to array instead of concatenating to innerHTML
+      htmlParts.push(`<span class="layer-list-item" data-layer-item="${layer.id}"><label style="${labelStyle}"><input type="checkbox" data-layer="${layer.id}" ${checked}> ${label}</label>${buttonHtml}</span>`);
     }
   });
+  
   if (!foundLayer) {
-    container.innerHTML += '<em>No toggleable layers found in the current style.</em>';
+    htmlParts.push('<em>No toggleable layers found in the current style.</em>');
   }
+  
+  // Performance: Single DOM update instead of multiple
+  container.innerHTML = htmlParts.join('');
   container.querySelectorAll('input[type=checkbox]').forEach(cb => {
     cb.addEventListener('change', function() {
       const layerId = this.getAttribute('data-layer');
@@ -1643,9 +1675,9 @@ function createLayerControls(map, visibleLayers) {
       if (idx !== -1) allStyleLayers.splice(idx, 1);
       delete styleDefaultVisibility[layerId];
       externalLayers.delete(layerId);
-      // Refresh the UI after deletion to ensure the list is in sync
-      createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
-      // Remove from hash and update URL
+      followableLayers.delete(layerId);
+      // Don't call createLayerControls here - let hashchange handler do it
+      // Remove from hash and update URL (hashchange will refresh UI)
       const tokens = Object.entries(explicitState).map(([lname, sign]) => `${sign}${lname}`);
       if (tokens.length > 0) {
         window.location.replace(`#${cameraStr}/${tokens.join(',')}`);
@@ -1832,6 +1864,21 @@ map.on('moveend', () => {
   } catch(e){}
   // Only update camera part of hash, preserve layer toggles
   updateHash(map, []);
+});
+
+// Update distance ticker position on any map move (pan, zoom, rotate)
+map.on('move', () => {
+  const ticker = document.getElementById('distance-ticker');
+  if (ticker && ticker.classList.contains('active') && !isFreeCameraAnimating) {
+    // If ticker has stored coordinates, update its screen position
+    const lng = parseFloat(ticker.dataset.lng);
+    const lat = parseFloat(ticker.dataset.lat);
+    if (!isNaN(lng) && !isNaN(lat)) {
+      const tipPx = map.project({lng, lat});
+      ticker.style.left = tipPx.x + 'px';
+      ticker.style.top = tipPx.y + 'px';
+    }
+  }
 });
 
 // Listen for hash changes (external navigation)
@@ -2067,6 +2114,9 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
       ticker.style.top = tipPx.y + 'px';
       const currentDistKm = startOffsetKm + (t * totalDistKm);
       ticker.textContent = currentDistKm.toFixed(1) + ' km';
+      // Store the current tip coordinates for post-animation updates
+      ticker.dataset.lng = tip[0];
+      ticker.dataset.lat = tip[1];
     }
     
     if (t < 1) {
@@ -2077,8 +2127,13 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
         if (src) src.setData(originalData);
       }
       isFreeCameraAnimating = false;
-      // Hide ticker on completion
-      if (ticker) ticker.classList.remove('active');
+      // Keep ticker visible on completion (don't hide it)
+      // Store final position in data attributes so map move handler can update it
+      if (ticker && ticker.classList.contains('active')) {
+        ticker.dataset.lng = tip[0];
+        ticker.dataset.lat = tip[1];
+      }
+      // if (ticker) ticker.classList.remove('active');
       try { if (followCheckInterval) clearInterval(followCheckInterval); } catch(e){}
       if (typeof onComplete === 'function') onComplete();
       window._follow = null;
@@ -2089,6 +2144,10 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
 }
 
 window.addEventListener('hashchange', () => {
+  // Invalidate hash parse cache on hashchange
+  cachedHashString = '';
+  cachedHashState = null;
+  
   // Prevent double follow on initial load
   if (window._suppressNextFollowCancel) {
     window._suppressNextFollowCancel = false;
@@ -2146,10 +2205,19 @@ window.addEventListener('hashchange', () => {
             console.log('[HASHCHANGE] Hiding layer:', id);
           }
         } else {
-          // Not mentioned - restore to style default
-          if (map.getLayoutProperty(id, 'visibility') !== defaultVis) {
-            map.setLayoutProperty(id, 'visibility', defaultVis);
-            console.log('[HASHCHANGE] Restoring layer to default:', id, defaultVis);
+          // Not mentioned - check if it's an external layer
+          if (externalLayers.has(id)) {
+            // External layers not in hash should be hidden
+            if (map.getLayoutProperty(id, 'visibility') !== 'none') {
+              map.setLayoutProperty(id, 'visibility', 'none');
+              console.log('[HASHCHANGE] Hiding external layer not in hash:', id);
+            }
+          } else {
+            // Style layers - restore to style default
+            if (map.getLayoutProperty(id, 'visibility') !== defaultVis) {
+              map.setLayoutProperty(id, 'visibility', defaultVis);
+              console.log('[HASHCHANGE] Restoring layer to default:', id, defaultVis);
+            }
           }
         }
       }
@@ -2158,10 +2226,19 @@ window.addEventListener('hashchange', () => {
     // No layers specified in hash - restore all layers to their style defaults
     allStyleLayers.forEach(layer => {
       if (map.getLayer(layer.id)) {
-        const defaultVis = styleDefaultVisibility[layer.id] || 'visible';
-        if (map.getLayoutProperty(layer.id, 'visibility') !== defaultVis) {
-          map.setLayoutProperty(layer.id, 'visibility', defaultVis);
-          console.log('[HASHCHANGE] Restoring layer to default (no flags in hash):', layer.id, defaultVis);
+        if (externalLayers.has(layer.id)) {
+          // Hide external layers when no layers in hash
+          if (map.getLayoutProperty(layer.id, 'visibility') !== 'none') {
+            map.setLayoutProperty(layer.id, 'visibility', 'none');
+            console.log('[HASHCHANGE] Hiding external layer (no flags in hash):', layer.id);
+          }
+        } else {
+          // Restore style layers to defaults
+          const defaultVis = styleDefaultVisibility[layer.id] || 'visible';
+          if (map.getLayoutProperty(layer.id, 'visibility') !== defaultVis) {
+            map.setLayoutProperty(layer.id, 'visibility', defaultVis);
+            console.log('[HASHCHANGE] Restoring layer to default (no flags in hash):', layer.id, defaultVis);
+          }
         }
       }
     });
