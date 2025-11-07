@@ -167,7 +167,8 @@ document.addEventListener('keydown', function(e) {
   // Ignore if typing in an input field
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
   
-  if (e.key === 'e' || e.key === 'E') {
+  // Use code instead of key to work across keyboard layouts
+  if (e.code === 'KeyE') {
     e.preventDefault();
     try {
       const isEmbedded = document.documentElement.classList.contains('embedded');

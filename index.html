@@ -139,7 +139,8 @@
             // Ignore if typing in an input field
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
             
-            if (e.key === 'e' || e.key === 'E') {
+            // Use code instead of key to work across keyboard layouts
+            if (e.code === 'KeyE') {
                 e.preventDefault();
                 toggleEditMode();
             }
@@ -147,13 +148,18 @@
         
         // Listen for messages from iframe about edit mode changes
         window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'svg-edit-mode') {
+            if (e.data && (e.data.type === 'svg-edit-mode' || e.data.type === 'map-edit-mode')) {
                 const iframe = document.getElementById('if');
                 if (iframe) {
                     if (e.data.enabled) {
                         iframe.classList.add('editing-mode');
-                        document.body.classList.add('editing-mode', 'svg-edit');
-                        console.log('[ROOT] Edit mode enabled via message (svg)');
+                        if (e.data.type === 'svg-edit-mode') {
+                            document.body.classList.add('editing-mode', 'svg-edit');
+                            console.log('[ROOT] Edit mode enabled via message (svg)');
+                        } else {
+                            document.body.classList.add('editing-mode', 'map-edit');
+                            console.log('[ROOT] Edit mode enabled via message (map)');
+                        }
                     } else {
                         iframe.classList.remove('editing-mode');
                         document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');

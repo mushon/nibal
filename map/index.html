@@ -316,15 +316,27 @@ if (window.self !== window.top) {
   });
 }
 
-// Keyboard shortcut to toggle UI (L key)
+// Keyboard shortcut to toggle UI (E key)
 document.addEventListener('keydown', function(e) {
-  // Check if 'L' key is pressed (not in an input field)
-  if (e.key === 'l' || e.key === 'L') {
-    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-      var controls = document.getElementById('layer-controls');
-      if (controls) {
-        controls.classList.toggle('hidden');
+  // Ignore if typing in an input field
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  
+  // Use code instead of key to work across keyboard layouts
+  if (e.code === 'KeyE') {
+    e.preventDefault();
+    var controls = document.getElementById('layer-controls');
+    if (controls) {
+      const wasHidden = controls.classList.contains('hidden');
+      controls.classList.toggle('hidden');
+      
+      // Tell parent about edit mode change
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ 
+          type: 'map-edit-mode', 
+          enabled: wasHidden 
+        }, '*');
       }
+      console.log('[MAP] Edit mode:', wasHidden ? 'ON' : 'OFF');
     }
   }
 });
@@ -522,8 +534,8 @@ const defaultCamera = {
 // Parse hash: #lat,lng,zoom,bearing,pitch/+layer1,-layer2/load:filename
 function parseHash() {
   const hash = window.location.hash.replace('#', '');
-  if (!hash) return { camera: { ...defaultCamera }, layers: allStyleLayers.map(l => l.id), dynamicGeojsonToLoad: [], followId: null, followOffset: 0 };
-  let cameraStr = '', layersStr = '', followId = null, followOffset = 0;
+  if (!hash) return { camera: { ...defaultCamera }, layers: allStyleLayers.map(l => l.id), dynamicGeojsonToLoad: [], followId: null, followOffset: 0, showTicker: false };
+  let cameraStr = '', layersStr = '', followId = null, followOffset = 0, showTicker = false;
   const parts = hash.split('/');
   const restParts = [];
   for (let i = 0; i < parts.length; i++) {
@@ -543,20 +555,22 @@ function parseHash() {
     const layerState = {};
     layersStr.split(',').forEach(token => {
       // Support +id:follow, ~id:follow, +id(source):follow, +id:follow+offset, and +s2:YYYYMMDD
-      // token examples: +name, ~name, +name:follow, +name:follow+15000, +name(source), +name(source):follow, +s2:20240215
-      // Updated regex to capture optional +offset separately from :follow
-      const match = token.match(/^([+~])([^(]+?)(?:\(([^)]+)\))?(?::follow)?(?:\+(\d+))?$/);
+      // token examples: +name, ~name, +name:follow, +name:follow+, +name:follow+0, +name:follow+15000, +name(source), +name(source):follow, +s2:20240215
+      // New: :follow (no ticker), :follow+ or :follow+0 (ticker at 0), :follow+1000 (ticker at 1000m)
+      const match = token.match(/^([+~])([^(]+?)(?:\(([^)]+)\))?(?::follow(\+(\d*))?)?$/);
       if (!match) {
         console.warn('[HASH] Failed to parse layer token:', token);
         return;
       }
-      const [, sign, lname, sourceHint, offset] = match;
+      const [, sign, lname, sourceHint, plusSign, offset] = match;
       const hasFollow = token.includes(':follow');
+      const hasTickerFlag = !!plusSign; // true if group 4 captured anything (:follow+ or :follow+number)
       const parsedOffset = offset ? parseInt(offset, 10) : 0;
+      console.log('[HASH] Parsed token:', token, '-> hasFollow:', hasFollow, 'plusSign:', plusSign, 'hasTickerFlag:', hasTickerFlag, 'offset:', parsedOffset);
       // Always use the id without :follow for loading/toggling
-      layerState[lname] = { sign, sourceHint: sourceHint || null, follow: hasFollow, followOffset: parsedOffset };
+      layerState[lname] = { sign, sourceHint: sourceHint || null, follow: hasFollow, followOffset: parsedOffset, showTicker: hasTickerFlag };
     });
-    Object.entries(layerState).forEach(([lname, { sign, sourceHint, follow, followOffset: layerFollowOffset }]) => {
+    Object.entries(layerState).forEach(([lname, { sign, sourceHint, follow, followOffset: layerFollowOffset, showTicker: layerShowTicker }]) => {
       if (sign === '+') {
         if (!allStyleLayers.some(l => l.id === lname)) {
           // Check if this is a Sentinel-2 layer (format: s2:YYYYMMDD)
@@ -580,6 +594,8 @@ function parseHash() {
         if (follow) {
           followId = lname;
           followOffset = layerFollowOffset;
+          showTicker = layerShowTicker;
+          console.log('[HASH] Setting follow for layer:', lname, 'showTicker:', showTicker, 'offset:', followOffset);
         }
       } else if (sign === '~') {
         // For ~new-id, load as invisible (unchecked) dynamic layer
@@ -589,6 +605,7 @@ function parseHash() {
         if (follow) {
           followId = lname;
           followOffset = layerFollowOffset;
+          showTicker = layerShowTicker;
         }
         // Do NOT add to layersOn, so it is not visible/checked
       }
@@ -609,7 +626,8 @@ function parseHash() {
     layers: layersOn,
     dynamicGeojsonToLoad,
     followId,
-    followOffset
+    followOffset,
+    showTicker
   };
 }
 
@@ -1356,31 +1374,37 @@ function createLayerControls(map, visibleLayers) {
   const [, layersStr] = hash.split('/');
   
   // Performance: Use cached parse result if hash hasn't changed
-  let explicitState, followState, followOffsets;
+  let explicitState, followState, followOffsets, showTicker;
   if (cachedHashString === hash && cachedHashState) {
     explicitState = cachedHashState.explicitState;
     followState = cachedHashState.followState;
     followOffsets = cachedHashState.followOffsets;
+    showTicker = cachedHashState.showTicker;
   } else {
     explicitState = {};
     followState = {}; // Track which layers have :follow
     followOffsets = {}; // Track follow offset values
+    showTicker = {}; // Track whether to show ticker (true if :follow+ or :follow+number)
     if (layersStr) {
       layersStr.split(',').forEach(token => {
         // Match pattern: +layerName or +layerName(source) or +layerName:follow or +layerName(source):follow+15000
-        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(?:\+(\d+))?)?$/);
+        // New: :follow (no ticker), :follow+ or :follow+0 (ticker), :follow+1000 (ticker with offset)
+        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(\+(\d*))?)?$/);
         if (!match) return;
-        const [, sign, lname, sourceHint, followFlag, offset] = match;
+        const [, sign, lname, sourceHint, followFlag, plusSign, offset] = match;
         explicitState[lname] = sign;
         if (followFlag) {
           followState[lname] = true;
+          // If there's a + sign (even without a number), show ticker
+          showTicker[lname] = !!plusSign;
+          // Parse the offset value (default to 0 if no digits provided)
           followOffsets[lname] = offset ? parseInt(offset, 10) : 0;
         }
       });
     }
     // Cache the result
     cachedHashString = hash;
-    cachedHashState = { explicitState, followState, followOffsets };
+    cachedHashState = { explicitState, followState, followOffsets, showTicker };
   }
   // Include all style layers and any geojson-above-* layers
   const allLayers = [
@@ -1419,6 +1443,7 @@ function createLayerControls(map, visibleLayers) {
       // Check if this is a followable layer
       const isFollowable = followableLayers.has(layer.id);
       const isFollowing = followState[layer.id] || false;
+      const hasTickerFlag = showTicker[layer.id] || false;
       // Apply bold blue styling for external layers
       const labelStyle = isExternalLayer ? 'font-weight:bold;color:#0028ff;' : (bold ? 'font-weight:bold;' : '');
       
@@ -1429,9 +1454,15 @@ function createLayerControls(map, visibleLayers) {
       if (isFollowable) {
         const followClass = isFollowing ? ' class="active"' : '';
         const offsetValue = followOffsets[layer.id] || 0;
-        const inputClass = isFollowing ? ' class="active"' : '';
+        // Show offset input if following (allow user to add + to enable ticker)
+        // OR if ticker flag is already present (:follow+ or :follow+number)
+        const shouldShowInput = isFollowing || hasTickerFlag;
+        const inputClass = shouldShowInput ? ' class="active"' : '';
+        // Set input value to "+" by default when following without ticker, otherwise show offset number
+        const inputValue = (isFollowing && !hasTickerFlag) ? '+' : offsetValue;
+        console.log('[UI] Layer', layer.id, 'isFollowing:', isFollowing, 'hasTickerFlag:', hasTickerFlag, 'shouldShowInput:', shouldShowInput, 'inputValue:', inputValue);
         buttonHtml += ` <button data-follow="${layer.id}" title="Toggle follow animation"${followClass}>➠</button>`;
-        buttonHtml += ` <input type="number" data-follow-offset="${layer.id}" value="${offsetValue}" min="0" step="1000" placeholder="0"${inputClass} class="follow-offset-input" title="Start distance offset (meters)">`;
+        buttonHtml += ` <input type="text" data-follow-offset="${layer.id}" value="${inputValue}" placeholder="+"${inputClass} class="follow-offset-input" title="Distance offset in meters, or + to show ticker from 0">`;
       }
       
       if (isExternalLayer) {
@@ -1566,8 +1597,8 @@ function createLayerControls(map, visibleLayers) {
       
       // Parse layer tokens and toggle :follow for this layer
       const tokens = layersStr.split(',').map(token => {
-        // Match: +layerName or +layerName(source) with optional :follow+offset
-        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(?:\+\d+)?)?$/);
+        // Match: +layerName or +layerName(source) with optional :follow or :follow+ or :follow+number
+        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(\+(\d*))?)?$/);
         if (!match) return token;
         
         const [, sign, lname, sourceHint, followFlag] = match;
@@ -1580,16 +1611,21 @@ function createLayerControls(map, visibleLayers) {
           if (followFlag) {
             // Remove :follow
             console.log('[FOLLOW BTN] Removing :follow from', layerId);
-            // Hide offset input
-            if (offsetInput) offsetInput.classList.remove('active');
             return newToken;
           } else {
-            // Add :follow with offset
-            console.log('[FOLLOW BTN] Adding :follow to', layerId, 'with offset:', offsetValue);
-            const followSuffix = offsetValue > 0 ? `:follow+${offsetValue}` : ':follow';
-            // Show offset input
-            if (offsetInput) offsetInput.classList.add('active');
-            return newToken + followSuffix;
+            // Add :follow (no ticker by default)
+            console.log('[FOLLOW BTN] Adding :follow to', layerId);
+            // After hash updates, focus the offset input so user can easily add ticker
+            setTimeout(() => {
+              const input = container.querySelector(`input[data-follow-offset="${layerId}"]`);
+              if (input) {
+                input.focus();
+                // Move cursor to end without selecting text
+                const len = input.value.length;
+                input.setSelectionRange(len, len);
+              }
+            }, 100);
+            return newToken + ':follow';
           }
         }
         
@@ -1605,10 +1641,10 @@ function createLayerControls(map, visibleLayers) {
 
   // Add offset input listeners to update hash when changed
   container.querySelectorAll('input[data-follow-offset]').forEach(input => {
-    input.addEventListener('change', function(e) {
+    const handleOffsetUpdate = function(e) {
       const layerId = this.getAttribute('data-follow-offset');
-      const newOffset = parseInt(this.value, 10) || 0;
-      console.log('[FOLLOW OFFSET] Changed for layer:', layerId, 'to:', newOffset);
+      const inputValue = this.value.trim();
+      console.log('[FOLLOW OFFSET] Update for layer:', layerId, 'raw value:', inputValue);
       
       // Parse current hash
       const hash = window.location.hash.replace('#', '');
@@ -1616,18 +1652,53 @@ function createLayerControls(map, visibleLayers) {
       
       if (!layersStr) return;
       
-      // Update the offset in the layer token
+      // Update the offset in the layer token and control ticker visibility
       const tokens = layersStr.split(',').map(token => {
-        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(?:\+\d+)?)?$/);
+        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(\+(\d*))?)?$/);
         if (!match) return token;
         
         const [, sign, lname, sourceHint, followFlag] = match;
         
         if (lname === layerId && followFlag) {
-          // Update offset for this layer
           let newToken = `${sign}${lname}`;
           if (sourceHint) newToken += `(${sourceHint})`;
-          const followSuffix = newOffset > 0 ? `:follow+${newOffset}` : ':follow';
+          
+          // Handle different input formats:
+          // Empty string '' -> :follow (no ticker, remove +)
+          // '+' -> :follow+ (ticker at 0, just +)
+          // '0' or '+0' -> :follow+0 (ticker at 0, explicit)
+          // '+1000' or '1000' -> :follow+1000 (ticker at 1000m)
+          let followSuffix;
+          if (inputValue === '') {
+            // Empty: remove ticker, just follow
+            followSuffix = ':follow';
+            this.value = '+'; // Reset input to default
+            console.log('[FOLLOW OFFSET] Removed ticker for', layerId);
+          } else if (inputValue === '+') {
+            // Just +: ticker at 0, keep as :follow+
+            followSuffix = ':follow+';
+            this.value = '+'; // Keep as +
+            console.log('[FOLLOW OFFSET] Set ticker to + for', layerId);
+          } else if (inputValue === '0' || inputValue === '+0') {
+            // Explicit 0: ticker at 0
+            followSuffix = ':follow+0';
+            this.value = '0'; // Normalize display
+            console.log('[FOLLOW OFFSET] Set ticker to 0 for', layerId);
+          } else {
+            // Parse as number (remove leading + if present)
+            const cleanValue = inputValue.startsWith('+') ? inputValue.slice(1) : inputValue;
+            const numValue = parseInt(cleanValue, 10);
+            if (!isNaN(numValue) && numValue >= 0) {
+              followSuffix = `:follow+${numValue}`;
+              this.value = numValue.toString(); // Normalize display
+              console.log('[FOLLOW OFFSET] Set ticker to', numValue, 'for', layerId);
+            } else {
+              // Invalid input, default to +
+              followSuffix = ':follow+';
+              this.value = '+';
+              console.log('[FOLLOW OFFSET] Invalid input, defaulting to + for', layerId);
+            }
+          }
           return newToken + followSuffix;
         }
         
@@ -1638,15 +1709,18 @@ function createLayerControls(map, visibleLayers) {
       const newHash = `#${cameraStr}/${newLayersStr}`;
       console.log('[FOLLOW OFFSET] New hash:', newHash);
       window.location.hash = newHash;
-    });
+    };
     
-    // Prevent Enter key from submitting/refreshing
+    // Listen for Enter key
     input.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
-        this.blur(); // Trigger change event
+        handleOffsetUpdate.call(this, e);
       }
     });
+    
+    // Also listen for change event (when user tabs away)
+    input.addEventListener('change', handleOffsetUpdate);
   });
 
   // Add delete button listeners for dynamic layers
@@ -1703,7 +1777,7 @@ window.map = map;
 
 map.on('load', () => {
   // After all layers are loaded, if :follow is present in the hash, trigger follow logic directly (no hashchange event)
-  const { camera: camInit, layers: layersInit, dynamicGeojsonToLoad: dynInit, followId: followInit, followOffset: followOffsetInit } = parseHash();
+  const { camera: camInit, layers: layersInit, dynamicGeojsonToLoad: dynInit, followId: followInit, followOffset: followOffsetInit, showTicker: showTickerInit } = parseHash();
   if (followInit) {
     // Only start follow if not already running (avoid double-trigger)
     if (!window._isFollowStarted) {
@@ -1735,14 +1809,14 @@ map.on('load', () => {
             const parts = hash.split('/');
             let layersStr = parts[1] || '';
             if (layersStr) {
-              // Remove :follow or :follow+offset, allowing optional (source) part
-              layersStr = layersStr.replace(new RegExp(`([+~]${followInit})(?:\\([^)]+\\))?(?::follow(?:\\+\\d+)?)`), '$1');
+              // Remove :follow or :follow+offset or :follow+ allowing optional (source) part
+              layersStr = layersStr.replace(new RegExp(`([+~]${followInit})(?:\\([^)]+\\))?(?::follow(?:\\+\\d*)?)`), '$1');
             }
             const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '');
             window._suppressNextFollowCancel = true;
             window.location.replace(newHash);
             window._isFollowStarted = false;
-          }, followInit, followOffsetInit || 0);
+          }, followInit, followOffsetInit || 0, showTickerInit);
         }
       };
       setTimeout(tryStartFollow, 0);
@@ -1884,11 +1958,11 @@ map.on('move', () => {
 // Listen for hash changes (external navigation)
 let isFreeCameraAnimating = false;
 let pendingHashUpdate = null;
-function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset = 0) {
+function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset = 0, showTicker = false) {
   // Periodic check for :follow in the hash
   // Escape layerId for regex
   const safeLayerId = layerId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  console.log('[FOLLOW START]', layerId, 'coords:', coords.length, 'startOffset:', startOffset);
+  console.log('[FOLLOW START]', layerId, 'coords:', coords.length, 'startOffset:', startOffset, 'showTicker:', showTicker);
   let followCheckInterval = setInterval(() => {
     const rawHash = window.location.hash;
     const hash = rawHash.replace('#', '');
@@ -1896,8 +1970,8 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
     let stillFollowing = false;
     if (layersStr) {
       const tokens = layersStr.split(',');
-      // Pattern must account for optional (sourceHint) after layer name: +layerId(source):follow
-      stillFollowing = tokens.some(token => token.match(new RegExp(`^[+~]${safeLayerId}(?:\\([^)]+\\))?:follow(?:\\+\\d+)?$`)));
+      // Pattern must account for optional (sourceHint) after layer name and optional ticker flag: +layerId(source):follow or :follow+ or :follow+number
+      stillFollowing = tokens.some(token => token.match(new RegExp(`^[+~]${safeLayerId}(?:\\([^)]+\\))?:follow(?:\\+\\d*)?$`)));
     }
     console.log(`[FOLLOW CHECK] hash: ${rawHash} | :follow present for ${layerId}?`, stillFollowing);
     if (!stillFollowing) {
@@ -1972,13 +2046,17 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
   // Store original data reference for external cancel
   if (window._follow) window._follow.originalData = originalData;
   
-  // Show distance ticker if we have a valid GeoJSON source
+  // Show distance ticker only if showTicker flag is true
   const ticker = document.getElementById('distance-ticker');
   const totalDistKm = totalDist / 1000;
   const startOffsetKm = startOffset / 1000;
-  if (ticker && totalDistKm > 0) {
+  console.log('[FOLLOW] showTicker:', showTicker, 'ticker element:', !!ticker, 'totalDistKm:', totalDistKm);
+  if (showTicker && ticker && totalDistKm > 0) {
     ticker.classList.add('active');
     ticker.textContent = startOffsetKm.toFixed(1) + ' km';
+    console.log('[FOLLOW] Ticker activated');
+  } else {
+    console.log('[FOLLOW] Ticker NOT activated - showTicker:', showTicker, 'ticker:', !!ticker, 'totalDistKm:', totalDistKm);
   }
   function getBearing(from, to) {
     // Calculate bearing in radians from point 'from' to point 'to'
@@ -2117,6 +2195,9 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
       // Store the current tip coordinates for post-animation updates
       ticker.dataset.lng = tip[0];
       ticker.dataset.lat = tip[1];
+      console.log('[FOLLOW ANIMATE] Ticker updated:', currentDistKm.toFixed(1), 'km');
+    } else {
+      console.log('[FOLLOW ANIMATE] Ticker NOT updated - ticker:', !!ticker, 'hasActive:', ticker ? ticker.classList.contains('active') : false);
     }
     
     if (t < 1) {
@@ -2169,8 +2250,8 @@ window.addEventListener('hashchange', () => {
 
   // ...existing code...
 
-  const { camera, layers, dynamicGeojsonToLoad, followId, followOffset } = parseHash();
-  console.log('[FOLLOW DEBUG] Hash:', window.location.hash, '| followId:', followId, '| layers:', layers, '| dynamicGeojsonToLoad:', dynamicGeojsonToLoad);
+  const { camera, layers, dynamicGeojsonToLoad, followId, followOffset, showTicker } = parseHash();
+  console.log('[FOLLOW DEBUG] Hash:', window.location.hash, '| followId:', followId, '| followOffset:', followOffset, '| showTicker:', showTicker, '| layers:', layers, '| dynamicGeojsonToLoad:', dynamicGeojsonToLoad);
   console.log('[FOLLOW DEBUG] About to process layers and dynamic sources...');
 
   // Apply layer visibility from hash for all existing layers
@@ -2339,7 +2420,7 @@ window.addEventListener('hashchange', () => {
       });
       console.log('[FOLLOW DEBUG] Layer:', followId, 'Geom types:', geomTypes, 'Coords count:', coords.length);
       if (coords.length > 1) {
-        console.log('[FOLLOW DEBUG] Starting new follow animation for:', followId);
+        console.log('[FOLLOW DEBUG] Starting new follow animation for:', followId, 'with showTicker:', showTicker, 'offset:', followOffset);
         window._isFollowStarted = true;
   followPathWithFreeCamera(map, coords, () => {
           // On completion: freeze current camera into the hash and remove :follow to avoid jumping back
@@ -2359,7 +2440,7 @@ window.addEventListener('hashchange', () => {
           window._suppressNextFollowCancel = true;
           window.location.replace(newHash);
           window._isFollowStarted = false;
-        }, followId, followOffset || 0);
+        }, followId, followOffset || 0, showTicker);
       } else {
         console.log('[FOLLOW DEBUG] Not enough coordinates to follow for layer:', followId);
       }
