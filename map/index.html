@@ -13,14 +13,72 @@
       background: #333; 
     }
     #layer-controls {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(255,255,255,0.9);
-      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background: rgba(255,255,255,0.95);
+      z-index: 1000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+    #layer-controls.hidden {
+      transform: translateX(-100%);
+    }
+    #layer-controls-header {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      background: rgba(255,255,255,1);
+      flex-shrink: 0;
+    }
+    #layer-controls-header h3 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    #layer-controls-header .hint {
+      font-size: 11px;
+      color: #666;
+      margin: 0;
+    }
+    #layer-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 15px;
+    }
+    #layer-controls-footer {
+      padding: 10px 15px;
+      border-top: 1px solid #ddd;
+      background: rgba(255,255,255,1);
+      flex-shrink: 0;
+    }
+    #copy-link-btn {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #ddd;
       border-radius: 4px;
-      z-index: 1;
-      font-family: sans-serif;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    #copy-link-btn:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+    #copy-link-btn:active {
+      background: #e8e8e8;
+    }
+    #copy-link-btn.copied {
+      background: #4caf50;
+      color: white;
+      border-color: #4caf50;
     }
     #distance-ticker {
       position: absolute;
@@ -57,16 +115,69 @@
 </head>
 <body>
 <div id="map"></div>
-<div id="layer-controls"></div>
+<div id="layer-controls">
+  <div id="layer-controls-header">
+    <h3>Layers</h3>
+    <p class="hint">Press 'L' to toggle this panel</p>
+  </div>
+  <div id="layer-list"></div>
+  <div id="layer-controls-footer">
+    <button id="copy-link-btn" title="Copy shareable link">📋 Copy Link</button>
+  </div>
+</div>
 <div id="distance-ticker"></div>
 <script>
-// Hide control panel if in an iframe
+// Hide control panel if in an iframe, show by default otherwise
 if (window.self !== window.top) {
+  // In iframe - hide by default
   document.addEventListener('DOMContentLoaded', function() {
     var controls = document.getElementById('layer-controls');
-    if (controls) controls.style.display = 'none';
+    if (controls) controls.classList.add('hidden');
   });
 }
+
+// Keyboard shortcut to toggle UI (L key)
+document.addEventListener('keydown', function(e) {
+  // Check if 'L' key is pressed (not in an input field)
+  if (e.key === 'l' || e.key === 'L') {
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      var controls = document.getElementById('layer-controls');
+      if (controls) {
+        controls.classList.toggle('hidden');
+      }
+    }
+  }
+});
+
+// Copy link button functionality
+document.addEventListener('DOMContentLoaded', function() {
+  var copyBtn = document.getElementById('copy-link-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      // Get current URL and extract from 'map/' onwards
+      var fullUrl = window.location.href;
+      var mapIndex = fullUrl.indexOf('map/');
+      var linkToCopy = mapIndex !== -1 ? fullUrl.substring(mapIndex) : fullUrl;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(linkToCopy).then(function() {
+        // Visual feedback
+        var originalText = copyBtn.textContent;
+        copyBtn.textContent = '✓ Copied!';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(function() {
+          copyBtn.textContent = originalText;
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy link. Please copy manually: ' + linkToCopy);
+      });
+    });
+  }
+});
+
 // Sample Mapbox access token (replace with your own for production)
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnRzZWxlbW9yZyIsImEiOiJjbWhuNnF6djQwNTVlMnNzZjAxd2dqeWFyIn0.jw164iQiqRTNP1QMu-cbTg';
 
@@ -895,8 +1006,9 @@ function updateHash(map, visibleLayers) {
 
 // Create layer controls
 function createLayerControls(map, visibleLayers) {
-  const container = document.getElementById('layer-controls');
-  container.innerHTML = '<strong>Layers</strong><br>';
+  const container = document.getElementById('layer-list');
+  if (!container) return;
+  container.innerHTML = '';
   let foundLayer = false;
   // Always reflect the current style visibility for checkboxes
   // Parse current hash for explicit toggles
