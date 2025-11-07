@@ -195,7 +195,7 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines)
+[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines)
 אבא של ניבאל מסיע אותה לעיר עזה.
 
 
@@ -280,7 +280,7 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow,+rafah,+bureij,+cities,+villages,+idf-poly-outlines)
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+rafah,+bureij,+cities,+villages,+idf-poly-outlines)
 יחד עם כמיליון תושבים, רובם המוחלט עקורים שהגיעו גם הם לעיר בחודשים שלפני כן, ניבאל, אחמד וריתא נמלטים מרפיח.
 
 הם מגיעים לאל-בורייג׳ שבמרכז הרצועה, שם הם שוכרים מחסן קטן מחברים.
@@ -350,7 +350,7 @@ css: src/theme.css
 
 
 {.meta}
-[](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow,+al-zawaida,+al-mawasi,+cities,+villages,+idf-poly-outlines)
+[](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+cities,+villages,+idf-poly-outlines)
 לאחר שחרור מאשפוז בן 40 יום, ניבאל, אחמד וריתא נעקרים שוב.
 
 הם מגיעים ל״איזור ההומניטרי״ הצפוף שהגדיר הצבא הישראלי באל-מוואסי, שם הם עוברים לחיות באוהל.
@@ -444,7 +444,7 @@ css: src/theme.css
 
 
 {.meta}
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines)
 
 ניבאל מחליטה לחזור עם ריתא לבית הוריה בג׳אבליא. אחמד נשאר באל-מוואסי. 
 
@@ -468,7 +468,7 @@ css: src/theme.css
 
 
 {.meta}
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+jabalia-al-mawasi(by-car):follow,+family-home,+al-mawasi,+cities,+villages,+idf-poly-outlines)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+jabalia-al-mawasi(by-car):follow+,+family-home,+al-mawasi,+cities,+villages,+idf-poly-outlines)
 אחרי כחודש של מנוחה והחלמה בבית הוריה, אחמד מבקש מניבאל שתשוב דרומה. 
 
 ניבאל נענית לבקשתו, וחוזרת עם ריתא לאוהל ב״איזור ההומניטרי״ באל-מוואסי.
@@ -579,7 +579,7 @@ css: src/theme.css
 
 
 {.meta thumb} 
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow,+s.gaza,+deir-al-balah,+cities,+villages,+idf-poly-outlines)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+s.gaza,+deir-al-balah,+cities,+villages,+idf-poly-outlines)
 
 בסוף אוגוסט 2025 יוצאת ישראל במתקפה על העיר עזה. 
 
