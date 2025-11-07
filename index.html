@@ -69,45 +69,79 @@
 <main></main>
 
 <script>
-        // Keyboard shortcuts for toggling iframe editing mode
+        // Detect which type of content is loaded in iframe
+        function getIframeType() {
+            const iframe = document.getElementById('if');
+            if (!iframe || !iframe.src) return null;
+            
+            const src = iframe.src;
+            if (src.includes('/map/')) return 'map';
+            if (src.includes('/svg/')) return 'svg';
+            return null;
+        }
+        
+        // Toggle edit mode for current iframe content
+        function toggleEditMode() {
+            const iframe = document.getElementById('if');
+            if (!iframe || !iframe.contentWindow) return;
+            
+            const type = getIframeType();
+            if (!type) return;
+            
+            try {
+                const iframeDoc = iframe.contentWindow.document;
+                
+                if (type === 'map') {
+                    // Toggle map layer controls
+                    const layerControls = iframeDoc.getElementById('layer-controls');
+                    if (layerControls) {
+                        const isHidden = layerControls.classList.contains('hidden');
+                        layerControls.classList.toggle('hidden');
+                        
+                        if (isHidden) {
+                            // Enable edit mode
+                            iframe.classList.add('editing-mode');
+                            document.body.classList.add('editing-mode', 'map-edit');
+                            console.log('[ROOT] Edit mode: ON (map)');
+                        } else {
+                            // Disable edit mode
+                            iframe.classList.remove('editing-mode');
+                            document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                            console.log('[ROOT] Edit mode: OFF');
+                        }
+                    }
+                } else if (type === 'svg') {
+                    // Toggle SVG controls
+                    const docElement = iframeDoc.documentElement;
+                    const isEmbedded = docElement.classList.contains('embedded');
+                    
+                    if (isEmbedded) {
+                        // Enable edit mode
+                        docElement.classList.remove('embedded');
+                        iframe.classList.add('editing-mode');
+                        document.body.classList.add('editing-mode', 'svg-edit');
+                        console.log('[ROOT] Edit mode: ON (svg)');
+                    } else {
+                        // Disable edit mode
+                        docElement.classList.add('embedded');
+                        iframe.classList.remove('editing-mode');
+                        document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                        console.log('[ROOT] Edit mode: OFF');
+                    }
+                }
+            } catch(err) {
+                console.warn('[ROOT] Cannot access iframe:', err);
+            }
+        }
+        
+        // Keyboard shortcut for toggling edit mode
         document.addEventListener('keydown', function(e) {
             // Ignore if typing in an input field
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
             
-            const iframe = document.getElementById('if');
-            if (!iframe || !iframe.contentWindow) return;
-            
-            if (e.key === 's' || e.key === 'S') {
-                // Toggle SVG editing mode
+            if (e.key === 'e' || e.key === 'E') {
                 e.preventDefault();
-                try {
-                    const iframeDoc = iframe.contentWindow.document;
-                    const iframeSrc = iframe.src || '';
-                    
-                    // Only work if iframe is showing svg/
-                    if (iframeSrc.includes('/svg/')) {
-                        const docElement = iframeDoc.documentElement;
-                        
-                        // Check if currently in embedded mode
-                        const isEmbedded = docElement.classList.contains('embedded');
-                        
-                        if (isEmbedded) {
-                            // Entering edit mode: remove embedded class to show controls
-                            docElement.classList.remove('embedded');
-                            iframe.classList.add('editing-mode');
-                            document.body.classList.add('editing-mode');
-                            console.log('[ROOT] SVG edit mode: ON');
-                        } else {
-                            // Exiting edit mode: add embedded class to hide controls
-                            docElement.classList.add('embedded');
-                            iframe.classList.remove('editing-mode');
-                            document.body.classList.remove('editing-mode');
-                            console.log('[ROOT] SVG edit mode: OFF');
-                        }
-                    }
-                } catch(err) {
-                    console.warn('[ROOT] Cannot access iframe:', err);
-                }
+                toggleEditMode();
             }
         });
         
@@ -118,12 +152,12 @@
                 if (iframe) {
                     if (e.data.enabled) {
                         iframe.classList.add('editing-mode');
-                        document.body.classList.add('editing-mode');
-                        console.log('[ROOT] SVG edit mode enabled via message');
+                        document.body.classList.add('editing-mode', 'svg-edit');
+                        console.log('[ROOT] Edit mode enabled via message (svg)');
                     } else {
                         iframe.classList.remove('editing-mode');
-                        document.body.classList.remove('editing-mode');
-                        console.log('[ROOT] SVG edit mode disabled via message');
+                        document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                        console.log('[ROOT] Edit mode disabled via message');
                     }
                 }
             }

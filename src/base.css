@@ -96,6 +96,10 @@ a { color: #0b66a8; }
 
 footer { opacity: 0.6; text-align: left; padding: 1rem 0; }
 
+.map-edit #chapter-nav{
+    left: calc(270px + 24px);
+}
+
 @media (max-width: 1000px) and (orientation: portrait) {
     iframe { 
         position: fixed; 
