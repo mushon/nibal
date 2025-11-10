@@ -1401,6 +1401,8 @@ function fitToContainer(){
   
   // update reference frame display
   updateReferenceFrame();
+  // Re-render SVG and overlays after fitting
+  render();
 }
 
 function updateReferenceFrame(){
@@ -1470,6 +1472,8 @@ function render(){
 
   // Update HTML overlays to match current SVG transform
   try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
+  // Also schedule a second update on next animation frame for robustness
+  try { requestAnimationFrame(() => { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); }); } catch(e){}
 }
 
 // simple tweening helper for numeric state transitions
@@ -1878,6 +1882,8 @@ window.addEventListener('resize', () => {
   try { 
     updateReferenceFrame();
     render(); // Re-render SVG to match new reference frame scale
+    // Ensure overlays update after resize
+    if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
   } catch(e){}
 });
 
@@ -1932,72 +1938,62 @@ document.addEventListener('keydown', function(e) {
     const el = item.target;
     const overlay = item.el;
     try{
-      // If this overlay is an SVG foreignObject (in-SVG), compute geometry in SVG units
+      // If this overlay is an SVG foreignObject (in-SVG), copy exact attributes from source element
       const isSvgFO = overlay && overlay.namespaceURI === 'http://www.w3.org/2000/svg' && overlay.tagName.toLowerCase() === 'foreignobject';
       if (isSvgFO) {
-        const bb = el.getBBox();
-        if (!bb) { overlay.setAttribute('display','none'); return; }
-        // Map local quad to root SVG coordinates using getCTM
-        const ctm = (typeof el.getCTM === 'function') ? el.getCTM() : null;
-        const mapLocalSvg = (x, y) => {
-          if (ctm) {
-            const p = new DOMPoint(x, y).matrixTransform(ctm);
-            return { x: p.x, y: p.y };
-          }
-          return { x, y };
-        };
-
-        // Prefer path corners when available
-        let tlp, trp, blp, width, height, rotation;
-        if (el.tagName === 'path' && el.getAttribute) {
+        // Strategy: Copy x, y, width, height, and transform attributes directly from the source element
+        // This ensures perfect sync regardless of element type (g, use, image, path, etc.)
+        
+        // First, check if element has direct x/y/width/height attributes (e.g., <use> or <image>)
+        let x = null, y = null, width = null, height = null, transform = null;
+        
+        // Try to get attributes from the element itself
+        if (el.hasAttribute && el.getAttribute) {
+          if (el.hasAttribute('x')) x = el.getAttribute('x');
+          if (el.hasAttribute('y')) y = el.getAttribute('y');
+          if (el.hasAttribute('width')) width = el.getAttribute('width');
+          if (el.hasAttribute('height')) height = el.getAttribute('height');
+          if (el.hasAttribute('transform')) transform = el.getAttribute('transform');
+        }
+        
+        // If the element is a <g> (group), check its first child (like <use>)
+        if ((x === null || width === null) && el.tagName && el.tagName.toLowerCase() === 'g') {
           try {
-            const d = el.getAttribute('d');
-            if (d) {
-              const coords = [];
-              const matches = d.matchAll(/([ML])\s*([+-]?\d*\.?\d+)[,\s]+([+-]?\d*\.?\d+)/g);
-              for (const m of matches) { coords.push({ x: parseFloat(m[2]), y: parseFloat(m[3]) }); if (coords.length >= 4) break; }
-              if (coords.length >= 4) {
-                const pts = [
-                  mapLocalSvg(coords[0].x, coords[0].y),
-                  mapLocalSvg(coords[1].x, coords[1].y),
-                  mapLocalSvg(coords[2].x, coords[2].y),
-                  mapLocalSvg(coords[3].x, coords[3].y)
-                ];
-                const byY = pts.slice().sort((a,b)=> a.y - b.y);
-                const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x);
-                const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x);
-                tlp = topPair[0]; trp = topPair[1]; blp = bottomPair[0];
-              }
+            const firstChild = el.querySelector('use, image, rect');
+            if (firstChild) {
+              if (x === null && firstChild.hasAttribute('x')) x = firstChild.getAttribute('x');
+              if (y === null && firstChild.hasAttribute('y')) y = firstChild.getAttribute('y');
+              if (width === null && firstChild.hasAttribute('width')) width = firstChild.getAttribute('width');
+              if (height === null && firstChild.hasAttribute('height')) height = firstChild.getAttribute('height');
             }
-          } catch(e) {/* fallback to bbox */}
+          } catch(e) {/* ignore */}
         }
-        if (!tlp || !trp || !blp) {
-          const pts = [
-            mapLocalSvg(bb.x, bb.y),
-            mapLocalSvg(bb.x + bb.width, bb.y),
-            mapLocalSvg(bb.x + bb.width, bb.y + bb.height),
-            mapLocalSvg(bb.x, bb.y + bb.height)
-          ];
-          const byY = pts.slice().sort((a,b)=> a.y - b.y);
-          const topPair = byY.slice(0,2).sort((a,b)=> a.x - b.x);
-          const bottomPair = byY.slice(2,4).sort((a,b)=> a.x - b.x);
-          tlp = topPair[0]; trp = topPair[1]; blp = bottomPair[0];
+        
+        // Fallback to bbox if no attributes found
+        if (x === null || y === null || width === null || height === null) {
+          const bb = el.getBBox();
+          if (!bb) { overlay.setAttribute('display','none'); return; }
+          if (x === null) x = String(bb.x);
+          if (y === null) y = String(bb.y);
+          if (width === null) width = String(bb.width);
+          if (height === null) height = String(bb.height);
         }
-        const vx = { x: trp.x - tlp.x, y: trp.y - tlp.y };
-        const vy = { x: blp.x - tlp.x, y: blp.y - tlp.y };
-        width = Math.hypot(vx.x, vx.y);
-        height = Math.hypot(vy.x, vy.y);
-        rotation = Math.atan2(vx.y, vx.x) * 180 / Math.PI;
-
-        // Apply to foreignObject
+        
+        // Apply attributes to foreignObject
         overlay.removeAttribute('display');
-        overlay.setAttribute('x', String(tlp.x));
-        overlay.setAttribute('y', String(tlp.y));
-        overlay.setAttribute('width', String(Math.max(0.001, width)));
-        overlay.setAttribute('height', String(Math.max(0.001, height)));
-        overlay.setAttribute('transform', `rotate(${rotation} ${tlp.x} ${tlp.y})`);
+        overlay.setAttribute('x', String(x));
+        overlay.setAttribute('y', String(y));
+        overlay.setAttribute('width', String(width));
+        overlay.setAttribute('height', String(height));
+        
+        // Copy transform attribute if present, otherwise remove it
+        if (transform) {
+          overlay.setAttribute('transform', transform);
+        } else {
+          overlay.removeAttribute('transform');
+        }
 
-        // Mirror visibility/opacity/transition
+        // Mirror visibility/opacity/transition via style
         const cs = window.getComputedStyle(el);
         const targetVisibility = cs.visibility || 'visible';
         const targetDisplay = (cs.display === 'none') ? 'none' : 'inline';
@@ -2006,6 +2002,7 @@ document.addEventListener('keydown', function(e) {
         overlay.style.transition = elTransition;
         overlay.style.opacity = elOpacity;
         overlay.style.visibility = targetVisibility;
+        
         if (targetDisplay === 'none' || parseFloat(elOpacity) < 0.01 && (!elTransition || elTransition === 'none')) {
           overlay.setAttribute('display','none');
         } else {
