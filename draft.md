@@ -13,12 +13,12 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#opening.svg/-0.07,0.21,1.81/+gazamap)
+[](#opening.svg/-0.07,0.27,2.03/+gazamap)
 במשך שנתיים, ישראל כפתה על תושבי רצועת עזה לעקור שוב ושוב ממקומם.
 
 
 {.meta}
-[](svg/#opening.svg/-0.07,0.21,1.81/+gazamap+IDFareas "האזורים שנכללו תחת צווי הפינוי של הצבא בין אוקטובר 2023 לאוקטובר 2025")
+[](svg/#opening.svg/-0.07,0.27,2.03/+gazamap+IDFareas "האזורים שנכללו תחת צווי הפינוי של הצבא בין אוקטובר 2023 לאוקטובר 2025")
 לרוב, היא עשתה זאת באמצעות צווי הפינוי שהוציא הצבא הישראלי.
 
 
@@ -51,7 +51,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#opening.svg/-0.86,-0.02,3.47/+nibal2023)
+[](svg/#opening.svg/-0.64,-0.22,2.27/+nibal2023)
 
 שמי ניבאל. אני בת 25. עד לאוקטובר 2023, גרתי בג׳אבליא עם בעלי, אחמד ובתנו התינוקת ריתא.
 
@@ -155,7 +155,6 @@ css: src/theme.css
 [](map/#31.37771,34.43288,10.00,37.6,0.0/+north,+arrow)
 אלו מורים לכמיליון תושבי צפון הרצועה לעזוב את בתיהם ולעקור לדרום הרצועה תוך 24 שעות.
 
-
 <a href="https://btselem.org/" target="blank" class="dontinflect">
     להרחבה, ראו:
     <strong>
@@ -213,9 +212,11 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+s.gaza,+nuseirat,+rafah,+cities,+villages,+idf-poly-outlines)
+[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+s.gaza,+pois(poi)[name=nuseirat],+pois(poi)[name=rafah],+cities,+villages,+idf-poly-outlines)
 באזור א-נוסייראת הן מתאחדות עם אחמד, אותו לא ראו מזה כחצי שנה.
 
+
+{.meta} 
 משם, ממשיכים שלושתם אל האוהל של אחמד ברפיח.
 
 
@@ -286,8 +287,9 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+rafah,+bureij,+cities,+villages,+idf-poly-outlines)
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois(poi)[name=rafah],+pois(poi)[name=bureij],+cities,+villages,+idf-poly-outlines)
 ניבאל, אחמד וריתא נמלטים מרפיח, יחד עם כמיליון תושבים אחרים, רובם המוחלט עקורים שהגיעו לעיר כמוהם בחודשים שלפני כן.
+
 `לשנות את הנקודה של רפיח.
 
 סטילס ל-overlay נסיעה: https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NURPHO000S49GI0%3A116671089&share=true
