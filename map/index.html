@@ -600,11 +600,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (layerType === 'geojson') {
       const raw = (geojsonInput.value || '').trim();
       console.log('[ADD LAYER] GeoJSON/CSV, raw input:', raw, 'reference:', refLayer);
-      if (!raw) { setError('Enter a local filename.'); return; }
+      if (!raw) { setError('Enter a local filename or URL.'); return; }
+      // Accept any input, not just predefined list - datalist provides suggestions only
       if (!availableLocalLayerFiles.includes(raw)) { 
-        console.warn('[ADD LAYER] Not found in list:', raw);
-        setError('Not found in local files list.'); 
-        return; 
+        console.warn('[ADD LAYER] Custom file/URL not in predefined list:', raw);
+        // Don't return error - allow custom files/URLs
       }
       layerId = raw;
       newToken = `+${layerId}`;
@@ -774,22 +774,42 @@ function parseHash() {
     layersOn = [];
     const layerState = {};
     layersStr.split(',').forEach(token => {
-      // Support +id:follow, ~id:follow, +id(source):follow, +id:follow+offset, and +wayback:YYYYMMDD
-      // token examples: +name, ~name, +name:follow, +name:follow+, +name:follow+0, +name:follow+15000, +name(source), +name(source):follow, +wayback:20240215
-      // New: :follow (no ticker), :follow+ or :follow+0 (ticker at 0), :follow+1000 (ticker at 1000m)
-      const match = token.match(/^([+~])([^(]+?)(?:\(([^)]+)\))?(?::follow(\+(\d*))?)?$/);
+      // Support +id:follow, ~id:follow, +id(source):follow, +id:follow+offset, +wayback:YYYYMMDD, and +id[property=value]
+      // token examples: +name, ~name, +name:follow, +name:follow+, +name:follow+0, +name:follow+15000, +name(source), +name(source):follow, +wayback:20240215, +pois[name=jabalia]
+      // New: :follow (no ticker), :follow+ or :follow+0 (ticker at 0), :follow+1000 (ticker at 1000m), [property=value] (filter)
+      const match = token.match(/^([+~])([^\[(]+?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
       if (!match) {
         console.warn('[HASH] Failed to parse layer token:', token);
         return;
       }
-      const [, sign, lname, sourceHint, plusSign, offset] = match;
+      const [, sign, lname, sourceHint, filterExpr, plusSign, offset] = match;
       const hasFollow = token.includes(':follow');
-      const hasTickerFlag = !!plusSign; // true if group 4 captured anything (:follow+ or :follow+number)
+      const hasTickerFlag = !!plusSign; // true if group 5 captured anything (:follow+ or :follow+number)
       const parsedOffset = offset ? parseInt(offset, 10) : 0;
+      
+      // Parse filter expression like "name=jabalia" or "type!=boundary"
+      let filter = null;
+      if (filterExpr) {
+        const filterMatch = filterExpr.match(/^([^=!]+)(=|!=)(.+)$/);
+        if (filterMatch) {
+          const [, property, operator, value] = filterMatch;
+          // Try to parse value as number if possible
+          const parsedValue = isNaN(value) ? value : Number(value);
+          if (operator === '=') {
+            filter = ['==', ['get', property], parsedValue];
+          } else if (operator === '!=') {
+            filter = ['!=', ['get', property], parsedValue];
+          }
+          console.log('[HASH PARSE] Filter for', lname, ':', filterExpr, '->', filter);
+        } else {
+          console.warn('[HASH PARSE] Invalid filter expression:', filterExpr);
+        }
+      }
+      
       // Always use the id without :follow for loading/toggling
-      layerState[lname] = { sign, sourceHint: sourceHint || null, follow: hasFollow, followOffset: parsedOffset, showTicker: hasTickerFlag };
+      layerState[lname] = { sign, sourceHint: sourceHint || null, filter, follow: hasFollow, followOffset: parsedOffset, showTicker: hasTickerFlag };
     });
-  Object.entries(layerState).forEach(([lname, { sign, sourceHint, follow, followOffset: layerFollowOffset, showTicker: layerShowTicker }]) => {
+  Object.entries(layerState).forEach(([lname, { sign, sourceHint, filter, follow, followOffset: layerFollowOffset, showTicker: layerShowTicker }]) => {
       if (sign === '+') {
         const isStyleLayer = allStyleLayers.some(l => l.id === lname);
         const isExternalLayer = externalLayers.has(lname);
@@ -802,10 +822,10 @@ function parseHash() {
           const waybackMatch = lname.match(/^wayback:(\d{8})$/);
           if (waybackMatch) {
             const dateStr = waybackMatch[1];
-            dynamicGeojsonToLoad.push({ name: lname, sourceHint: sourceHint || 'overlay', isWayback: true, waybackDate: dateStr });
+            dynamicGeojsonToLoad.push({ name: lname, sourceHint: sourceHint || 'overlay', filter, isWayback: true, waybackDate: dateStr });
           } else {
             // Regular GeoJSON/CSV layer
-            dynamicGeojsonToLoad.push({ name: lname, sourceHint });
+            dynamicGeojsonToLoad.push({ name: lname, sourceHint, filter });
           }
         }
         layersOn.push(lname);
@@ -821,7 +841,7 @@ function parseHash() {
         const isExternalLayer = externalLayers.has(lname);
         
         if (!isStyleLayer || (isExternalLayer && sourceHint)) {
-          dynamicGeojsonToLoad.push({ name: lname, sourceHint });
+          dynamicGeojsonToLoad.push({ name: lname, sourceHint, filter });
         }
         if (follow) {
           followId = lname;
@@ -1016,8 +1036,11 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
 
     // 4) Extract sourceHint and determine layer type
     let sourceHint = null;
+    let filter = null;
     if (typeof toLayer === 'object' && toLayer !== null && toLayer.sourceHint) sourceHint = toLayer.sourceHint;
+    if (typeof toLayer === 'object' && toLayer !== null && toLayer.filter) filter = toLayer.filter;
     if (!sourceHint && typeof geojsonFile === 'object' && geojsonFile.sourceHint) sourceHint = geojsonFile.sourceHint;
+    if (!filter && typeof geojsonFile === 'object' && geojsonFile.filter) filter = geojsonFile.filter;
     
     let type = 'line';
     let sourceLayerFound = false;
@@ -1057,6 +1080,14 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
       layout: { visibility },
       paint: basePaint
     };
+    
+    // Add filter if provided
+    if (filter) {
+      layerDef.filter = filter;
+      console.log('[FILTER] Applied filter to layer', layerId, ':', filter);
+    } else {
+      console.log('[FILTER] No filter for layer', layerId);
+    }
 
     // 7) Copy styling from sourceHint if provided
     try {
@@ -1412,12 +1443,13 @@ function createLayerControls(map, visibleLayers) {
     showTicker = {}; // Track whether to show ticker (true if :follow+ or :follow+number)
     if (layersStr) {
       layersStr.split(',').forEach(token => {
-        // Match pattern: +layerName or +layerName(source) or +layerName:follow or +layerName(source):follow+15000
-        // New: :follow (no ticker), :follow+ or :follow+0 (ticker), :follow+1000 (ticker with offset)
-        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(\+(\d*))?)?$/);
+        // Match pattern: +layerName or +layerName(source) or +layerName[filter] or +layerName:follow or +layerName(source):follow+15000 or +layerName[name=value]:follow
+        // New: :follow (no ticker), :follow+ or :follow+0 (ticker), :follow+1000 (ticker with offset), [property=value] (filter)
+        const match = token.match(/^([+~])([^\[(]+?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
         if (!match) return;
-        const [, sign, lname, sourceHint, followFlag, plusSign, offset] = match;
+        const [, sign, lname, sourceHint, filterExpr, plusSign, offset] = match;
         explicitState[lname] = sign;
+        const followFlag = token.includes(':follow');
         if (followFlag) {
           followState[lname] = true;
           // If there's a + sign (even without a number), show ticker
@@ -1517,25 +1549,36 @@ function createLayerControls(map, visibleLayers) {
       // Parse current hash for explicit toggles
       const hash = window.location.hash.replace('#', '');
       const [cameraStr, layersStr] = hash.split('/');
-      const explicitState = {};
+      const tokenMap = {}; // Map layer name to full token
       if (layersStr) {
         layersStr.split(',').forEach(token => {
-          const match = token.match(/^([+~])(.+)$/);
+          // Parse token to extract layer name
+          const match = token.match(/^([+~])([^\[(]+?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
           if (!match) return;
           const [, sign, lname] = match;
-          explicitState[lname] = sign;
+          tokenMap[lname] = token; // Store full token
         });
       }
       // Toggle + or ~ in hash and set visibility
       if (this.checked) {
-        explicitState[layerId] = '+';
+        // If token exists, change sign to +, otherwise create new +token
+        if (tokenMap[layerId]) {
+          tokenMap[layerId] = tokenMap[layerId].replace(/^[+~]/, '+');
+        } else {
+          tokenMap[layerId] = `+${layerId}`;
+        }
         map.setLayoutProperty(layerId, 'visibility', 'visible');
       } else {
-        explicitState[layerId] = '~';
+        // If token exists, change sign to ~, otherwise create new ~token
+        if (tokenMap[layerId]) {
+          tokenMap[layerId] = tokenMap[layerId].replace(/^[+~]/, '~');
+        } else {
+          tokenMap[layerId] = `~${layerId}`;
+        }
         map.setLayoutProperty(layerId, 'visibility', 'none');
       }
-      // Build new hash
-      const tokens = Object.entries(explicitState).map(([lname, sign]) => `${sign}${lname}`);
+      // Build new hash from tokens
+      const tokens = Object.values(tokenMap);
       if (tokens.length > 0) {
         window.location.replace(`#${cameraStr}/${tokens.join(',')}`);
       } else {
@@ -1622,16 +1665,17 @@ function createLayerControls(map, visibleLayers) {
       
       // Parse layer tokens and toggle :follow for this layer
       const tokens = layersStr.split(',').map(token => {
-        // Match: +layerName or +layerName(source) with optional :follow or :follow+ or :follow+number
-        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(\+(\d*))?)?$/);
+        // Match: +layerName or +layerName(source) or +layerName[filter] with optional :follow or :follow+ or :follow+number
+        const match = token.match(/^([+~])([^\[(]+?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
         if (!match) return token;
         
-        const [, sign, lname, sourceHint, followFlag] = match;
+        const [, sign, lname, sourceHint, filterExpr, followFlag] = match;
         
         if (lname === layerId) {
           // Toggle :follow for this layer
           let newToken = `${sign}${lname}`;
           if (sourceHint) newToken += `(${sourceHint})`;
+          if (filterExpr) newToken += `[${filterExpr}]`;
           
           if (followFlag) {
             // Remove :follow
@@ -1679,14 +1723,16 @@ function createLayerControls(map, visibleLayers) {
       
       // Update the offset in the layer token and control ticker visibility
       const tokens = layersStr.split(',').map(token => {
-        const match = token.match(/^([+~])([^:(]+)(?:\(([^)]+)\))?(:follow(\+(\d*))?)?$/);
+        const match = token.match(/^([+~])([^\[(]+?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
         if (!match) return token;
         
-        const [, sign, lname, sourceHint, followFlag] = match;
+        const [, sign, lname, sourceHint, filterExpr, followFlag] = match;
+        const hasFollow = !!followFlag;
         
-        if (lname === layerId && followFlag) {
+        if (lname === layerId && hasFollow) {
           let newToken = `${sign}${lname}`;
           if (sourceHint) newToken += `(${sourceHint})`;
+          if (filterExpr) newToken += `[${filterExpr}]`;
           
           // Handle different input formats:
           // Empty string '' -> :follow (no ticker, remove +)
@@ -1919,12 +1965,13 @@ map.on('load', () => {
   const { dynamicGeojsonToLoad, layers: layersOn } = parseHash();
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
     dynamicGeojsonToLoad.forEach(entry => {
-      let name = null, sourceHint = null, isWayback = false, waybackDate = null;
+      let name = null, sourceHint = null, filter = null, isWayback = false, waybackDate = null;
       if (typeof entry === 'string') {
         name = entry;
       } else if (entry && typeof entry === 'object') {
         name = entry.name;
         sourceHint = entry.sourceHint;
+        filter = entry.filter;
         isWayback = entry.isWayback || false;
         waybackDate = entry.waybackDate || null;
       }
@@ -1932,10 +1979,10 @@ map.on('load', () => {
         const visibility = (layersOn && layersOn.includes(name)) ? 'visible' : 'none';
         if (isWayback && waybackDate) {
           // Load ESRI Wayback layer
-          loadWaybackLayer(waybackDate, { visibility, sourceHint });
+          loadWaybackLayer(waybackDate, { visibility, sourceHint, filter });
         } else {
           // Load GeoJSON/CSV layer
-          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint });
+          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint, filter });
         }
       }
     });
@@ -2374,12 +2421,13 @@ window.addEventListener('hashchange', () => {
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
     const layersOn = layers || [];
     dynamicGeojsonToLoad.forEach(entry => {
-      let name = null, sourceHint = null, isWayback = false, waybackDate = null;
+      let name = null, sourceHint = null, filter = null, isWayback = false, waybackDate = null;
       if (typeof entry === 'string') {
         name = entry;
       } else if (entry && typeof entry === 'object') {
         name = entry.name;
         sourceHint = entry.sourceHint;
+        filter = entry.filter;
         isWayback = entry.isWayback || false;
         waybackDate = entry.waybackDate || null;
       }
@@ -2395,19 +2443,19 @@ window.addEventListener('hashchange', () => {
         // ESRI Wayback layer
         if (!layerExists) {
           console.log('[HASHCHANGE] Loading new Wayback layer:', name);
-          loadWaybackLayer(waybackDate, { visibility, sourceHint });
+          loadWaybackLayer(waybackDate, { visibility, sourceHint, filter });
         } else if (sourceHint) {
           console.log('[HASHCHANGE] Reloading Wayback layer:', name, 'with sourceHint:', sourceHint);
-          loadWaybackLayer(waybackDate, { visibility, sourceHint });
+          loadWaybackLayer(waybackDate, { visibility, sourceHint, filter });
         }
       } else {
         // GeoJSON/CSV layer
         if (!layerExists) {
-          console.log('[HASHCHANGE] Loading new layer:', name, 'with sourceHint:', sourceHint, 'visibility:', visibility);
-          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint });
-        } else if (sourceHint) {
-          console.log('[HASHCHANGE] Reloading existing layer:', name, 'with sourceHint:', sourceHint);
-          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint });
+          console.log('[HASHCHANGE] Loading new layer:', name, 'with sourceHint:', sourceHint, 'filter:', filter, 'visibility:', visibility);
+          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint, filter });
+        } else if (sourceHint || filter) {
+          console.log('[HASHCHANGE] Reloading existing layer:', name, 'with sourceHint:', sourceHint, 'filter:', filter);
+          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint, filter });
         }
       }
     });
