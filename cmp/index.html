@@ -848,12 +848,19 @@ function toggleLayerVisibility(el, show, opts){
   }
   const animate = !(opts && opts.animate === false);
   const currentlyVisible = isCurrentlyVisible(el);
+  // Detect if a fade transition is in progress for this element. If so, we should
+  // not early-return when toggling back to the opposite state (e.g., re-check during fade-out),
+  // but instead cancel and start the opposite animation immediately.
+  const animating = (typeof __fadeCancels !== 'undefined' && __fadeCancels && typeof __fadeCancels.has === 'function') ? __fadeCancels.has(el) : false;
   // If the element is already in the desired visibility state, skip animation.
-  if (currentlyVisible && show) {
-    return animate ? Promise.resolve() : undefined;
-  }
-  if (!currentlyVisible && !show) {
-    return animate ? Promise.resolve() : undefined;
+  // However, do NOT skip if an opposite animation is currently running; we need to flip it.
+  if (!animating) {
+    if (currentlyVisible && show) {
+      return animate ? Promise.resolve() : undefined;
+    }
+    if (!currentlyVisible && !show) {
+      return animate ? Promise.resolve() : undefined;
+    }
   }
   if (animate) {
     return animateLayerVisibility(el, show);
