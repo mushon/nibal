@@ -125,7 +125,7 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.53064,34.47112,12.43,37.6,0.0/+cities,+villages,+family-home,+unosat-damage-231015,+satellite)
+[](map/#31.53064,34.47112,12.43,37.6,0.0/+cities,+villages,+family-home,+unosat-damage-231015,+satellite "מיפוי ההרס ברצועת עזה לאחר השבוע הראשון למתקפה. מקור: UNOSAT")
 ניבאל נמצאת אז בביתה בג׳באליא עם בתה ריתא, אז בת חודש בלבד. 
 
 אחמד, בעלה, עובד באותה עת כפועל בניין בתוך ישראל.
@@ -147,11 +147,12 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.37059,34.45696,9.53,37.6,0.0/+north,+arrow)
+[](map/#31.37771,34.43288,10.00,37.6,0.0/+north)
 ב-13 באוקטובר 2023 מוציא הצבא הישראלי את צווי הפינוי ההמוניים הראשונים לתושבי עזה.
 
 
 {.meta thumb} 
+[](map/#31.37771,34.43288,10.00,37.6,0.0/+north,+arrow)
 אלו מורים לכמיליון תושבי צפון הרצועה לעזוב את בתיהם ולעקור לדרום הרצועה תוך 24 שעות.
 
 
@@ -212,7 +213,7 @@ css: src/theme.css
 
 
 {.meta} 
-[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+s.gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+s.gaza,+nuseirat,+rafah,+cities,+villages,+idf-poly-outlines)
+[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+s.gaza,+nuseirat,+rafah,+cities,+villages,+idf-poly-outlines)
 באזור א-נוסייראת הן מתאחדות עם אחמד, אותו לא ראו מזה כחצי שנה.
 
 משם, ממשיכים שלושתם אל האוהל של אחמד ברפיח.
@@ -287,7 +288,14 @@ css: src/theme.css
 {.meta} 
 [](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+rafah,+bureij,+cities,+villages,+idf-poly-outlines)
 ניבאל, אחמד וריתא נמלטים מרפיח, יחד עם כמיליון תושבים אחרים, רובם המוחלט עקורים שהגיעו לעיר כמוהם בחודשים שלפני כן.
+`לשנות את הנקודה של רפיח.
 
+סטילס ל-overlay נסיעה: https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NURPHO000S49GI0%3A116671089&share=true
+או
+https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NURPHO000S4A1JT%3A423051675&share=true`
+
+
+{.meta} 
 הם מגיעים למחנה הפליטים אל-בוריג׳ שבמרכז הרצועה, שם הם שוכרים מחסן קטן מחברים.
 
 
@@ -301,6 +309,8 @@ css: src/theme.css
 
 החיים במחסן היו קצת יותר יציבים, אבל הרגשתי חצויה. מצד אחד שמחתי להיות עם בעלי והבת שלי, ומצד שני התגעגעתי למשפחה שלי והמרחק מהמשפחה ומהבית שלי גרם לי להרגיש בודדה ומנוכרת. 
 
+
+{.testimony typewriter}
 בכל הזדמנות, התעדכנתי בטלפון לגבי המצב של המשפחה בג׳אבליא.
 
 
@@ -347,6 +357,8 @@ css: src/theme.css
 
 התעוררתי בבית החולים וראיתי שנכרתו לי הידיים. 
 
+
+{.testimony typewriter}
 הייתי בהלם. הרגשתי כאילו הידיים שלי עדיין קיימות, או כאילו יום אחד הן יחזרו לצמוח.
 
 שאלתי מה עם ריתא, וענו לי שהיא בריאה ושלמה. זה מה שהחזיק אותי. אחמד היה לצדי.
@@ -358,7 +370,7 @@ css: src/theme.css
 
 הם מגיעים ל״אזור ההומניטרי״ הצפוף שהגדיר הצבא הישראלי באל-מוואסי, שם הם חיים שוב באוהל.
 
-`פוטג׳ נסיעה: embed/#vimeo.com%2F1131608820/autoplay,loop,auto`
+`סטילס ל-overlay נסיעה: https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NURPHO000P9FN31%3A1782804767&share=true`
  
 
 {.meta thumb} 
@@ -505,6 +517,8 @@ css: src/theme.css
 {.testimony typewriter}
 בהתחלה הוא מאוד תמך בי. אבל עם הזמן, הרגשתי שהוא נאלץ לטפל בי מתוך רחמים.
 
+
+{.testimony typewriter}
 בתוך כל הקשיים, ניסיתי להתמקד בריתא. היא הייתה הדבר החשוב ביותר בשבילי, ועשיתי מה שיכולתי כדי להתגבר על המתיחות ביני לבין אחמד ולטפל בה.
 
 
@@ -591,7 +605,9 @@ css: src/theme.css
 
 צווי הפינוי שמוציא הצבא בתחילת ספטמבר, שבועות ספורים לאחר שמשפחתה של ניבאל מגיעה לעיר, מורים לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
-המשפחה נעקרת שוב, הפעם דרומה, למתחם אוהלים בדיר אל-בלח.  
+המשפחה נעקרת שוב, הפעם דרומה, למתחם אוהלים בדיר אל-בלח. 
+
+׳סטילס ל-overlay נסיעה: https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2025%3Anewsml_MT1NURPHO000YTDPWA%3A733119034&share=true׳
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
     להרחבה, ראו:
