@@ -194,6 +194,24 @@
       border-color: #ffa500;
       background: rgba(255,165,0,0.1);
     }
+    /* Common properties dropdown for filters */
+    .filter-prop-select {
+      display: none;
+      max-width: 140px;
+      padding: 2px 4px;
+      margin-left: 2px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,165,0,0.4);
+      border-radius: 3px;
+      color: #ffa500;
+      font-size: 11px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+    .filter-prop-select.active {
+      display: inline-block;
+    }
     .layer-list-item button[data-filter] {
       font-size: 14px;
       padding: 2px 6px;
@@ -403,7 +421,7 @@
         <input id="new-layer-input" list="local-layer-files" placeholder="Type to search local files" autocomplete="off" />
         <datalist id="local-layer-files"></datalist>
           <label for="reference-layer-select" style="margin-top: 8px;">Position after layer (optional)</label>
-          <select id="reference-layer-select">
+          <select id="reference-layer-select" title="Select a reference layer to insert after (optional)">
             <option value="">-- No reference (add at top) --</option>
           </select>
       </div>
@@ -415,13 +433,13 @@
   <p class="hint" style="font-size: 11px; margin: 4px 0 0; color: rgba(255,255,255,0.8);">choose the date from the list on the <a id="wayback-open-new" href="https://livingatlas.arcgis.com/wayback/" target="_blank" rel="noopener noreferrer" style="color:#9fd1ff;text-decoration:underline;">Wayback site</a> and enter it in the date picker</p>
       </div>
       
-      <button id="add-layer-confirm-btn">Add Layer</button>
+  <button id="add-layer-confirm-btn" title="Add the selected layer">Add Layer</button>
       <div id="add-layer-error"></div>
     </div>
   </div>
   <div id="layer-list"></div>
   <div id="layer-controls-footer">
-    <button id="copy-link-btn" title="Copy shareable link">📋 Copy Link</button>
+  <button id="copy-link-btn" title="Copy a shareable link to this exact map view and layer configuration">📋 Copy Link</button>
   </div>
 </div>
 <div id="distance-ticker"></div>
@@ -502,21 +520,25 @@ function populateReferenceLayerSelect() {
   // Keep the default "no reference" option
   const defaultOpt = select.querySelector('option[value=""]');
   select.innerHTML = '';
-  if (defaultOpt) select.appendChild(defaultOpt);
+  if (defaultOpt) { defaultOpt.title = 'Add at the very top (no reference)'; select.appendChild(defaultOpt); }
   else {
     const opt = document.createElement('option');
     opt.value = '';
     opt.textContent = '-- No reference (add at top) --';
+    opt.title = 'Add at the very top (no reference)';
     select.appendChild(opt);
   }
   
-  // Add all current layers
+  // Add all current layers (reversed order - topmost first)
   if (window.allStyleLayers && window.allStyleLayers.length > 0) {
-    window.allStyleLayers.forEach(layer => {
+    // Reverse the array to show topmost layers first
+    const reversedLayers = [...window.allStyleLayers].reverse();
+    reversedLayers.forEach(layer => {
       if (window.map.getLayer(layer.id)) {
         const opt = document.createElement('option');
         opt.value = layer.id;
         opt.textContent = layer.name || layer.id;
+        opt.title = `Insert new layer immediately after '${layer.name || layer.id}'`;
         select.appendChild(opt);
       }
     });
@@ -558,6 +580,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   let currentTab = 'geodata';
+
+  // Tooltips for tabs and inputs
+  if (tabGeodataBtn) tabGeodataBtn.title = 'Add a GeoJSON/CSV data layer';
+  if (tabSatelliteBtn) tabSatelliteBtn.title = 'Add a satellite imagery layer (Wayback)';
+  if (geojsonInput) {
+    geojsonInput.title = 'Type or choose a local filename or URL';
+    geojsonInput.addEventListener('input', () => { geojsonInput.title = geojsonInput.value || 'Type or choose a local filename or URL'; });
+  }
+  if (satelliteDateInput) {
+    satelliteDateInput.title = 'Pick a date (YYYY-MM-DD)';
+    satelliteDateInput.addEventListener('change', () => { satelliteDateInput.title = satelliteDateInput.value || 'Pick a date (YYYY-MM-DD)'; });
+  }
+  if (refSelect) {
+    const updateRefTitle = () => {
+      const selOpt = refSelect.options[refSelect.selectedIndex];
+      refSelect.title = selOpt ? (selOpt.textContent || refSelect.title) : refSelect.title;
+    };
+    updateRefTitle();
+    if (!refSelect.dataset.titleHandler) {
+      refSelect.addEventListener('change', updateRefTitle);
+      refSelect.dataset.titleHandler = '1';
+    }
+  }
   
   
   // Handle tab switching
@@ -794,6 +839,37 @@ window.allStyleLayers = allStyleLayers;
 
 // Will hold the style default visibility for each layer
 const styleDefaultVisibility = {};
+// Will hold the style default filter for each layer (null means no filter)
+const styleDefaultFilter = {};
+
+// Layer types that support filters
+const FILTERABLE_LAYER_TYPES = ['fill','line','circle','symbol','heatmap','fill-extrusion'];
+
+function layerSupportsFilter(layerId) {
+  try {
+    const layer = map && map.getLayer ? map.getLayer(layerId) : null;
+    if (!layer) return false;
+    return FILTERABLE_LAYER_TYPES.includes(layer.type || '');
+  } catch(e) { return false; }
+}
+
+// Convert a compact filter expression string like "name=jabalia|beit_hanoun" or "type!=boundary" into a Mapbox GL filter array
+function parseFilterExprToMapbox(filterExpr) {
+  if (!filterExpr) return null;
+  const match = filterExpr.match(/^([^=!]+)(=|!=)(.+)$/);
+  if (!match) return null;
+  const [, property, operator, rawValue] = match;
+  const decoded = decodeURIComponent(rawValue);
+  const values = decoded.split('|').map(v => (isNaN(v) ? v : Number(v)));
+  if (operator === '=') {
+    if (values.length === 1) return ['==', ['get', property], values[0]];
+    return ['any', ...values.map(val => ['==', ['get', property], val])];
+  } else if (operator === '!=') {
+    if (values.length === 1) return ['!=', ['get', property], values[0]];
+    return ['all', ...values.map(val => ['!=', ['get', property], val])];
+  }
+  return null;
+}
 
 // Track externally loaded layers (not part of original style)
 const externalLayers = new Set();
@@ -1222,6 +1298,8 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
     
     // Mark as external layer
     externalLayers.add(layerId);
+  // External layers default filter is none
+  styleDefaultFilter[layerId] = null;
     
     // Check if this layer has path geometry (followable)
     if (geojson && geojson.features && geojson.features.length > 0) {
@@ -1426,6 +1504,8 @@ async function loadWaybackLayer(dateStr, toLayer) {
     
     // Mark as external layer
     externalLayers.add(layerId);
+  // Wayback raster layers don't support filters, but store null for consistency
+  styleDefaultFilter[layerId] = null;
     
     // Post-load bookkeeping
     if (visibility === 'none') {
@@ -1581,6 +1661,26 @@ function createLayerControls(map, visibleLayers) {
         showReset = false;
       }
       let label = layer.name || layer.id;
+      // Append sourceHint if present in hash explicit state (parse from token map)
+      // We'll parse the hash token for this specific layer to see if it has a (sourceHint)
+      let sourceHintForLabel = null;
+      if (layersStr) {
+        const tokensRaw = layersStr.split(',');
+        for (const t of tokensRaw) {
+          // Match including optional counter (#N) inside name part
+          const m = t.match(/^([+~])([^\[(#]+?(?:#\d+)?)(?:\(([^)]+)\))?(?:\[[^\]]+\])?(?::follow(?:\+\d*)?)?$/);
+          if (m) {
+            const [, , lnameMaybe, srcHintMaybe] = m;
+            if (lnameMaybe === layer.id && srcHintMaybe) {
+              sourceHintForLabel = srcHintMaybe;
+              break;
+            }
+          }
+        }
+      }
+      if (sourceHintForLabel) {
+        label += ` (${sourceHintForLabel})`;
+      }
       // Check if this is an externally loaded layer
       const isExternalLayer = externalLayers.has(layer.id);
       // Check if this is a followable layer
@@ -1596,12 +1696,15 @@ function createLayerControls(map, visibleLayers) {
       // Build button HTML
       let buttonHtml = '';
       
-      // Add filter button and input for external layers (GeoJSON layers)
-      if (isExternalLayer) {
+      // Add filter button/input for any filterable layer type
+      if (layerSupportsFilter(layer.id)) {
         const filterClass = hasFilter ? ' class="active"' : '';
         const filterInputClass = hasFilter ? ' class="active"' : '';
-        buttonHtml += ` <button data-filter="${layer.id}" title="Add/edit filter"${filterClass}>🔍</button>`;
+  buttonHtml += ` <button data-filter="${layer.id}" title="Add/edit feature filter"${filterClass}>ᯤ</button>`;
         buttonHtml += ` <input type="text" data-filter-input="${layer.id}" value="${layerFilter}" placeholder="property=value"${filterInputClass} class="filter-input" title="Filter expression (e.g., name=jabalia or name=jabalia|beit_hanoun)">`;
+        // Common properties dropdown (hidden until filter UI toggled)
+        const propSelectActive = hasFilter ? ' active' : '';
+        buttonHtml += ` <select data-filter-prop="${layer.id}" class="filter-prop-select${propSelectActive}" title="Common properties for ${layer.id}"><option value="">— property —</option></select>`;
       }
       
       // Add follow button for followable layers
@@ -1626,7 +1729,16 @@ function createLayerControls(map, visibleLayers) {
       }
       
       // Performance: Push to array instead of concatenating to innerHTML
-      htmlParts.push(`<span class="layer-list-item" data-layer-item="${layer.id}"><label style="${labelStyle}"><input type="checkbox" data-layer="${layer.id}" ${checked}> ${label}</label>${buttonHtml}</span>`);
+      // Build a comprehensive tooltip (title) for this layer item
+      const tooltipParts = [];
+      tooltipParts.push(`Layer: ${layer.id}`);
+      if (sourceHintForLabel) tooltipParts.push(`Source style: ${sourceHintForLabel}`);
+      if (isExternalLayer) tooltipParts.push('External data layer');
+      if (isFollowable) tooltipParts.push('Path geometry (followable)');
+      if (isFollowing) tooltipParts.push(`Following path${showTicker[layer.id] ? ' (ticker active)' : ''}`);
+      if (hasFilter) tooltipParts.push(`Filter: ${layerFilter}`);
+      const itemTitle = tooltipParts.join(' • ');
+      htmlParts.push(`<span class="layer-list-item" data-layer-item="${layer.id}" title="${itemTitle}"><label style="${labelStyle}" title="${itemTitle}"><input type="checkbox" data-layer="${layer.id}" ${checked} title="Toggle visibility for ${layer.id}"> ${label}</label>${buttonHtml}</span>`);
     }
   });
   
@@ -1636,6 +1748,12 @@ function createLayerControls(map, visibleLayers) {
   
   // Performance: Single DOM update instead of multiple
   container.innerHTML = htmlParts.join('');
+  // Populate any active property dropdowns immediately
+  container.querySelectorAll('select[data-filter-prop].active').forEach(sel => {
+    const lid = sel.getAttribute('data-filter-prop');
+    populateFilterPropsDropdown(lid, sel);
+  });
+  // After injecting HTML, property dropdowns exist; listeners added later in this function.
   container.querySelectorAll('input[type=checkbox]').forEach(cb => {
     cb.addEventListener('change', function() {
       const layerId = this.getAttribute('data-layer');
@@ -1930,6 +2048,7 @@ function createLayerControls(map, visibleLayers) {
       e.preventDefault();
       const layerId = this.getAttribute('data-filter');
       const filterInput = container.querySelector(`input[data-filter-input="${layerId}"]`);
+      const propSelect = container.querySelector(`select[data-filter-prop="${layerId}"]`);
       
       if (filterInput) {
         // Toggle input visibility
@@ -1944,6 +2063,14 @@ function createLayerControls(map, visibleLayers) {
           if (!filterInput.value.trim()) {
             updateFilterInHash(layerId, '');
           }
+        }
+      }
+
+      // Toggle and populate properties dropdown
+      if (propSelect) {
+        propSelect.classList.toggle('active');
+        if (propSelect.classList.contains('active')) {
+          populateFilterPropsDropdown(layerId, propSelect);
         }
       }
     });
@@ -1970,6 +2097,27 @@ function createLayerControls(map, visibleLayers) {
       }
     });
   });
+
+  // Add property dropdown listeners: when a property is picked, seed the filter input
+  container.querySelectorAll('select[data-filter-prop]').forEach(sel => {
+    sel.addEventListener('change', function() {
+      const layerId = this.getAttribute('data-filter-prop');
+      const prop = this.value;
+      if (!prop) return;
+      const filterInput = container.querySelector(`input[data-filter-input="${layerId}"]`);
+      if (filterInput) {
+        // Seed with prop= (preserve any existing expression only when it starts with same prop)
+        const prev = (filterInput.value || '').trim();
+        if (!prev || !prev.startsWith(prop + '=')) {
+          filterInput.value = `${prop}=`;
+        }
+        filterInput.focus();
+        // Move cursor to end
+        const len = filterInput.value.length;
+        filterInput.setSelectionRange(len, len);
+      }
+    });
+  });
 }
 
 // Helper function to update filter in hash
@@ -1982,8 +2130,8 @@ function updateFilterInHash(layerId, filterExpr) {
   
   // Update the filter in the layer token
   const tokens = layersStr.split(',').map(token => {
-    // Match: +layerName or +layerName(source) with optional [filter] and :follow
-    const match = token.match(/^([+~])([^\[(]+?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
+    // Match: +layerName or +layerName(source) with optional [filter] and :follow (supports counters #N)
+    const match = token.match(/^([+~])([^\[(]+?(?:#\d+)?)(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(\+(\d*))?)?$/);
     if (!match) return token;
     
     const [, sign, lname, sourceHint, oldFilterExpr, followFlag] = match;
@@ -2008,6 +2156,72 @@ function updateFilterInHash(layerId, filterExpr) {
   const newHash = `#${cameraStr}/${newLayersStr}`;
   console.log('[FILTER] New hash:', newHash);
   window.location.hash = newHash;
+}
+
+// Populate common properties dropdown by scanning a subset of features
+function populateFilterPropsDropdown(layerId, selectEl) {
+  if (!selectEl) return;
+  try {
+    let feats = [];
+    // 1) Prefer rendered features for current viewport (works for style and external layers)
+    try {
+      feats = map.queryRenderedFeatures(undefined, { layers: [layerId] }) || [];
+    } catch(e) { feats = []; }
+
+    // 2) If none, try source data (GeoJSON external layers)
+    if (!feats.length) {
+      const src = map.getSource(layerId);
+      if (src && src._data && src._data.features) {
+        feats = src._data.features.map(f => ({ properties: f.properties || {} }));
+      }
+    }
+
+    // 3) If still none, try vector tile cache via source/source-layer
+    if (!feats.length) {
+      const styleLayer = (map.getStyle().layers || []).find(l => l.id === layerId);
+      if (styleLayer && styleLayer.source && styleLayer['source-layer']) {
+        try {
+          const srcFeats = map.querySourceFeatures(styleLayer.source, { sourceLayer: styleLayer['source-layer'] }) || [];
+          feats = srcFeats.map(f => ({ properties: f.properties || {} }));
+        } catch(e) {}
+      }
+    }
+
+    const sampleSize = Math.min(100, feats.length);
+    const propsCount = {};
+    for (let i = 0; i < sampleSize; i++) {
+      const f = feats[i];
+      if (!f || !f.properties) continue;
+      Object.keys(f.properties).forEach(k => {
+        // Skip geometry-related duplicates and empty keys
+        if (!k) return;
+        propsCount[k] = (propsCount[k] || 0) + 1;
+      });
+    }
+    const commonProps = Object.entries(propsCount)
+      .filter(([, count]) => count > 0)
+      .sort((a, b) => b[1] - a[1])
+      .map(([key]) => key)
+      .slice(0, 30); // limit
+    // Preserve first placeholder option
+    const placeholder = selectEl.querySelector('option[value=""]');
+    selectEl.innerHTML = '';
+    if (placeholder) selectEl.appendChild(placeholder);
+    else {
+      const ph = document.createElement('option');
+      ph.value = '';
+      ph.textContent = '— property —';
+      selectEl.appendChild(ph);
+    }
+    commonProps.forEach(prop => {
+      const opt = document.createElement('option');
+      opt.value = prop;
+      opt.textContent = prop;
+      selectEl.appendChild(opt);
+    });
+  } catch(e) {
+    console.warn('[FILTER PROPS] Failed to populate for', layerId, e);
+  }
 }
 
 const { camera, layers } = parseHash();
@@ -2082,6 +2296,12 @@ map.on('load', () => {
         vis = styleLayer.layout.visibility;
       }
       styleDefaultVisibility[layer.id] = vis;
+      // Store default filter for restoration
+      try {
+        styleDefaultFilter[layer.id] = (styleLayer && typeof styleLayer.filter !== 'undefined') ? styleLayer.filter : null;
+      } catch(e) {
+        styleDefaultFilter[layer.id] = null;
+      }
     }
   });
   // Apply layer visibility from hash on initial load
@@ -2525,12 +2745,21 @@ window.addEventListener('hashchange', () => {
   const [, layersStr] = hashStr.split('/');
   if (layersStr) {
     const explicitState = {};
+    const filterState = {}; // layerId -> filter array
+    const filterExprState = {}; // layerId -> original expr (string)
     layersStr.split(',').forEach(token => {
       // Updated regex to handle layer names with colons (e.g., s2:20240215, wayback:20240215)
-      const match = token.match(/^([+~])([^(]+?)(?:\(([^)]+)\))?(?::follow(?:\+(\d*))?)?$/);
+      const match = token.match(/^([+~])([^\[(]+?)(?:#\d+)?(?:\(([^)]+)\))?(?:\[([^\]]+)\])?(?::follow(?:\+(\d*))?)?$/);
       if (!match) return;
-      const [, sign, lname] = match;
+      const [, sign, lname, _sourceHint, filterExpr] = match;
       explicitState[lname] = sign;
+      if (filterExpr) {
+        const filterArr = parseFilterExprToMapbox(filterExpr);
+        if (filterArr) {
+          filterState[lname] = filterArr;
+          filterExprState[lname] = filterExpr;
+        }
+      }
     });
     
     // Apply visibility to all existing style layers based on hash
@@ -2575,6 +2804,23 @@ window.addEventListener('hashchange', () => {
         }
       }
     });
+
+    // Apply filters (style and external layers) according to hash
+    try {
+      const allMapLayers = map.getStyle().layers || [];
+      allMapLayers.forEach(l => {
+        const id = l.id;
+        if (!layerSupportsFilter(id)) return;
+        const filterForLayer = filterState[id];
+        if (typeof filterForLayer !== 'undefined') {
+          try { map.setFilter(id, filterForLayer); } catch(e) { /* ignore unsupported */ }
+        } else {
+          // Restore default
+          const def = (id in styleDefaultFilter) ? styleDefaultFilter[id] : null;
+          try { map.setFilter(id, def); } catch(e) { /* ignore unsupported */ }
+        }
+      });
+    } catch(e) { console.warn('[HASHCHANGE] Filter application error', e); }
   } else {
     // No layers specified in hash - restore all layers to their style defaults
     allStyleLayers.forEach(layer => {
@@ -2595,6 +2841,16 @@ window.addEventListener('hashchange', () => {
         }
       }
     });
+    // Also restore all filters to defaults when no layer tokens exist
+    try {
+      const allMapLayers = map.getStyle().layers || [];
+      allMapLayers.forEach(l => {
+        const id = l.id;
+        if (!layerSupportsFilter(id)) return;
+        const def = (id in styleDefaultFilter) ? styleDefaultFilter[id] : null;
+        try { map.setFilter(id, def); } catch(e) { /* ignore unsupported */ }
+      });
+    } catch(e) {}
   }
 
   // Update layer controls to reflect current state (after any removals)
