@@ -97,7 +97,7 @@ a { color: #0b66a8; }
 
 footer { opacity: 0.6; text-align: left; padding: 1rem 0; }
 
-.map-edit #chapter-nav{
+.bg-edit #chapter-nav{
     left: calc(270px + 24px);
 }
 

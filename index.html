@@ -35,7 +35,6 @@
         #if {
             background: transparent;
             transition: opacity 0.4s ease;
-            opacity: 0; /* default to hidden until first frame shown */
             border: none;
             display: block;
             height: 100%;
@@ -137,10 +136,10 @@
                 // Update body classes based on what was toggled
                 if (mapEditEnabled || svgEditEnabled) {
                     document.body.classList.add('editing-mode');
-                    if (mapEditEnabled) document.body.classList.add('map-edit');
-                    if (svgEditEnabled) document.body.classList.add('svg-edit');
+                    if (mapEditEnabled) document.body.classList.add('bg-edit');
+                    if (svgEditEnabled) document.body.classList.add('fg-edit');
                 } else {
-                    document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                    document.body.classList.remove('editing-mode', 'bg-edit', 'fg-edit');
                 }
             } else {
                 // Single iframe mode (original behavior)
@@ -163,12 +162,12 @@
                             if (isHidden) {
                                 // Enable edit mode
                                 iframe.classList.add('editing-mode');
-                                document.body.classList.add('editing-mode', 'map-edit');
+                                document.body.classList.add('editing-mode', 'bg-edit');
                                 console.log('[ROOT] Edit mode: ON (map)');
                             } else {
                                 // Disable edit mode
                                 iframe.classList.remove('editing-mode');
-                                document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                                document.body.classList.remove('editing-mode', 'bg-edit', 'fg-edit');
                                 console.log('[ROOT] Edit mode: OFF');
                             }
                         }
@@ -181,13 +180,13 @@
                             // Enable edit mode
                             docElement.classList.remove('embedded');
                             iframe.classList.add('editing-mode');
-                            document.body.classList.add('editing-mode', 'svg-edit');
+                            document.body.classList.add('editing-mode', 'fg-edit');
                             console.log('[ROOT] Edit mode: ON (svg)');
                         } else {
                             // Disable edit mode
                             docElement.classList.add('embedded');
                             iframe.classList.remove('editing-mode');
-                            document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                            document.body.classList.remove('editing-mode', 'bg-edit', 'fg-edit');
                             console.log('[ROOT] Edit mode: OFF');
                         }
                     }
@@ -216,8 +215,8 @@
                 try { singleType = getIframeType(); } catch(e){}
                 const mapEditing = bgEditing || (singleEditing && singleType === 'map');
                 const svgEditing = fgEditing || (singleEditing && singleType === 'svg');
-                document.body.classList.toggle('map-edit', !!mapEditing);
-                document.body.classList.toggle('svg-edit', !!svgEditing);
+                document.body.classList.toggle('bg-edit', !!mapEditing);
+                document.body.classList.toggle('fg-edit', !!svgEditing);
 
                 // Add/remove 'dual' class on body depending on dual-iframe mode
                 const isDualMode = document.body.classList.contains('dual-iframe');
@@ -236,7 +235,6 @@
                         bg.setAttribute('allowtransparency', 'true');
                         bg.setAttribute('frameborder', '0');
                         bg.style.background = 'transparent';
-                        bg.style.opacity = '0';
                         main.appendChild(bg);
                     }
                     if (!document.getElementById('foreground-frame')) {
@@ -245,7 +243,6 @@
                         fg.setAttribute('allowtransparency', 'true');
                         fg.setAttribute('frameborder', '0');
                         fg.style.background = 'transparent';
-                        fg.style.opacity = '0';
                         main.appendChild(fg);
                     }
                 }
@@ -259,6 +256,25 @@
                 const foregroundFrame = document.getElementById('foreground-frame');
                 const backgroundFrame = document.getElementById('background-frame');
                 if (!foregroundFrame || !foregroundFrame.contentWindow) return;
+                
+                // Check if background is currently in edit mode
+                const bgIsEditing = backgroundFrame && backgroundFrame.classList.contains('editing-mode');
+                
+                // If background is editing, turn it off first
+                if (bgIsEditing) {
+                    try {
+                        const bgDoc = backgroundFrame.contentWindow.document;
+                        const layerControls = bgDoc.getElementById('layer-controls');
+                        if (layerControls && !layerControls.classList.contains('hidden')) {
+                            layerControls.classList.add('hidden');
+                            backgroundFrame.classList.remove('editing-mode');
+                            console.log('[ROOT] Background edit mode: OFF (switching to foreground)');
+                        }
+                    } catch(err) {
+                        console.warn('[ROOT] Cannot access background-frame:', err);
+                    }
+                }
+                
                 try {
                     const fgDoc = foregroundFrame.contentWindow.document;
                     const docElement = fgDoc.documentElement;
@@ -328,6 +344,19 @@
                 const backgroundFrame = document.getElementById('background-frame');
                 const foregroundFrame = document.getElementById('foreground-frame');
                 if (!backgroundFrame || !backgroundFrame.contentWindow) return;
+                // If foreground edit mode is active, turn it off and activate background mode instead
+                if (foregroundFrame && foregroundFrame.classList.contains('editing-mode')) {
+                    // Turn off foreground edit mode
+                    try {
+                        const fgDoc = foregroundFrame.contentWindow.document;
+                        const fgLayerControls = fgDoc.getElementById('layer-controls');
+                        if (fgLayerControls && !fgLayerControls.classList.contains('hidden')) {
+                            fgLayerControls.classList.add('hidden');
+                            foregroundFrame.classList.remove('editing-mode');
+                        }
+                    } catch(e){}
+                }
+                // Now toggle background edit mode as usual
                 try {
                     const bgDoc = backgroundFrame.contentWindow.document;
                     const layerControls = bgDoc.getElementById('layer-controls');
@@ -429,8 +458,8 @@
             const backgroundFrame = document.getElementById('background-frame');
             const foregroundFrame = document.getElementById('foreground-frame');
 
-            const svgEdit = document.body.classList.contains('svg-edit') || (foregroundFrame && foregroundFrame.classList.contains('editing-mode'));
-            const mapEdit = document.body.classList.contains('map-edit') || (backgroundFrame && backgroundFrame.classList.contains('editing-mode'));
+            const svgEdit = document.body.classList.contains('fg-edit') || (foregroundFrame && foregroundFrame.classList.contains('editing-mode'));
+            const mapEdit = document.body.classList.contains('bg-edit') || (backgroundFrame && backgroundFrame.classList.contains('editing-mode'));
             if (svgEdit && !mapEdit) return { frame: foregroundFrame, role: 'foreground', type: 'svg' };
             if (mapEdit && !svgEdit) return { frame: backgroundFrame, role: 'background', type: 'map' };
 
@@ -531,7 +560,17 @@
         
         // Listen for messages from iframe about edit mode changes
         window.addEventListener('message', function(e) {
-            if (e.data && (e.data.type === 'svg-edit-mode' || e.data.type === 'map-edit-mode')) {
+            if (e.data && e.data.type === 'toggle-foreground-edit') {
+                // Relay F key from iframe to parent toggle
+                try { toggleForegroundEditMode(); } catch(err) { console.warn('Toggle foreground failed:', err); }
+                return;
+            }
+            if (e.data && e.data.type === 'toggle-background-edit') {
+                // Relay B key from iframe to parent toggle
+                try { toggleBackgroundEditMode(); } catch(err) { console.warn('Toggle background failed:', err); }
+                return;
+            }
+            if (e.data && (e.data.type === 'fg-edit-mode' || e.data.type === 'bg-edit-mode')) {
                 const isDualMode = document.body.classList.contains('dual-iframe');
                 
                 if (isDualMode) {
@@ -551,11 +590,11 @@
                         if (e.data.enabled) {
                             sourceFrame.classList.add('editing-mode');
                             document.body.classList.add('editing-mode');
-                            if (e.data.type === 'svg-edit-mode') {
-                                document.body.classList.add('svg-edit');
+                            if (e.data.type === 'fg-edit-mode') {
+                                document.body.classList.add('fg-edit');
                                 console.log('[ROOT] Edit mode enabled via message (svg) in dual mode');
                             } else {
-                                document.body.classList.add('map-edit');
+                                document.body.classList.add('bg-edit');
                                 console.log('[ROOT] Edit mode enabled via message (map) in dual mode');
                             }
                         } else {
@@ -564,7 +603,7 @@
                             const otherFrame = (sourceFrame === backgroundFrame) ? foregroundFrame : backgroundFrame;
                             const otherInEditMode = otherFrame && otherFrame.classList.contains('editing-mode');
                             if (!otherInEditMode) {
-                                document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                                document.body.classList.remove('editing-mode', 'bg-edit', 'fg-edit');
                             }
                             console.log('[ROOT] Edit mode disabled via message in dual mode');
                         }
@@ -575,16 +614,16 @@
                     if (iframe) {
                         if (e.data.enabled) {
                             iframe.classList.add('editing-mode');
-                            if (e.data.type === 'svg-edit-mode') {
-                                document.body.classList.add('editing-mode', 'svg-edit');
+                            if (e.data.type === 'fg-edit-mode') {
+                                document.body.classList.add('editing-mode', 'fg-edit');
                                 console.log('[ROOT] Edit mode enabled via message (svg)');
                             } else {
-                                document.body.classList.add('editing-mode', 'map-edit');
+                                document.body.classList.add('editing-mode', 'bg-edit');
                                 console.log('[ROOT] Edit mode enabled via message (map)');
                             }
                         } else {
                             iframe.classList.remove('editing-mode');
-                            document.body.classList.remove('editing-mode', 'map-edit', 'svg-edit');
+                            document.body.classList.remove('editing-mode', 'bg-edit', 'fg-edit');
                             console.log('[ROOT] Edit mode disabled via message');
                         }
                     }
@@ -665,28 +704,7 @@
         frame.style.background = 'transparent';
     });
 
-    // No body background modifications: fades should affect only the iframe
-    // opacity. Keeping the code minimal and non-invasive avoids changing the
-    // default body color under any circumstances.
-
-        // Fade in once the iframes finish loading. We only change the iframe's
-        // opacity; do not modify the body's background or any other color.
-        iframe.addEventListener('load', () => {
-            iframe.style.opacity = '1';
-        });
-        
-        backgroundFrame.addEventListener('load', () => {
-            if (window.__inflectDebug) {
-                console.log('[IFRAME] background-frame LOADED, setting opacity=1, src was:', backgroundFrame.src);
-            }
-            backgroundFrame.style.opacity = '1';
-        });
-        
         foregroundFrame.addEventListener('load', () => {
-            if (window.__inflectDebug) {
-                console.log('[IFRAME] foreground-frame LOADED, setting opacity=1, src was:', foregroundFrame.src);
-            }
-            foregroundFrame.style.opacity = '1';
             // Remove inactive class to enable pointer events
             foregroundFrame.classList.remove('inactive');
         });
@@ -1114,17 +1132,9 @@
                 if (newPath !== lastIframePath) {
                     if (firstFrame) {
                         firstFrame = false;
-                        iframe.style.opacity = '1';
                         iframe.src = newHref;
                     } else {
-                        if (iframe.style.opacity !== '0') {
-                            iframe.style.opacity = '0';
-                            setTimeout(() => {
-                                iframe.src = newHref;
-                            }, 400);
-                        } else {
-                            iframe.src = newHref;
-                        }
+                        iframe.src = newHref;
                     }
                     lastIframePath = newPath;
                 } else {
@@ -1154,25 +1164,14 @@
                     if (newPath !== lastBackgroundPath) {
                         if (firstBackgroundFrame) {
                             firstBackgroundFrame = false;
-                            backgroundFrame.style.opacity = '1';
                             backgroundFrame.src = newHref;
                             if (window.__inflectDebug) {
-                                console.log('[IFRAME] FIRST background frame load, set opacity=1 and src');
+                                console.log('[IFRAME] FIRST background frame load, src set');
                             }
                         } else {
-                            if (backgroundFrame.style.opacity !== '0') {
-                                backgroundFrame.style.opacity = '0';
-                                setTimeout(() => {
-                                    backgroundFrame.src = newHref;
-                                    if (window.__inflectDebug) {
-                                        console.log('[IFRAME] Background fade complete, src updated to:', newHref);
-                                    }
-                                }, 400);
-                            } else {
-                                backgroundFrame.src = newHref;
-                                if (window.__inflectDebug) {
-                                    console.log('[IFRAME] Background already faded, src updated to:', newHref);
-                                }
+                            backgroundFrame.src = newHref;
+                            if (window.__inflectDebug) {
+                                console.log('[IFRAME] Background src updated to:', newHref);
                             }
                         }
                         lastBackgroundPath = newPath;
@@ -1197,22 +1196,14 @@
                     if (newPath !== lastForegroundPath) {
                         if (firstForegroundFrame) {
                             firstForegroundFrame = false;
-                            foregroundFrame.style.opacity = '1';
                             foregroundFrame.src = newHref;
                             if (window.__inflectDebug) {
-                                console.log('[IFRAME] FIRST foreground frame load, set opacity=1 and src');
+                                console.log('[IFRAME] FIRST foreground frame load, src set');
                             }
                         } else {
-                            if (foregroundFrame.style.opacity !== '0') {
-                                foregroundFrame.style.opacity = '0';
-                                setTimeout(() => {
-                                    foregroundFrame.src = newHref;
-                                    if (window.__inflectDebug) {
-                                        console.log('[IFRAME] Foreground fade-out complete, setting new src');
-                                    }
-                                }, 400);
-                            } else {
-                                foregroundFrame.src = newHref;
+                            foregroundFrame.src = newHref;
+                            if (window.__inflectDebug) {
+                                console.log('[IFRAME] Foreground src updated to:', newHref);
                             }
                         }
                         lastForegroundPath = newPath;

@@ -179,7 +179,7 @@ document.addEventListener('keydown', function(e) {
         document.documentElement.classList.remove('embedded');
         // Tell parent to set editing-mode on iframe
         if (window.parent && window.parent !== window) {
-          window.parent.postMessage({ type: 'svg-edit-mode', enabled: true }, '*');
+          window.parent.postMessage({ type: 'fg-edit-mode', enabled: true }, '*');
         }
         console.log('[SVG] Edit mode: ON');
       } else {
@@ -187,12 +187,24 @@ document.addEventListener('keydown', function(e) {
         document.documentElement.classList.add('embedded');
         // Tell parent to remove editing-mode from iframe
         if (window.parent && window.parent !== window) {
-          window.parent.postMessage({ type: 'svg-edit-mode', enabled: false }, '*');
+          window.parent.postMessage({ type: 'fg-edit-mode', enabled: false }, '*');
         }
         console.log('[SVG] Edit mode: OFF');
       }
     } catch(err) {
       console.warn('[SVG] Cannot toggle edit mode:', err);
+    }
+  } else if (e.code === 'KeyF') {
+    // Foreground-only toggle - relay to parent
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'toggle-foreground-edit' }, '*');
+    }
+  } else if (e.code === 'KeyB') {
+    // Background-only toggle - relay to parent
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'toggle-background-edit' }, '*');
     }
   }
 });

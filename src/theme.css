@@ -366,6 +366,15 @@ iframe#if {
     display: none;
 }
 
+body.bg-edit #foreground-frame{
+    opacity: .25;
+    pointer-events: none;
+}
+
+body.fg-edit #background-frame{
+    pointer-events: none;
+}
+
 body.dual-iframe #background-frame,
 body.dual-iframe #foreground-frame {
     display: block;

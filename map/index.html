@@ -451,11 +451,23 @@ document.addEventListener('keydown', function(e) {
       // Tell parent about edit mode change
       if (window.parent && window.parent !== window) {
         window.parent.postMessage({ 
-          type: 'map-edit-mode', 
+          type: 'bg-edit-mode', 
           enabled: wasHidden 
         }, '*');
       }
       console.log('[MAP] Edit mode:', wasHidden ? 'ON' : 'OFF');
+    }
+  } else if (e.code === 'KeyF') {
+    // Foreground-only toggle - relay to parent
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'toggle-foreground-edit' }, '*');
+    }
+  } else if (e.code === 'KeyB') {
+    // Background-only toggle - relay to parent
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'toggle-background-edit' }, '*');
     }
   }
 });
@@ -757,7 +769,7 @@ mapboxgl.setRTLTextPlugin(
 );
 
 // Sample style
-const style = 'mapbox://styles/btselemorg/cmhncne5l004p01qu9tpp7ih8';
+const style = 'mapbox://styles/btselemorg/cmhncne5l004p01qu9tpp7ih8/draft';
 
 // Layers to toggle (layer ids must exist in the style)
 // Will be populated with all layers from the style after map load

@@ -1908,6 +1908,18 @@ document.addEventListener('keydown', function(e) {
   if (e.code === 'KeyE') {
     e.preventDefault();
     toggleInterface();
+  } else if (e.code === 'KeyF') {
+    // Foreground-only toggle - relay to parent
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'toggle-foreground-edit' }, '*');
+    }
+  } else if (e.code === 'KeyB') {
+    // Background-only toggle - relay to parent
+    e.preventDefault();
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'toggle-background-edit' }, '*');
+    }
   }
 });
 </script>

@@ -14,7 +14,7 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#opening.svg/~opening)
+[](svg/#opening.svg/-0.01,0.78,1.52/~gazamap~IDFareas~displaced~home~nibal2023)
 [](map/#31.42380,34.35370,10.00,37.6,0.0/~labels_he)
 במשך שנתיים, ישראל כפתה על תושבי רצועת עזה לעקור שוב ושוב ממקומם.
 
@@ -52,7 +52,7 @@ css: src/theme.css
 
 
 {.subheader}
-[](about:blank)
+[](svg/#opening-new.svg/0.01,0,0.84)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base,~family-home)
 ## החיים שלפני
 
