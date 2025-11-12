@@ -4,7 +4,7 @@
     <g id="oct7">
         <use id="detainies-1" xlink:href="#_Image1" x="0" y="0" width="5500px" height="4125px" transform="matrix(0.974032,-0.139378,0.134998,1.007048,8.277946,77.593356)"/>
         <use id="detainies-2" xlink:href="#_Image2" x="0" y="0" width="4032px" height="3024px" transform="matrix(0.980565,0.069402,-0.067264,1.01446,189.134723,99.306036)"/>
-        <use id="ruined_jabalia.JPG" xlink:href="#_Image3" x="0" y="0" width="4032px" height="2212px" transform="matrix(0.370288,0,0,0.370288,3.827679,681.567162)"/>
+        <use id="ruined_jabalia" xlink:href="#_Image3" x="0" y="0" width="4032px" height="2212px" transform="matrix(0.370288,0,0,0.370288,3.827679,681.567162)"/>
         <use id="IDF_order_north" xlink:href="#_Image4" x="0" y="0" width="1100px" height="616px" transform="matrix(0.65892,0.085388,-0.085388,0.65892,366.722284,385.377579)"/>
         <use id="vimeo-1136099759" xlink:href="#_Image5" x="0" y="0" width="1920px" height="1080px" transform="matrix(0.319061,-0.03832,0.03832,0.319061,442.643533,761.907662)"/>
     </g>

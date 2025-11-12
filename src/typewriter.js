@@ -314,13 +314,42 @@
   // We'll observe sections instead: when a <section> becomes visible,
   // start typing for every `.typewriter` within that section. This keeps
   // typing scoped per-section and avoids interfering with inflection logic.
+  // IMPORTANT: Wait for 'inflection-ready' event to ensure iframe updates complete first.
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(en => {
       if (en.isIntersecting) {
         try {
           const sec = en.target;
-          const els = sec.querySelectorAll('.typewriter');
-          els.forEach(el => startTypingForElement(el));
+          
+          // Check if typewriter is currently suppressed (iframe updates in progress)
+          if (window.__typewriterSuppressed) {
+            console.log('[TYPEWRITER] Suppressed, waiting for inflection-ready event on section:', sec);
+            
+            let startTimeoutId = null;
+            
+            // Wait for inflection-ready event before starting typewriter
+            const startWhenReady = () => {
+              console.log('[TYPEWRITER] inflection-ready received, starting typewriter');
+              if (startTimeoutId) clearTimeout(startTimeoutId);
+              const els = sec.querySelectorAll('.typewriter');
+              els.forEach(el => startTypingForElement(el));
+              sec.removeEventListener('inflection-ready', startWhenReady);
+            };
+            sec.addEventListener('inflection-ready', startWhenReady);
+            
+            // Safety timeout: if inflection-ready never fires, start anyway after 500ms
+            startTimeoutId = setTimeout(() => {
+              console.log('[TYPEWRITER] Safety timeout reached, starting typewriter anyway');
+              sec.removeEventListener('inflection-ready', startWhenReady);
+              const els = sec.querySelectorAll('.typewriter');
+              els.forEach(el => startTypingForElement(el));
+            }, 500);
+          } else {
+            // No suppression, start immediately
+            console.log('[TYPEWRITER] No suppression, starting typewriter immediately');
+            const els = sec.querySelectorAll('.typewriter');
+            els.forEach(el => startTypingForElement(el));
+          }
         } catch (e) { /* swallow */ }
         sectionObserver.unobserve(en.target);
       }

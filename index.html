@@ -641,6 +641,10 @@
         
         // Enable verbose debug logs during this investigation
         try { window.__inflectDebug = true; console.info('inflect: __inflectDebug = true'); } catch(e){}
+        
+        // Initialize typewriter suppression flag (prevents typewriter from starting before iframe updates)
+        window.__typewriterSuppressed = false;
+        
         // Global smooth scroll helper used by both nav clicks and snap gestures.
         // Animates with an ease-out curve and duration proportional to distance
         // so the programmatic snap feels like a continuation of the user's
@@ -1103,13 +1107,6 @@
 
             try { console.info('initializeObservers: about to run'); } catch(e){}
             initializeObservers();
-            // Observe sections so empty/anchor-only links inside sections are detected
-            try {
-                const secs = Array.from(document.querySelectorAll('main section'));
-                secs.forEach(s => {
-                    try { if (s.querySelector('a:not(.dontinflect)')) sectionObserver.observe(s); } catch(e){}
-                });
-            } catch(e){}
 
                 // Pin behavior removed: no automatic scroll-to-`.pin` is performed.
 
@@ -1130,6 +1127,7 @@
     // Update markdown when hash changes
         // Fade in new content only on path change
         function setIframeIfPathChanged(newHref) {
+            console.log('[setIframeIfPathChanged] Called with:', newHref);
             const parsedURL = new URL(newHref, window.location.origin);
             const originalHash = parsedURL.hash || '';
             // compute path-only URL for comparison
@@ -1139,6 +1137,7 @@
             
             // Check if we're in dual-iframe mode
             const isDualMode = document.body.classList.contains('dual-iframe');
+            console.log('[setIframeIfPathChanged] isDualMode:', isDualMode, 'newPath:', newPath);
             
             if (window.__inflectDebug) {
                 console.log('[IFRAME] setIframeIfPathChanged:', newPath, 'isDualMode:', isDualMode);
@@ -1170,6 +1169,7 @@
                 
                 if (isMapLink) {
                     // Route to background frame
+                    console.log('[setIframeIfPathChanged] Routing to BACKGROUND frame, newPath:', newPath, 'lastBackgroundPath:', lastBackgroundPath);
                     if (window.__inflectDebug) {
                         console.log('[IFRAME] Setting background-frame src to:', newHref);
                         console.log('[IFRAME] backgroundFrame element:', backgroundFrame);
@@ -1181,11 +1181,13 @@
                     if (newPath !== lastBackgroundPath) {
                         if (firstBackgroundFrame) {
                             firstBackgroundFrame = false;
+                            console.log('[setIframeIfPathChanged] Setting FIRST background frame src to:', newHref);
                             backgroundFrame.src = newHref;
                             if (window.__inflectDebug) {
                                 console.log('[IFRAME] FIRST background frame load, src set');
                             }
                         } else {
+                            console.log('[setIframeIfPathChanged] Updating background frame src to:', newHref);
                             backgroundFrame.src = newHref;
                             if (window.__inflectDebug) {
                                 console.log('[IFRAME] Background src updated to:', newHref);
@@ -1194,6 +1196,7 @@
                         lastBackgroundPath = newPath;
                     } else {
                         // Hash-only change - update src immediately
+                        console.log('[setIframeIfPathChanged] Hash-only change, updating background frame src to:', newHref);
                         backgroundFrame.src = newHref;
                         if (window.__inflectDebug) {
                             console.log('[IFRAME] Background hash-only change, src updated to:', newHref);
@@ -1205,6 +1208,7 @@
                     }
                 } else {
                     // Route to foreground frame (default for cmp/, img/, vid/, etc.)
+                    console.log('[setIframeIfPathChanged] Routing to FOREGROUND frame, newPath:', newPath, 'lastForegroundPath:', lastForegroundPath);
                     if (window.__inflectDebug) {
                         console.log('[IFRAME] Setting foreground-frame src to:', newHref);
                         console.log('[IFRAME] foregroundFrame element:', foregroundFrame);
@@ -1213,11 +1217,13 @@
                     if (newPath !== lastForegroundPath) {
                         if (firstForegroundFrame) {
                             firstForegroundFrame = false;
+                            console.log('[setIframeIfPathChanged] Setting FIRST foreground frame src to:', newHref);
                             foregroundFrame.src = newHref;
                             if (window.__inflectDebug) {
                                 console.log('[IFRAME] FIRST foreground frame load, src set');
                             }
                         } else {
+                            console.log('[setIframeIfPathChanged] Updating foreground frame src to:', newHref);
                             foregroundFrame.src = newHref;
                             if (window.__inflectDebug) {
                                 console.log('[IFRAME] Foreground src updated to:', newHref);
@@ -1225,6 +1231,7 @@
                         }
                         lastForegroundPath = newPath;
                     } else {
+                        console.log('[setIframeIfPathChanged] Hash-only change, updating foreground frame src to:', newHref);
                         foregroundFrame.src = newHref;
                     }
                     // Ensure foreground is active
@@ -1272,10 +1279,12 @@
 
     // with IntersectionObserver we can check what is visible    
     function initializeObservers() {
+        console.log('[initializeObservers] Creating observers...');
         const isMobilePortrait = window.matchMedia("(max-width: 1000px) and (orientation: portrait)").matches;
         const observer = new IntersectionObserver((entries) => {            
             entries.forEach(entry => {
-                if (entry.isIntersecting) {                    
+                if (entry.isIntersecting) {
+                    console.log('[LINK OBSERVER] Link entered viewport:', entry.target, 'href:', entry.target.getAttribute('href'));
                     // Add active class only to the visible link
                     const visibleLink = entry.target;
                         if (!visibleLink.classList.contains("dontinflect") && visibleLink.getAttribute("href") != "") {
@@ -1283,6 +1292,7 @@
                         // Use the raw href attribute to avoid races where scripts
                         // (e.g. the typewriter) mutate link textContent or href.
                         const rawHref = visibleLink.getAttribute('href');
+                        console.log('[LINK OBSERVER] Calling setIframeIfPathChanged for href:', rawHref);
                         // In dual-iframe mode, call setIframeIfPathChanged directly to avoid timeout issues
                         const isDualMode = document.body.classList.contains('dual-iframe');
                         if (isDualMode) {
@@ -1314,10 +1324,19 @@
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(en => {
                 if (en.isIntersecting) {
+                    console.log('[SECTION OBSERVER] Section entered view:', en.target);
+                    
+                    // Signal to typewriter that section change is in progress
+                    // This prevents typewriter from starting until iframes are updated
+                    window.__typewriterSuppressed = true;
+                    
                     try {
                         const sec = en.target;
                         const a = sec.querySelector('a:not(.dontinflect)');
-                        if (!a) return;
+                        if (!a) {
+                            console.log('[SECTION OBSERVER] No inflection link found in section');
+                            return;
+                        }
                         const raw = a.getAttribute('href') || '';
                         if (!raw) return;
                         // Determine whether this intersection was likely caused by
@@ -1359,32 +1378,61 @@
                             } catch (e) { /* swallow */ }
                         }
 
-                        // In dual-iframe mode, load ALL links in the section to their respective frames
+                        // In dual-iframe mode, load links sequentially with small delays to avoid blocking typewriter
                         const isDualMode = document.body.classList.contains('dual-iframe');
+                        console.log('[SECTION OBSERVER] isDualMode:', isDualMode);
                         if (isDualMode) {
                             // Find all inflection links in this section
                             const allLinks = Array.from(sec.querySelectorAll('a:not(.dontinflect)'));
-                            allLinks.forEach(link => {
+                            console.log('[SECTION OBSERVER] Found', allLinks.length, 'inflection links in section');
+                            
+                            // Calculate total time needed for all iframe updates
+                            const lastLinkDelay = allLinks.length > 0 ? (allLinks.length - 1) * 50 : 0;
+                            const iframeUpdateBuffer = 100; // Extra buffer to ensure iframes have started loading
+                            const totalDelay = lastLinkDelay + iframeUpdateBuffer;
+                            
+                            // Load links sequentially with small delays
+                            allLinks.forEach((link, index) => {
                                 const linkHref = link.getAttribute('href');
+                                console.log('[SECTION OBSERVER] Link', index, 'href:', linkHref);
                                 if (linkHref) {
-                                    // Call setIframeIfPathChanged directly to avoid timeout cancellation
-                                    // (setIframeNext uses single global timeout that gets cancelled by subsequent calls)
-                                    try { 
-                                        const full = new URL(linkHref, window.location.href).href; 
-                                        setIframeIfPathChanged(full); 
-                                    } catch(e){ 
-                                        setIframeIfPathChanged(link.href); 
-                                    }
+                                    // Stagger iframe loads: first immediately, then with small delays
+                                    const delay = index === 0 ? 0 : index * 50; // 50ms between each subsequent load
+                                    setTimeout(() => {
+                                        console.log('[SECTION OBSERVER] Calling setIframeIfPathChanged for link', index, ':', linkHref);
+                                        try { 
+                                            const full = new URL(linkHref, window.location.href).href; 
+                                            setIframeIfPathChanged(full); 
+                                        } catch(e){ 
+                                            setIframeIfPathChanged(link.href); 
+                                        }
+                                    }, delay);
                                 }
                             });
+                            
                             // Set caption from first link
                             if (allLinks.length > 0) {
                                 try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(allLinks[0]); } catch(e){}
                             }
+                            
+                            // Release typewriter suppression after all iframe updates have been dispatched
+                            setTimeout(() => {
+                                console.log('[SECTION OBSERVER] Releasing typewriter suppression, signaling section ready:', sec);
+                                window.__typewriterSuppressed = false;
+                                // Dispatch custom event that typewriter can listen for
+                                sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
+                            }, totalDelay);
                         } else {
                             // Single iframe mode: only load first link
                             try { const full = new URL(raw, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(a.href); }
                             try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(a); } catch(e){}
+                            
+                            // Release typewriter suppression after a short delay
+                            setTimeout(() => {
+                                console.log('[SECTION OBSERVER] Releasing typewriter suppression (single mode), signaling section ready:', sec);
+                                window.__typewriterSuppressed = false;
+                                sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
+                            }, 100);
                         }
                     } catch(e) { /* swallow */ }
                 }
@@ -1730,9 +1778,13 @@
 
         // Add observer to all links and attach click handlers to inflection links
         const inflectLinks = document.querySelectorAll('a');
+        console.log('[initializeObservers] Found', inflectLinks.length, 'links to observe');
         inflectLinks.forEach(link => {
             observer.observe(link);
             const hrefAttr = (link.getAttribute('href') || '').trim();
+            if (hrefAttr && (hrefAttr.includes('/map/') || hrefAttr.includes('/svg/'))) {
+                console.log('[initializeObservers] Observing inflection link:', hrefAttr, 'text:', link.textContent.substring(0, 20));
+            }
             // Treat any non-empty href as an inflection-link candidate. This allows
             // external URLs as well as local paths to be handled by the iframe
             // forwarding logic. Skip empty hrefs or javascript/mailto pseudo-links.
@@ -1803,6 +1855,25 @@
                 try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(firstLink.href); }
                 try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(firstLink); } catch(e){}
             }
+        }
+
+        // Register section observer for sections with inflection links
+        console.log('[initializeObservers] Registering section observer...');
+        try {
+            const secs = Array.from(document.querySelectorAll('main section'));
+            console.log('[initializeObservers] Found', secs.length, 'sections');
+            secs.forEach((s, index) => {
+                try { 
+                    if (s.querySelector('a:not(.dontinflect)')) {
+                        sectionObserver.observe(s);
+                        console.log('[initializeObservers] Observing section', index);
+                    }
+                } catch(e){
+                    console.warn('[initializeObservers] Error observing section', index, e);
+                }
+            });
+        } catch(e){
+            console.error('[initializeObservers] Error registering section observer:', e);
         }
 
     }
