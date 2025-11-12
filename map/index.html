@@ -387,6 +387,51 @@
       color-scheme: dark;
     }
     /* Container becomes draggable (horizontally) via toolbar */
+    /* Map UI controls (shown only when /mapui segment present in hash) */
+    #map-ui-controls {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 6px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      pointer-events: auto;
+      font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    }
+    #map-ui-controls button {
+      width: 38px;
+      height: 38px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.15s;
+    }
+    #map-ui-controls button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    #map-ui-controls button:active {
+      transform: scale(0.92);
+    }
+    #map-ui-controls button.fullscreen-exit {
+      background: rgba(255,100,100,0.25);
+    }
+    #map-ui-controls button.fullscreen-exit:hover {
+      background: rgba(255,100,100,0.4);
+    }
   </style>
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -755,7 +800,10 @@ document.addEventListener('DOMContentLoaded', function() {
       tokens.push(newToken);
     }
     layersStr = tokens.join(',');
-    const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '');
+  // Preserve any extra trailing segments (e.g., /mapui)
+  const existingParts = existing.split('/');
+  const trailing = existingParts.slice(2);
+  const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '') + (trailing.length ? `/${trailing.join('/')}` : '');
     console.log('[ADD LAYER] Old hash:', existing);
     console.log('[ADD LAYER] New hash:', newHash);
     console.log('[ADD LAYER] New token:', newToken);
@@ -871,6 +919,87 @@ function parseFilterExprToMapbox(filterExpr) {
   return null;
 }
 
+// Detect a desktop-ish environment (coarse heuristic: no touch OR fine pointer)
+function isDesktopEnvironment() {
+  try {
+    return (navigator.maxTouchPoints === 0) || window.matchMedia('(pointer: fine)').matches;
+  } catch(e) { return true; }
+}
+
+// Inject map UI controls (zoom, rotate reset – desktop only; fullscreen – always)
+function ensureMapUIControls() {
+  if (document.getElementById('map-ui-controls')) return; // already present
+  const container = document.createElement('div');
+  container.id = 'map-ui-controls';
+  container.title = 'Map UI controls';
+  const isDesktop = isDesktopEnvironment();
+  // Helper to create a button
+  function makeBtn(label, title) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = label;
+    btn.title = title;
+    return btn;
+  }
+  // Zoom In
+  if (isDesktop) {
+    const zoomInBtn = makeBtn('+', 'Zoom in');
+    zoomInBtn.addEventListener('click', () => { try { window.map && window.map.zoomIn(); } catch(e){} });
+    container.appendChild(zoomInBtn);
+    // Zoom Out
+    const zoomOutBtn = makeBtn('−', 'Zoom out');
+    zoomOutBtn.addEventListener('click', () => { try { window.map && window.map.zoomOut(); } catch(e){} });
+    container.appendChild(zoomOutBtn);
+    // Rotate reset (bearing & pitch)
+    const rotateResetBtn = makeBtn('⟳', 'Reset bearing & pitch');
+    rotateResetBtn.addEventListener('click', () => {
+      try {
+        if (window.map) {
+          const c = window.map.getCenter();
+          window.map.jumpTo({ center: c, zoom: window.map.getZoom(), bearing: 0, pitch: 0 });
+        }
+      } catch(e){}
+    });
+    container.appendChild(rotateResetBtn);
+  }
+  // Fullscreen toggle (always available)
+  const fullscreenBtn = makeBtn('⛶', 'Enter fullscreen');
+  fullscreenBtn.addEventListener('click', () => {
+    const el = document.documentElement; // Use the document root for broader fullscreen
+    if (!document.fullscreenElement) {
+      try { el.requestFullscreen(); } catch(e) {}
+      fullscreenBtn.classList.add('fullscreen-exit');
+      fullscreenBtn.textContent = '↙';
+      fullscreenBtn.title = 'Exit fullscreen';
+    } else {
+      try { document.exitFullscreen(); } catch(e) {}
+    }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      fullscreenBtn.classList.remove('fullscreen-exit');
+      fullscreenBtn.textContent = '⛶';
+      fullscreenBtn.title = 'Enter fullscreen';
+    } else {
+      fullscreenBtn.classList.add('fullscreen-exit');
+      fullscreenBtn.textContent = '↙';
+      fullscreenBtn.title = 'Exit fullscreen';
+    }
+  });
+  container.appendChild(fullscreenBtn);
+  document.body.appendChild(container);
+  console.log('[MAP UI] Controls injected');
+}
+
+// Remove map UI controls if present
+function removeMapUIControls() {
+  const el = document.getElementById('map-ui-controls');
+  if (el) {
+    el.remove();
+    console.log('[MAP UI] Controls removed');
+  }
+}
+
 // Track externally loaded layers (not part of original style)
 const externalLayers = new Set();
 
@@ -888,8 +1017,8 @@ const defaultCamera = {
 // Parse hash: #lat,lng,zoom,bearing,pitch/+layer1,-layer2/load:filename
 function parseHash() {
   const hash = window.location.hash.replace('#', '');
-  if (!hash) return { camera: { ...defaultCamera }, layers: allStyleLayers.map(l => l.id), dynamicGeojsonToLoad: [], followId: null, followOffset: 0, showTicker: false, followHidden: false };
-  let cameraStr = '', layersStr = '', followId = null, followOffset = 0, showTicker = false, followHidden = false;
+  if (!hash) return { camera: { ...defaultCamera }, layers: allStyleLayers.map(l => l.id), dynamicGeojsonToLoad: [], followId: null, followOffset: 0, showTicker: false, followHidden: false, showMapUI: false };
+  let cameraStr = '', layersStr = '', followId = null, followOffset = 0, showTicker = false, followHidden = false, showMapUI = false;
   const parts = hash.split('/');
   const restParts = [];
   for (let i = 0; i < parts.length; i++) {
@@ -901,6 +1030,9 @@ function parseHash() {
   }
   cameraStr = restParts[0] || '';
   layersStr = restParts[1] || '';
+  // Detect optional flags in any additional segments (e.g., /mapui)
+  const extraSegments = parts.slice(2);
+  showMapUI = extraSegments.some(seg => seg.toLowerCase() === 'mapui');
   const cameraParts = cameraStr ? cameraStr.split(',').map(Number) : [];
   let layersOn = allStyleLayers.map(l => l.id);
   let dynamicGeojsonToLoad = [];
@@ -1017,7 +1149,8 @@ function parseHash() {
     followId,
     followOffset,
     showTicker,
-    followHidden
+    followHidden,
+    showMapUI
   };
 }
 
@@ -1554,13 +1687,12 @@ function updateHash(map, visibleLayers) {
   const p = map.getPitch().toFixed(1);
   // Preserve existing layer part of hash if present
   const hash = window.location.hash.replace('#', '');
-  const [, layersStr] = hash.split('/');
+  const parts = hash.split('/');
+  const layersStr = parts[1];
+  const trailing = parts.slice(2);
   const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
-  if (layersStr !== undefined) {
-    window.location.replace(`#${cameraStr}/${layersStr}`);
-  } else {
-    window.location.replace(`#${cameraStr}`);
-  }
+  const newHash = `#${cameraStr}` + (layersStr !== undefined ? `/${layersStr}` : '') + (trailing.length ? `/${trailing.join('/')}` : '');
+  window.location.replace(newHash);
 }
 
 // Debounce helper for expensive operations
@@ -1794,10 +1926,13 @@ function createLayerControls(map, visibleLayers) {
       }
       // Build new hash from tokens
       const tokens = Object.values(tokenMap);
+      const raw = window.location.hash.replace('#','');
+      const parts = raw.split('/');
+      const trailing = parts.slice(2);
       if (tokens.length > 0) {
-        window.location.replace(`#${cameraStr}/${tokens.join(',')}`);
+        window.location.replace(`#${cameraStr}/${tokens.join(',')}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       } else {
-        window.location.replace(`#${cameraStr}`);
+        window.location.replace(`#${cameraStr}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       }
     });
   });
@@ -1826,10 +1961,13 @@ function createLayerControls(map, visibleLayers) {
       map.setLayoutProperty(layerId, 'visibility', defaultVis);
       // Build new hash
       const tokens = Object.entries(explicitState).map(([lname, sign]) => `${sign}${lname}`);
+      const raw = window.location.hash.replace('#','');
+      const parts = raw.split('/');
+      const trailing = parts.slice(2);
       if (tokens.length > 0) {
-        window.location.replace(`#${cameraStr}/${tokens.join(',')}`);
+        window.location.replace(`#${cameraStr}/${tokens.join(',')}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       } else {
-        window.location.replace(`#${cameraStr}`);
+        window.location.replace(`#${cameraStr}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       }
     });
   });
@@ -1852,7 +1990,10 @@ function createLayerControls(map, visibleLayers) {
       });
       
       // Clear all explicit layer states from hash (keep only camera position)
-      window.location.replace(`#${cameraStr}`);
+  const raw = window.location.hash.replace('#','');
+  const parts = raw.split('/');
+  const trailing = parts.slice(2);
+  window.location.replace(`#${cameraStr}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       
       console.log('[MAP] All layers reset to style defaults');
     });
@@ -1917,7 +2058,10 @@ function createLayerControls(map, visibleLayers) {
       });
       
       const newLayersStr = tokens.join(',');
-      const newHash = `#${cameraStr}/${newLayersStr}`;
+      const raw = window.location.hash.replace('#','');
+      const parts = raw.split('/');
+      const trailing = parts.slice(2);
+      const newHash = `#${cameraStr}/${newLayersStr}` + (trailing.length ? `/${trailing.join('/')}` : '');
       console.log('[FOLLOW BTN] New hash:', newHash);
       window.location.hash = newHash;
     });
@@ -1992,7 +2136,10 @@ function createLayerControls(map, visibleLayers) {
       });
       
       const newLayersStr = tokens.join(',');
-      const newHash = `#${cameraStr}/${newLayersStr}`;
+      const raw2 = window.location.hash.replace('#','');
+      const parts2 = raw2.split('/');
+      const trailing2 = parts2.slice(2);
+      const newHash = `#${cameraStr}/${newLayersStr}` + (trailing2.length ? `/${trailing2.join('/')}` : '');
       console.log('[FOLLOW OFFSET] New hash:', newHash);
       window.location.hash = newHash;
     };
@@ -2034,10 +2181,13 @@ function createLayerControls(map, visibleLayers) {
       followableLayers.delete(layerId);
       // Don't call createLayerControls here - let hashchange handler do it
       // Remove from hash and update URL (hashchange will refresh UI)
+      const raw = window.location.hash.replace('#','');
+      const parts = raw.split('/');
+      const trailing = parts.slice(2);
       if (filteredTokens.length > 0) {
-        window.location.replace(`#${cameraStr}/${filteredTokens.join(',')}`);
+        window.location.replace(`#${cameraStr}/${filteredTokens.join(',')}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       } else {
-        window.location.replace(`#${cameraStr}`);
+        window.location.replace(`#${cameraStr}` + (trailing.length ? `/${trailing.join('/')}` : ''));
       }
     });
   });
@@ -2153,7 +2303,10 @@ function updateFilterInHash(layerId, filterExpr) {
   });
   
   const newLayersStr = tokens.join(',');
-  const newHash = `#${cameraStr}/${newLayersStr}`;
+  const raw = window.location.hash.replace('#','');
+  const parts = raw.split('/');
+  const trailing = parts.slice(2);
+  const newHash = `#${cameraStr}/${newLayersStr}` + (trailing.length ? `/${trailing.join('/')}` : '');
   console.log('[FILTER] New hash:', newHash);
   window.location.hash = newHash;
 }
@@ -2239,7 +2392,7 @@ window.map = map;
 
 map.on('load', () => {
   // After all layers are loaded, if :follow is present in the hash, trigger follow logic directly (no hashchange event)
-  const { camera: camInit, layers: layersInit, dynamicGeojsonToLoad: dynInit, followId: followInit, followOffset: followOffsetInit, showTicker: showTickerInit, followHidden: followHiddenInit } = parseHash();
+  const { camera: camInit, layers: layersInit, dynamicGeojsonToLoad: dynInit, followId: followInit, followOffset: followOffsetInit, showTicker: showTickerInit, followHidden: followHiddenInit, showMapUI } = parseHash();
   if (followInit) {
     // Only start follow if not already running (avoid double-trigger)
     if (!window._isFollowStarted) {
@@ -2274,7 +2427,8 @@ map.on('load', () => {
               // Remove :follow or :follow+offset or :follow+ allowing optional (source) part
               layersStr = layersStr.replace(new RegExp(`([+~]${followInit})(?:\\([^)]+\\))?(?::follow(?:\\+\\d*)?)`), '$1');
             }
-            const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '');
+            const trailing = parts.slice(2).filter(Boolean).join('/');
+            const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '') + (trailing ? `/${trailing}` : '');
             window._suppressNextFollowCancel = true;
             window.location.replace(newHash);
             window._isFollowStarted = false;
@@ -2341,6 +2495,11 @@ map.on('load', () => {
   
   // Update the toggle list to reflect current visibility
   createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
+
+  // Inject map UI controls if flag present
+  if (showMapUI) {
+    ensureMapUIControls();
+  }
   
   // Re-apply camera from hash after style load to ensure bearing/pitch/zoom are honored
   try {
@@ -2736,7 +2895,7 @@ window.addEventListener('hashchange', () => {
 
   // ...existing code...
 
-  const { camera, layers, dynamicGeojsonToLoad, followId, followOffset, showTicker, followHidden } = parseHash();
+  const { camera, layers, dynamicGeojsonToLoad, followId, followOffset, showTicker, followHidden, showMapUI } = parseHash();
   console.log('[FOLLOW DEBUG] Hash:', window.location.hash, '| followId:', followId, '| followOffset:', followOffset, '| showTicker:', showTicker, '| layers:', layers, '| dynamicGeojsonToLoad:', dynamicGeojsonToLoad);
   console.log('[FOLLOW DEBUG] About to process layers and dynamic sources...');
 
@@ -2856,6 +3015,10 @@ window.addEventListener('hashchange', () => {
   // Update layer controls to reflect current state (after any removals)
   createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
 
+  // Toggle map UI controls based on flag
+  if (showMapUI) ensureMapUIControls();
+  else removeMapUIControls();
+
   // Load dynamic layers as needed (GeoJSON/CSV, Sentinel-2, or Wayback)
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
     const layersOn = layers || [];
@@ -2954,7 +3117,8 @@ window.addEventListener('hashchange', () => {
             // Remove :follow or :follow+offset, allowing optional (source) part
             layersStr = layersStr.replace(new RegExp(`([+~]${followId})(?:\\([^)]+\\))?(?::follow(?:\\+\\d+)?)`), '$1');
           }
-          const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '');
+          const trailing = parts.slice(2).filter(Boolean).join('/');
+          const newHash = `#${cameraStr}` + (layersStr ? `/${layersStr}` : '') + (trailing ? `/${trailing}` : '');
           window._suppressNextFollowCancel = true;
           window.location.replace(newHash);
           window._isFollowStarted = false;
