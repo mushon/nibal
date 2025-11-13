@@ -6,11 +6,11 @@ css: src/theme.css
 
 # _זה נסיון_ להקריס את הדפדפן
 [](map/#31.44057,34.36196,13.64,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+99999,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines,+rafah,+nuseirat "אנימציית follow + וידאו 1")
-[](svg/#opening-new.svg/-1.05,0.39,3.89/~vimeo-1130834125~vimeo-1130634353~vimeo-1130634480~nibal2023)
+[](svg/#opening-new.svg/-0.12,-0.16,1.66/@vimeo-1130641184)
 
 
 [](map/#31.44057,34.36196,13.64,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+99999,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines,+rafah,+nuseirat "אנימציית follow + וידאו 2")
-[](svg/#opening-new.svg/~vimeo-1130834125~vimeo-1130634353)
+[](svg/#opening-new.svg/0.06,-0.23,1.66/@vimeo-1130641184,@vimeo-1130634353)
 
 
 [](map/#31.44057,34.36196,13.64,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+99999,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines,+rafah,+nuseirat "אנימציית follow + וידאו 3")

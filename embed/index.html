@@ -165,7 +165,7 @@
     if(!u) return;
 
     if(!shouldUsePlyrAdapter(u)){
-      console.warn('Only YouTube, Vimeo, and direct video files are supported');
+  /* Only YouTube, Vimeo, and direct video files are supported log removed */
       return;
     }
 
@@ -187,7 +187,7 @@
       // Wire player events
       playerAdapter.on('ready', () => {
         const st = parseHash();
-        console.log('[embed] Player ready, state:', st);
+  /* [embed] Player ready, state: log removed */
         
         // Toggle classes based on mode
         injected.classList.remove('cover', 'auto');
@@ -209,13 +209,13 @@
       await playerAdapter.load(u);
 
     }catch(err){
-      console.error('Player load failed', err);
+  /* Player load failed log removed */
     }
   }
 
   function applyPlayerState(state){
     if(!playerAdapter || !playerAdapter.ready) return;
-    console.log('[embed] applyPlayerState', state);
+  /* [embed] applyPlayerState log removed */
     
     try{
       // Apply muting for autoplay
@@ -231,13 +231,13 @@
       // Start playback
       if(state.autoplay){
         playerAdapter.play().then(() => {
-          console.log('[embed] Autoplay succeeded');
+          /* [embed] Autoplay succeeded log removed */
         }).catch(e => {
-          console.warn('[embed] Autoplay failed:', e);
+          /* [embed] Autoplay failed: log removed */
         });
       }
     }catch(e){ 
-      console.warn('applyPlayerState error', e); 
+  /* applyPlayerState error log removed */
     }
   }
 
@@ -365,14 +365,14 @@
         if (playerAdapter) {
           playerAdapter.setMuted(true);
           playerAdapter.play().then(() => {
-            console.log('[embed] Play triggered by parent message');
+            /* [embed] Play triggered by parent message log removed */
           }).catch(e => {
-            console.warn('[embed] Play failed:', e);
+            /* [embed] Play failed: log removed */
           });
         }
       }
     } catch(e) {
-      console.warn('[embed] Message handler error:', e);
+  /* [embed] Message handler error: log removed */
     }
   });
 

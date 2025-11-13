@@ -483,12 +483,12 @@ async function loadSVG(url){
     setStatus('ready');
     window.viewerReady = true;
   // build layer list UI so user can show/hide layers
-  try { buildLayerList(); } catch(e) { console.warn('build layer list failed', e); }
+  try { buildLayerList(); } catch(e) { /* build layer list failed */ }
   // apply any pending visibility instructions now that layers exist
-  try { if (pendingVis) { applyVisibilityFromVis(pendingVis, { animate: false }); pendingVis = null; } } catch(e) { console.warn('apply pending vis failed', e); }
+  try { if (pendingVis) { applyVisibilityFromVis(pendingVis, { animate: false }); pendingVis = null; } } catch(e) { /* apply pending vis failed */ }
     try { window.layerKeyMap = layerKeyMap; } catch(e){}
   // auto-attach video overlays for layers with vimeo-* or embed-* IDs
-  try { autoAttachVideoOverlays(); } catch(e) { console.warn('auto-attach videos failed', e); }
+  try { autoAttachVideoOverlays(); } catch(e) { /* auto-attach videos failed */ }
   } catch (e) {
     console.error(e);
     setStatus('error');
@@ -523,7 +523,7 @@ function buildLayerList(){
       const data = await response.json();
       return data.thumbnail_url || null;
     } catch(e) {
-      console.warn('Failed to fetch Vimeo thumbnail for', videoId, e);
+  /* Failed to fetch Vimeo thumbnail */
       return null;
     }
   }
@@ -715,7 +715,7 @@ function buildLayerList(){
 
       // Non-root behavior: keep existing +token semantics (show only this subtree)
       const vis = { show: [theKey], hide: [] };
-  try { applyVisibilityFromVis(vis, { animate: true }); } catch(e){ console.warn('applyVisibilityFromVis failed', e); }
+  try { applyVisibilityFromVis(vis, { animate: true }); } catch(e){ /* applyVisibilityFromVis failed */ }
   try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(e){}
       // update the hash token similarly to updateHashFromLayerList but using our vis
   suppressHashFor(120);
@@ -829,7 +829,7 @@ function buildLayerList(){
         });
       }
     }).catch(err => {
-      console.warn('Failed to load thumbnail for', baseKey, err);
+  /* Failed to load thumbnail */
     });
     
     label.appendChild(cb);
@@ -1251,7 +1251,7 @@ function applyVisibilityFromVis(vis, opts){
     }
     // merge additions into hides (avoid duplicates)
     for (const k of ancestorHideAdditions) if (!hides.includes(k) && !allShows.includes(k)) hides.push(k);
-  } catch(e){ console.warn('ancestor-preserve merge failed', e); }
+  } catch(e){ /* ancestor-preserve merge failed */ }
   // Build sets for quick lookup
   const hideSet = new Set();
   const showSet = new Set();
@@ -1449,9 +1449,9 @@ function updateHashFromLayerList(){
   // read existing parsed hash to preserve params
   const parsed = parseHash();
   const vis = collectVisibilityFromList();
-  console.log('[updateHashFromLayerList] vis:', vis);
+  /* [updateHashFromLayerList] vis log removed */
   const token = buildCompactHash(parsed.url || '', parsed.params || {}, vis);
-  console.log('[updateHashFromLayerList] token:', token, 'current hash:', location.hash);
+  /* [updateHashFromLayerList] token log removed */
   // we need to preserve original 6-field style when present; if not, just write #token
   // Debounce writing the hash so ongoing animations are not cancelled by an
   // immediate hashchange handler. We still mark the write as originating
@@ -1462,13 +1462,13 @@ function updateHashFromLayerList(){
       suppressHashFor(150);
       // Write the new compact token directly
       if (location.hash !== '#'+token) {
-        console.log('[updateHashFromLayerList] Writing hash:', '#'+token);
+  /* [updateHashFromLayerList] Writing hash log removed */
         location.hash = '#'+token;
       } else {
-        console.log('[updateHashFromLayerList] Hash unchanged, not writing');
+  /* [updateHashFromLayerList] Hash unchanged log removed */
       }
     } catch(e) {
-      console.warn('Failed to update hash:', e);
+  /* Failed to update hash */
     }
     __hashWriteTimeout = null;
   }, 100);
@@ -1588,15 +1588,7 @@ function render(){
     const scaledWidth = bbox.width * viewportScale;
     const scaledHeight = bbox.height * viewportScale;
   
-    console.log('RENDER:', {
-      'ref.size': ref.size,
-      'bbox': `${bbox.width}x${bbox.height}`,
-      'state.scale': state.scale,
-      'scaleToFitInRef': scaleToFitInRef,
-      'viewportScale': viewportScale,
-      'scaled': `${Math.round(scaledWidth)}x${Math.round(scaledHeight)}`,
-      'shouldFitInRef': Math.max(scaledWidth, scaledHeight) <= ref.size ? '✓' : '✗'
-    });
+    /* RENDER debug log removed */
   
     // Position: Start at reference frame center, add offsets (in pixels), subtract SVG center offset
   // state.tx/state.ty are normalized offsets in reference-frame units (1.0 = ref.size)
@@ -1840,7 +1832,7 @@ function commitHash(){
   const params = { s: Math.round(state.scale*100)/100, x: Math.round(state.tx*100)/100, y: Math.round(state.ty*100)/100 };
   const token = buildCompactHash(url, params, parsed.vis || { show: [], hide: [] });
   suppressHashFor(120);
-  console.debug('commitHash: writing compact hash', token);
+  /* commitHash debug log removed */
   location.hash = '#'+token;
 }
 
@@ -1918,14 +1910,14 @@ function startViewer(){
               return animateTo(mergeWithDefaults(parsed.params), 900).catch(()=>{});
             }
       } catch (e) {
-        console.warn('Applying params failed', e);
+  /* Applying params failed */
       }
     }).catch(e => {
-      console.warn('Initial load failed', e);
+  /* Initial load failed */
       pendingVis = null;
     });
   } catch (e) {
-    console.warn('startViewer caught', e);
+  /* startViewer caught */
     return Promise.resolve();
   }
 }
@@ -1933,7 +1925,7 @@ function startViewer(){
 // Global non-fatal error handler: log but don't let injected scripts abort viewer startup
 window.addEventListener('error', (ev) => {
   // Keep default behavior but ensure it's logged to console for tests
-  try { console.warn('PAGE ERROR (non-fatal):', ev && ev.message ? ev.message : ev); } catch(e){}
+  try { /* PAGE ERROR (non-fatal) */ } catch(e){}
   // do not call ev.preventDefault() so other handlers can run; we only avoid throwing here
 });
 
@@ -1944,8 +1936,8 @@ setTimeout(() => { startViewer(); }, 0);
 window.addEventListener('hashchange', ()=>{
   // If this hashchange was caused by our own UI write, skip re-applying
   // visibility/state to avoid cancelling user-initiated animations.
-  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { console.debug('hashchange: suppressed by timestamp'); return; }
-  console.debug('hashchange: applying parsed hash');
+  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { /* hashchange: suppressed by timestamp */ return; }
+  /* hashchange: debug log removed */
   const parsed = parseHash();
   if (!parsed) return;
   // if URL changed, load new svg immediately
@@ -2031,7 +2023,7 @@ function autoAttachVideoOverlays(){
         // Only attach if not already present
         const wasAlreadyAttached = window.overlayManager.items && window.overlayManager.items.has(key);
         if (!wasAlreadyAttached) {
-          console.log('[auto-attach] Attaching video to layer', key, 'with URL', url);
+          /* [auto-attach] Attaching video to layer log removed */
           window.overlayManager.attachIframe(key, url);
         }
         // Start playing visible video layers (both newly attached and existing)
@@ -2044,7 +2036,7 @@ function autoAttachVideoOverlays(){
             }
           }
         } catch(e) {
-          console.warn('[auto-attach] Failed to start video for', key, e);
+    /* [auto-attach] Failed to start video for */
         }
       } else if (window.overlayManager && typeof window.overlayManager.remove === 'function') {
         window.overlayManager.remove(key);
@@ -2349,7 +2341,7 @@ document.addEventListener('keydown', function(e) {
     for (const k of items.keys()) updateOne(k);
   }
 
-  function attachToLayer(key, element){
+  function attachToLayer(key, element, iframeSrc){
     try{
       const target = getTargetForKey(key);
       if (!target) { console.warn('[overlay] target not found for key', key); return null; }
@@ -2388,9 +2380,38 @@ document.addEventListener('keydown', function(e) {
         xhtmlDiv.appendChild(iframeEl);
         fo.appendChild(xhtmlDiv);
         // Track item
-        items.set(String(key), { target, el: fo, mode: 'svg-fo' });
+        items.set(String(key), { target, el: fo, mode: 'svg-fo', iframe: iframeEl, iframeSrc });
         // Initial update
         updateOne(String(key));
+
+        // Lazy load: only set iframe.src when visible (IntersectionObserver or fallback)
+        function setIframeSrcIfVisible(){
+          if (!iframeEl) return;
+          if (iframeEl.src && iframeEl.src === iframeSrc) return;
+          // Check if overlay is visible in viewport
+          const rect = fo.getBoundingClientRect();
+          const inViewport = rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+          if (inViewport && iframeSrc) {
+            iframeEl.src = iframeSrc;
+          }
+        }
+        if ('IntersectionObserver' in window && iframeSrc) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                if (iframeEl.src !== iframeSrc) iframeEl.src = iframeSrc;
+              }
+            });
+          }, { threshold: 0.01 });
+          observer.observe(fo);
+          // Store observer for cleanup
+          fo.__iframeObserver = observer;
+        } else if (iframeSrc) {
+          // Fallback: set src if visible now
+          setTimeout(setIframeSrcIfVisible, 100);
+          window.addEventListener('scroll', setIframeSrcIfVisible, { passive: true });
+          window.addEventListener('resize', setIframeSrcIfVisible, { passive: true });
+        }
         return fo;
       } else {
         // Legacy HTML overlay mode
@@ -2411,14 +2432,31 @@ document.addEventListener('keydown', function(e) {
 
   function remove(key){
     const item = items.get(String(key));
-    if (item) { try{ item.el.remove(); }catch(e){} items.delete(String(key)); }
+    if (item) {
+      // Clean up IntersectionObserver if present (for lazy iframe loading)
+      if (item.el && item.el.__iframeObserver && typeof item.el.__iframeObserver.disconnect === 'function') {
+        item.el.__iframeObserver.disconnect();
+        delete item.el.__iframeObserver;
+      }
+      // Clean up scroll/resize listeners if present (for fallback lazy loading)
+      if (item.iframe && item.iframeSrc) {
+        const setIframeSrcIfVisible = item.iframe.__setIframeSrcIfVisible;
+        if (setIframeSrcIfVisible) {
+          window.removeEventListener('scroll', setIframeSrcIfVisible);
+          window.removeEventListener('resize', setIframeSrcIfVisible);
+          delete item.iframe.__setIframeSrcIfVisible;
+        }
+      }
+      try{ item.el.remove(); }catch(e){}
+      items.delete(String(key));
+    }
   }
 
   function attachIframe(key, src, attrs){
-    // Build FO overlay and set iframe src
+    // Build FO overlay and set iframe src (lazy loaded)
     const fo = attachToLayer(key, () => {
       const iframe = document.createElement('iframe');
-      iframe.src = src || '';
+      iframe.src = '';
       iframe.setAttribute('frameborder','0');
       iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
       iframe.style.width = '100%';
@@ -2427,7 +2465,7 @@ document.addEventListener('keydown', function(e) {
       iframe.style.display = 'block';
       try{ Object.entries(attrs || {}).forEach(([k,v]) => iframe.setAttribute(k, String(v))); }catch(e){}
       return iframe;
-    });
+    }, src);
     return fo;
   }
 
