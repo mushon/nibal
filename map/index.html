@@ -1367,7 +1367,7 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
       paint: basePaint
     };
     
-    // 7) Copy styling from sourceHint if provided (including default filter)
+    // 7) Copy styling from sourceHint if provided (paint/layout only)
     try {
       if (sourceHint) {
         const styleLayer = map.getStyle().layers.find(l => l.id === sourceHint);
@@ -1378,10 +1378,11 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
             if (typeof copiedLayout.visibility !== 'undefined') delete copiedLayout.visibility;
             layerDef.layout = Object.assign({}, layerDef.layout, copiedLayout);
           }
-          // Copy filter from source layer if no explicit filter provided in hash
-          if (!filter && typeof styleLayer.filter !== 'undefined') {
-            layerDef.filter = JSON.parse(JSON.stringify(styleLayer.filter));
-          }
+          // IMPORTANT: Do NOT copy the style layer's filter to external GeoJSON layers.
+          // Filters on style layers usually reference properties from the vector tile
+          // source (e.g., class, type) that do not exist on the external GeoJSON.
+          // Copying them would filter out all features and make the layer invisible.
+          // Only explicit filters provided in the hash (parentheses) are applied below.
         }
       }
     } catch (ex) {
@@ -1429,20 +1430,9 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
     // Mark as external layer
     externalLayers.add(layerId);
     console.log(`[LOAD] Added external layer: ${layerId}, filter:`, filter);
-    // Store the default filter (from sourceHint if copied, or null if none)
-    if (sourceHint && !filter) {
-      // We copied the filter from sourceHint, store it as default
-      try {
-        const styleLayer = map.getStyle().layers.find(l => l.id === sourceHint);
-        styleDefaultFilter[layerId] = (styleLayer && typeof styleLayer.filter !== 'undefined') ? 
-          JSON.parse(JSON.stringify(styleLayer.filter)) : null;
-      } catch (ex) {
-        styleDefaultFilter[layerId] = null;
-      }
-    } else {
-      // Either explicit filter provided or no sourceHint - store null as default
-      styleDefaultFilter[layerId] = null;
-    }
+    // Store the default filter for external layer: never inherit style layer filters.
+    // External GeoJSON layers start with no filter unless one is explicitly provided in the hash.
+    styleDefaultFilter[layerId] = null;
     
     // Check if this layer has path geometry (followable)
     if (geojson && geojson.features && geojson.features.length > 0) {
@@ -2648,9 +2638,22 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
   const duration = Math.max(2000, totalDist * 2); // ms, 2ms per meter, min 2s
   let startTime = null;
   let originalData = null;
+  let representativeProps = {};
   if (layerId) {
     const src = map.getSource(layerId);
     if (src && src._data) originalData = JSON.parse(JSON.stringify(src._data));
+    // Capture representative properties from the first path-like feature so
+    // filters copied from a sourceHint (e.g., class/type filters) continue to match
+    try {
+      const feats = (originalData && originalData.features) ? originalData.features : [];
+      const rep = feats.find(f => f && f.geometry && (
+        f.geometry.type === 'LineString' || f.geometry.type === 'MultiLineString' ||
+        f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon'
+      ));
+      if (rep && rep.properties && typeof rep.properties === 'object') {
+        representativeProps = JSON.parse(JSON.stringify(rep.properties));
+      }
+    } catch(e) { representativeProps = {}; }
   }
   // Store original data reference for external cancel
   if (window._follow) window._follow.originalData = originalData;
@@ -2758,7 +2761,8 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
                 type: 'LineString',
                 coordinates: partialCoords
               },
-              properties: {}
+              // Preserve representative properties so style filters keep matching while animating
+              properties: representativeProps
             }
           ]
         };

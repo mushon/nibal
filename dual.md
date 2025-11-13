@@ -172,21 +172,21 @@ css: src/theme.css
 
 
 {.meta} 
-[](svg/#oct7.svg/0.25,0.25,1.36/+detainies-1,+detainies-2 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / באסם מסעוד")
-[](map/#31.63011,34.71983,8.57,24.0,41.5/+unosat-damage-231015,~labels_he)
+[](svg/#oct7.svg/0.25,0.25,1.36/+detainies-1,+detainies-2)
+[](map/#31.63011,34.71983,8.57,24.0,41.5/+unosat-damage-231015,~labels_he "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / באסם מסעוד")
 
 בימים שלאחר מכן, ישראל עצרה אלפי עובדים - ובהם גם אחמד, בעלה של ניבאל.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.25,0.25,1.36/~oct7 "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, המזהיר מפני ״מתקפה קרובה״ על רצועת עזה וקורא לתושבים לעבור דרומה, 13 באוקטובר 2023. (Anadolu / דואה אלבז)")
+[](svg/#oct7.svg/0.25,0.25,1.36/~oct7)
 [](map/#31.37771,34.43288,10.00,37.6,0.0/+north,+arrow)
 ב-13 באוקטובר 2023 הוציא הצבא הישראלי את צווי הפינוי ההמוניים הראשונים לתושבי עזה.
 
 
 {.meta thumb} 
 [](svg/#oct7.svg/0.16,-0.05,2.35/+IDF_order_north)
-[](map/#31.55473,34.29414,9.48,-48.8,0.0/+north,+arrow)
+[](map/#31.55473,34.29414,9.48,-48.8,0.0/+north,+arrow "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, המזהיר מפני ״מתקפה קרובה״ על רצועת עזה וקורא לתושבים לעבור דרומה, 13 באוקטובר 2023. (Anadolu / דואה אלבז)")
 אלו הורו לכמיליון תושבי צפון הרצועה לעזוב את בתיהם ולעקור לדרום הרצועה תוך 24 שעות.
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
@@ -231,34 +231,40 @@ css: src/theme.css
 
 {.meta} 
 [](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
-[](map/#31.42887,34.34495,10.95,-3.2,39.0/+family-home,+khan-yunis,+cities,+villages,+arrow)
+[](map/#31.39624,34.33155,10.06,-0.8,0.0/+pois(poi,id=home),+pois#2(pois,id=khan-yunis),+arrow,+unosat-damage-231015,+unosat-damage-240107)
 בפברואר 2024 שיחרר הצבא הישראלי את אחמד, והוא הגיע לח'אן יונס שבדרום הרצועה.  
 
 למרות התנגדותם הנחרצת של הוריה, ניבאל החליטה לצאת דרומה, בתקווה להתאחד עם בעלה.
 
 
 {.subheader}
-[](about:blank)
+[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](map/#31.39624,34.33155,10.06,-0.8,0.0/+pois(poi,id=home),+pois#2(pois,id=khan-yunis),+arrow,~labels_he,~Gaza_border_dash,~Gaza_border_base)
 ## המסע דרומה  
 
 
 {.meta} 
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+family-home,+s.gaza,+cities,+villages,+idf-poly-outlines)
+[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+idf-poly-outlines)
 את תחילת הדרך עושה ניבאל עם אביה, שמסיע אותה ואת ריתא מביתם בג'אבליא לפאתי העיר עזה.
 
 
 {.meta}
-[](embed/#vimeo.com%2F1133751988%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון האינסטגרם של ניבאל")
+<!-- [](embed/#vimeo.com%2F1133751988%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון האינסטגרם של ניבאל") -->
+[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+idf-poly-outlines)
 בעדותה תיארה ניבאל נסיעה רוויית אימה, במהלכה ראתה מבעד לחלון המכונית את ההפצצות הכבדות של הצבא הישראלי.
 
 
 {.meta} 
-[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+s.gaza,+nuseirat,+cities,+villages,+idf-poly-outlines)
+[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+pois#3(pois,id=nuseirat),+idf-poly-outlines)
 מהעיר עזה ניבאל המשיכה לדרום הרצועה ברגל, כשהיא נושאת בחיקה את ריתא בת החצי שנה.
 
 
 {.meta} 
-[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+s.gaza,+pois(poi)[name=nuseirat],+pois(poi)[name=rafah],+cities,+villages,+idf-poly-outlines)
+[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+pois#3(pois,id=nuseirat),+pois#4(pois,id=rafah),+idf-poly-outlines)
 באזור א-נוסייראת הן התאחדו עם אחמד, אותו לא ראו מזה כחצי שנה.
 
 
