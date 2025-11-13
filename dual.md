@@ -238,66 +238,76 @@ css: src/theme.css
 
 
 {.subheader}
-[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](about:nlank)
 [](map/#31.39624,34.33155,10.06,-0.8,0.0/+pois(poi,id=home),+pois#2(pois,id=khan-yunis),+arrow,~labels_he,~Gaza_border_dash,~Gaza_border_base)
 ## המסע דרומה  
 
 
 {.meta} 
-[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](svg/#south.svg/-0.02,-0.47,1.12/~south)
 [](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+idf-poly-outlines)
 את תחילת הדרך עושה ניבאל עם אביה, שמסיע אותה ואת ריתא מביתם בג'אבליא לפאתי העיר עזה.
 
 
 {.meta}
-<!-- [](embed/#vimeo.com%2F1133751988%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון האינסטגרם של ניבאל") -->
-[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](svg/#south.svg/-0.25,0.33,1.09/@vimeo-1133751988 "מתוך חשבון האינסטגרם של ניבאל")
 [](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+idf-poly-outlines)
 בעדותה תיארה ניבאל נסיעה רוויית אימה, במהלכה ראתה מבעד לחלון המכונית את ההפצצות הכבדות של הצבא הישראלי.
 
 
 {.meta} 
-[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+[](svg/#south.svg/-0.02,-0.47,1.12/~south)
 [](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+pois#3(pois,id=nuseirat),+idf-poly-outlines)
 מהעיר עזה ניבאל המשיכה לדרום הרצועה ברגל, כשהיא נושאת בחיקה את ריתא בת החצי שנה.
 
 
-{.meta} 
-[](svg/#oct7.svg/-0.02,0.57,1.12/~oct7)
+{.meta}
+[](svg/#south.svg/-0.02,-0.47,1.12/~south)
 [](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois(poi,id=home),+pois#2(pois,id=gaza-2403),+pois#3(pois,id=nuseirat),+pois#4(pois,id=rafah),+idf-poly-outlines)
 באזור א-נוסייראת הן התאחדו עם אחמד, אותו לא ראו מזה כחצי שנה.
 
 
-{.meta} 
+{.meta}
+[](svg/#south.svg/-0.02,-0.47,1.12/~south)
+[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+idf-poly-outlines,+pois(poi,id=rafah)) 
 משם, המשיכו שלושתם אל האוהל של אחמד ברפיח.
 
 
 {.testimony typewriter}
-[](img/#ahmed_detained.JPG "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](svg/#south.svg/-0.02,-0.47,1.12/~south)
+[](map/#31.26878,34.25305,15.23,0.0,39.0/+idf-poly-outlines,+pois(poi,id=rafah)) 
 
 התרגשתי מאוד לראות את אחמד. הוא חיבק ונישק את ריתא בלי הפסקה. 
 
 
 {.testimony typewriter}
+[](svg/#south.svg/1.63,0.65,2.87/~south)
+[](map/#31.26859,34.25352,16.36,0.0,39.0/+idf-poly-outlines,+pois(poi,id=rafah)) 
 אבל המפגש איתו היה גם מזעזע. הוא ירד המון במשקל, ונראה שהוא איבד את ניצוץ החיים שלו. 
 
 
 {.meta} 
+[](svg/#south.svg/0.73,0.65,2.87/+ahmed_detained "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+idf-poly-outlines,+pois(poi,id=rafah)) 
 ניבאל וריתא פגשו את אחמד לאחר שהוחזק באחד ממתקני הכליאה הישראליים ללא משפט במשך חודשים. 
 
 
 {.meta} 
+[](svg/#south.svg/-0.02,0.65,2.87/+ahmed_detained "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+idf-poly-outlines,+pois(poi,id=rafah)) 
 בצלם וארגוני זכויות אדם נוספים תיעדו כיצד מאז 7 באוקטובר 2023 ישראל הנהיגה כלפי כלואים פלסטינים מדיניות מערכתית של אלימות תכופה, קשה ושרירותית, הרעבה ומניעת טיפול רפואי, שכבר הובילה לעשרות מקרי מוות.
 
 מאז ועד היום ישראל שוללת מרובם זכויות יסוד, בהן הזכות להליך משפטי הוגן, ומחזיקה בהם במתקני כליאה המתנהלים כרשת של מחנות עינויים.
 
 
 {.meta} 
+[](svg/#south.svg/-0.82,2.16,7.52/+ahmed_detained "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+idf-poly-outlines,+pois(poi,id=rafah)) 
 חלק מתושבי עזה שנעצרו בתוך ישראל בימים שלאחר ה-7 באוקטובר מוחזקים עד היום במתקני הכליאה הישראליים.  
 
 
 {.meta thumb}
-[](img/#tent_rafah_full.JPG "עקורים במחנה אוהלים בח׳אן יונס, 11 בדצמבר 2023. (רויטרס / איברהים אבו מוסטפא)")
+[](img/#tent_rafah_full "עקורים במחנה אוהלים בח׳אן יונס, 11 בדצמבר 2023. (רויטרס / איברהים אבו מוסטפא)")
 
 על אף שמחת האיחוד עם אחמד, ניבאל התקשתה להסתגל לחיים באוהל ברפיח. 
 

@@ -447,50 +447,54 @@ async function loadSVG(url){
       const h = parseFloat(svgEl.getAttribute('height')) || svgEl.clientHeight || 150;
       svgEl.setAttribute('viewBox','0 0 '+w+' '+h);
     }
-  // We manipulate the SVG using CSS transforms on the svg element.
-  // Anchor everything to the canvas' top-left and avoid CSS auto-scaling.
-  try {
-    const canvas = document.getElementById('canvas');
-    if (canvas && canvas.style) canvas.style.position = canvas.style.position || 'relative';
-    if (svgContainer && svgContainer.style) {
-      svgContainer.style.position = 'absolute';
-      svgContainer.style.left = '0';
-      svgContainer.style.top = '0';
-      svgContainer.style.right = '0';
-      svgContainer.style.bottom = '0';
-      svgContainer.style.overflow = 'visible';
-    }
-  } catch(e){}
-  svgEl.style.position = 'absolute';
-  svgEl.style.left = '0';
-  svgEl.style.top = '0';
-  svgEl.style.maxWidth = 'none';
-  svgEl.style.maxHeight = 'none';
-  svgEl.style.width = 'auto';
-  svgEl.style.height = 'auto';
-  svgEl.style.display = 'block';
-  svgEl.style.transformOrigin = '0 0';
+    // Hide SVG initially
+    svgEl.style.opacity = '0';
+    svgEl.style.transition = 'opacity 0.6s cubic-bezier(0.22,1,0.36,1)';
+    // We manipulate the SVG using CSS transforms on the svg element.
+    // Anchor everything to the canvas' top-left and avoid CSS auto-scaling.
+    try {
+      const canvas = document.getElementById('canvas');
+      if (canvas && canvas.style) canvas.style.position = canvas.style.position || 'relative';
+      if (svgContainer && svgContainer.style) {
+        svgContainer.style.position = 'absolute';
+        svgContainer.style.left = '0';
+        svgContainer.style.top = '0';
+        svgContainer.style.right = '0';
+        svgContainer.style.bottom = '0';
+        svgContainer.style.overflow = 'visible';
+      }
+    } catch(e){}
+    svgEl.style.position = 'absolute';
+    svgEl.style.left = '0';
+    svgEl.style.top = '0';
+    svgEl.style.maxWidth = 'none';
+    svgEl.style.maxHeight = 'none';
+    svgEl.style.width = 'auto';
+    svgEl.style.height = 'auto';
+    svgEl.style.display = 'block';
+    svgEl.style.transformOrigin = '0 0';
     // compute bbox after a tick and derive initial fit values
     await new Promise(r => setTimeout(r,20));
     try { bbox = svgEl.getBBox(); } catch(e) { bbox = { x:0,y:0,width:svgEl.clientWidth||300,height:svgEl.clientHeight||150 }; }
     fitToContainer();
-  // leave scale as default; caller may override via params
-  // UI sliders removed — keep internal state but do not update controls
+    // leave scale as default; caller may override via params
+    // UI sliders removed — keep internal state but do not update controls
     render();
-  // Capture the default params (scale/tx/ty) after fitting so
-  // missing hash params can animate toward these defaults.
-  try { defaultSvgParams = { s: state.scale, x: state.tx, y: state.ty }; } catch(e){}
+    // Capture the default params (scale/tx/ty) after fitting so
+    // missing hash params can animate toward these defaults.
+    try { defaultSvgParams = { s: state.scale, x: state.tx, y: state.ty }; } catch(e){}
     setStatus('ready');
     window.viewerReady = true;
-  // build layer list UI so user can show/hide layers
-  try { buildLayerList(); } catch(e) { /* build layer list failed */ }
-  // apply any pending visibility instructions now that layers exist
-  try { if (pendingVis) { applyVisibilityFromVis(pendingVis, { animate: false }); pendingVis = null; } } catch(e) { /* apply pending vis failed */ }
+    // build layer list UI so user can show/hide layers
+    try { buildLayerList(); } catch(e) { /* build layer list failed */ }
+    // apply any pending visibility instructions now that layers exist
+    try { if (pendingVis) { applyVisibilityFromVis(pendingVis, { animate: false }); pendingVis = null; } } catch(e) { /* apply pending vis failed */ }
     try { window.layerKeyMap = layerKeyMap; } catch(e){}
-  // auto-attach video overlays for layers with vimeo-* or embed-* IDs
-  try { autoAttachVideoOverlays(); } catch(e) { /* auto-attach videos failed */ }
+    // auto-attach video overlays for layers with vimeo-* or embed-* IDs
+    try { autoAttachVideoOverlays(); } catch(e) { /* auto-attach videos failed */ }
+    // Fade in SVG after a tick (ensures positioned)
+    setTimeout(() => { if (svgEl) svgEl.style.opacity = '1'; }, 60);
   } catch (e) {
-    console.error(e);
     setStatus('error');
     window.viewerReady = false;
   }
