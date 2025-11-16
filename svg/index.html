@@ -849,10 +849,15 @@ function setupLayerListEvents() {
     }
     
     // Apply immediately and write compact layer tokens
-    try { applyVisibilityFromVis(vis, { animate: true }); } catch(_) {}
+    console.log('[video button] before apply, vis:', vis);
+    try { applyVisibilityFromVis(vis, { animate: true, skipOverlayUpdate: true }); } catch(_) {}
+    // Attach/remove video overlays based on updated vis
+    console.log('[video button] calling autoAttachVideoOverlays with vis:', vis);
+    try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(vis); } catch(_) {}
     try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(_) {}
     suppressHashFor(120);
     const newHash = updateHashLayers(vis);
+    console.log('[video button] setting hash to:', newHash);
     if (newHash) location.hash = '#' + newHash;
   });
 }
@@ -1170,6 +1175,7 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
 // apply vis object { show:[], hide:[] } to the SVG layers (matching by id/data-name/prefix)
 function applyVisibilityFromVis(vis, opts){
   const animateGlobally = opts && opts.animate === true;
+  const skipOverlayUpdate = opts && opts.skipOverlayUpdate === true;
   if (!svgEl) return;
   
   // First, remove ALL video overlays to ensure clean state based on hash
@@ -1410,9 +1416,11 @@ function applyVisibilityFromVis(vis, opts){
     // Remove overlay if hiding, ensure attached if showing (autoAttachVideoOverlays will re-attach)
     if (!visible && window.overlayManager && typeof window.overlayManager.remove === 'function') window.overlayManager.remove(key);
   }
-  // After all visibility changes, re-attach overlays for visible layers
-  if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
-  if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
+  // After all visibility changes, re-attach overlays for visible layers (unless caller will do it)
+  if (!skipOverlayUpdate) {
+    if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
+    if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
+  }
 
   // Skip parentsWithExceptions and expandedHideSet passes in show-only mode
   if (shows.length === 0) {
@@ -1812,8 +1820,8 @@ svgContainer.addEventListener('mousedown', (e)=>{
   dragStartState = { tx: state.tx, ty: state.ty, refSize: ref.size };
   svgContainer.style.cursor = 'grabbing';
   try { setStatus('drag:start'); } catch(e){}
-});
-window.addEventListener('mouseup', ()=>{ if (isDragging){ isDragging=false; svgContainer.style.cursor=''; commitHash(); }});
+}, { passive: true });
+window.addEventListener('mouseup', ()=>{ if (isDragging){ isDragging=false; svgContainer.style.cursor=''; commitHash(); }}, { passive: true });
 window.addEventListener('mousemove', (e)=>{
   if (!isDragging || !dragStartState) return;
   const rect = svgContainer.getBoundingClientRect();
@@ -1830,7 +1838,7 @@ window.addEventListener('mousemove', (e)=>{
   
   render();
   try { setStatus(`drag tx:${Math.round(state.tx*100)/100} ty:${Math.round(state.ty*100)/100}`); } catch(e){}
-});
+}, { passive: true });
 
 // wheel zoom centered at mouse
 // Wheel-based zoom using reference frame coordinates
@@ -2029,9 +2037,10 @@ setTimeout(() => { startViewer(); }, 0);
 
 // respond to external hash changes
 window.addEventListener('hashchange', ()=>{
+  console.log('[hashchange] fired, suppressed?', (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil), 'hash:', location.hash);
   // If this hashchange was caused by our own UI write, skip re-applying
   // visibility/state to avoid cancelling user-initiated animations.
-  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { /* hashchange: suppressed by timestamp */ return; }
+  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { console.log('[hashchange] suppressed'); return; }
   /* hashchange: debug log removed */
   const parsed = parseHash();
   if (!parsed) return;
@@ -2051,13 +2060,14 @@ window.addEventListener('hashchange', ()=>{
       if (!svgEl) { pendingVis = parsed.vis; }
       else {
         try {
-          applyVisibilityFromVis(parsed.vis, { animate: true });
+          applyVisibilityFromVis(parsed.vis, { animate: true, skipOverlayUpdate: true });
           // After visibility changes, update overlays to ensure fade in/out
           if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
         } catch(e){}
       }
     }
     // Always re-attach overlays in case layers changed
+    console.log('[hashchange] calling autoAttachVideoOverlays');
     if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
   }
 });
@@ -2069,9 +2079,11 @@ function autoAttachVideoOverlays(overrideVis){
   let videos = [];
   if (overrideVis && Array.isArray(overrideVis.video)) {
     videos = overrideVis.video;
+    console.log('[autoAttachVideoOverlays] using override, videos:', videos);
   } else {
     const parsed = parseHash();
     videos = parsed.vis && Array.isArray(parsed.vis.video) ? parsed.vis.video : [];
+    console.log('[autoAttachVideoOverlays] parsing hash, videos:', videos, 'hash:', location.hash);
   }
   
   // Resolve short tokens to full keys
@@ -2087,16 +2099,27 @@ function autoAttachVideoOverlays(overrideVis){
   
   const resolvedVideos = videos.map(resolveToken);
   
-  // For each layer in the map, attach or remove video overlay
+  console.log('[autoAttachVideoOverlays] resolvedVideos:', resolvedVideos, 'existing overlays:', window.overlayManager.items ? Array.from(window.overlayManager.items.keys()) : []);
+  
+  // First pass: remove all overlays that are no longer in the video list
+  if (window.overlayManager.items) {
+    for (const [key] of window.overlayManager.items.entries()) {
+      const shortKey = key.split('/').pop();
+      const isVideo = resolvedVideos.includes(key) || resolvedVideos.includes(shortKey);
+      if (!isVideo) {
+        console.log('[autoAttachVideoOverlays] removing overlay:', key);
+        window.overlayManager.remove(key);
+      }
+    }
+  }
+  
+  // Second pass: for each layer in the map, attach video overlays if needed
   for (const [key, el] of layerKeyMap.entries()) {
     const shortKey = key.split('/').pop();
     const isVideo = resolvedVideos.includes(key) || resolvedVideos.includes(shortKey);
     
-    // Remove overlay if not a video layer
+    // Skip if not a video layer
     if (!isVideo) {
-      if (window.overlayManager && typeof window.overlayManager.remove === 'function') {
-        window.overlayManager.remove(key);
-      }
       continue;
     }
     
@@ -2491,6 +2514,17 @@ document.addEventListener('keydown', function(e) {
 
   function attachToLayer(key, element, iframeSrc){
     try{
+      // Check if overlay already exists for this key
+      const existing = items.get(String(key));
+      if (existing && existing.el) {
+        console.log('[attachToLayer] overlay already exists for', key, 'skipping duplicate creation');
+        // Update iframe src if needed
+        if (existing.iframe && iframeSrc && existing.iframe.src !== iframeSrc) {
+          existing.iframe.src = iframeSrc;
+        }
+        return existing.el;
+      }
+      
       const target = getTargetForKey(key);
       if (!target) { console.warn('[overlay] target not found for key', key); return null; }
       const el = (typeof element === 'function') ? element() : element;
