@@ -146,6 +146,13 @@
     transform: none !important;
     opacity: 1 !important;
   }
+  
+  /* Hide SVG elements by adding the .hide class */
+.hide {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease;
+}
 </style>
 <style>
   /* Force an exception child to remain visible without transitions to avoid flicker */
@@ -1188,6 +1195,17 @@ function animateLayerVisibility(el, show, duration = FADE_DURATION){
 function applyVisibilityFromVis(vis, opts){
   const animateGlobally = opts && opts.animate === true;
   if (!svgEl) return;
+  
+  // First, remove ALL video overlays to ensure clean state based on hash
+  if (window.overlayManager && window.overlayManager.items) {
+    const allKeys = Array.from(layerKeyMap.keys());
+    allKeys.forEach(key => {
+      if (window.overlayManager && typeof window.overlayManager.remove === 'function') {
+        window.overlayManager.remove(key);
+      }
+    });
+  }
+  
   // Resolve short vis tokens (like 'princess') against layerKeyMap by last-segment
   const rawHides = (vis && Array.isArray(vis.hide)) ? vis.hide.slice() : [];
   const rawShows = (vis && Array.isArray(vis.show)) ? vis.show.slice() : [];
@@ -1198,49 +1216,93 @@ function applyVisibilityFromVis(vis, opts){
     // find keys whose last segment matches tok
     const matches = [];
     for (const k of layerKeyMap.keys()){
-      if (String(k).split('/').pop() === tok) matches.push(k);
+      if (String(k).split('/').pop() === String(tok)) matches.push(k);
     }
     return matches.length === 1 ? matches[0] : tok;
   };
+  
+  // Resolve all tokens to full keys
   const hides = rawHides.map(resolveToken);
   const shows = rawShows.map(resolveToken);
   const videos = rawVideos.map(resolveToken);
-  showExceptions = new Set(shows);
-  // New logic:
-  // If / (no tokens), show all layers as images
-  // If +layer(s), show only those layers
-  // If ~layer(s), hide only those layers
-  // If @vimeo, show all layers, play video for that layer
-  // If +@vimeo, show/play only that layer
-  const hasTokens = shows.length || hides.length || videos.length;
-  let onlyShowVideo = false;
-  if (videos.length && shows.length === 0 && hides.length === 0) {
-    onlyShowVideo = false;
+  
+  // If a layer has both + and @ (like +@vimeo or separate +vimeo,@vimeo), ensure it's in shows
+  videos.forEach(v => {
+    if (!shows.includes(v)) {
+      // Check if this video layer was explicitly shown with +
+      const shortV = String(v).split('/').pop();
+      const wasShown = rawShows.some(s => s === v || s === shortV);
+      if (wasShown && !shows.includes(v)) {
+        shows.push(v);
+      }
+    }
+  });
+  
+  // Ensure all ancestors of shown layers are also visible
+  function addAncestors(key, arr) {
+    const parts = String(key).split('/');
+    for (let i = 1; i < parts.length; i++) {
+      const ancestor = parts.slice(0, i).join('/');
+      if (!arr.includes(ancestor)) arr.push(ancestor);
+    }
   }
-  let onlyShow = null;
-  if (shows.length && shows.length === videos.length && shows.length === 1) {
-    onlyShow = shows[0];
+  
+  // Add ancestors for all shown layers
+  const originalShows = shows.slice();
+  originalShows.forEach(k => addAncestors(k, shows));
+  
+  // When @ token is used alone (without +), ensure video layers are visible
+  // by NOT hiding them, but don't add them to shows (which would hide siblings)
+  const videoLayersToShow = [];
+  if (videos.length > 0 && shows.length === 0) {
+    // @ only: video layers should be visible
+    videos.forEach(v => videoLayersToShow.push(v));
   }
+  
+  // Store original shows for exception tracking
+  showExceptions = new Set(originalShows);
+  
+  // Visibility logic:
+  // - If +tokens exist: show ONLY those layers (and ancestors)
+  // - If ~tokens exist: show ALL layers EXCEPT those
+  // - If @tokens exist without +: show ALL layers (video overlays added separately)
+  // - If no tokens: show ALL layers
+  
   for (const [key, el] of layerKeyMap.entries()) {
     let visible = true;
-    if (shows.length) {
+    
+    // Never hide group layers (top-level parent layers) unless explicitly hidden
+    const isGroupLayer = key && !key.includes('/') && getDirectChildrenKeys(key).length > 0;
+    
+    if (shows.length > 0) {
+      // + tokens: show ONLY listed layers and their ancestors
       visible = shows.includes(key);
-    } else if (hides.length) {
+      // Keep group layers visible unless explicitly hidden
+      if (isGroupLayer && !hides.includes(key)) {
+        visible = true;
+      }
+    } else if (hides.length > 0) {
+      // ~ tokens: hide ONLY listed layers (check both full key and descendants)
       visible = !hides.includes(key);
-    } else if (videos.length && !onlyShow) {
+      // Also hide if any ancestor is in hides
+      for (const h of hides) {
+        if (key.startsWith(h + '/')) {
+          visible = false;
+          break;
+        }
+      }
+    } else if (videos.length > 0) {
+      // @ tokens only: show ALL layers (video overlays handled separately)
       visible = true;
-    } else if (onlyShow) {
-      visible = key === onlyShow;
     } else {
+      // No tokens: show all
       visible = true;
     }
+    
     toggleLayerVisibility(el, visible, { animate: animateGlobally ? true : false });
     try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = Boolean(visible); } catch(e){}
     if (!visible && window.overlayManager && typeof window.overlayManager.remove === 'function') window.overlayManager.remove(key);
   }
-  if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
-  if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
-  refreshLayerListCheckboxes();
   // Ancestor-preserve behavior for +/@ tokens: for each shown key, walk up its
   // ancestor chain and hide all direct sibling branches at each ancestor level
   // (unless those siblings are explicitly shown or marked as exceptions).
@@ -1392,8 +1454,10 @@ function applyVisibilityFromVis(vis, opts){
   }
   // finally refresh checkboxes to set disabled/indeterminate states
   refreshLayerListCheckboxes();
-  // refresh checkboxes
-  refreshLayerListCheckboxes();
+  
+  // Always re-attach video overlays based on current hash after all visibility changes
+  if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
+  if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
 }
 
 function refreshLayerListCheckboxes(){
@@ -1401,8 +1465,20 @@ function refreshLayerListCheckboxes(){
   const inputs = Array.from(layerList.querySelectorAll('input[type=checkbox]'));
   const parsed = parseHash();
   const vis = parsed.vis || {};
-  const showSet = new Set(vis.show || []);
-  const hideSet = new Set(vis.hide || []);
+  
+  // Resolve short keys to full keys for comparison
+  const resolveToken = (tok) => {
+    if (!tok) return tok;
+    if (String(tok).includes('/')) return tok;
+    const matches = [];
+    for (const k of layerKeyMap.keys()){
+      if (String(k).split('/').pop() === String(tok)) matches.push(k);
+    }
+    return matches.length === 1 ? matches[0] : tok;
+  };
+  
+  const showSet = new Set((vis.show || []).map(resolveToken));
+  const hideSet = new Set((vis.hide || []).map(resolveToken));
   for (const cb of inputs) {
     const key = cb.dataset.layerKey;
     if (!key) continue;
@@ -1419,7 +1495,7 @@ function refreshLayerListCheckboxes(){
   }
   // Update video buttons independently for @
   const videoBtns = Array.from(layerList.querySelectorAll('button.video-btn'));
-  const videoSet = new Set(vis.video || []);
+  const videoSet = new Set((vis.video || []).map(resolveToken));
   for (const btn of videoBtns) {
     const key = btn.dataset.layerKey;
     if (!key) continue;
@@ -1549,6 +1625,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           // fallback
           const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); setStatus('link copied');
         }
+
       } catch(e){
         try { setStatus('copy failed'); } catch(e){}
       }
@@ -2023,45 +2100,50 @@ window.addEventListener('hashchange', ()=>{
 function autoAttachVideoOverlays(){
   if (!window.overlayManager || !layerKeyMap) return;
   
-  // Get list of layers with @ tokens (video mode)
   const parsed = parseHash();
-  const shows = parsed.vis && parsed.vis.show ? parsed.vis.show : [];
-  const hides = parsed.vis && parsed.vis.hide ? parsed.vis.hide : [];
-  const videos = parsed.vis && parsed.vis.video ? parsed.vis.video : [];
-  const hasTokens = shows.length || hides.length || videos.length;
-  let onlyShow = null;
-  if (shows.length && shows.length === videos.length && shows.length === 1) {
-    onlyShow = shows[0];
-  }
+  const videos = parsed.vis && Array.isArray(parsed.vis.video) ? parsed.vis.video : [];
+  
+  // Resolve short tokens to full keys
+  const resolveToken = (tok) => {
+    if (!tok) return tok;
+    if (String(tok).includes('/')) return tok;
+    const matches = [];
+    for (const k of layerKeyMap.keys()){
+      if (String(k).split('/').pop() === tok) matches.push(k);
+    }
+    return matches.length === 1 ? matches[0] : tok;
+  };
+  
+  const resolvedVideos = videos.map(resolveToken);
+  
+  // For each layer in the map, attach or remove video overlay
   for (const [key, el] of layerKeyMap.entries()) {
-    let visible = true;
-    if (shows.length) {
-      visible = shows.includes(key);
-    } else if (hides.length) {
-      visible = !hides.includes(key);
-    } else if (videos.length && !onlyShow) {
-      visible = true;
-    } else if (onlyShow) {
-      visible = key === onlyShow;
-    } else {
-      visible = true;
-    }
-    el.style.display = visible ? '' : 'none';
-    // Remove overlay/iframe if not explicitly in hash (no @ token), regardless of visibility
-    const isVideo = videos.includes(key) || videos.includes(key.split('/').pop());
-    if (!isVideo && window.overlayManager && typeof window.overlayManager.remove === 'function') {
-      window.overlayManager.remove(key);
+    const shortKey = key.split('/').pop();
+    const isVideo = resolvedVideos.includes(key) || resolvedVideos.includes(shortKey);
+    
+    // Remove overlay if not a video layer
+    if (!isVideo) {
+      if (window.overlayManager && typeof window.overlayManager.remove === 'function') {
+        window.overlayManager.remove(key);
+      }
       continue;
     }
-    // Only attach overlays for displayed layers with @ token
+    
+    // Check if layer is visible
     const cs = window.getComputedStyle(el);
-    const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden';
-    if (!isVideo || !isDisplayed) {
+    const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity || '1') > 0.01;
+    
+    if (!isDisplayed) {
+      // Remove overlay if layer is hidden
+      if (window.overlayManager && typeof window.overlayManager.remove === 'function') {
+        window.overlayManager.remove(key);
+      }
       continue;
     }
-    // Match patterns: vimeo-1234567, embed-vimeo.com%2F1234567, etc.
+    
+    // Determine iframe URL for video layers
     let url = null;
-    const id = el.id || String(key).split('/').pop();
+    const id = el.id || shortKey;
     const vimeoMatch = id.match(/^vimeo-(\d+)$/i);
     if (vimeoMatch){
       const videoId = vimeoMatch[1];
@@ -2078,6 +2160,8 @@ function autoAttachVideoOverlays(){
         url = `../vim/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
       }
     }
+    
+    // Attach iframe if we have a URL and layer is visible
     if (url && isVideo && isDisplayed){
       const item = window.overlayManager.items && window.overlayManager.items.get(key);
       let iframe = null;
@@ -2090,33 +2174,20 @@ function autoAttachVideoOverlays(){
       }
       if (needsAttach) {
         window.overlayManager.attachIframe(key, url);
-        const itemAfter = window.overlayManager.items && window.overlayManager.items.get(key);
-        if (itemAfter && itemAfter.el && itemAfter.el.querySelector) {
-          const iframeAfter = itemAfter.el.querySelector('iframe');
-          if (iframeAfter && iframeAfter.src !== url) {
-            iframeAfter.src = url;
-          }
-        }
       } else if (iframe && iframe.src !== url) {
         iframe.src = url;
       }
-      try {
-        const item2 = window.overlayManager.items.get(key);
-        if (item2 && item2.el && item2.el.tagName === 'FOREIGNOBJECT') {
-          const iframe2 = item2.el.querySelector('iframe');
-          if (iframe2 && iframe2.contentWindow) {
-            iframe2.contentWindow.postMessage({ type: 'start-video' }, '*');
-          }
-        }
-      } catch(e) {
-        // Failed to start video for this layer
-      }
     }
+  }
+  
+  // Update overlays after attaching/removing
+  if (window.overlayManager && typeof window.overlayManager.update === 'function') {
+    window.overlayManager.update();
   }
 }
 
-  // Update reference frame and SVG transform on window resize
-  window.addEventListener('resize', () => {
+// Update reference frame and SVG transform on window resize
+window.addEventListener('resize', () => {
     try { 
       updateReferenceFrame();
       render(); // Re-render SVG to match new reference frame scale
@@ -2580,7 +2651,7 @@ document.addEventListener('keydown', function(e) {
       const iframe = document.createElement('iframe');
       iframe.src = '';
       iframe.setAttribute('frameborder','0');
-      iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+      iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
       iframe.setAttribute('width', width);
       iframe.setAttribute('height', height);
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
