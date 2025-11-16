@@ -397,11 +397,6 @@ iframe {
     transition: opacity 0.1s ease-in;
 }
 
-/* On mobile video mode, let the page capture touch scrolling, not the overlay iframe */
-body.fs-video-mobile #foreground-frame {
-    pointer-events: none;
-}
-
 /* Hide timestamp labels in the opening section */
 #chapter-nav.ch01 .chapter-item.timestamp .chapter-label{
     opacity: 0;
