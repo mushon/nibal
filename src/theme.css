@@ -511,7 +511,7 @@ iframe {
         padding: 5vw 5vw;
         margin:  0 0;
         z-index: 10;
-        overflow: auto; /* allow scrolling on main if content overflows */
+        overflow: hidden; /* hide scrolling on main if content overflows */
         background: linear-gradient(0deg, rgba(51, 51, 51, 0) 30%, rgba(51, 51, 51, 0.00) 55%);
         /* -webkit-backdrop-filter: blur(2px);
         backdrop-filter: blur(2px); */
