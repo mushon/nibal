@@ -153,6 +153,20 @@
     pointer-events: none !important;
     transition: opacity 0.3s ease;
 }
+
+  /* Video button styles */
+  .video-btn {
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: color 0.2s ease;
+  }
+  
+  .video-btn:hover {
+    color: #4caf50 !important;
+  }
+  
+  .video-btn.active {
+    color: #4caf50 !important;
+  }
 </style>
 <style>
   /* Force an exception child to remain visible without transitions to avoid flicker */
@@ -651,13 +665,13 @@ function buildLayerList(){
     onlyBtn.className = 'only-btn';
     onlyBtn.title = 'Show only this layer';
     onlyBtn.textContent = '⊙';
-    onlyBtn.style.padding = '2px 6px';
+    onlyBtn.style.padding = '4px 8px';
     onlyBtn.style.background = 'transparent';
-    onlyBtn.style.border = '1px solid currentColor';
+    onlyBtn.style.border = 'none';
     onlyBtn.style.borderRadius = '3px';
     onlyBtn.style.color = 'inherit';
     onlyBtn.style.cursor = 'pointer';
-    onlyBtn.style.fontSize = '12px';
+    onlyBtn.style.fontSize = '16px';
     controls.appendChild(onlyBtn);
     
     // Add video button for vimeo layers
@@ -667,15 +681,15 @@ function buildLayerList(){
       videoBtn.type = 'button';
       videoBtn.className = 'video-btn';
       videoBtn.title = 'Toggle video';
-      videoBtn.textContent = '⏹️';
+      videoBtn.innerHTML = '&#9656;';
       videoBtn.dataset.layerKey = key;
-      videoBtn.style.padding = '2px 6px';
+      videoBtn.style.padding = '4px 8px';
       videoBtn.style.background = 'transparent';
-      videoBtn.style.border = '1px solid currentColor';
+      videoBtn.style.border = 'none';
       videoBtn.style.borderRadius = '3px';
       videoBtn.style.color = 'inherit';
       videoBtn.style.cursor = 'pointer';
-      videoBtn.style.fontSize = '12px';
+      videoBtn.style.fontSize = '16px';
       controls.appendChild(videoBtn);
     }
     
@@ -1232,16 +1246,9 @@ function applyVisibilityFromVis(vis, opts){
   for (const [key, el] of layerKeyMap.entries()) {
     let visible = true;
     
-    // Never hide group layers (top-level parent layers) unless explicitly hidden
-    const isGroupLayer = key && !key.includes('/') && getDirectChildrenKeys(key).length > 0;
-    
     if (shows.length > 0) {
       // + tokens: show ONLY listed layers and their ancestors
       visible = shows.includes(key);
-      // Keep group layers visible unless explicitly hidden
-      if (isGroupLayer && !hides.includes(key)) {
-        visible = true;
-      }
     } else if (hides.length > 0) {
       // ~ tokens: hide ONLY listed layers (check both full key and descendants)
       visible = !hides.includes(key);
@@ -1274,7 +1281,7 @@ function applyVisibilityFromVis(vis, opts){
         if (k === baseKey || k.startsWith(baseKey + '/')) set.add(k);
       }
     }
-    for (const s of allShows){
+    for (const s of shows){
       if (!s) continue;
       const parts = String(s).split('/');
       // top-level: hide other top-level keys
@@ -1282,7 +1289,7 @@ function applyVisibilityFromVis(vis, opts){
         for (const k of layerKeyMap.keys()){
           if (String(k).split('/').length !== 1) continue;
           if (k === s) continue;
-          if (allShows.includes(k)) continue; // don't hide other requested shows
+          if (shows.includes(k)) continue; // don't hide other requested shows
           if (showExceptions.has(k)) continue;
           addDescendantsToSet(k, ancestorHideAdditions);
         }
@@ -1295,7 +1302,7 @@ function applyVisibilityFromVis(vis, opts){
           const children = getDirectChildrenKeys(ancestorKey);
           for (const childKey of children) {
             if (childKey === childToKeep) continue;
-            if (allShows.includes(childKey)) continue;
+            if (shows.includes(childKey)) continue;
             if (showExceptions.has(childKey)) continue;
             addDescendantsToSet(childKey, ancestorHideAdditions);
           }
@@ -1303,7 +1310,7 @@ function applyVisibilityFromVis(vis, opts){
       }
     }
     // merge additions into hides (avoid duplicates)
-    for (const k of ancestorHideAdditions) if (!hides.includes(k) && !allShows.includes(k)) hides.push(k);
+    for (const k of ancestorHideAdditions) if (!hides.includes(k) && !shows.includes(k)) hides.push(k);
   } catch(e){ /* ancestor-preserve merge failed */ }
   // Build sets for quick lookup
   const hideSet = new Set();
@@ -1325,7 +1332,7 @@ function applyVisibilityFromVis(vis, opts){
     }
     if (layerKeyMap.has(h)) expandedHideSet.add(h);
   }
-  for (const s of allShows) {
+  for (const s of shows) {
     for (const k of layerKeyMap.keys()){
       if (k === s || k.startsWith(s + '/')) showSet.add(k);
     }
@@ -1335,7 +1342,7 @@ function applyVisibilityFromVis(vis, opts){
   // detect parents that are hidden but have a shown descendant
   const parentsWithExceptions = new Set();
   for (const h of hides){
-    for (const s of allShows){
+    for (const s of shows){
       if (s === h) continue;
       if (String(s).startsWith(String(h) + '/')) parentsWithExceptions.add(h);
     }
@@ -1343,11 +1350,7 @@ function applyVisibilityFromVis(vis, opts){
 
   // Apply initial visibility: default visible unless hidden, but show parents that have exceptions
   for (const [key, el] of layerKeyMap.entries()){
-    // If this key is a parent (has direct children), we normally keep the parent
-    // visible to avoid blinking. However, if the parent (or its ancestor) is in
-    // the expandedHideSet (i.e. ~parent requested), hide the parent as well
-    // (unless it's explicitly shown). We apply parent hides immediately to
-    // avoid conflicts with animation guards.
+    // If this key is a parent (has direct children), check if it or any of its children should be visible
     const directChildren = getDirectChildrenKeys(key);
     if (directChildren.length > 0) {
       const parentIsHidden = expandedHideSet.has(key) && !(showSet.has(key) || showExceptions.has(key));
@@ -1363,10 +1366,35 @@ function applyVisibilityFromVis(vis, opts){
         if (window.overlayManager && typeof window.overlayManager.remove === 'function') window.overlayManager.remove(key);
         continue;
       }
-      // otherwise keep parent visible; children control visibility
+      // In show-only mode (+tokens), only keep parent visible if it or a child is in the show set
+      if (shows.length > 0) {
+        const parentOrChildInShows = showSet.has(key) || directChildren.some(childKey => showSet.has(childKey));
+        if (parentOrChildInShows) {
+          toggleLayerVisibility(el, true, { animate: false });
+          try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = true; } catch(e){}
+        } else {
+          // Hide immediately (no animation) to prevent fade-in
+          try {
+            el.style.transition = '';
+            el.style.opacity = '0';
+            el.style.pointerEvents = 'none';
+          } catch(e){}
+          try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = false; } catch(e){}
+          // Remove overlay if present
+          if (window.overlayManager && typeof window.overlayManager.remove === 'function') window.overlayManager.remove(key);
+        }
+        continue;
+      }
+      // In hide mode or default mode, keep parent visible; children control their own visibility
       toggleLayerVisibility(el, true, { animate: false });
       try { const cb = document.querySelector(`input[data-layer-key="${key}"]`); if (cb) cb.checked = true; } catch(e){}
       // Ensure overlay is attached if needed (autoAttachVideoOverlays will handle this)
+      continue;
+    }
+
+    // Non-parent layers: handle based on mode
+    // In show-only mode, skip this - already handled in first loop
+    if (shows.length > 0) {
       continue;
     }
 
@@ -1385,47 +1413,55 @@ function applyVisibilityFromVis(vis, opts){
   if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
   if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
 
-  // For each parent with exceptions, hide its direct children except the ones explicitly shown
-  parentsWithExceptions.forEach(parentKey => {
-    const children = getDirectChildrenKeys(parentKey);
-    children.forEach(childKey => {
-      const childEl = layerKeyMap.get(childKey);
-      if (!childEl) return;
-      const vis = (showSet.has(childKey) || showExceptions.has(childKey));
-      toggleLayerVisibility(childEl, vis, { animate: animateGlobally ? true : false });
-      try { const cb = document.querySelector(`input[data-layer-key="${childKey}"]`); if (cb) cb.checked = Boolean(vis); } catch(e){}
+  // Skip parentsWithExceptions and expandedHideSet passes in show-only mode
+  if (shows.length === 0) {
+    // For each parent with exceptions, hide its direct children except the ones explicitly shown
+    parentsWithExceptions.forEach(parentKey => {
+      const children = getDirectChildrenKeys(parentKey);
+      children.forEach(childKey => {
+        const childEl = layerKeyMap.get(childKey);
+        if (!childEl) return;
+        const vis = (showSet.has(childKey) || showExceptions.has(childKey));
+        toggleLayerVisibility(childEl, vis, { animate: animateGlobally ? true : false });
+        try { const cb = document.querySelector(`input[data-layer-key="${childKey}"]`); if (cb) cb.checked = Boolean(vis); } catch(e){}
+      });
     });
-  });
-  // Additionally, for any parent that is explicitly hidden (~parent), hide its direct
-  // children as well (unless those children are explicitly shown). This ensures
-  // that ~parent hides the entire subtree even when parents remain visible to
-  // avoid layout blinking.
-  for (const parentKey of Array.from(layerKeyMap.keys())){
-    const children = getDirectChildrenKeys(parentKey);
-    if (!children.length) continue;
-    if (!expandedHideSet.has(parentKey)) continue;
-    children.forEach(childKey => {
-      const childEl = layerKeyMap.get(childKey);
-      if (!childEl) return;
-      // If the child is explicitly shown, respect that
-      const shouldShow = showSet.has(childKey) || showExceptions.has(childKey);
-      toggleLayerVisibility(childEl, shouldShow, { animate: animateGlobally ? true : false });
-      try { const cb = document.querySelector(`input[data-layer-key="${childKey}"]`); if (cb) cb.checked = Boolean(shouldShow); } catch(e){}
-    });
+    // Additionally, for any parent that is explicitly hidden (~parent), hide its direct
+    // children as well (unless those children are explicitly shown). This ensures
+    // that ~parent hides the entire subtree even when parents remain visible to
+    // avoid layout blinking.
+    for (const parentKey of Array.from(layerKeyMap.keys())){
+      const children = getDirectChildrenKeys(parentKey);
+      if (!children.length) continue;
+      if (!expandedHideSet.has(parentKey)) continue;
+      children.forEach(childKey => {
+        const childEl = layerKeyMap.get(childKey);
+        if (!childEl) return;
+        // If the child is explicitly shown, respect that
+        const shouldShow = showSet.has(childKey) || showExceptions.has(childKey);
+        toggleLayerVisibility(childEl, shouldShow, { animate: animateGlobally ? true : false });
+        try { const cb = document.querySelector(`input[data-layer-key="${childKey}"]`); if (cb) cb.checked = Boolean(shouldShow); } catch(e){}
+      });
+    }
   }
   // finally refresh checkboxes to set disabled/indeterminate states
-  refreshLayerListCheckboxes();
+  refreshLayerListCheckboxes(vis);
   
   // Always re-attach video overlays based on current hash after all visibility changes
-  if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
+  if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(vis);
   if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update();
 }
 
-function refreshLayerListCheckboxes(){
+function refreshLayerListCheckboxes(overrideVis){
   const layerList = document.getElementById('layerList'); if (!layerList) return;
   const inputs = Array.from(layerList.querySelectorAll('input[type=checkbox]'));
-  const parsed = parseHash();
-  const vis = parsed.vis || {};
+  let vis = {};
+  if (overrideVis) {
+    vis = overrideVis;
+  } else {
+    const parsed = parseHash();
+    vis = parsed.vis || {};
+  }
   
   // Resolve short keys to full keys for comparison
   const resolveToken = (tok) => {
@@ -1463,10 +1499,12 @@ function refreshLayerListCheckboxes(){
     const shortKey = key.split('/').pop();
     const hasVideoToken = videoSet.has(key) || videoSet.has(shortKey);
     if (hasVideoToken) {
-      btn.textContent = '▶️';
+      btn.innerHTML = '&#9656;';
+      btn.classList.add('active');
       btn.title = 'Video playing (click to hide)';
     } else {
-      btn.textContent = '⏹️';
+      btn.innerHTML = '&#9656;';
+      btn.classList.remove('active');
       btn.title = 'Show image only (click to play video)';
     }
   }
@@ -2024,11 +2062,16 @@ window.addEventListener('hashchange', ()=>{
 });
 
 // Auto-attach video overlays based on layer IDs
-function autoAttachVideoOverlays(){
+function autoAttachVideoOverlays(overrideVis){
   if (!window.overlayManager || !layerKeyMap) return;
   
-  const parsed = parseHash();
-  const videos = parsed.vis && Array.isArray(parsed.vis.video) ? parsed.vis.video : [];
+  let videos = [];
+  if (overrideVis && Array.isArray(overrideVis.video)) {
+    videos = overrideVis.video;
+  } else {
+    const parsed = parseHash();
+    videos = parsed.vis && Array.isArray(parsed.vis.video) ? parsed.vis.video : [];
+  }
   
   // Resolve short tokens to full keys
   const resolveToken = (tok) => {
@@ -2056,9 +2099,9 @@ function autoAttachVideoOverlays(){
       continue;
     }
     
-    // Check if layer is visible
+    // Check if layer is visible enough to host overlay. Ignore opacity to allow fade-in.
     const cs = window.getComputedStyle(el);
-    const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity || '1') > 0.01;
+    const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden';
     
     if (!isDisplayed) {
       // Remove overlay if layer is hidden
