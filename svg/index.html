@@ -849,15 +849,12 @@ function setupLayerListEvents() {
     }
     
     // Apply immediately and write compact layer tokens
-    console.log('[video button] before apply, vis:', vis);
     try { applyVisibilityFromVis(vis, { animate: true, skipOverlayUpdate: true }); } catch(_) {}
     // Attach/remove video overlays based on updated vis
-    console.log('[video button] calling autoAttachVideoOverlays with vis:', vis);
     try { if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays(vis); } catch(_) {}
     try { if (window.overlayManager && typeof window.overlayManager.update === 'function') window.overlayManager.update(); } catch(_) {}
     suppressHashFor(120);
     const newHash = updateHashLayers(vis);
-    console.log('[video button] setting hash to:', newHash);
     if (newHash) location.hash = '#' + newHash;
   });
 }
@@ -2037,10 +2034,9 @@ setTimeout(() => { startViewer(); }, 0);
 
 // respond to external hash changes
 window.addEventListener('hashchange', ()=>{
-  console.log('[hashchange] fired, suppressed?', (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil), 'hash:', location.hash);
   // If this hashchange was caused by our own UI write, skip re-applying
   // visibility/state to avoid cancelling user-initiated animations.
-  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { console.log('[hashchange] suppressed'); return; }
+  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { return; }
   /* hashchange: debug log removed */
   const parsed = parseHash();
   if (!parsed) return;
@@ -2067,7 +2063,6 @@ window.addEventListener('hashchange', ()=>{
       }
     }
     // Always re-attach overlays in case layers changed
-    console.log('[hashchange] calling autoAttachVideoOverlays');
     if (typeof autoAttachVideoOverlays === 'function') autoAttachVideoOverlays();
   }
 });
@@ -2079,11 +2074,9 @@ function autoAttachVideoOverlays(overrideVis){
   let videos = [];
   if (overrideVis && Array.isArray(overrideVis.video)) {
     videos = overrideVis.video;
-    console.log('[autoAttachVideoOverlays] using override, videos:', videos);
   } else {
     const parsed = parseHash();
     videos = parsed.vis && Array.isArray(parsed.vis.video) ? parsed.vis.video : [];
-    console.log('[autoAttachVideoOverlays] parsing hash, videos:', videos, 'hash:', location.hash);
   }
   
   // Resolve short tokens to full keys
@@ -2099,15 +2092,12 @@ function autoAttachVideoOverlays(overrideVis){
   
   const resolvedVideos = videos.map(resolveToken);
   
-  console.log('[autoAttachVideoOverlays] resolvedVideos:', resolvedVideos, 'existing overlays:', window.overlayManager.items ? Array.from(window.overlayManager.items.keys()) : []);
-  
   // First pass: remove all overlays that are no longer in the video list
   if (window.overlayManager.items) {
     for (const [key] of window.overlayManager.items.entries()) {
       const shortKey = key.split('/').pop();
       const isVideo = resolvedVideos.includes(key) || resolvedVideos.includes(shortKey);
       if (!isVideo) {
-        console.log('[autoAttachVideoOverlays] removing overlay:', key);
         window.overlayManager.remove(key);
       }
     }
@@ -2517,7 +2507,6 @@ document.addEventListener('keydown', function(e) {
       // Check if overlay already exists for this key
       const existing = items.get(String(key));
       if (existing && existing.el) {
-        console.log('[attachToLayer] overlay already exists for', key, 'skipping duplicate creation');
         // Update iframe src if needed
         if (existing.iframe && iframeSrc && existing.iframe.src !== iframeSrc) {
           existing.iframe.src = iframeSrc;
