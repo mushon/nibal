@@ -498,37 +498,37 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/-1.15,1.03,3.32/~vimeo-1132490042.jpg,~vimeo-1137390641.jpg,~vimeo-1131630900.jpg)
+[](svg/#warehouse_bureij3.svg/-1.29,1.22,3.78/~vimeo-1132490042,~vimeo-1137390641,~vimeo-1131630900,~vimeo-1131630900)
 
 התקשיתי לקבל את הגוף החדש שלי. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/-0.77,1.03,3.32/~vimeo-1132490042.jpg,~vimeo-1137390641.jpg,~vimeo-1131630900.jpg,~nibal_after_amputation)
+[](svg/#warehouse_bureij3.svg/-0.77,1.03,3.32/~vimeo-1132490042,~vimeo-1137390641,~vimeo-1131630900,~nibal_after_amputation)
 
 השתדלתי להישאר מטופחת, ועם עזרה גם להתלבש, להתאפר ולצאת מהאוהל.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/-0.24,1.03,3.32/~vimeo-1132490042.jpg,~vimeo-1137390641.jpg,~vimeo-1131630900.jpg,~nibal_after_amputation,~nibal_red.jpg)
+[](svg/#warehouse_bureij3.svg/-0.24,1.03,3.32/~vimeo-1132490042,~vimeo-1137390641,~vimeo-1131630900,~nibal_after_amputation,~nibal_red.jpg)
 
 אבל לא העזתי להסתכל במראה. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/-0.58,-1.18,3.14/+@vimeo-1132490042.jpg,+vimeo-1137390641.jpg,+vimeo-1131630900.jpg "מתוך חשבון האינסטגרם של ניבאל")
+[](svg/#warehouse_bureij3.svg/-0.58,-1.18,3.14/+@vimeo-1132490042,+vimeo-1137390641,+vimeo-1131630900 "מתוך חשבון האינסטגרם של ניבאל")
 
 הרגשתי שגם ריתא בקושי מזהה אותי. פחדתי שהיא משתנה, שהיא מאבדת משמחת החיים ומהחיוניות שלה.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/0.09,-0.74,3.14/+vimeo-1137390641.jpg,+@vimeo-1131630900.jpg,vimeo-1132490042.jpg)
+[](svg/#warehouse_bureij3.svg/0.09,-0.74,3.14/+vimeo-1137390641,+@vimeo-1131630900,vimeo-1132490042)
 
 אבל אחמד היה שם בשבילי. הוא אמר לי, ״אני אהיה הידיים שלך, העיקר שלך ולריתא יהיה טוב״.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/0.84,-0.2,3.14/+@vimeo-1131630900.jpg  "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#warehouse_bureij3.svg/0.84,-0.2,3.14/+@vimeo-1131630900  "מתוך חשבון הטיקטוק של ניבאל")
 
 חלמתי שנחזור לצפון הרצועה, לחיק המשפחה שלי, לימים שבהם כולנו היינו ביחד. כל-כך התגעגעתי אליהם. ייחלתי לרגע שבו תהיה הפסקת אש ואוכל לחזור אליהם ולהרגיש בטוחה שוב. 
 
@@ -541,7 +541,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.26,0.32,2.11/~vimeo-1137391158,~vimeo-1129871187,~nibal_rita_home.jpg,~nibal_rita_happy.jpg,~vimeo-1129854927 "עקורים חוזרים לצפון על כביש אל-רשיד, 21 בינואר 2025. (Activestills / יוסף זענון)")
+[](svg/#ceasefire_hope.svg/-0.15,0.3,2.65/+@vimeo-1136076448 "עקורים חוזרים לצפון על כביש אל-רשיד, 21 בינואר 2025. (Activestills / יוסף זענון)")
 אחרי כחודשיים של חיים באוהל באל-מוואסי, בינואר 2025 התבשרו תושבי הרצועה, וניבאל ביניהם, על כניסתה לתוקף של הפסקת האש בין ישראל לחמאס. 
 
 
