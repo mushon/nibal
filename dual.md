@@ -446,7 +446,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/0.2,-1.14,3.27/~nibal_xray,~vimeo-1129846713,~rita_tent1)
+[](svg/#warehouse_bureij2.svg/-0.24,-0.65,1.88/~nibal_xray,~vimeo-1129846713,~rita_tent1,~winter_triple_comp.jpg,~wheelchaor_triple_comp.jpg)
 [](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+cities,+villages,+idf-poly-outlines "עקורות נושאות את חפציהן על כביש סלאח א־דין באיזור דיר אל־בלח, 20 בנובמבר 2024. (NurPhoto / מג׳די פאתחי)")
 ניבאל השתחררה מבית החולים לאחר 40 יום. בשלב זה, היא, אחמד וריתא נאלצו לעקור שוב.
 
@@ -454,13 +454,13 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta} 
-[](about:blank)
+[](svg/#warehouse_bureij2.svg/-0.46,-0.19,0.88/~nibal_xray,~vimeo-1129846713,~rita_tent1)
 [](map/#31.35465,34.26392,15.27,40.0,1.2/~unosat-damage-231015,~unosat-damage,+wayback:20231101 "תצלום לוויין של חלקו הצפוני של ״האזור ההומניטרי״ באל-מוואסי, מאי 2023. מקור: ESRI Wayback")
 כבר בתחילת המתקפה הגדירה ישראל שטח באזור העיירה אל-מוואסי כ״אזור הומניטרי״.
 
 
 {.meta thumb} 
-[](about:blank)
+[](svg/#warehouse_bureij2.svg/-0.46,-0.19,0.88/~nibal_xray,~vimeo-1129846713,~rita_tent1)
 [](map/#31.35465,34.26392,15.27,40.0,1.2/~unosat-damage-231015,~unosat-damage,+wayback:20251023 "תצלום לוויין של חלקו הצפוני של ״האזור ההומניטרי״ באל-מוואסי, ינואר 2025. מקור: ESRI Wayback")
 
 תוך מספר חודשים, האזור המדברי, שרובו אינו מחובר לתשתיות חשמל, מים וביוב, התמלא עד אפס מקום באוהלים שבהם נאלצו לחיות מעל למיליון בני אדם שנעקרו מכל רחבי הרצועה.
@@ -474,12 +474,12 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/0.41,-0.55,3.27/~nibal_xray,~vimeo-1129846713,~rita_tent1,~leaving_to_mawasi_triple_comp.jpg "חורף במחנה עקורים בח׳אן יונס, 31 בדצמבר 2024. (Activestills / דועאא אל-בז)")
+[](svg/#warehouse_bureij2.svg/-0.03,-0.31,1.88/~nibal_xray,~vimeo-1129846713,~rita_tent1,~leaving_to_mawasi_triple_comp.jpg "חורף במחנה עקורים בח׳אן יונס, 31 בדצמבר 2024. (Activestills / דועאא אל-בז)")
 בנובמבר 2024, החודש בו ניבאל ומשפחתה הגיעו ל״אזור ההומניטרי״, עקורים רבים שחסו במתחם תיארו חיים בצפיפות אדירה, עם מחסור אקוטי במים ובמזון, כשהם חשופים לחלוטין לקור ולגשמים העזים.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/0.64,0.01,3.27/~nibal_xray,~vimeo-1129846713,~rita_tent1,~leaving_to_mawasi_triple_comp.jpg,~winter_triple_comp.jpg "אקרם עדיל, ילד פלסטיני שאיבד את אחת מרגליו בתקיפה ישראלית, באוהל בעיר עזה, 13 בדצמבר 2024. (מחמוד עיסא / Anadolu)")
+[](svg/#warehouse_bureij2.svg/0.13,0,1.88/~nibal_xray,~vimeo-1129846713,~rita_tent1,~leaving_to_mawasi_triple_comp.jpg,~winter_triple_comp.jpg "אקרם עדיל, ילד פלסטיני שאיבד את אחת מרגליו בתקיפה ישראלית, באוהל בעיר עזה, 13 בדצמבר 2024. (מחמוד עיסא / Anadolu)")
 ניבאל נאלצה להתחיל את תהליך ההחלמה שלה בתנאים בלתי-אנושיים באוהל באל-מוואסי.
 
 עד היום, עשרות אלפי פצועים, נכים ובעלי מוגבלויות, חלקם הגדול כתוצאה מהמתקפה הישראלית, מתקשים  לשרוד את התנאים הקשים במחנות העקורים.
