@@ -370,7 +370,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 {.meta} 
 [](about:blank)
-[](svg/svg/#warehouse_bureij1.svg/-0.37,0.01,0.85)
+[](svg/#warehouse_bureij1.svg/-0.37,0.01,0.85)
 ניבאל ומשפחתה המצומצמת הגיעו למחנה הפליטים אל-בוריג׳ שבמרכז הרצועה, שם שכרו מחסן קטן מחברים.
 
 
