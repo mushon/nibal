@@ -2,11 +2,11 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="12500px" height="12500px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g id="g">
-        <use id="nibal_ruined_home1.jpg" xlink:href="#_Image1" x="0" y="0" width="844px" height="1500px" transform="matrix(2.575002,0.007197,-0.007197,2.575002,6137.042811,2099.574683)"/>
-        <use id="vimeo-1137392312" xlink:href="#_Image2" x="0" y="0" width="720px" height="1280px" transform="matrix(2.807594,0.00709,-0.00709,2.807594,8114.467269,1477.647826)"/>
+        <use id="nibal_ruined_home1.jpg" xlink:href="#_Image1" x="0" y="0" width="844px" height="1500px" transform="matrix(2.575002,0.007197,-0.007197,2.575002,2631.042811,7924.574683)"/>
+        <use id="vimeo-1137392312" xlink:href="#_Image2" x="0" y="0" width="720px" height="1280px" transform="matrix(2.807594,0.00709,-0.00709,2.807594,4608.467269,7302.647826)"/>
         <use id="vimeo-1129860275" xlink:href="#_Image3" x="0" y="0" width="1280px" height="720px" transform="matrix(2.514279,-0.000861,0.000861,2.514279,5930.867919,6849.611418)"/>
         <use id="jabalia_april_25.JPG" xlink:href="#_Image4" x="0" y="0" width="6000px" height="4000px" transform="matrix(0.908975,0.003208,-0.003208,0.908975,2432.580608,8336.983367)"/>
-        <use id="vimeo-1137391856" xlink:href="#_Image5" x="0" y="0" width="720px" height="1280px" transform="matrix(2.932839,0.007406,-0.007406,2.932839,10008.9009,620.29054)"/>
+        <use id="vimeo-1137391856" xlink:href="#_Image5" x="0" y="0" width="720px" height="1280px" transform="matrix(2.932839,0.007406,-0.007406,2.932839,6502.9009,6445.29054)"/>
         <use id="nibal_home_smile3.heic" xlink:href="#_Image6" x="0" y="0" width="1080px" height="1080px" transform="matrix(2.679844,0.016477,-0.016477,2.679844,7388.8224,9457.95865)"/>
     </g>
     <defs>
