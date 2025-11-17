@@ -380,8 +380,8 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.45,-0.27,1.37/~vimeo-1130687838 "מחנה הפליטים אל־בוריג׳, 2 באוקטובר 2024. (Anadolu / מועיז סאלחי)")
 [](about:blank)
+[](svg/#warehouse_bureij1.svg/-0.45,-0.27,1.37/~vimeo-1130687838 "מחנה הפליטים אל־בוריג׳, 2 באוקטובר 2024. (Anadolu / מועיז סאלחי)")
 
 החיים במחסן היו קצת יותר יציבים מאשר החיים באוהל, אבל הרגשתי חצויה. מצד אחד שמחתי להיות עם בעלי והבת שלי, ומצד שני התגעגעתי למשפחה שלי. המרחק מהמשפחה ומהבית שלי גרם לי להרגיש בודדה ומנוכרת.
 
@@ -393,8 +393,8 @@ IDF_order_rafah_11_may_24.jpeg`
 {.testimony typewriter showdate}
 ### Oct 24
 
-[](svg/#warehouse_bureij1.svg/-0.25,0.41,1.53/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
 [](about:blank)
+[](svg/#warehouse_bureij1.svg/-0.25,0.41,1.53/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
 
 גרנו שם בערך חמישה חודשים. חיינו בתנאים לא פשוטים, אבל הרגשתי שלאט לאט הצלחנו למצוא קצת נחת.
 
@@ -430,8 +430,8 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij.svg/-1.49,0.8,2.47/+nibal_xray)
 [](about:blank)
+[](svg/#warehouse_bureij2.svg/-1.75,1.01,3.19/~leaving_to_mawasi_triple_comp.jpg,~winter_triple_comp.jpg,~wheelchaor_triple_comp.jpg,~vimeo-1129846713,~rita_tent1)
 
 התעוררתי בבית החולים וראיתי שנכרתו לי הידיים. 
 
