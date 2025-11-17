@@ -541,7 +541,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](embed/#vimeo.com%2F1136076448%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "עקורים חוזרים לצפון על כביש אל-רשיד, 21 בינואר 2025. (Activestills / יוסף זענון)")
+[](svg/#ceasefire_hope.svg/-0.26,0.32,2.11/~vimeo-1137391158,~vimeo-1129871187,~nibal_rita_home.jpg,~nibal_rita_happy.jpg,~vimeo-1129854927 "עקורים חוזרים לצפון על כביש אל-רשיד, 21 בינואר 2025. (Activestills / יוסף זענון)")
 אחרי כחודשיים של חיים באוהל באל-מוואסי, בינואר 2025 התבשרו תושבי הרצועה, וניבאל ביניהם, על כניסתה לתוקף של הפסקת האש בין ישראל לחמאס. 
 
 
@@ -550,6 +550,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
+[](svg/#ceasefire_hope.svg/-0.63,0.1,0.62/~vimeo-1137391158,~vimeo-1129871187,~nibal_rita_home.jpg,~nibal_rita_happy.jpg,~vimeo-1129854927)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines)
 
 גם ניבאל ואחמד יצאו צפונה עם ריתא בת השנה וארבעה חודשים. 
@@ -558,19 +559,19 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1129854927%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/-0.51,-0.29,1.22/+@vimeo-1129854927,+nibal_rita_happy.jpg,+nibal_rita_home.jpg "מתוך חשבון הטיקטוק של ניבאל")
 
 המשפחה קיבלה אותי בבית בחיבוקים, שירים ובכי. בלילות נפגשנו כל האחים בבית ההורים שלי.
 
 
 {.testimony typewriter}
-[](img/#nibal_rita_happy.jpg)
+[](svg/#ceasefire_hope.svg/-0.35,-0.31,1.45/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,@vimeo-1129854927)
 
 האחיות שלי היו לצידי כל הזמן ועזרו לי בהכל: להתקלח, להתלבש, לאכול ולטפל בריתא. 
 
 
 {.testimony typewriter}
-[](img/#nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/-0.11,-0.38,1.45/+nibal_rita_home.jpg,@vimeo-1129854927)
 
 הן החליפו לה חיתולים, חיבקו אותה ושיחקו איתה. בזכותן הרגשתי שהחיים שלי מתחילים לחזור למסלול.
 
@@ -582,7 +583,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](embed/#vimeo.com%2F1129871187%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/-0.12,0.29,1.48/~vimeo-1129854927,~nibal_rita_happy.jpg,~nibal_rita_home.jpg,~vimeo-1136076448 "מתוך חשבון הטיקטוק של ניבאל")
 אבל אז התחדשה המלחמה ביתר שאת. 
 
 תחת ההפצצות והמצור, מערכת היחסים של ניבאל ואחמד נקלעה למשבר.
@@ -599,7 +600,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](embed/#vimeo.com%2F1130598335%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover  "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/0.25,0.39,1.74/~vimeo-1129854927,~nibal_rita_happy.jpg,~nibal_rita_home.jpg,~vimeo-1136076448,~vimeo-1129871187  "מתוך חשבון הטיקטוק של ניבאל")
 בעדותה, סיפרה ניבאל על הכאב הנפשי שחווה אחמד, שהחמיר תחת הקושי של שלושתם לשרוד בתנאי המצור ההדוק שהטילה שוב ישראל.  
 
 
