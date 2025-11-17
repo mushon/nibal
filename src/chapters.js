@@ -70,10 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const main = document.querySelector('main');
     if (!main) return;
     
-    const allMainChildren = Array.from(main.children).filter(el => el.offsetParent !== null);
-    console.log('[chapters] Main direct children:', allMainChildren.length);
-    
-    // Ensure all navigable elements have IDs
+    const allMainChildren = Array.from(main.children);    // Ensure all navigable elements have IDs
     allMainChildren.forEach((el, idx) => {
       if (!el.id || el.id.trim() === '') {
         el.id = 'main-child-' + idx;
@@ -99,10 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
         childToChapter.set(child.id, chapterHeading.id);
       } else {
         orphanedChildren++;
-        console.log('[chapters] Orphaned child (no chapter):', child.id, child.tagName, child.className);
       }
     });
-    console.log('[chapters] Total orphaned children:', orphanedChildren);
 
     clearNav();
     const nav = document.createElement('nav');
@@ -122,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (headingElement && headings.includes(headingElement)) {
         // This is a chapter heading
         const chapterTitle = headingElement.textContent.trim();
-        console.log('[chapters] Creating nav item for chapter:', chapterTitle, '| target ID:', child.id);
+
         
         const chapterItem = document.createElement('div');
         chapterItem.className = 'chapter-item chapter-heading-item';
@@ -152,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const chapterHeading = chapterId ? headings.find(h => h.id === chapterId) : null;
         const chapterTitle = chapterHeading ? chapterHeading.textContent.trim() : 'Section';
         
-        console.log('[chapters] Creating nav item for child:', child.id);
+
         
         const sectionItem = document.createElement('div');
         sectionItem.className = 'chapter-item section-item';
@@ -198,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    console.log('[chapters] FINAL COUNT - Main children:', allMainChildren.length, '| Nav items created:', navItemCount);
+
 
     document.body.appendChild(nav);
     
@@ -207,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainChildren = mainElement ? mainElement.children.length : 0;
     const navChildren = nav.children.length;
     
-    console.log('[chapters] DIAGNOSTIC - main.children.length:', mainChildren, '| nav.children.length:', navChildren);
+
     
     if (mainElement) {
       const mainChildTypes = {};
@@ -215,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const key = child.tagName + (child.className ? '.' + child.className.split(' ')[0] : '');
         mainChildTypes[key] = (mainChildTypes[key] || 0) + 1;
       });
-      console.log('[chapters] Main child types:', mainChildTypes);
+
     }
     
     const navChildTypes = {};
@@ -223,10 +218,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const key = child.className.split(' ')[0] || 'unknown';
       navChildTypes[key] = (navChildTypes[key] || 0) + 1;
     });
-    console.log('[chapters] Nav child types:', navChildTypes);
+
     
-    if (mainChildren !== navChildren) {
-      console.error('[chapters] MISMATCH! Difference:', navChildren - mainChildren);
+    if (navChildren !== mainChildren) {
     }
 
     // Mobile: add a full-height transparent rail that captures vertical swipes.
@@ -238,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const rail = document.createElement('div');
         rail.className = 'nav-touch-rail';
         nav.appendChild(rail);
-        console.log('[chapters] Added touch rail to nav (adds 1 extra child)');
+
 
         const items = Array.from(nav.querySelectorAll('.chapter-item'));
         let centers = [];
@@ -377,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Build new hash
       const newHash = prefix ? `#${prefix}:${sectionNum}` : `#:${sectionNum}`;
       
-      console.log('[chapters] Double-click: updating hash to', newHash);
+
       window.location.hash = newHash;
     }
 
@@ -496,7 +490,7 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Debug: log the current target
       if (window.__chaptersDebug) {
-        console.log('[chapters] Active item:', currentTargetId, '| Viewport center:', viewportCenter);
+
       }
       
       // Find which chapter the current section belongs to
@@ -545,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const chapterClass = 'ch' + String(currentChapterNumber).padStart(2, '0');
           navElement.classList.add(chapterClass);
           if (window.__chaptersDebug) {
-            console.log('[chapters] Current chapter:', currentChapterNumber, '| Class:', chapterClass);
+
           }
         }
       }
@@ -711,7 +705,6 @@ document.addEventListener('DOMContentLoaded', function () {
       console.warn('[chapters] Section not found:', targetId);
       return;
     }
-    console.log('[chapters] Jumping to section:', targetId);
     window.__snapSuppressUntil = Date.now() + 1500;
     window.__chaptersAnimating = true;
     const scroller = document.querySelector('main') || document.scrollingElement || document.documentElement;

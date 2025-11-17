@@ -323,13 +323,13 @@
           
           // Check if typewriter is currently suppressed (iframe updates in progress)
           if (window.__typewriterSuppressed) {
-            console.log('[TYPEWRITER] Suppressed, waiting for inflection-ready event on section:', sec);
+
             
             let startTimeoutId = null;
             
             // Wait for inflection-ready event before starting typewriter
             const startWhenReady = () => {
-              console.log('[TYPEWRITER] inflection-ready received, starting typewriter');
+
               if (startTimeoutId) clearTimeout(startTimeoutId);
               const els = sec.querySelectorAll('.typewriter');
               els.forEach(el => startTypingForElement(el));
@@ -339,14 +339,14 @@
             
             // Safety timeout: if inflection-ready never fires, start anyway after 500ms
             startTimeoutId = setTimeout(() => {
-              console.log('[TYPEWRITER] Safety timeout reached, starting typewriter anyway');
+
               sec.removeEventListener('inflection-ready', startWhenReady);
               const els = sec.querySelectorAll('.typewriter');
               els.forEach(el => startTypingForElement(el));
             }, 500);
           } else {
             // No suppression, start immediately
-            console.log('[TYPEWRITER] No suppression, starting typewriter immediately');
+
             const els = sec.querySelectorAll('.typewriter');
             els.forEach(el => startTypingForElement(el));
           }

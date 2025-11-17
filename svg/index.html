@@ -2295,14 +2295,20 @@ document.addEventListener('keydown', function(e) {
           } catch(e) {/* ignore */}
         }
         
-        // Fallback to bbox if no attributes found
-        if (x === null || y === null || width === null || height === null) {
-          const bb = el.getBBox();
-          if (!bb) { overlay.setAttribute('display','none'); return; }
-          if (x === null) x = String(bb.x);
-          if (y === null) y = String(bb.y);
-          if (width === null) width = String(bb.width);
-          if (height === null) height = String(bb.height);
+        // Always use bbox for dimensions to account for SVG scaling/viewBox transforms
+        // Only use attributes for position if bbox position is unavailable
+        const bb = el.getBBox();
+        if (!bb) { overlay.setAttribute('display','none'); return; }
+        
+        // Use bbox for all dimensions (this accounts for SVG viewBox scaling)
+        x = String(bb.x);
+        y = String(bb.y);
+        width = String(bb.width);
+        height = String(bb.height);
+        
+        // Keep transform from element attributes
+        if (el.hasAttribute && el.hasAttribute('transform')) {
+          transform = el.getAttribute('transform');
         }
         
         // Apply attributes to foreignObject
@@ -2323,21 +2329,28 @@ document.addEventListener('keydown', function(e) {
         } else {
           overlay.removeAttribute('transform');
         }
-        // Ensure the inner <div> and <iframe> match the SVG layer's pixel size and units
+        
+        // Get inner div and Safari detection before using them
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        const innerDiv = overlay.querySelector('div[xmlns="http://www.w3.org/1999/xhtml"]');
+        
+        // Ensure the inner <div> and <iframe> fill the foreignObject (which has the correct dimensions)
         if (innerDiv) {
-          innerDiv.style.width = (width ? stripPx(width) + 'px' : '100%');
-          innerDiv.style.height = (height ? stripPx(height) + 'px' : '100%');
+          innerDiv.style.width = '100%';
+          innerDiv.style.height = '100%';
           const iframe = innerDiv.querySelector('iframe');
           if (iframe) {
-            iframe.style.width = (width ? stripPx(width) + 'px' : '100%');
-            iframe.style.height = (height ? stripPx(height) + 'px' : '100%');
+            // Remove any width/height attributes to prevent conflicts with CSS
+            iframe.removeAttribute('width');
+            iframe.removeAttribute('height');
+            // Set CSS sizing to fill parent
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
           }
         }
         
         // Safari-specific fix: Safari doesn't handle transform on foreignObject well
         // Apply transform via CSS on inner div for Safari only
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        const innerDiv = overlay.querySelector('div[xmlns="http://www.w3.org/1999/xhtml"]');
         
         if (isSafari && transform && innerDiv) {
           // For Safari: remove SVG transform and apply as CSS transform on inner div
@@ -2624,34 +2637,14 @@ document.addEventListener('keydown', function(e) {
   }
 
   function attachIframe(key, src, attrs){
-    // Patch: Set iframe width/height based on SVG layer aspect ratio
-    let width = 1920, height = 1080; // default wide
-    try {
-      const target = getTargetForKey(key);
-      if (target) {
-        const bb = target.getBBox();
-        if (bb && bb.width && bb.height) {
-          if (bb.height > bb.width) {
-            width = 720;
-            height = 1280;
-          } else {
-            width = 1920;
-            height = 1080;
-          }
-        }
-      }
-    } catch(e) {}
+    // No need to set width/height - foreignObject and CSS handle all sizing
     const fo = attachToLayer(key, () => {
       const iframe = document.createElement('iframe');
       iframe.src = '';
       iframe.setAttribute('frameborder','0');
       iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
-      iframe.setAttribute('width', width);
-      iframe.setAttribute('height', height);
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       iframe.setAttribute('title', 'video-embed');
-      iframe.style.maxWidth = '100%';
-      iframe.style.maxHeight = '100%';
       iframe.style.width = '100%';
       iframe.style.height = '100%';
       iframe.style.border = '0';

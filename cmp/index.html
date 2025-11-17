@@ -1454,16 +1454,6 @@ function render(){
     const scaledWidth = bbox.width * viewportScale;
     const scaledHeight = bbox.height * viewportScale;
   
-    console.log('RENDER:', {
-      'ref.size': ref.size,
-      'bbox': `${bbox.width}x${bbox.height}`,
-      'state.scale': state.scale,
-      'scaleToFitInRef': scaleToFitInRef,
-      'viewportScale': viewportScale,
-      'scaled': `${Math.round(scaledWidth)}x${Math.round(scaledHeight)}`,
-      'shouldFitInRef': Math.max(scaledWidth, scaledHeight) <= ref.size ? '✓' : '✗'
-    });
-  
     // Position: Start at reference frame center, add offsets (in pixels), subtract SVG center offset
   // state.tx/state.ty are normalized offsets in reference-frame units (1.0 = ref.size)
   const offsetXpx = state.tx * ref.size;
@@ -1706,7 +1696,6 @@ function commitHash(){
   const params = { s: Math.round(state.scale*100)/100, x: Math.round(state.tx*100)/100, y: Math.round(state.ty*100)/100 };
   const token = buildCompactHash(url, params, parsed.vis || { show: [], hide: [] });
   suppressHashFor(120);
-  console.debug('commitHash: writing compact hash', token);
   location.hash = '#'+token;
 }
 
@@ -1810,8 +1799,7 @@ setTimeout(() => { startViewer(); }, 0);
 window.addEventListener('hashchange', ()=>{
   // If this hashchange was caused by our own UI write, skip re-applying
   // visibility/state to avoid cancelling user-initiated animations.
-  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { console.debug('hashchange: suppressed by timestamp'); return; }
-  console.debug('hashchange: applying parsed hash');
+  if (typeof window.__suppressHashChangeUntil === 'number' && Date.now() < window.__suppressHashChangeUntil) { return; }
   const parsed = parseHash();
   if (!parsed) return;
   // if URL changed, load new svg immediately
@@ -1875,7 +1863,7 @@ function autoAttachVideoOverlays(){
         // Only attach if not already present
         const wasAlreadyAttached = window.overlayManager.items && window.overlayManager.items.has(key);
         if (!wasAlreadyAttached) {
-          console.log('[auto-attach] Attaching video to layer', key, 'with URL', url);
+
           window.overlayManager.attachIframe(key, url);
         }
         // Start playing visible video layers (both newly attached and existing)

@@ -1129,6 +1129,40 @@
         // Fade in new content only on path change
         function setIframeIfPathChanged(newHref) {
             console.log('[setIframeIfPathChanged] Called with:', newHref);
+            
+            // Check if we're in dual-iframe mode
+            const isDualMode = document.body.classList.contains('dual-iframe');
+            
+            // Handle special clear patterns in dual-iframe mode
+            if (isDualMode) {
+                const clearPatterns = ['fg:blank', 'foreground:blank', 'bg:blank', 'background:blank', 'both:blank', 'clear:all'];
+                for (const pattern of clearPatterns) {
+                    if (newHref === pattern || newHref.endsWith('/' + pattern) || newHref.endsWith('#' + pattern)) {
+                        const backgroundFrame = document.getElementById('background-frame');
+                        const foregroundFrame = document.getElementById('foreground-frame');
+                        
+                        if (pattern === 'fg:blank' || pattern === 'foreground:blank') {
+                            foregroundFrame.src = 'about:blank';
+                            foregroundFrame.classList.add('inactive');
+                            console.log('[setIframeIfPathChanged] Cleared foreground frame');
+                            return;
+                        }
+                        if (pattern === 'bg:blank' || pattern === 'background:blank') {
+                            backgroundFrame.src = 'about:blank';
+                            console.log('[setIframeIfPathChanged] Cleared background frame');
+                            return;
+                        }
+                        if (pattern === 'both:blank' || pattern === 'clear:all') {
+                            backgroundFrame.src = 'about:blank';
+                            foregroundFrame.src = 'about:blank';
+                            foregroundFrame.classList.add('inactive');
+                            console.log('[setIframeIfPathChanged] Cleared both frames');
+                            return;
+                        }
+                    }
+                }
+            }
+            
             const parsedURL = new URL(newHref, window.location.origin);
             const originalHash = parsedURL.hash || '';
             // compute path-only URL for comparison
@@ -1136,8 +1170,6 @@
             pathOnly.hash = '';
             const newPath = pathOnly.href;
             
-            // Check if we're in dual-iframe mode
-            const isDualMode = document.body.classList.contains('dual-iframe');
             console.log('[setIframeIfPathChanged] isDualMode:', isDualMode, 'newPath:', newPath);
             
             if (window.__inflectDebug) {

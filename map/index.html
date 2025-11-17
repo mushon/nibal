@@ -928,6 +928,7 @@ function combineFilterExprsToMapbox(filterExprs) {
 }
 
 // Split layer tokens by comma, but respect parentheses (don't split on commas inside parens)
+// Also sanitize and decode percent-encoded tokens, and handle edge cases
 function splitLayerTokens(str) {
   const tokens = [];
   let current = '';
@@ -948,7 +949,20 @@ function splitLayerTokens(str) {
     }
   }
   if (current.trim()) tokens.push(current.trim());
-  return tokens;
+  // Sanitize and decode tokens
+  return tokens.map(token => {
+    let decoded = token;
+    try {
+      decoded = decodeURIComponent(token);
+    } catch (e) {
+      console.warn('[HASH] Failed to decode token:', token, e);
+    }
+    // Remove dangerous or malformed characters
+    decoded = decoded.replace(/[<>"'`]/g, '');
+    // Trim whitespace
+    decoded = decoded.trim();
+    return decoded;
+  });
 }
 
 // Detect a desktop-ish environment (coarse heuristic: no touch OR fine pointer)
@@ -1080,7 +1094,9 @@ function parseHash() {
     splitLayerTokens(layersStr).forEach(token => {
       // Support +id:follow, ~id:follow, +id(sourceHint,expr,expr):follow, +id:follow+offset, +wayback:YYYYMMDD, and +id#2 (auto-increment)
       // token examples: +name, ~name, +name:follow, +name:follow+, +name:follow+0, +name:follow+15000, +name(source), +name(name=jabalia), +name(source,name=jabalia,type!=boundary), +gaza.geojson#2
-      const match = token.match(/^([+~])([^()#]+?)(?:#(\d+))?(?:\(([^)]*)\))?(?::follow(\+(\d*))?)?$/);
+      // Sanitize and trim token before regex parsing
+      const safeToken = token.replace(/[<>"'`]/g, '').trim();
+      const match = safeToken.match(/^([+~])([^()#]+?)(?:#(\d+))?(?:\(([^)]*)\))?(?::follow(\+(\d*))?)?$/);
       if (!match) {
         console.warn('[HASH] Failed to parse layer token:', token);
         return;

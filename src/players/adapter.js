@@ -154,7 +154,7 @@ class PlyrAdapter extends PlayerAdapter {
     return new Promise((resolve, reject) => {
       this.player.once('ready', () => {
         this.ready = true;
-        console.log('[PlyrAdapter] Player ready');
+
         this.emit('ready');
         resolve();
       });
@@ -185,4 +185,4 @@ window.createAdapter = function(container, url) {
   return new PlyrAdapter(container, url);
 };
 
-console.log('[adapter.js] PlayerAdapter loaded, createAdapter available');
+
