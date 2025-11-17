@@ -453,7 +453,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-0.24,-0.65,1.88/~nibal_xray,~vimeo-1129846713,~rita_tent1,~winter_triple_comp.jpg,~wheelchaor_triple_comp.jpg)
+[](svg/#warehouse_bureij2.svg/-0.38,-0.17,0.9/~nibal_xray,~vimeo-1129846713,~rita_tent1)
 [](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+cities,+villages,+idf-poly-outlines "עקורות נושאות את חפציהן על כביש סלאח א־דין באיזור דיר אל־בלח, 20 בנובמבר 2024. (NurPhoto / מג׳די פאתחי)")
 ניבאל השתחררה מבית החולים לאחר 40 יום. בשלב זה, היא, אחמד וריתא נאלצו לעקור שוב.
 
@@ -529,7 +529,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/0.09,-0.74,3.14/+vimeo-1137390641,+@vimeo-1131630900,vimeo-1132490042)
+[](svg/#warehouse_bureij3.svg/0.09,-0.74,3.14/+@vimeo-1137390641,+vimeo-1131630900)
 
 אבל אחמד היה שם בשבילי. הוא אמר לי, ״אני אהיה הידיים שלך, העיקר שלך ולריתא יהיה טוב״.
 
@@ -557,7 +557,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.63,0.1,0.62/~vimeo-1137391158,~vimeo-1129871187,~nibal_rita_home.jpg,~nibal_rita_happy.jpg,~vimeo-1129854927)
+[](svg/#ceasefire_hope.svg/-0.63,0.1,0.62/~vimeo-1137391158,~vimeo-1129871187,~nibal_rita_home.jpg,~nibal_rita_happy.jpg,~vimeo-1129854927,+@vimeo-1136076448)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines)
 
 גם ניבאל ואחמד יצאו צפונה עם ריתא בת השנה וארבעה חודשים. 
@@ -590,7 +590,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.12,0.29,1.48/~vimeo-1129854927,~nibal_rita_happy.jpg,~nibal_rita_home.jpg,~vimeo-1136076448 "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/-0.12,0.29,1.48/+@vimeo-1129871187,+vimeo-1137391158 "מתוך חשבון הטיקטוק של ניבאל")
 אבל אז התחדשה המלחמה ביתר שאת. 
 
 תחת ההפצצות והמצור, מערכת היחסים של ניבאל ואחמד נקלעה למשבר.
@@ -607,7 +607,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/0.25,0.39,1.74/~vimeo-1129854927,~nibal_rita_happy.jpg,~nibal_rita_home.jpg,~vimeo-1136076448,~vimeo-1129871187  "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/0.25,0.39,1.74/+@vimeo-1137391158  "מתוך חשבון הטיקטוק של ניבאל")
 בעדותה, סיפרה ניבאל על הכאב הנפשי שחווה אחמד, שהחמיר תחת הקושי של שלושתם לשרוד בתנאי המצור ההדוק שהטילה שוב ישראל.  
 
 
@@ -625,7 +625,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#back_home.svg/-0.73,0.57,2.67/~vimeo-1137391856,~vimeo-1137392312,~nibal_ruined_home1.jpg,~jabalia_april_25.JPG,~nibal_home_smile3.heic "תיעוד של בית אחותה של ניבאל לאחר ההפצצה, לצד תמונות של ילדיה שנהרגו")
+[](svg/#back_home.svg/-0.73,0.57,2.67/+@vimeo-1129860275 "תיעוד של בית אחותה של ניבאל לאחר ההפצצה, לצד תמונות של ילדיה שנהרגו")
 באפריל 2025 הפציץ הצבא הישראלי את ביתה של אחותה של ניבאל בג׳אבליא. כתוצאה מההפצצה נהרגו שלושת ילדיה של אלאא, אחותה: וסים, בן 10, מוהנד, בן 8, וח'וולה, בת 5. 
 
 
@@ -657,7 +657,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](svg/#back_home.svg/-0.84,0.19,1.59/~nibal_ruined_home1.jpg,~vimeo-1129860275,~jabalia_april_25.JPG)
+[](svg/#back_home.svg/-0.84,0.19,1.59/+@vimeo-1137391856,+vimeo-1137392312,+nibal_ruined_home1.jpg,+nibal_home_smile3.heic)
 
 ההפצצות באזור שלנו נמשכו כל הזמן והרבה אנשים עקרו. אבל המשפחה המורחבת שלי גדולה מאוד ולא היה לנו לאן ללכת בלי שנצטרך להתפצל.
 
@@ -675,7 +675,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.testimony typewriter}
-[](svg/#back_home.svg/-0.31,0.03,1.59/~vimeo-1129860275,~jabalia_april_25.JPG,~nibal_home_smile3.heic,~vimeo-1137391856 "תושבים נעקרים משכונת א-נזלה בג׳אבליא ביום ההפצצה")
+[](svg/#back_home.svg/-0.31,0.03,1.59/+@vimeo-1137392312,+nibal_ruined_home1.jpg "תושבים נעקרים משכונת א-נזלה בג׳אבליא ביום ההפצצה")
 
 שמענו פיצוץ עז, ואז המון צעקות מבחוץ. ראינו אנשים רצים. אמרו לנו שהצבא הישראלי ציווה לפנות את האזור תוך רבע שעה. 
 
@@ -687,7 +687,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#back_home.svg/0.02,-0.1,1.59/~vimeo-1129860275,~jabalia_april_25.JPG,~nibal_home_smile3.heic,~vimeo-1137391856,~vimeo-1137392312 "אזור ביתה של ניבאל לאחר ההפצצה")
+[](svg/#back_home.svg/0.34,-0.13,2.39/+nibal_ruined_home1.jpg "אזור ביתה של ניבאל לאחר ההפצצה")
 בהמשך, נודע לניבאל כי הבניין בו גרה רוב חייה לצד משפחתה המורחבת נהרס כליל בהפצצות הכבדות על ג׳אבליא.
 
 
@@ -697,7 +697,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/-0.66,0.69,1.91/~refugees_end,~vimeo-1132487425,~vimeo-1130690065,~vimeo-1136076786,~vimeo-1129867912,~IDF_order_gaza_city,~leaving_gaza_city "אזור ביתה של ניבאל לאחר ההפצצה")
+[](svg/#permanent_impermanence.svg/-0.83,0.97,2.66/+nibal_ruined_home2.jpg "אזור ביתה של ניבאל לאחר ההפצצה")
 ניבאל, ריתא וכ-50 מבני משפחתן המורחבת - הוריה של ניבאל, אחיה, בני זוגם וילדיהם - צעדו ברגל מג׳אבליא לעיר עזה בחיפוש אחר מקום בטוח. 
 
 הם התמקמו במסעדה נטושה של חברים, ואחר-כך עברו לדירה קטנה וצפופה בעיר עזה.
@@ -710,7 +710,7 @@ IDF_order_rafah_11_may_24.jpeg`
 
 
 {.meta thumb} 
-[](svg/#permanent_impermanence.svg/-0.17,0.42,1.66/+IDF_order_gaza_city-comp.jpg,+leaving_gaza_city_comp.jpg,@vimeo-1136076786 "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, 9 בספטמבר 2025. (רויטרס / דאווד אבו אלקאס)")
+[](svg/#permanent_impermanence.svg/-0.13,0.38,1.66/+IDF_order_gaza_city-comp.jpg,+leaving_gaza_city_comp.jpg,@vimeo-1136076786 "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, 9 בספטמבר 2025. (רויטרס / דאווד אבו אלקאס)")
 צווי הפינוי שהוציא הצבא בתחילת ספטמבר 2025, שבועות ספורים לאחר שמשפחתה של ניבאל הגיעה לעיר, הורו לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
