@@ -958,7 +958,7 @@ function splitLayerTokens(str) {
     } catch (e) {
       console.warn('[HASH] Failed to decode token:', token, e);
     }
-    // Remove dangerous or malformed characters
+    // Remove dangerous characters but keep square brackets for filter syntax [name=value]
     decoded = decoded.replace(/[<>"'`]/g, '');
     // Trim whitespace
     decoded = decoded.trim();
@@ -2961,6 +2961,12 @@ window.addEventListener('hashchange', () => {
     // Apply filters only to external layers according to hash
     // Mapbox style layers maintain their default filters and cannot be modified via hash
     try {
+      // Check if style is loaded before applying filters
+      if (!map.isStyleLoaded()) {
+        console.warn('[HASHCHANGE] Style not loaded yet, skipping filter application');
+        return;
+      }
+      
       const allMapLayers = map.getStyle().layers || [];
       allMapLayers.forEach(l => {
         const id = l.id;
