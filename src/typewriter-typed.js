@@ -50,22 +50,25 @@
       
       const speed = (opts && opts.speed) || (el.dataset.twSpeed ? parseInt(el.dataset.twSpeed, 10) : 40);
       
+      // Speed up typing by 2x (reduce delays by half)
+      const adjustedSpeed = Math.round(speed / 2);
+      
       // Process text to add natural pauses at punctuation
       // Typed.js supports ^pause syntax for delays
       let processedText = text;
-      // Add longer pauses after periods, question marks, exclamation points
-      processedText = processedText.replace(/([.!?])\s+/g, '$1^800 ');
-      // Add medium pauses after commas
-      processedText = processedText.replace(/,\s+/g, ',^400 ');
-      // Add subtle pauses after colons and semicolons
-      processedText = processedText.replace(/([;:])\s+/g, '$1^300 ');
+      // Add longer pauses after periods, question marks, exclamation points (reduced by 2x)
+      processedText = processedText.replace(/([.!?])\s+/g, '$1^400 ');
+      // Add medium pauses after commas (reduced by 2x)
+      processedText = processedText.replace(/,\s+/g, ',^200 ');
+      // Add subtle pauses after colons and semicolons (reduced by 2x)
+      processedText = processedText.replace(/([;:])\s+/g, '$1^150 ');
       
       try {
         // Create Typed instance with natural, human-like typing settings
         const typed = new Typed(p, {
           strings: [processedText],
-          typeSpeed: speed,
-          startDelay: Math.random() * 200, // Small random delay before starting
+          typeSpeed: adjustedSpeed,
+          startDelay: Math.random() * 100, // Small random delay before starting (reduced by 2x)
           backSpeed: 0,
           backDelay: 0,
           loop: false,

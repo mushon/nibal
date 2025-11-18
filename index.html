@@ -1264,12 +1264,32 @@
                         // Use the raw href attribute to avoid races where scripts
                         // (e.g. the typewriter) mutate link textContent or href.
                         const rawHref = visibleLink.getAttribute('href');
+                        if (!rawHref) return; // Safety check
+                        
                         // In dual-iframe mode, call setIframeIfPathChanged directly to avoid timeout issues
                         const isDualMode = document.body.classList.contains('dual-iframe');
                         if (isDualMode) {
-                            try { const full = new URL(rawHref, window.location.href).href; setIframeIfPathChanged(full); } catch(e){ setIframeIfPathChanged(visibleLink.href); }
+                            try { 
+                                const full = new URL(rawHref, window.location.href).href; 
+                                setIframeIfPathChanged(full); 
+                            } catch(e){ 
+                                try {
+                                    setIframeIfPathChanged(visibleLink.href);
+                                } catch(e2) {
+                                    console.warn('Link observer failed to load:', rawHref, e2);
+                                }
+                            }
                         } else {
-                            try { const full = new URL(rawHref, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(visibleLink.href); }
+                            try { 
+                                const full = new URL(rawHref, window.location.href).href; 
+                                setIframeNext(full); 
+                            } catch(e){ 
+                                try {
+                                    setIframeNext(visibleLink.href);
+                                } catch(e2) {
+                                    console.warn('Link observer failed to load:', rawHref, e2);
+                                }
+                            }
                         }
                         try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(visibleLink); } catch(e){}
                         // Start any typewriter animation for the section that contains this link
@@ -1303,13 +1323,28 @@
                         return; // Skip all non-target sections during programmatic jumps
                     }
                     
+                    // Mark this section as having inflection in progress
+                    const inflectionId = 'inflection-' + (sec.id || Date.now());
+                    window.__activeInflectionId = inflectionId;
+                    
                     // Signal to typewriter that section change is in progress
                     // This prevents typewriter from starting until iframes are updated
                     window.__typewriterSuppressed = true;
                     
+                    // Safety: Always release typewriter suppression after max timeout
+                    const maxSuppressionTimeout = setTimeout(() => {
+                        if (window.__activeInflectionId === inflectionId) {
+                            window.__typewriterSuppressed = false;
+                            sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
+                        }
+                    }, 2000); // Fail-safe: 2 seconds max
+                    
                     try {
                         const a = sec.querySelector('a:not(.dontinflect)');
                         if (!a) {
+                            // No inflection link, release immediately
+                            clearTimeout(maxSuppressionTimeout);
+                            window.__typewriterSuppressed = false;
                             return;
                         }
                         const raw = a.getAttribute('href') || '';
@@ -1359,25 +1394,45 @@
                             // Find all inflection links in this section
                             const allLinks = Array.from(sec.querySelectorAll('a:not(.dontinflect)'));
                             
-                            // Calculate total time needed for all iframe updates
-                            const lastLinkDelay = allLinks.length > 0 ? (allLinks.length - 1) * 50 : 0;
-                            const iframeUpdateBuffer = 100; // Extra buffer to ensure iframes have started loading
-                            const totalDelay = lastLinkDelay + iframeUpdateBuffer;
+                            let loadedCount = 0;
+                            const totalLinks = allLinks.length;
                             
-                            // Load links sequentially with small delays
+                            // Function to complete inflection (called when all loads finish or timeout)
+                            const completeInflection = () => {
+                                if (window.__activeInflectionId === inflectionId) {
+                                    clearTimeout(maxSuppressionTimeout);
+                                    window.__typewriterSuppressed = false;
+                                    sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
+                                    window.__activeInflectionId = null;
+                                }
+                            };
+                            
+                            // Load links sequentially with guaranteed completion tracking
                             allLinks.forEach((link, index) => {
                                 const linkHref = link.getAttribute('href');
                                 if (linkHref) {
-                                    // Stagger iframe loads: first immediately, then with small delays
-                                    const delay = index === 0 ? 0 : index * 50; // 50ms between each subsequent load
+                                    const delay = index * 30; // 30ms stagger for smoother loading
                                     setTimeout(() => {
                                         try { 
                                             const full = new URL(linkHref, window.location.href).href; 
                                             setIframeIfPathChanged(full); 
                                         } catch(e){ 
-                                            setIframeIfPathChanged(link.href); 
+                                            try {
+                                                setIframeIfPathChanged(link.href);
+                                            } catch(e2) {
+                                                console.warn('Failed to load inflection:', linkHref);
+                                            }
+                                        } finally {
+                                            loadedCount++;
+                                            // Complete when all links processed
+                                            if (loadedCount >= totalLinks) {
+                                                // Small delay to ensure iframes start loading
+                                                setTimeout(completeInflection, 50);
+                                            }
                                         }
                                     }, delay);
+                                } else {
+                                    loadedCount++;
                                 }
                             });
                             
@@ -1386,22 +1441,32 @@
                                 try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(allLinks[0]); } catch(e){}
                             }
                             
-                            // Release typewriter suppression after all iframe updates have been dispatched
-                            setTimeout(() => {
-                                window.__typewriterSuppressed = false;
-                                // Dispatch custom event that typewriter can listen for
-                                sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
-                            }, totalDelay);
+                            // Guaranteed completion after reasonable timeout
+                            setTimeout(completeInflection, Math.max(200, totalLinks * 50));
                         } else {
                             // Single iframe mode: only load first link
-                            try { const full = new URL(raw, window.location.href).href; setIframeNext(full); } catch(e){ setIframeNext(a.href); }
+                            try { 
+                                const full = new URL(raw, window.location.href).href; 
+                                setIframeNext(full); 
+                            } catch(e){ 
+                                try {
+                                    setIframeNext(a.href);
+                                } catch(e2) {
+                                    console.warn('Failed to load inflection:', raw);
+                                }
+                            }
                             try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(a); } catch(e){}
                             
-                            // Release typewriter suppression after a short delay
-                            setTimeout(() => {
-                                window.__typewriterSuppressed = false;
-                                sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
-                            }, 100);
+                            // Release typewriter suppression with guaranteed execution
+                            const completeInflection = () => {
+                                if (window.__activeInflectionId === inflectionId) {
+                                    clearTimeout(maxSuppressionTimeout);
+                                    window.__typewriterSuppressed = false;
+                                    sec.dispatchEvent(new CustomEvent('inflection-ready', { bubbles: true }));
+                                    window.__activeInflectionId = null;
+                                }
+                            };
+                            setTimeout(completeInflection, 100);
                         }
                     } catch(e) { /* swallow */ }
                 }
