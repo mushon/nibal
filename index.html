@@ -1251,6 +1251,62 @@
         try { window.addEventListener(evt, __markUserInput, { passive: true }); } catch(e){}
     });
 
+    // Mark paragraphs that only contain empty inflection links (no text content)
+    // This allows CSS to hide them without breaking IntersectionObserver
+    function markInflectionOnlyParagraphs() {
+        const paragraphs = document.querySelectorAll('p:not(.typewriter p)'); // Skip paragraphs inside typewriter sections
+        paragraphs.forEach(p => {
+            // Skip if parent is a typewriter
+            if (p.closest('.typewriter')) return;
+            
+            // Get all child nodes
+            const children = Array.from(p.childNodes);
+            
+            // Check if paragraph has any text content (excluding whitespace)
+            const hasText = children.some(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    return node.textContent.trim().length > 0;
+                }
+                if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'A') {
+                    return true; // has non-link elements
+                }
+                if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'A') {
+                    return node.textContent.trim().length > 0; // has non-empty link
+                }
+                return false;
+            });
+            
+            // If no text and has at least one empty anchor, mark it
+            const hasEmptyLinks = Array.from(p.querySelectorAll('a')).some(a => !a.textContent.trim());
+            if (!hasText && hasEmptyLinks) {
+                p.classList.add('inflection-only');
+            } else {
+                p.classList.remove('inflection-only');
+            }
+        });
+    }
+    
+    // Run on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', markInflectionOnlyParagraphs);
+    } else {
+        markInflectionOnlyParagraphs();
+    }
+    
+    // Re-check when content changes, but debounce to avoid excessive calls
+    let markTimeout = null;
+    const paragraphObserver = new MutationObserver(() => {
+        if (markTimeout) clearTimeout(markTimeout);
+        markTimeout = setTimeout(() => {
+            markInflectionOnlyParagraphs();
+        }, 250); // Debounce: wait 250ms after last mutation
+    });
+    paragraphObserver.observe(document.body, { 
+        childList: true, 
+        subtree: true
+        // Removed characterData to avoid triggering on text changes during typing
+    });
+
     // with IntersectionObserver we can check what is visible    
     function initializeObservers() {
         const isMobilePortrait = window.matchMedia("(max-width: 1000px) and (orientation: portrait)").matches;

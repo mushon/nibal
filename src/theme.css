@@ -18,18 +18,25 @@
     font-weight: regular;
 }
 /* Hide paragraphs that contain only a single empty anchor element with no other content */
+/* Use visibility:hidden + height:0 instead of display:none to preserve IntersectionObserver functionality */
 p.no-text {
-    display: none;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-/* Also hide paragraphs that only contain empty links (for inflection) */
-p:has(> a:only-child:empty) {
-    display: none;
-}
-
-/* Hide paragraphs with two empty links */
-p:has(> a:empty:first-child):has(> a:empty:last-child):not(:has(*:not(a))) {
-    display: none;
+/* Hide paragraphs that ONLY contain empty links (for inflection) - no text content */
+/* IMPORTANT: Don't use display:none - it breaks IntersectionObserver for inflection links */
+/* This targets paragraphs that are themselves empty (only whitespace) but contain empty anchor elements */
+/* We cannot reliably detect text nodes with CSS :has(), so we use a class-based approach instead */
+p.inflection-only {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
@@ -100,11 +107,6 @@ section.subheader {
     text-align: center;
     max-width: 100%;
     justify-content: center;
-}
-
-/* hide empty paragraphs from chapter headers */
-section.subheader p { 
-    display: none;
 }
 
 section.meta p {

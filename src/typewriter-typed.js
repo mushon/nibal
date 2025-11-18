@@ -40,9 +40,6 @@
       const text = el.textContent || '';
       if (!text.trim()) return;
       
-      // Store original HTML to preserve empty links for inflection
-      el.dataset._tw_orig = el.innerHTML;
-      
       // Extract and preserve empty links (inflection links)
       const emptyLinks = Array.from(el.querySelectorAll('a:not([class*="dontinflect"])')).filter(a => !a.textContent.trim());
       

@@ -366,6 +366,7 @@ css: src/theme.css
 {.meta} 
 [](fg:blank)
 [](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+cities,+villages,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly) "תושבי אל-בוריג׳ צועדים בין מבנים שנהרסו בהפצצות ישראליות, 24 ביוני 2024. (NurPhoto / מג׳די פאתחי)")
+
 ניבאל, אחמד וריתא נאלצו להימלט מרפיח יחד עם כמיליון איש נוספים, רובם המוחלט עקורים להם הורה הצבא הישראלי להתרכז בעיר בחודשים שלפני כן.
 
 
@@ -388,7 +389,8 @@ css: src/theme.css
 החיים במחסן היו קצת יותר יציבים מאשר החיים באוהל, אבל הרגשתי חצויה. מצד אחד שמחתי להיות עם בעלי והבת שלי, ומצד שני התגעגעתי למשפחה שלי. המרחק מהמשפחה ומהבית שלי גרם לי להרגיש בודדה ומנוכרת.
 
 
-{.testimony typewriter}
+{.testimony typewriter}[](svg/#warehouse_bureij1.svg/-0.25,-0.19,1.15/+warehouse_comp-compressed.jpg "מחנה הפליטים אל־בוריג', 2 באוקטובר 2024. (Anadolu / מועיז סאלחי)")
+[](map/#31.44772,34.39655,13.00,0.0,39.0/+pois.csv(poi,id=bureij))
 בכל הזדמנות, התעדכנתי בטלפון לגבי המצב של המשפחה בג׳אבליא.
 
 
@@ -400,6 +402,8 @@ css: src/theme.css
 
 
 {.testimony typewriter showdate}
+[](svg/#warehouse_bureij1.svg/-0.25,0.41,1.53/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
+[](map/#31.44772,34.39655,13.00,0.0,39.0/+pois.csv(poi,id=bureij))
 ### Oct 24
 
 בבוקר של ה-7 באוקטובר 2024 ריתא קראה לי "אמא" בפעם הראשונה. זה היה מרגש מאוד.
@@ -413,7 +417,7 @@ css: src/theme.css
 
 
 {.meta}
-[](fg:blank)
+[](svg/#warehouse_bureij2.svg/-55.25,60.89,157.92/+nibal_xray)
 [](bg:blank)
 באותו בוקר הפגיז הצבא הישראלי את אל-בוריג׳. ניבאל תיארה רעש בלתי פוסק של הפגזות. 
 
@@ -421,7 +425,7 @@ css: src/theme.css
 
 
 {.meta}
-[](fg:blank)
+[](svg/#warehouse_bureij2.svg/-144.6,126.9,351.69/+nibal_xray)
 [](bg:blank)
 בזמן השיחה שלהם, פגז פגע במחסן.
 
