@@ -456,11 +456,6 @@ css: src/theme.css
 
 
 {.meta}
-[](fg:blank)
-[](bg:blank)
-
-
-{.meta}
 [](svg/#warehouse_bureij2.svg/-0.07,-0.93,2.26/+leaving_to_mawasi_triple_comp.jpg)
 [](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+cities,+villages,+idf-poly-outlines "עקורות נושאות את חפציהן על כביש סלאח א־דין באיזור דיר אל־בלח, 20 בנובמבר 2024. (NurPhoto / מג׳די פאתחי)")
 ניבאל השתחררה מבית החולים לאחר 40 יום. בשלב זה, היא, אחמד וריתא נאלצו לעקור שוב.
@@ -514,12 +509,9 @@ css: src/theme.css
 הבת של השכנים מהאוהל לידינו, נערה חכמה ורגישה, ריחמה עליי והגיעה בכל יום לעזור לי ולטפל בי ובריתא.
 
 
-[](fg:blank)
-[](bg:blank)
-
-
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/-1.05,0.89,3.08/+nibal_after_amputation,+nibal_red.jpg,+nibal_red2)
+[](svg/#warehouse_bureij3.svg/-1.44,1.19,4.06/+nibal_after_amputation)
+[](bg:blank)
 
 התקשיתי לקבל את הגוף החדש שלי. 
 
@@ -568,7 +560,7 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.54,-0.16,0.87/+@vimeo-1136076448)
+[](svg/#ceasefire_hope.svg/-0.54,-0.16,0.87/+@vimeo-1136076448,~prisoners_2-comp.jpg)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines)
 
 גם ניבאל ואחמד יצאו צפונה עם ריתא בת השנה וארבעה חודשים. 
@@ -601,7 +593,7 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.12,0.29,1.48/+@vimeo-1129871187,+vimeo-1137391158 "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/-0.12,0.29,1.48/+@vimeo-1129871187,+vimeo-1137391158,~prisoners_2-comp.jpg "מתוך חשבון הטיקטוק של ניבאל")
 אבל אז התחדשה המלחמה ביתר שאת. 
 
 תחת ההפצצות והמצור, מערכת היחסים של ניבאל ואחמד נקלעה למשבר.
@@ -618,7 +610,7 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/0.25,0.39,1.74/+@vimeo-1137391158  "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/0.25,0.39,1.74/+@vimeo-1137391158,+prisoners_2-comp.jpg  "מתוך חשבון הטיקטוק של ניבאל")
 בעדותה, סיפרה ניבאל על הכאב הנפשי שחווה אחמד, שהחמיר תחת הקושי של שלושתם לשרוד בתנאי המצור ההדוק שהטילה שוב ישראל.  
 
 
@@ -638,7 +630,7 @@ css: src/theme.css
 
 {.meta}
 [](svg/#back_home.svg/-0.73,0.57,2.67/+@vimeo-1129860275 "תיעוד של בית אחותה של ניבאל לאחר ההפצצה, לצד תמונות של ילדיה שנהרגו")
-[](map/#31.53103,34.47759,13.51,38.4,0.0/+pois.csv(poi,id=home))
+[](map/#31.53551,34.47021,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home))
 
 באפריל 2025 הפציץ הצבא הישראלי את ביתה של אחותה של ניבאל בג׳אבליא. כתוצאה מההפצצה נהרגו שלושת ילדיה של אלאא, אחותה: וסים, בן 10, מוהנד, בן 8, וח'וולה, בת 5. 
 
@@ -655,7 +647,7 @@ css: src/theme.css
 
 {.meta}
 [](svg/#back_home.svg/-0.16,-0.11,1.43/~vimeo-1137391856,~vimeo-1137392312,~nibal_ruined_home1.jpg,~nibal_home_smile3.heic "תושבים בסמוך לגופות הרוגים באתר תקיפה ישראלית על בית בג'באליא, 18 באפריל 2025. (סאהר אל־ע'ורה / ZUMA Press Wire)")
-[](map/#31.53103,34.47759,13.51,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home))
+[](map/#31.53551,34.47021,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home))
 
 בתחילת יוני 2025, החליטה ניבאל לחזור עם ריתא לבית הוריה הסמוך.
  
@@ -666,6 +658,7 @@ css: src/theme.css
 
 {.testimony typewriter}
 [](svg/#back_home.svg/-1.01,-0.36,1.86/~vimeo-1137391856,~vimeo-1137392312,~nibal_ruined_home1.jpg,~vimeo-1129860275)
+[](map/#31.53551,34.47021,14.64,38.4,0.0/+pois.csv(poi,id=home))
 
 הייתי מתוסכלת מאוד כי לא יכולתי לעשות כלום בעצמי והתקשיתי לטפל בריתא. 
 
@@ -674,6 +667,7 @@ css: src/theme.css
 
 {.testimony typewriter}
 [](svg/#back_home.svg/-0.82,0.28,1.98/+@vimeo-1137391856,+vimeo-1137392312,+nibal_ruined_home1.jpg "הפצצות בשכונת א-נזלה בג׳אבליא, אוגוסט 2025")
+[](map/#31.53196,34.47651,15.28,38.4,0.0/+pois.csv(poi,id=home))
 
 ההפצצות באזור שלנו נמשכו כל הזמן והרבה אנשים עקרו. אבל המשפחה המורחבת שלי גדולה מאוד ולא היה לנו לאן ללכת בלי שנצטרך להתפצל.
 
@@ -715,18 +709,21 @@ css: src/theme.css
 
 {.meta}
 [](svg/#permanent_impermanence.svg/-0.83,0.97,2.66/+nibal_ruined_home2.jpg "אזור ביתה של ניבאל לאחר ההפצצה")
+[](map/#31.53196,34.47651,15.28,38.4,0.0/+pois.csv(poi,id=home))
 ניבאל, ריתא וכ-50 מבני משפחתן המורחבת - הוריה של ניבאל, אחיה, בני זוגם וילדיהם - צעדו ברגל מג׳אבליא לעיר עזה בחיפוש אחר מקום בטוח. 
 
 הם התמקמו במסעדה נטושה של חברים, ואחר-כך עברו לדירה קטנה וצפופה בעיר עזה.
 
 
 {.meta} 
+[](map/#31.53978,34.48850,12.21,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2509))
 [](svg/#permanent_impermanence.svg/-0.59,0.39,2.29/+IDF_order_gaza_city-comp.jpg,+leaving_gaza_city_comp.jpg,+@vimeo-1136076786 "תושבים נעקרים ממחנה א-שאטי הסמוך לעיר עזה, 19 בספטמבר 2025. (Activestills / יוסף זענון)")
 
 באותם שבועות, פתחה ישראל במתקפה קרקעית נוספת על העיר עזה. 
 
 
 {.meta thumb} 
+[](map/#31.50774,34.46034,14.51,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2509))
 [](svg/#permanent_impermanence.svg/-0.13,0.38,1.66/+IDF_order_gaza_city-comp.jpg,+leaving_gaza_city_comp.jpg,@vimeo-1136076786 "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, 9 בספטמבר 2025. (רויטרס / דאווד אבו אלקאס)")
 צווי הפינוי שהוציא הצבא בתחילת ספטמבר 2025, שבועות ספורים לאחר שמשפחתה של ניבאל הגיעה לעיר, הורו לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
@@ -740,12 +737,12 @@ css: src/theme.css
 
 {.meta}
 [](svg/#permanent_impermanence.svg/0.16,0.34,2.41/+leaving_gaza_city_comp.jpg,@vimeo-1136076786)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+s.gaza,+deir-al-balah,+cities,+villages,+idf-poly-outlines "עקורים נמלטים מצפון רצועת עזה, 1 בספטמבר 2025. (NurPhoto / מג׳די פאתחי)")
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2509),+idf-poly-outlines "עקורים נמלטים מצפון רצועת עזה, 1 בספטמבר 2025. (NurPhoto / מג׳די פאתחי)")
 המשפחה נעקרה שוב, הפעם דרומה, למתחם אוהלים בדיר אל-בלח. 
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/-0.31,-0.59,2.16/+@vimeo-1129867912,@vimeo-1136076786 "מתוך חשבון הטיקטוק של ניבאל. בטקסט שצירפה לסרטון כתבה: ״בין ההריסות, ״אנשים נושאים את מה שנשאר מחייהם, כאילו גוררים שרידי מולדת על משאית״")
+[](svg/#permanent_impermanence.svg/0.41,-0.91,4.05/+@vimeo-1129867912,@vimeo-1136076786 "מתוך חשבון הטיקטוק של ניבאל. בטקסט שצירפה לסרטון כתבה: ״בין ההריסות, ״אנשים נושאים את מה שנשאר מחייהם, כאילו גוררים שרידי מולדת על משאית״")
 אני מותשת מהעקירה החוזרת ונשנית, וחוששת שריתא ואני לא נצליח להסתגל שוב לחיים באוהל.
 
 הצבא הישראלי מפזר כל הזמן כרוזים שמורים לנו להתפנות, ואנחנו חיים בחוסר אונים ובפחד. 
@@ -765,10 +762,12 @@ css: src/theme.css
 
 
 {.meta no-h}
+[](fg:blank)
+[](bg:blank)
 ### Oct 25
 
-[](fg:blank)
-[](svg/#permanent_impermanence.svg/0.76,-0.84,4.06/+@vimeo-1130690065,+@vimeo-1132487425 "ריתא במחנה העקורים בדיר אל-בלח")
+[](map/#31.41150,34.38598,9.96,38.4,0.0/+pois.csv(poi,id=deir-al-balah))
+[](svg/#permanent_impermanence.svg/1.43,-1.84,7.26/+vimeo-1130690065 "ריתא במחנה העקורים בדיר אל-בלח")
 ב-10 לאוקטובר 2025 נכנסה לתוקף הפסקת האש בין ישראל לחמאס. 
 
 בשבועות שלאחר מכן ישראל המשיכה את תקיפותיה ברצועה בעוצמות משתנות.
