@@ -1190,17 +1190,21 @@
                     // on mobile devices, detect SVG links with @vimeo- flags and redirect
                     // to embed/ with the first video ID instead of loading the full SVG
                     let finalHref = newHref;
-                    const hasFsVideoMobile = document.body.classList.contains('fs-video-mobile');
-                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.matchMedia('(max-width: 768px)').matches;
-                    
-                    if (hasFsVideoMobile && isMobile && newPath.includes('/svg/')) {
-                        // Check if the hash contains @vimeo- flags
-                        const hashMatch = originalHash.match(/@vimeo-(\d+)/);
-                        if (hashMatch && hashMatch[1]) {
-                            const videoId = hashMatch[1];
-                            // Redirect to embed/ instead of /svg/
-                            finalHref = `embed/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
+                    try {
+                        const hasFsVideoMobile = document.body.classList.contains('fs-video-mobile');
+                        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.matchMedia('(max-width: 768px)').matches;
+                        
+                        if (hasFsVideoMobile && isMobile && newPath.includes('/svg/')) {
+                            // Check if the hash contains @vimeo- flags
+                            const hashMatch = originalHash.match(/@vimeo-(\d+)/);
+                            if (hashMatch && hashMatch[1]) {
+                                const videoId = hashMatch[1];
+                                // Redirect to embed/ instead of /svg/
+                                finalHref = `embed/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
+                            }
                         }
+                    } catch(e) {
+                        console.warn('[mobile-video] Redirect failed:', e.message);
                     }
                     
                     if (newPath !== lastForegroundPath) {

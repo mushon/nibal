@@ -33,35 +33,36 @@
     const instances = new Map(); // Track Typed instances for cleanup
     
     function startTypingForElement(el, opts) {
-      if (!el || el.dataset._tw_started) return;
-      el.dataset._tw_started = '1';
-      
-      // Get original text content, excluding empty inflection links
-      const text = el.textContent || '';
-      if (!text.trim()) return;
-      
-      // Extract and preserve empty links (inflection links)
-      const emptyLinks = Array.from(el.querySelectorAll('a:not([class*="dontinflect"])')).filter(a => !a.textContent.trim());
-      
-      // Clear only the text content, keep empty links
-      const textNodes = [];
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-      let node;
-      while (node = walker.nextNode()) {
-        if (node.textContent.trim()) {
-          textNodes.push(node);
+      try {
+        if (!el || el.dataset._tw_started) return;
+        el.dataset._tw_started = '1';
+        
+        // Get original text content, excluding empty inflection links
+        const text = el.textContent || '';
+        if (!text.trim()) return;
+        
+        // Extract and preserve empty links (inflection links)
+        const emptyLinks = Array.from(el.querySelectorAll('a:not([class*="dontinflect"])')).filter(a => !a.textContent.trim());
+        
+        // Clear only the text content, keep empty links
+        const textNodes = [];
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while (node = walker.nextNode()) {
+          if (node.textContent.trim()) {
+            textNodes.push(node);
+          }
         }
-      }
-      textNodes.forEach(n => n.textContent = '');
-      
-      // Create a paragraph element to wrap the typed text
-      const p = document.createElement('p');
-      el.appendChild(p);
-      
-      const speed = (opts && opts.speed) || (el.dataset.twSpeed ? parseInt(el.dataset.twSpeed, 10) : 40);
-      
-      // Speed up typing by 2x (reduce delays by half)
-      const adjustedSpeed = Math.round(speed / 2);
+        textNodes.forEach(n => n.textContent = '');
+        
+        // Create a paragraph element to wrap the typed text
+        const p = document.createElement('p');
+        el.appendChild(p);
+        
+        const speed = (opts && opts.speed) || (el.dataset.twSpeed ? parseInt(el.dataset.twSpeed, 10) : 40);
+        
+        // Speed up typing by 2x (reduce delays by half)
+        const adjustedSpeed = Math.round(speed / 2);
       
       // Process text to add natural pauses at punctuation
       // Typed.js supports ^pause syntax for delays
@@ -106,39 +107,48 @@
       } catch (e) {
         console.error('Typewriter error:', e);
         // Fallback: just show the text
-        el.textContent = text;
+        p.textContent = text;
+      }
+      } catch(err) {
+        console.error('[typewriter] startTypingForElement failed:', err);
+        // Restore text on catastrophic failure
+        if (el) el.textContent = text;
       }
     }
 
     // Observe sections for intersection
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(en => {
-        if (en.isIntersecting) {
-          const sec = en.target;
-          
-          // Check suppression flag
-          if (window.__typewriterSuppressed) {
-            let startTimeoutId = null;
+        try {
+          if (en.isIntersecting) {
+            const sec = en.target;
             
-            const startWhenReady = () => {
-              if (startTimeoutId) clearTimeout(startTimeoutId);
+            // Check suppression flag
+            if (window.__typewriterSuppressed) {
+              let startTimeoutId = null;
+              
+              const startWhenReady = () => {
+                if (startTimeoutId) clearTimeout(startTimeoutId);
+                const els = sec.querySelectorAll('.typewriter');
+                els.forEach(el => startTypingForElement(el));
+                sec.removeEventListener('inflection-ready', startWhenReady);
+              };
+              
+              sec.addEventListener('inflection-ready', startWhenReady);
+              startTimeoutId = setTimeout(() => {
+                sec.removeEventListener('inflection-ready', startWhenReady);
+                const els = sec.querySelectorAll('.typewriter');
+                els.forEach(el => startTypingForElement(el));
+              }, 500);
+            } else {
               const els = sec.querySelectorAll('.typewriter');
               els.forEach(el => startTypingForElement(el));
-              sec.removeEventListener('inflection-ready', startWhenReady);
-            };
+            }
             
-            sec.addEventListener('inflection-ready', startWhenReady);
-            startTimeoutId = setTimeout(() => {
-              sec.removeEventListener('inflection-ready', startWhenReady);
-              const els = sec.querySelectorAll('.typewriter');
-              els.forEach(el => startTypingForElement(el));
-            }, 500);
-          } else {
-            const els = sec.querySelectorAll('.typewriter');
-            els.forEach(el => startTypingForElement(el));
+            sectionObserver.unobserve(en.target);
           }
-          
-          sectionObserver.unobserve(en.target);
+        } catch(err) {
+          console.error('[typewriter] IntersectionObserver callback failed:', err);
         }
       });
     }, { threshold: 0.25 });
@@ -146,32 +156,44 @@
     // Fallback observer for elements outside sections
     const fallbackObserver = new IntersectionObserver((entries) => {
       entries.forEach(en => {
-        if (en.isIntersecting) {
-          startTypingForElement(en.target);
-          fallbackObserver.unobserve(en.target);
+        try {
+          if (en.isIntersecting) {
+            startTypingForElement(en.target);
+            fallbackObserver.unobserve(en.target);
+          }
+        } catch(err) {
+          console.error('[typewriter] Fallback observer failed:', err);
         }
       });
     }, { threshold: 0.25 });
 
     function scanAndObserve() {
-      const sections = Array.from(document.querySelectorAll('section'));
-      let found = false;
-      
-      sections.forEach(sec => {
-        if (sec.querySelector('.typewriter')) {
-          found = true;
-          if (!sec.dataset._tw_observed) {
-            sec.dataset._tw_observed = '1';
-            sectionObserver.observe(sec);
+      try {
+        const sections = Array.from(document.querySelectorAll('section'));
+        let found = false;
+        
+        sections.forEach(sec => {
+          try {
+            if (sec.querySelector('.typewriter')) {
+              found = true;
+              if (!sec.dataset._tw_observed) {
+                sec.dataset._tw_observed = '1';
+                sectionObserver.observe(sec);
+              }
+            }
+          } catch(err) {
+            console.error('[typewriter] Error observing section:', err);
           }
-        }
-      });
-      
-      if (!found) {
-        const els = document.querySelectorAll('.typewriter');
-        els.forEach(el => {
-          if (!el.dataset._tw_started) fallbackObserver.observe(el);
         });
+        
+        if (!found) {
+          const els = document.querySelectorAll('.typewriter');
+          els.forEach(el => {
+            if (!el.dataset._tw_started) fallbackObserver.observe(el);
+          });
+        }
+      } catch(err) {
+        console.error('[typewriter] scanAndObserve failed:', err);
       }
     }
 
