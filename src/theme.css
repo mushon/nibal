@@ -440,6 +440,11 @@ iframe {
     opacity: 1;
 }
 
+.no-h h3 {
+    visibility: hidden;
+    display: none;
+}
+
 /* Newsletter signup form tweaks */
 #mc_embed_signup{
     background: #000;
