@@ -1162,7 +1162,7 @@
                 }
             } else {
                 // Dual iframe mode: route based on URL pattern
-                // map/ → background-frame, everything else (cmp/, img/, vid/, etc.) → foreground-frame
+                // map/ → background-frame, everything else (cmp/, img/, vim/, etc.) → foreground-frame
                 const isMapLink = newPath.includes('/map/') || newPath.includes('/map#') || newPath.match(/\/map$/);
                 
                 if (isMapLink) {
@@ -1184,11 +1184,11 @@
                         foregroundFrame.classList.add('inactive');
                     }
                 } else {
-                    // Route to foreground frame (default for cmp/, img/, vid/, etc.)
+                    // Route to foreground frame (default for cmp/, img/, vim/, etc.)
                     
                     // MOBILE VIDEO OPTIMIZATION: If fs-video-mobile body class is present,
                     // on mobile devices, detect SVG links with @vimeo- flags and redirect
-                    // to embed/ with the first video ID instead of loading the full SVG
+                    // to vim/ with the first video ID instead of loading the full SVG
                     let finalHref = newHref;
                     try {
                         const hasFsVideoMobile = document.body.classList.contains('fs-video-mobile');
@@ -1199,8 +1199,8 @@
                             const hashMatch = originalHash.match(/@vimeo-(\d+)/);
                             if (hashMatch && hashMatch[1]) {
                                 const videoId = hashMatch[1];
-                                // Redirect to embed/ instead of /svg/
-                                finalHref = `embed/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
+                                // Redirect to vim/ instead of /svg/
+                                finalHref = `vim/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
                             }
                         }
                     } catch(e) {
@@ -1368,7 +1368,7 @@
         });
 
         // Also observe sections: some markdown creates empty anchors inside
-        // section blocks (e.g. `[](vid/#...)` with no link text). Empty anchors
+        // section blocks (e.g. `[](vim/#...)` with no link text). Empty anchors
         // have no layout box and won't trigger the link observer. Observe
         // sections and when a section enters view, pick its first inflection
         // link and update the iframe accordingly.
