@@ -555,7 +555,7 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.09,-0.34,1.93/+@vimeo-1136076448)
+[](svg/#ceasefire_hope.svg/-0.57,-0.02,0.87/+@vimeo-1136076448)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines)
 
 גם ניבאל ואחמד יצאו צפונה עם ריתא בת השנה וארבעה חודשים. 
