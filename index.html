@@ -1681,6 +1681,18 @@
                 } catch (e) { /* swallow */ }
             }
 
+            // Track last user scroll time to determine if IntersectionObserver should snap
+            let lastUserScrollTime = 0;
+            let scrollEndTimeout = null;
+            scroller.addEventListener('scroll', () => {
+                lastUserScrollTime = Date.now();
+                if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
+                scrollEndTimeout = setTimeout(() => {
+                    // Scroll ended - allow IntersectionObserver to snap
+                    window.__userScrollEnded = true;
+                }, 150);
+            }, { passive: true });
+
             // Observe sections within the scroller
             const snapObserver = new IntersectionObserver((entries) => {
                 entries.forEach(en => {
@@ -1688,14 +1700,15 @@
                         try {
                             const sec = en.target;
                             const now = Date.now() || 0;
-                            // Avoid snapping while programmatic snap suppression is active
-                            if (now > (window.__snapSuppressUntil || 0)) {
+                            // Only snap if: 1) no programmatic snap active, AND 2) user finished scrolling
+                            const timeSinceScroll = now - lastUserScrollTime;
+                            if (now > (window.__snapSuppressUntil || 0) && timeSinceScroll > 100) {
                                 _snapToSection(sec, true);
                             }
                         } catch (e) {}
                     }
                 });
-            }, { root: scroller, threshold: 0.55 });
+            }, { root: scroller, threshold: 0.35 });
 
             // Attach snap observer to each section
             try {
@@ -1715,8 +1728,8 @@
                 let __gestureAccumulator = 0;
                 let __gestureLastDir = 0;
                 let __gestureTimer = null;
-                const __smallGestureThreshold = 60; // px accumulated
-                const __gestureTimeoutMs = 140; // ms to wait for gesture series to finish
+                const __smallGestureThreshold = 35; // px accumulated (reduced for stronger magnet)
+                const __gestureTimeoutMs = 120; // ms to wait for gesture series to finish
 
                 scroller.addEventListener('wheel', (ev) => {
                     try {
@@ -1807,7 +1820,7 @@
             // the window handler can avoid double-acting when not needed.
             try {
                 let __w_acc = 0, __w_dir = 0, __w_timer = null;
-                const __w_thresh = 60, __w_timeout = 140;
+                const __w_thresh = 35, __w_timeout = 120;
                 window.addEventListener('wheel', (wev) => {
                     try {
                         // If scroller already handled wheel events recently, skip

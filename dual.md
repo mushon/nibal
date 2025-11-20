@@ -223,7 +223,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#oct7.svg/-1.95,1.25,3.54/+nibal_rita_hands-comp.jpg)
+[](svg/#oct7.svg/-1.63,1.25,3.54/+nibal_rita_hands-comp.jpg)
 [](map/#31.52965,34.48083,14.83,38.4,0.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home))
 פחדתי על ריתא מאוד.
 
