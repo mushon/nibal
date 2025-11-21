@@ -788,7 +788,7 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/1.08,-1.45,5.68/+@vimeo-1130690065 "ריתא במחנה העקורים בדיר אל-בלח")
+[](svg/#permanent_impermanence.svg/1.77,-1.95,5.68/+@vimeo-1139274686)
 [](map/#31.54931,34.18377,9.91,38.4,0.0/+pois.csv(poi,id=deir-al-balah),+IDF_zone_191025)
 גם עם שוך ההפצצות, ניבאל, ריתא ובני משפחתן עדיין חשופים לסכנת חיים יומיומית. 
 
