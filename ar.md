@@ -1,15 +1,25 @@
 ---
-body-class: snap
-css: src/theme.css
+body-class: snap, ar
+css: src/theme.css, src/ar.css
 ---
+
 
 # _رحلة التهجير لـ_ نبال الهسي
 
-[](svg/#opening.svg/~IDFareas)
+[](map/#31.30336,34.29179,9.53,37.6,0.0/~labels_he)
+[](svg/#intro-pre.svg/-0.01,0.45,1.52/+nibal2023,+home,+displacement)
 
-<img src="img/bts_logo.svg" alt="بتسيلم: رحلات التهجير]" style="max-width:100px;height:auto;">
+<div id="logo">
+<a href="https://btselem.org" title="بتسيلم" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="بتسيلم" style="max-width:100px;height:auto;"></a>
+</div>
 
-<img src="img/scrol-signal.svg" alt="يرجى التمرير لأسفل" style="max-width:100px;height:auto;">
+<div id="lang">
+    <a href="#"target="blank" class="dontinflect">עברית</a>
+    <a href="#en"target="blank" class="dontinflect">English</a>
+    <a href="#ar"target="blank" class="dontinflect">عربي</a>
+</div>
+
+<img id="scroll-indicator" src="img/scrol-signal.svg" alt="يرجى التمرير لأسفل" style="max-width:100px;height:auto;">
 
 
 {.meta}

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Arabic:wght@100..800&family=Vazirmatn:wght@100..900&display=swap');
+
+body.ar {
+    font-family: 'Vazirmatn';
+    direction: rtl;
+}
+
+body.ar h1{
+    font-family: 'Vazirmatn';
+    font-weight: 900;
+    -webkit-text-stroke: 0;
+}
+
+section.testimony {
+     font-family: 'Playpen Sans Arabic', sans-serif;
+     font-weight: 400;
+    -webkit-text-stroke: 0;
+}
