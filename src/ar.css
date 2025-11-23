@@ -5,7 +5,9 @@ body.ar {
     direction: rtl;
 }
 
-body.ar h1{
+body.ar h1,
+body.ar h2,
+body.ar h3 {
     font-family: 'Vazirmatn';
     font-weight: 900;
     -webkit-text-stroke: 0;

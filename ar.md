@@ -1,5 +1,6 @@
 ---
-body-class: snap, ar
+dual-iframe: true
+body-class: snap, fs-video-mobile, ar
 css: src/theme.css, src/ar.css
 ---
 
