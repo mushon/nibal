@@ -1099,19 +1099,35 @@
                     function setCaptionFromLink(a){
                         try {
                             const isDualMode = document.body.classList.contains('dual-iframe');
-                            
                             if (!a) {
                                 // Clear both captions
                                 bgCaption = '';
                                 fgCaption = '';
                                 updateCombinedCaption();
+                                // Reset both iframe opacities to 1
+                                document.getElementById('background-frame').style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                document.getElementById('background-frame').style.opacity = 1;
+                                document.getElementById('foreground-frame').style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                document.getElementById('foreground-frame').style.opacity = 1;
+                                document.getElementById('if').style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                document.getElementById('if').style.opacity = 1;
                                 return;
                             }
-                            
+
+                            // Determine target opacity from alpha_X class
+                            let targetAlpha = 1;
+                            if (a.classList) {
+                                for (const cls of a.classList) {
+                                    if (cls.startsWith('alpha_')) {
+                                        const val = parseFloat(cls.replace('alpha_', ''));
+                                        if (!isNaN(val)) targetAlpha = val;
+                                    }
+                                }
+                            }
+
                             const title = (a.getAttribute('title') || a.getAttribute('data-caption') || a.textContent || '').trim();
                             const rawHref = a.getAttribute('href') || '';
-                            
-                            // Determine if this link targets background (map) or foreground
+
                             if (isDualMode) {
                                 const isMapLink = rawHref.includes('/map/') || rawHref.includes('/map#') || rawHref.match(/\/map$/);
                                 if (isMapLink) {
@@ -1119,10 +1135,22 @@
                                     if (title) {
                                         bgCaption = title;
                                     }
+                                    // Animate background iframe opacity
+                                    const bgFrame = document.getElementById('background-frame');
+                                    if (bgFrame) {
+                                        bgFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                        bgFrame.style.opacity = targetAlpha;
+                                    }
                                 } else {
                                     // Only update foreground caption if title exists
                                     if (title) {
                                         fgCaption = title;
+                                    }
+                                    // Animate foreground iframe opacity
+                                    const fgFrame = document.getElementById('foreground-frame');
+                                    if (fgFrame) {
+                                        fgFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                        fgFrame.style.opacity = targetAlpha;
                                     }
                                 }
                                 updateCombinedCaption();
@@ -1131,6 +1159,12 @@
                                 bgCaption = title;
                                 fgCaption = '';
                                 updateCombinedCaption();
+                                // Animate main iframe opacity
+                                const mainFrame = document.getElementById('if');
+                                if (mainFrame) {
+                                    mainFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                    mainFrame.style.opacity = targetAlpha;
+                                }
                             }
                         } catch(e){ /* swallow */ }
                     }
