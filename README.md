@@ -239,7 +239,7 @@ css: src/theme.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois-he(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home) "הערכת צפיפות בניינים שניזוקו ברצועת עזה לאחר החודש הראשון למתקפה. מקור: UNOSAT")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois-he(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home) "הערכת צפיפות בניינים שניזוקו ברצועת עזה לאחר החודש הראשון למתקפה. מקור: UNOSAT")
 בפברואר 2024 שיחרר הצבא הישראלי את אחמד, והוא הגיע לח'אן יונס שבדרום הרצועה.  
 
 למרות התנגדותם הנחרצת של הוריה, ניבאל החליטה לצאת דרומה, בתקווה להתאחד עם בעלה.
@@ -259,7 +259,6 @@ css: src/theme.css
 
 {.meta}
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "מתוך חשבון האינסטגרם של ניבאל")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403))
 בעדותה תיארה ניבאל נסיעה רוויית אימה בדרכים הרוסות, במהלכה ראתה מבעד לחלון המכונית את ההפצצות הכבדות של הצבא הישראלי.
 
 
@@ -572,7 +571,7 @@ css: src/theme.css
 
 {.meta}
 [](svg/#ceasefire_hope.svg/-0.54,-0.16,0.87/+@vimeo-1136076448,~prisoners_2-comp.jpg)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines,+pois-he(label-main,id=couple-home),+pois#2(label-main,id=al-mawasi),+pois#3(label-main,id=home))
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+cities,+villages,+idf-poly-outlines,+pois-he(label-main,id=jabalia),+pois#2(label-main,id=al-mawasi))
 
 גם ניבאל ואחמד יצאו צפונה עם ריתא בת השנה וארבעה חודשים. 
 
