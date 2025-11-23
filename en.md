@@ -239,7 +239,7 @@ People who stayed in Jabalya were filmed walking among ruins, trying to salvage 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip after the first month of the offensive. Source: UNOSAT")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip after the first month of the offensive. Source: UNOSAT")
 In February 2024, Israel released Ahmad and he reached Khan Yunis in southern Gaza.
 
 Despite her parents’ strong objections, Nibal decided to try and meet him there.
@@ -259,7 +259,6 @@ Nibal’s father drove her and six-month-old Rita to Gaza City.
 
 {.meta}
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "From Nibal’s Instagram account")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),~labels_he,+villages,+cities)
 She told B’Tselem of a terrifying ride through roads in ruins, watching bombs rain down nearby. 
 
 
@@ -313,6 +312,7 @@ Israel continues to deny most of them the right to due process and other basic r
 [](svg/#south.svg/-0.82,2.16,7.52/+ahmed_detained-comp.jpg "Palestinians who had been detained by Israel released in Rafah, 28 Dec. 2023. (Reuters/Bassam Masoud)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
 Some Gaza residents arrested in Israel after 7 October are still in custody. 
+
 
 {.meta}
 [](svg/#south.svg/-0.02,0,3.98/+rafah_tent_comp.jpg "IDPs shelter in a tent camp in Khan Yunis, 11 Dec. 2023. (Reuters/Ibraheem Abu Mustafa)")
@@ -574,7 +574,7 @@ In the weeks that followed, about half a million displaced people began returnin
 
 {.meta}
 [](svg/#ceasefire_hope.svg/-0.54,-0.16,0.87/+@vimeo-1136076448,~prisoners_2-comp.jpg)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+idf-poly-outlines,+pois(label-main,id=couple-home),+pois#2(label-main,id=al-mawasi),+pois#3(label-main,id=home),~labels_he,+villages,+cities)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+idf-poly-outlines,+pois(label-main,id=jabalia),+pois#2(label-main,id=al-mawasi),~labels_he,+villages,+cities)
 
 Nibal and Ahmad walked north with Rita, now almost one and a half years old. 
 
