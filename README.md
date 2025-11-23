@@ -239,7 +239,7 @@ css: src/theme.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home)) "הערכת צפיפות בניינים שניזוקו ברצועת עזה לאחר החודש הראשון למתקפה. מקור: UNOSAT")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home) "הערכת צפיפות בניינים שניזוקו ברצועת עזה לאחר החודש הראשון למתקפה. מקור: UNOSAT")
 בפברואר 2024 שיחרר הצבא הישראלי את אחמד, והוא הגיע לח'אן יונס שבדרום הרצועה.  
 
 למרות התנגדותם הנחרצת של הוריה, ניבאל החליטה לצאת דרומה, בתקווה להתאחד עם בעלה.
