@@ -41,14 +41,14 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
-[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip after the first week of the offensive. Source: UNOSAT")
+[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+unosat-damage-231015 "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 بموازاة النزوح بسبب أوامر الإخلاء، اضطر سكان قطاع غزة إلى النزوح أيضًا بسبب عمليات القصف المتكررة التي شنها الجيش الإسرائيلي في جميع أنحاء قطاع غزة، والتي خلّفت دمارًا وموتًا على نطاق هائل.
 
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/+displacement "سكان مدينة غزة يهربون بعد أن أمرهم الجيش الإسرائيلي بالانتقال جنوبًا. 15 أيلول 2025 (رويترز: محمود عيسى)")
 [](map/#31.49997,34.25627,10.18,37.6,0.0/~labels_he,+unosat-damage-231015)
-Throughout the offensive, Israel prevented the Internally Displaced Persons (IDPs) from finding safe shelter with food, water and basic services.
+ طوال أشهر الهجوم، حال الهجوم الإسرائيلي دون تمكُّن المهجّرين من إيجاد ملاذ آمن يمكنهم فيه الحصول على الغذاء والماء والخدمات الأساسية.
 
 
 {.meta}
@@ -148,7 +148,7 @@ Throughout the offensive, Israel prevented the Internally Displaced Persons (IDP
 
 {.meta} 
 [](fg:blank)
-[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+labels_ar,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip after the first week of the offensive. Source: UNOSAT")
+[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+labels_ar,+unosat-damage-231015 "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 في اليوم نفسه، بدأت إسرائيل بشن موجة هجمات واسعة النطاق على القطاع.
 
 
@@ -189,11 +189,10 @@ Throughout the offensive, Israel prevented the Internally Displaced Persons (IDP
 [](map/#31.56174,34.26564,9.50,-45.3,0.0/+north,+arrow,~labels_he,+labels_ar "أحد سكان مدينة غزة يحمل أمر الإخلاء الذي ألقته طائرة إسرائيلية، والذي يحذّر من ״هجوم وشيك״ على قطاع غزة ويدعو السكان إلى الانتقال جنوبًا، 13 تشرين الأول 2023 (Anadolu: دعاء الباز)")
 أوامر الإخلاء الجماعي الأولى، التي صدرت في 13 تشرين الأول، أمرت نحو مليون شخص من سكان شمال القطاع بمغادرة منازلهم والنزوح إلى جنوب القطاع في غضون 24 ساعة.
 
-
 <a href="https://btselem.org/" target="blank" class="dontinflect">
     للمزيد، أنظروا:
     <strong>
-    Evacuation orders and “safe corridors”
+    أوامر الإخلاء و"الممرات الآمنة"
     </strong>
 </a>
 
@@ -206,7 +205,7 @@ Throughout the offensive, Israel prevented the Internally Displaced Persons (IDP
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar "Assessed density of damage to buildings in the Gaza Strip after the first week of the offensive. Source: UNOSAT")
+[](map/#31.52287,34.46534,12.90,-3.2,39.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 نِبال، التي كانت تخشى الخروج في تلك الرحلة الصعبة إلى جنوب القطاع بمفردها، مع ابنتها البالغة من العمر شهرًا واحدًا، قررت البقاء مؤقتًا في منزل والديها في جباليا.
 
 
@@ -223,7 +222,7 @@ Throughout the offensive, Israel prevented the Internally Displaced Persons (IDP
 
 {.meta} 
 [](fg:blank)
-[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+labels_ar "Assessed density of damage to buildings in the Gaza Strip after the first week of the offensive. Source: UNOSAT")
+[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 حتى نهاية 2023، غيّرت الغارات الجوية الإسرائيلية وجه شمال القطاع إلى درجة أنه لم يعد ممكنًا التعرف عليه.
 
 
@@ -787,7 +786,7 @@ Throughout the offensive, Israel prevented the Internally Displaced Persons (IDP
 
 
 {.meta}
-[](map/#31.54931,34.18377,9.91,38.4,0.0/~labels_he,+idf-zones,+idf-poly-outlines "In red: Places included in military evacuation orders, Oct. 2023-Oct.2025")
+[](map/#31.54931,34.18377,9.91,38.4,0.0/~labels_he,+idf-zones,+idf-poly-outlines "أحمر: المناطق التي شملتها أوامر الإخلاء التي أصدرها الجيش بين تشرين الأول 2023 وتشرين الأول 2025")
 قصتهم هي قصة دمار قطاع غزة نفسه.
 
 
@@ -804,20 +803,23 @@ Throughout the offensive, Israel prevented the Internally Displaced Persons (IDP
 
 {.meta thumb closing no-snap}
 [](about:blank)
-**رحلة نِبال وريتا لم تنته بعد.** تحلم نِبال باللحظة التي ستتمكن فيها من البدء بالتعافي وبناء حياة جديدة لها ولريتا، تمامًا مثل مئات الآلاف من العائلات الأخرى في غزة:
+**رحلة نِبال وريتا لم تنته بعد.** 
+
+تحلم نِبال باللحظة التي ستتمكن فيها من البدء بالتعافي وبناء حياة جديدة لها ولريتا، تمامًا مثل مئات الآلاف من العائلات الأخرى في غزة:
 
 [ عنوان بريدي الإلكتروني ]
-- [] أضيفوني إلى قائمة بتسيلم البريديةم
+أضيفوني إلى قائمة بتسيلم البريديةم
 
 [ أعلِموني بمصير نِبال ]
 
 
+{.meta thumb closing}
 ## المنهجية والمصادر
 
 <a href="https://btselem.org/" target="blank" class="dontinflect">
 للتقرير الكامل حول التهجير في قطاع غزة، 2023- 2025: لا مكان آمن
     <strong>
-    لا يوجد مكان آمن
+    لا مكان تحت السماء
     </strong>
 </a>
 
