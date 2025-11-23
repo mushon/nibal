@@ -10,3 +10,8 @@
     border-right: none;
     border-left: 8px solid #FA5F5F;
 }
+
+.ltr #mc_embed_signup {
+    border-right: 0;
+    border-left: 8px solid #FA5F5F;
+}

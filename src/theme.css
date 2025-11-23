@@ -486,6 +486,10 @@ iframe {
     color: #fff;
 }
 
+input#mce-EMAIL{
+    direction: ltr;
+}
+
 #mc_embed_signup>form>div>div>input.button{
     border-radius: 4px;
     border: 1px solid #FA5F5F;
