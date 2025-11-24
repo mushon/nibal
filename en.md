@@ -42,12 +42,12 @@ Even without orders, many have fled the massive bombardments throughout the Stri
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
-[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023. (UNOSAT)")
+[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
 People also fled of their own accord, escaping the frequent airstrikes that rained down death and destruction throughout the Strip.
 
 
 {.meta}
-[](svg/#intro-pre.svg/0.34,0.36,1.81/+displacement "Residents flee Gaza City following military orders to go south, 15 Sept. 2025. (Reuters / Mahmoud Issa)")
+[](svg/#intro-pre.svg/0.34,0.36,1.81/+displacement "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
 [](map/#31.49997,34.25627,10.18,37.6,0.0/~labels_he,+unosat-damage-231015)
 Throughout the offensive, Israel has prevented these Internally Displaced Persons (IDPs) from accessing safe shelter with food, water and basic services.
 
@@ -149,7 +149,7 @@ They carried 252 people, some living and others dead, back to Gaza.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+villages,+cities,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023. (UNOSAT)")
+[](map/#31.43664,34.34673,10.18,37.6,0.0/~labels_he,+villages,+cities,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
 That same day, Israel launched a massive wave of strikes across Gaza. 
 
 
@@ -168,7 +168,7 @@ Nibal was terrified and went to stay with her parents nearby.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023. (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.63011,34.71983,8.57,24.0,41.5/+unosat-damage-231015,~labels_he)
 A few days later, Israel revoked tens of thousands of permits from all workers from Gaza. Many were inside Israel and could not go home.
 
@@ -178,7 +178,7 @@ Ahmad and thousands of others instantly became “illegal aliens” in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.45,0.41,2/+detainies-1,+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023. (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.45,0.41,2/+detainies-1,+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.63011,34.71983,8.57,24.0,41.5/+unosat-damage-231015,~labels_he)
 He and thousands of others were arrested in Israel within days.
 
@@ -203,14 +203,14 @@ The first mass orders, issued on 13 October, ordered about 1 million people in n
 
 
 {.meta} 
-[](svg/#oct7.svg/-0.39,-0.38,1.97/+@vimeo-1136099759 "Evacuating south along the the coastal road, 14 Oct. 2023. (Mohammed Zaanoun)")
+[](svg/#oct7.svg/-0.39,-0.38,1.97/+@vimeo-1136099759 "Evacuating south along the the coastal road, 14 Oct. 2023 (Mohammed Zaanoun)")
 [](map/#31.38336,34.21994,10.31,-10.4,42.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+villages,+cities)
 Under heavy fire, hundreds of thousands had to decide where to run without knowing if they would ever return.
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023. (UNOSAT)")
+[](map/#31.52287,34.46534,12.90,-3.2,39.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
 Nibal was afraid to travel alone with her baby and stayed with her parents.
 
 
@@ -232,7 +232,7 @@ Several months of heavy bombardment left northern Gaza unrecognizable.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.01,-0.42,1.99/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024. (Reuters/Emad Gabon)")
+[](svg/#oct7.svg/0.01,-0.42,1.99/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
 [](map/#31.50989,34.46989,12.68,39.2,0.5/~labels_he,+villages,+cities)
 Residents who stayed in Jabalya were documented trying to salvage what was left of their belongings from the rubble.
 
@@ -295,13 +295,13 @@ But seeing him also shocked me. He had lost so much weight, and it looked like h
 
 
 {.meta} 
-[](svg/#south.svg/0.73,0.65,2.87/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023. (Reuters/Bassam Masoud)")
+[](svg/#south.svg/0.73,0.65,2.87/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
 Nibal and Rita met Ahmad after he had been held in an Israeli detention facility for months, without trial. 
 
 
 {.meta} 
-[](svg/#south.svg/-0.02,0.65,2.87/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023. (Reuters/Bassam Masoud)")
+[](svg/#south.svg/-0.02,0.65,2.87/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
 Since the 7 October attack, B’Tselem and other human rights groups have documented a systemic Israeli policy of harsh violence, starvation and denial of medical care against Palestinian detainees, leading to dozens of deaths to date. 
 
@@ -309,13 +309,13 @@ Israel continues to deny most detainees the right to due process and other basic
 
 
 {.meta} 
-[](svg/#south.svg/-0.82,2.16,7.52/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023. (Reuters/Bassam Masoud)")
+[](svg/#south.svg/-0.82,2.16,7.52/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
 Some of the Gazans detained inside Israel in October 2023 are still in custody. 
 
 
 {.meta}
-[](svg/#south.svg/-0.02,0,3.98/+rafah_tent_comp.jpg "IDPs shelter in a tent camp in Khan Yunis, 11 Dec. 2023. (Reuters/Ibraheem Abu Mustafa)")
+[](svg/#south.svg/-0.02,0,3.98/+rafah_tent_comp.jpg "IDPs shelter in a tent camp in Khan Yunis, 11 Dec. 2023 (Reuters/Ibraheem Abu Mustafa)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
 Despite the joyous reunion, Nibal struggled to adjust to life in a tent in Rafah. 
 
@@ -566,7 +566,7 @@ But I was losing hope.
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.15,0.3,2.65/+@vimeo-1136076448 "IDPs return north along a-Rashid Road, 21 Jan. 2025. (Activestills/Yousef Zaanoun)")
+[](svg/#ceasefire_hope.svg/-0.15,0.3,2.65/+@vimeo-1136076448 "IDPs return north along a-Rashid Road, 21 Jan. 2025 (Activestills/Yousef Zaanoun)")
 Two months after the family reached the tent, a second ceasefire between Israel and Hamas took effect in January 2025.
 
 
@@ -797,7 +797,7 @@ She is fighting to imagine a better future for herself and for Rita.
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/0.4,-1.2,3.23/+@vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025. (Reuters / Mahmoud Issa)")
+[](svg/#permanent_impermanence.svg/0.4,-1.2,3.23/+@vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
 Nibal is one of nearly 2 million people in Gaza enduring loss, hunger and prolonged displacement.
 
 
