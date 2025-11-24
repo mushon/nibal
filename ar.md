@@ -844,7 +844,7 @@ css: src/theme.css, src/ar.css
 <a href="https://btselem.org/" target="blank" class="dontinflect">
 للتقرير الكامل حول التهجير في قطاع غزة، 2023-2025: 
     <strong>
-    لا مكان تحت السماء
+    ״لا مكان تحت السماء״
     </strong>
 </a>
 
