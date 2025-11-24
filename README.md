@@ -13,10 +13,17 @@ css: src/theme.css
 </div>
 
 <div id="lang">
-    <a href="#"target="blank" class="dontinflect">עברית</a>
-    <a href="#en"target="blank" class="dontinflect">English</a>
-    <a href="#ar"target="blank" class="dontinflect">عربي</a>
+    <a href="#" target="blank" class="dontinflect">עברית</a>
+    <a href="#en" target="blank" class="dontinflect">English</a>
+    <a href="#ar" target="blank" class="dontinflect">عربي</a>
 </div>
+
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+    לתחקיר בצלם המלא:
+    <strong>
+    אין מקום תחת השמיים
+    </strong>
+</a>
 
 <img id="scroll-indicator" src="img/scrol-signal.svg" alt="יש לגלול את הדף למטה" style="max-width:100px;height:auto;">
 
@@ -189,12 +196,12 @@ css: src/theme.css
 במקביל, הצבא הישראלי החל להפיץ צווי פינוי לתושבי עזה.
 
 
-{.meta thumb} 
+{.meta} 
 [](svg/#oct7.svg/0.04,-0.06,1.77/+IDF_order_north)
 [](map/#31.56174,34.26564,9.50,-45.3,0.0/+north,+arrow "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, המזהיר מפני ״מתקפה קרובה״ על רצועת עזה וקורא לתושבים לעבור דרומה, 13 באוקטובר 2023. (Anadolu / דועאא אל-באז)")
 צווי הפינוי ההמוניים הראשונים, שהוצאו ב-13 לאוקטובר, הורו לכמיליון תושבי צפון הרצועה לעזוב את בתיהם ולעקור לדרום הרצועה תוך 24 שעות.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     צווי הפינוי ו״המסדרונות הבטוחים״
@@ -323,7 +330,7 @@ css: src/theme.css
 
 הצפיפות, המחסור במים ובמזון, תנאי הסניטציה הירודים והיעדר הפרטיות, הפכו את החיים במחנות העקורים לבלתי נסבלים, במיוחד עבור נשים ונערות.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>תנאי החיים במתחמי העקורים</strong>
 </a>
@@ -341,12 +348,13 @@ css: src/theme.css
 התביישתי לספר להם איך אני חיה.
 
 
-{.meta thumb} 
+{.meta} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
 [](map/#31.45870,34.34010,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly) "בתמונה: צווי הפינוי שהפיץ הצבא הישראלי לתושבי ושוהי רפיח ב-6 במאי 2024")
 בתחילת מאי 2024, פחות מחודשיים לאחר הגעתם של ניבאל, אחמד וריתא לעיר, הפיץ הצבא הישראלי צווי פינוי חדשים שדרשו מתושבי רפיח ומהעקורים השוהים בה להתפנות.  
 
-<a href="https://btselem.org/" target="blank" class="dontinflect">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion
+" target="blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     מאי 2024: הפלישה לרפיח
@@ -480,13 +488,13 @@ css: src/theme.css
 מרבית שטח מדברי זה לא מחובר לתשתיות חשמל, מים או ביוב.
 
 
-{.meta thumb} 
+{.meta} 
 [](fg:blank)
 [](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20251023 "תצלום לוויין של ״האזור ההומניטרי״ באל-מוואסי, ח׳אן יונס, בינואר 2025. מקור: ESRI Wayback")
 
 תוך מספר חודשים, ״האזור ההומניטרי״ התמלא עד אפס מקום באוהלים, בהם נאלצו לחיות מעל למיליון בני אדם שנעקרו מכל רחבי הרצועה.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     גלי העקירה ו״האזורים ההומניטריים״
@@ -741,7 +749,7 @@ css: src/theme.css
 [](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),+pois.csv(poi,id=gaza-2509))
 צווי הפינוי שהוציא הצבא בתחילת ספטמבר 2025 לתושבי צפון הרצועה הורו לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     אוגוסט-ספטמבר 2025: הרס העיר עזה
@@ -813,7 +821,7 @@ css: src/theme.css
 במהלך החודשים האחרונים, סיפורה של ניבאל פורסם בעיתונות וברשתות החברתיות. 
 היא מקווה שבעזרת הפרסום תצליח לגייס כסף כדי לצאת מהרצועה ולעבור השתלה של גפיים תותבות, שיעזרו לה להחזיר לעצמה מעט מהעצמאות שאיבדה.
 
-<a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="blank" class="alpha_0.25">
+<a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="blank" class="alpha_0.25 thumb">
     הצטרפו לקמפיין:
     <strong>
     להושיט יד לניבאל
@@ -852,7 +860,7 @@ css: src/theme.css
 {.meta thumb closing}
 ## מתודולוגיה ומקורות
 
-<a href="https://btselem.org/" target="blank" class="dontinflect">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
 לפרסום המלא על עקירה ברצועת עזה, 2023-2025
     <strong>
     אין מקום בטוח
