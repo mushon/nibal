@@ -227,7 +227,7 @@ I was so scared something would happen to Rita.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip after the first week of the offensive. Source: UNOSAT")
+[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip three months after 7 october. Source: UNOSAT")
 Within a few months, the Israeli offensive had transformed northern Gaza beyond recognition. 
 
 
@@ -239,7 +239,7 @@ People who stayed in Jabalya were filmed walking among ruins, trying to salvage 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip after the first month of the offensive. Source: UNOSAT")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities "Assessed density of damage to buildings in the Gaza Strip three months after 7 october. Source: UNOSAT")
 In February 2024, Israel released Ahmad and he reached Khan Yunis in southern Gaza.
 
 Despite her parents’ strong objections, Nibal decided to try and meet him there.
@@ -412,51 +412,53 @@ But then, everything changed.
 
 {.meta no-h}
 ### Oct 24
-[](svg/#warehouse_bureij2.svg/-55.25,60.89,157.92/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-14.13,6.94,49.62/+nibal_xray)
 [](bg:blank)
 That morning, Israel attacked al-Bureij. 
 Nibal described hearing relentless shelling.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-53.46,60.06,157.92/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-22.36,12.45,88.4/+nibal_xray)
 [](bg:blank)
 Ahmad went out to see where the shells were landing, and Nibal stayed inside with the baby. 
 She talked to her family on the phone to calm her fear. 
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-144.6,126.9,351.69/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-9.29,5.24,31.47/+nibal_xray)
 [](bg:blank)
 While she was on the phone, a shell hit the room. 
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-25.59,22.33,63.19/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-14.33,5.34,54.39/+nibal_xray)
 [](bg:blank)
 Nibal was badly injured but managed to call for help among the ruins. She was taken to the hospital and neighbors took care of Rita. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-3.4,3.03,8.63/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.54,1.18,8.59/+nibal_xray)
 [](bg:blank)
 
 I woke up in the hospital and found myself without hands.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-3.84,3.41,9.8/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-1.59,0.55,5.23/+nibal_xray)
 [](bg:blank)
 In the shelling, Nibal’s arms were cut off below the elbows and she was severely burned. She was treated in harsh conditions, in a hospital overcrowded with injured people.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-3.96,3.51,10.1/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-1.17,0.86,3.93/+nibal_xray,+nibal_after_amputation)
 [](bg:blank)
 I was in shock. I still felt like they were still there, or would grow back one day. 
 
 
 {.testimony typewriter}
+[](svg/#warehouse_bureij2.svg/-2.82,1.79,12.66/+nibal_xray,+nibal_after_amputation,+rita_tent1)
+[](bg:blank)
 I asked about Rita, and they told me she was safe and sound. That’s what kept me going. 
 That and having Ahmad with me.
 
