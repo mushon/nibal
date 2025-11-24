@@ -155,7 +155,7 @@ That same day, Israel launched a massive wave of strikes across Gaza.
 
 {.meta} 
 [](svg/#intro-pre.svg/-0.02,0.02,0.5/+vimeo-1138452992)
-[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois(label-main,id=couple-home))
+[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he)
 Nibal was at home in Jabalya with her newborn. 
 
 Ahmad was at work in Israel.
@@ -163,7 +163,7 @@ Ahmad was at work in Israel.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home),+pois(label-main,id=home),+pois#2(label-main,id=couple-home))
+[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home))
 Nibal was terrified and went to stay with her parents nearby. 
 
 
@@ -239,7 +239,7 @@ Residents who stayed in Jabalya were documented trying to salvage what was left 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities "Assessed damage to buildings in Gaza three months into the offensive, 24 Jan. 2024 (UNOSAT)")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=family-home),~labels_he,+villages,+cities "Assessed damage to buildings in Gaza three months into the offensive, 24 Jan. 2024 (UNOSAT)")
 Ahmad was released from Israeli detention in February 2024 and he went to Khan Yunis in southern Gaza. 
 
 Nibal decided to go meet him, despite her parents’ strong objections.
@@ -445,8 +445,6 @@ I woke up in the hospital and found my hands gone.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-1.59,0.55,5.23/+nibal_xray)
-[](bg:blank)
 The shelling cut Nibal’s arms off at the elbow and badly burned her. She was treated in harsh conditions, in a hospital overwhelmed with injuries.
 
 
@@ -575,7 +573,7 @@ In the following weeks, about half a million IDPs made their way home to the nor
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.54,-0.16,0.87/+@vimeo-1136076448,~prisoners_2-comp.jpg)
+[](fg:blank)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+idf-poly-outlines,+pois(label-main,id=jabalia),+pois#2(label-main,id=al-mawasi),~labels_he,+villages,+cities)
 
 Nibal and Ahmad made the journey with Rita, almost 1.5 years old.
