@@ -218,8 +218,8 @@ css: src/theme.css, src/ar.css
 {.testimony typewriter}
 [](map/#31.52965,34.48083,14.83,38.4,0.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar)
 كنت خائفة عليها جدًا.
-
-
+تقييم الاكتظاظ في المباني المتضررة في قطاع غزة بعد ثلاثة أشهر من الهجوم. المصدر
+"تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 {.meta} 
 [](fg:blank)
 [](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
@@ -408,49 +408,51 @@ css: src/theme.css, src/ar.css
 
 {.meta no-h}
 ### Oct 24
-[](svg/#warehouse_bureij2.svg/-55.25,60.89,157.92/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-14.13,6.94,49.62/+nibal_xray)
 [](bg:blank)
 في ذلك الصباح، قصف الجيش الإسرائيلي البريج. تحدثت نِبال عن ضجيج قصف لا يتوقف.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-53.46,60.06,157.92/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-22.36,12.45,88.4/+nibal_xray)
 [](bg:blank)
 بينما ذهب زوجها للتحقق من مكان سقوط القذائف، بقيت هي وريتا وحدهما في المخزن الصغير. اتصلت نِبال بأفراد عائلتها وتحدثت معهم في محاولة للتخفيف بعض الشيء من الخوف الذي انتابها.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-144.6,126.9,351.69/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-9.29,5.24,31.47/+nibal_xray)
 [](bg:blank)
 أثناء التحدث مع أفراد عائلتها، أصابت قذيفةٌ المخزن.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-25.59,22.33,63.19/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-14.33,5.34,54.39/+nibal_xray)
 [](bg:blank)
 أصيبت نِبال بجروح خطيرة وتمكنت من طلب المساعدة من داخل المخزن المدمر. تم إخلاء نِبال إلى المستشفى، وأخذ الجيران ريتا إلى منزلهم.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-3.4,3.03,8.63/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.54,1.18,8.59/+nibal_xray)
 [](bg:blank)
 
 استيقظت في المستشفى ورأيت أنهم قد بتروا كلتا يديّ.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-3.84,3.41,9.8/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-1.59,0.55,5.23/+nibal_xray)
 [](bg:blank)
 نتيجة للقصف، بُترت يدا نِبال من تحت المرفق وأصيبت بحروق خطيرة. كان المستشفى الذي نُقلت إليه يعاني من عبء هائل من الجرحى، وعالجها الأطباء في ظل ظروف صعبة.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-3.96,3.51,10.1/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-1.17,0.86,3.93/+nibal_xray,+nibal_after_amputation)
 [](bg:blank)
 كنت في حالة صدمة. شعرت وكأن يديّ لا تزالان موجودتين، أو كأنهما ستعودان إلى النموّ يومًا ما.
 
 
 {.testimony typewriter}
+[](svg/#warehouse_bureij2.svg/-2.82,1.79,12.66/+nibal_xray,+nibal_after_amputation,+rita_tent1)
+[](bg:blank)
 سألت عن ريتا وأخبروني أنها سليمة وبصحة جيدة. هذا ما أبقاني صامدة. كان أحمد بجانبي.
 
 
