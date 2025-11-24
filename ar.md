@@ -180,7 +180,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.37771,34.43288,10.00,37.6,0.0/+IDF_zone_081023(idf-poly),~labels_he,+labels_ar "In red: Places included in military evacuation orders, 8 Oct. 2023")
+[](map/#31.37771,34.43288,10.00,37.6,0.0/+IDF_zone_081023(idf-poly),~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 8 تشرين الأول 2023")
 في تلك الأيام، بدأ الجيش الإسرائيلي بإصدار أوامر الإخلاء الجماعي الأولى لسكان غزة.
 
 
@@ -600,7 +600,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](svg/#ceasefire_hope.svg/-0.12,0.29,1.48/+@vimeo-1129871187,+vimeo-1137391158,~prisoners_2-comp.jpg)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar "In red: Places included in military evacuation orders issued in the week after israel broke the ceasefire in March 2025")
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar "بالأحمر: أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة خلال الأسبوع الذي تلا انتهاك وقف إطلاق النار في آذار 2025")
 ولكن عندها تجددت الحرب بضراوة أشدّ. تحت ضغط القصف والحصار، عادت علاقة نِبال وأحمد إلى التأزم من جديد.
 
 
@@ -761,7 +761,7 @@ css: src/theme.css, src/ar.css
 
 {.meta no-h}
 [](fg:blank)
-[](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),~labels_he,+labels_ar "In red: The area remaining under Israeli control according to the first phase of the ceasefire agreement")
+[](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),~labels_he,+labels_ar "بالأحمر: المساحة التي بقيت تحت سيطرة إسرائيل قبل المرحلة الأولى من اتفاق وقف إطلاق النار")
 ### Oct 25
 في 10 تشرين الأول 2025، دخل وقف إطلاق النار بين إسرائيل وحماس حيز التنفيذ.
 
