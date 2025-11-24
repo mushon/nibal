@@ -222,7 +222,7 @@ css: src/theme.css, src/ar.css
 "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 {.meta} 
 [](fg:blank)
-[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
+[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقديرات اكتظاظ المباني التي تضررت في قطاع غزة بعد ثلاثة أشهر من الهجوم. المصدر: UNOSAT")
 حتى نهاية 2023، غيّرت الغارات الجوية الإسرائيلية وجه شمال القطاع إلى درجة أنه لم يعد ممكنًا التعرف عليه.
 
 
@@ -234,7 +234,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois-ar(label-main,id=khan-yunis),+pois-ar#2(label-main,id=couple-home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الشهر الأول من الهجوم. المصدر: UNOSAT")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois-ar(label-main,id=khan-yunis),+pois-ar#2(label-main,id=couple-home),~labels_he,+labels_ar "تقديرات اكتظاظ المباني التي تضررت في قطاع غزة بعد ثلاثة أشهر من الهجوم. المصدر: UNOSAT")
 في شباط 2024، أطلق الجيش الإسرائيلي سراح أحمد، فوصل إلى خان يونس في جنوب قطاع غزة. 
 
 على الرغم من معارضة والديها الشديدة، قررت نِبال التوجه جنوبًا، على أمل لم شملها بزوجها.
