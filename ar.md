@@ -154,7 +154,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](svg/#intro-pre.svg/-0.02,0.02,0.5/+vimeo-1138452992)
-[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois-ar(label-main,id=couple-home))
+[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he)
 كانت نِبال في ذلك الوقت في منزلها في جباليا مع ابنتها ريتا، التي كانت تبلغ من العمر شهرًا واحدًا فقط.
 
 كان أحمد، زوجها، في ذلك الوقت، في عمله في داخل إسرائيل.
@@ -162,7 +162,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home),+pois-ar(label-main,id=home),+pois-ar#2(label-main,id=couple-home))
+[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home))
 بعد 7 تشرين الأول بأيام قليلة، ألغت إسرائيل جميع تصاريح العمل لعشرات آلاف العمال الفلسطينيين من قطاع غزة، بينما كان بعضهم لا يزال داخل إسرائيل دون تمكّنهم من العودة إلى بيوتهم.
 
 
@@ -235,7 +235,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois-ar(label-main,id=khan-yunis),+pois-ar#2(label-main,id=couple-home),~labels_he,+labels_ar "تقديرات اكتظاظ المباني التي تضررت في قطاع غزة بعد ثلاثة أشهر من الهجوم. المصدر: UNOSAT")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois-ar(label-main,id=khan-yunis),+pois-ar#2(label-main,id=family-home),~labels_he,+labels_ar "تقديرات اكتظاظ المباني التي تضررت في قطاع غزة بعد ثلاثة أشهر من الهجوم. المصدر: UNOSAT")
 في شباط 2024، أطلق الجيش الإسرائيلي سراح أحمد، فوصل إلى خان يونس في جنوب قطاع غزة. 
 
 على الرغم من معارضة والديها الشديدة، قررت نِبال التوجه جنوبًا، على أمل لم شملها بزوجها.
@@ -440,8 +440,6 @@ css: src/theme.css, src/ar.css
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-1.59,0.55,5.23/+nibal_xray)
-[](bg:blank)
 نتيجة للقصف، بُترت يدا نِبال من تحت المرفقين وأصيبت بحروق خطيرة. كان المستشفى الذي نُقلت إليه يعاني من عبء هائل من الجرحى وعالجها الأطباء في ظل ظروف صعبة.
 
 
@@ -569,7 +567,7 @@ css: src/theme.css, src/ar.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.54,-0.16,0.87/+@vimeo-1136076448,~prisoners_2-comp.jpg)
+[](fg:blank)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+idf-poly-outlines,+pois-ar(label-main,id=jabalia),+pois-ar#2(label-main,id=al-mawasi),~labels_he,+labels_ar)
 
 سارت نبال وأحمد، أيضًا، شمالًا، مع ريتا التي أصبح عمرها عامًا وأربعة أشهر. عند حاجز "نتساريم"، أخذهم أقارب نِبال من هناك. أخذوا أحمد إلى شقة الزوجين ونِبال وريتا إلى منزل والديها.
