@@ -876,7 +876,6 @@ css: src/theme.css
 - ESRI Wayback
 - Gazamap.com
 
-
 ### עיצוב ופיתוח מוצר
 - <a href="http://mushon.com" target="blank" class="dontinflect">מושון זר-אביב</a>, סטודיו שועל
 - Made with <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>
