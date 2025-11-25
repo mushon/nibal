@@ -22,6 +22,10 @@
     );
 }
 
+.ltr section:first-child > a.thumb{
+    text-align: left;
+}
+
 .ltr section > a.thumb:hover{
     background-image: image-set(
         url(assets/report_thumb_en-hover.png) 1x,
