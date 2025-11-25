@@ -367,7 +367,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main,id=rafah),+pois-ar#2(label-main,id=bureij),~labels_he,+labels_ar "سكان البريج يسيرون بين المباني التي دمّرها القصف الإسرائيلي، 24 حزيران 2024 (NurPhoto: مجدي فتحي)")
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main,id=rafah),+pois-ar#2(label-main,id=bureij),~labels_he,+labels_ar)
 اضطرت نِبال وأحمد وريتا إلى الفرار من رفح، مع حوالي مليون شخص آخر من السكان، غالبيتهم العظمى من المهجرين الذين جاؤوا إلى المدينة مثلهم خلال الأشهر التي سبقت ذلك، بأوامر من الجيش.
 
 
@@ -505,7 +505,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/0.28,0.79,2.62/+@vimeo-1129846713,+rita_tent1  "من حساب نبال على تيك توك")
+[](svg/#warehouse_bureij2.svg/0.78,0.99,3.44/+@vimeo-1129846713  "من حساب نبال على تيك توك")
 
 العودة إلى الحياة في الخيمة مرة أخرى بعد الإصابة كانت صعبة للغاية. لم أكن أستطيع استخدام المرحاض بمفردي. كنت أشعر بالحرج الشديد حين أضطر لطلب المساعدة في كل مرة.
 
@@ -577,19 +577,19 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.77,-0.44,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "من حساب نبال على تيك توك")
+[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "من حساب نبال على تيك توك")
 
 استقبلتني العائلة بالأحضان والأغاني والبكاء. في الليالي، كنا نلتقي جميعًا، جميع الأخوة، في منزل والديّ.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.39,-0.4,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
+[](svg/#ceasefire_hope.svg/0.01,-0.47,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
 
 كانت أخواتي بجانبي طوال الوقت وساعدنني في كل شيء: الاستحمام، ارتداء الملابس، تناول الطعام والاعتناء بريتا. 
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.13,-0.49,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
 
 كنّ يغيرن حفاضاتها، يحتضنّها ويلعبن معها. بفضلهن، شعرت أن حياتي بدأت تعود إلى مسارها.
 
