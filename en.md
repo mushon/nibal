@@ -454,13 +454,12 @@ The shelling cut Nibal’s arms off at the elbow and badly burned her. She was t
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-1.17,0.86,3.93/+nibal_xray,+nibal_after_amputation)
-[](bg:blank)
+
 I was in shock. It felt like they were still there, or were going to grow back. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.82,1.79,12.66/+nibal_xray,+nibal_after_amputation,+rita_tent1)
+[](svg/#warehouse_bureij2.svg/-2.82,1.79,12.66/+rita_tent1)
 [](bg:blank)
 I asked about Rita, and they told me she was fine. That’s what kept me going, along with Ahmad by my side. 
 That and having Ahmad with me.
@@ -532,7 +531,7 @@ I struggled to accept my new body.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij3.svg/-1.44,1.19,4.06/+nibal_after_amputation)
+[](svg/#warehouse_bureij2.svg/-1.13,0.91,3.93/+nibal_after_amputation)
 [](bg:blank)
 
 I tried to stay well-groomed, to get dressed and put on makeup with help, and leave the tent.
@@ -665,13 +664,16 @@ One day, he demanded I go back to my parents.
 
 
 {.meta}
-[](svg/#back_home.svg/-0.16,-0.11,1.43/~vimeo-1137391856,~vimeo-1137392312,~nibal_ruined_home1.jpg,~nibal_home_smile3.heic "RBodies of people killed in an Israeli strike on a home in Jabalya, 18 April 2025 (ZUMA Press Wire/Saher Alghorra")
-[](map/#31.53551,34.47021,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home),+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
+[](fg:blank)
+[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home),+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
 
 A few months after returning to their apartment, Nibal moved back to her parents with Rita in early June 2025.
 
 
 {.testimony typewriter}
+[](svg/#back_home.svg/0.4,-0.18,2.6/+jabalia_april_25.JPG "Bodies of people killed in an Israeli strike on a home in Jabalya, 18 April 2025 (ZUMA Press Wire/Saher Alghorra")
+[](bg:blank)
+
 My family welcomed us again with love, but the house was full of grief. My sister who lost her children and I tried to comfort each other.
 
 
@@ -692,7 +694,7 @@ There were airstrikes in our area all the time. Many people were displaced again
 
 
 {.meta}
-[](map/#31.53196,34.47651,15.28,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
+[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
 In late August 2025, Israeli forces entered Jabalya and advanced toward the family’s neighborhood.
 
 
