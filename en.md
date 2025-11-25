@@ -369,7 +369,7 @@ At the same time as ordering the evacuation, Israel intensified its strikes on t
 
 {.meta} 
 [](fg:blank)
-[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),+pois#2(label-main,id=bureij),~labels_he,+villages,+cities "Walking among buildings bombed in al-Bureij R.C., 23 June 2024 (NurPhoto/Majdi Fathi)")
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),+pois#2(label-main,id=bureij),~labels_he,+villages,+cities)
 
 Nibal, Ahmad and Rita fled Rafah along with about 1 million people – most of them IDPs the military previously ordered to shelter in the city. 
 
@@ -512,7 +512,7 @@ Tens of thousands of IDPs with injuries, disabilities and amputated limbs, many 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/0.28,0.79,2.62/+@vimeo-1129846713,+rita_tent1  "From Nibal’s TikTok account")
+[](svg/#warehouse_bureij2.svg/0.78,0.99,3.44/+@vimeo-1129846713  "From Nibal’s TikTok account")
 
 Living in a tent again after the amputation was extremely hard. I needed help to use the toilets and was so embarrassed to ask every time. 
 
@@ -586,19 +586,19 @@ Nibal’s relatives picked them up at the Netzarim checkpoint. They took Ahmad t
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.77,-0.44,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "From Nibal’s TikTok account")
+[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "From Nibal’s TikTok account")
 
 My family welcomed me with hugging, singing and tears. My  brothers and sisters came over every evening.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.39,-0.4,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
+[](svg/#ceasefire_hope.svg/0.01,-0.47,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
 
 My sisters never left my side. They helped me with everything: showering, dressing, eating, caring for Rita.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.13,-0.49,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
 
 They changed her diapers, held her and played with her. Thanks to them, I felt my life was slowly getting back on track. 
 
