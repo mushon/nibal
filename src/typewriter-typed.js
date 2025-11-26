@@ -37,82 +37,93 @@
         if (!el || el.dataset._tw_started) return;
         el.dataset._tw_started = '1';
         
-        // Get original text content, excluding empty inflection links
-        const text = el.textContent || '';
-        if (!text.trim()) return;
-        
-        // Extract and preserve empty links (inflection links)
-        const emptyLinks = Array.from(el.querySelectorAll('a:not([class*="dontinflect"])')).filter(a => !a.textContent.trim());
-        
-        // Clear only the text content, keep empty links
-        const textNodes = [];
-        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while (node = walker.nextNode()) {
-          if (node.textContent.trim()) {
-            textNodes.push(node);
-          }
-        }
-        textNodes.forEach(n => n.textContent = '');
-        
-        // Create a paragraph element to wrap the typed text
-        const p = document.createElement('p');
-        el.appendChild(p);
-        
-        const speed = (opts && opts.speed) || (el.dataset.twSpeed ? parseInt(el.dataset.twSpeed, 10) : 40);
-        
-        // Speed up typing by 2x (reduce delays by half)
-        const adjustedSpeed = Math.round(speed / 2);
-      
-      // Process text to add natural pauses at punctuation
-      // Typed.js supports ^pause syntax for delays
-      let processedText = text;
-      // Add longer pauses after periods, question marks, exclamation points (reduced by 2x)
-      processedText = processedText.replace(/([.!?])\s+/g, '$1^400 ');
-      // Add medium pauses after commas (reduced by 2x)
-      processedText = processedText.replace(/,\s+/g, ',^200 ');
-      // Add subtle pauses after colons and semicolons (reduced by 2x)
-      processedText = processedText.replace(/([;:])\s+/g, '$1^150 ');
-      
-      try {
-        // Create Typed instance with natural, human-like typing settings
-        const typed = new Typed(p, {
-          strings: [processedText],
-          typeSpeed: adjustedSpeed,
-          startDelay: Math.random() * 100, // Small random delay before starting (reduced by 2x)
-          backSpeed: 0,
-          backDelay: 0,
-          loop: false,
-          showCursor: false,
-          cursorChar: '',
-          // Enable natural human-like typing
-          smartBackspace: true,
-          shuffle: false,
-          fadeOut: false,
-          fadeOutClass: '',
-          fadeOutDelay: 0,
-          attr: null,
-          bindInputFocusEvents: false,
-          contentType: 'html',
-          // Callbacks for cleanup
-          onComplete: function(self) {
-            // Cleanup after typing completes
-            if (instances.has(el)) {
-              instances.delete(el);
-            }
-          }
+        // Get all paragraph children that have text content (not empty link paragraphs)
+        const paragraphs = Array.from(el.querySelectorAll('p')).filter(p => {
+          const text = p.textContent || '';
+          return text.trim().length > 0;
         });
         
-        instances.set(el, typed);
-      } catch (e) {
-        console.error('Typewriter error:', e);
-        // Fallback: just show the text
-        p.textContent = text;
-      }
+        if (paragraphs.length === 0) return;
+        
+        // Measure and prepare all paragraphs first
+        const paragraphData = paragraphs.map(p => {
+          const text = p.textContent || '';
+          const originalHeight = p.getBoundingClientRect().height;
+          
+          // Lock the paragraph height
+          if (originalHeight > 0) {
+            p.style.height = Math.ceil(originalHeight) + 'px';
+          }
+          
+          // Clear the paragraph text
+          p.textContent = '';
+          
+          // Create a span to hold the typed text
+          const typingTarget = document.createElement('span');
+          p.appendChild(typingTarget);
+          
+          const speed = (opts && opts.speed) || (p.dataset.twSpeed ? parseInt(p.dataset.twSpeed, 10) : 40);
+          const adjustedSpeed = Math.round(speed / 2);
+          
+          // Process text to add natural pauses at punctuation
+          let processedText = text;
+          processedText = processedText.replace(/([.!?])\s+/g, '$1^400 ');
+          processedText = processedText.replace(/,\s+/g, ',^200 ');
+          processedText = processedText.replace(/([;:])\s+/g, '$1^150 ');
+          
+          return { typingTarget, processedText, adjustedSpeed, text };
+        });
+        
+        // Chain the typing animations sequentially
+        let currentIndex = 0;
+        
+        function typeNextParagraph() {
+          if (currentIndex >= paragraphData.length) return;
+          
+          const { typingTarget, processedText, adjustedSpeed, text } = paragraphData[currentIndex];
+          currentIndex++;
+          
+          try {
+            // Create Typed instance with natural, human-like typing settings
+            const typed = new Typed(typingTarget, {
+              strings: [processedText],
+              typeSpeed: adjustedSpeed,
+              startDelay: Math.random() * 100,
+              backSpeed: 0,
+              backDelay: 0,
+              loop: false,
+              showCursor: false,
+              cursorChar: '',
+              smartBackspace: true,
+              shuffle: false,
+              fadeOut: false,
+              fadeOutClass: '',
+              fadeOutDelay: 0,
+              attr: null,
+              bindInputFocusEvents: false,
+              contentType: 'html',
+              onComplete: function(self) {
+                // Start typing the next paragraph when this one completes
+                typeNextParagraph();
+                if (instances.has(el)) {
+                  instances.delete(el);
+                }
+              }
+            });
+            
+            instances.set(el, typed);
+          } catch (e) {
+            console.error('Typewriter error:', e);
+            typingTarget.textContent = text;
+            // Continue to next paragraph even if this one fails
+            typeNextParagraph();
+          }
+        }
+        
+        // Start typing the first paragraph
+        typeNextParagraph();
       } catch(err) {
         console.error('[typewriter] startTypingForElement failed:', err);
-        // Restore text on catastrophic failure
-        if (el) el.textContent = text;
       }
     }
 
