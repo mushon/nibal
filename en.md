@@ -233,20 +233,18 @@ I was so scared something would happen to my baby.
 
 
 {.meta} 
-[](fg:blank)
-[](map/#31.50989,34.46989,12.68,39.2,0.5/+unosat-damage-231015,+unosat-damage-240107,+pois.csv(poi,id=home),~labels_he,+villages,+cities "Assessed damage to buildings in Gaza three months into the offensive, 24 Jan. 2024 (UNOSAT)")
+[](svg/#oct7.svg/0.02,-0.6,2.64/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
+[](bg:blank)
 Several months of heavy bombardment left northern Gaza unrecognizable.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.02,-0.6,2.64/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
-[](map/#31.50989,34.46989,12.68,39.2,0.5/~labels_he,+villages,+cities)
 Residents who stayed in Jabalya were documented trying to salvage what was left of their belongings from the rubble.
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+unosat-damage-240107,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=family-home),~labels_he,+villages,+cities "Assessed damage to buildings in Gaza three months into the offensive, 24 Jan. 2024 (UNOSAT)")
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+pois(label-main,id=khan-yunis),+pois#2(label-main,id=family-home),~labels_he,+villages,+cities "Assessed damage to buildings in Gaza three months into the offensive, 24 Jan. 2024 (UNOSAT)")
 Ahmad was released from Israeli detention in February 2024 and he went to Khan Yunis in southern Gaza. 
 
 Nibal decided to go meet him, despite her parents’ strong objections.
