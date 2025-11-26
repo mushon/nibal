@@ -7,7 +7,7 @@ css: src/theme.css, src/ltr.css
 
 # _The Displacement Journey of_ Nibal Al-Hisi
 [](map/#31.30336,34.29179,9.53,37.6,0.0/~labels_he)
-[](svg/#intro-pre.svg/-0.01,0.45,1.52/+nibal2023,+home,+displacement)
+[](svg/#intro-pre.svg/-0.01,0.45,1.52/+nibal2023,+displacement)
 
 <div id="logo">
 <a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
@@ -30,7 +30,7 @@ css: src/theme.css, src/ltr.css
 
 
 {.meta}
-[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~home,~displacement)
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he)
 For two years, Israel has been displacing Palestinians repeatedly throughout Gaza.
 
@@ -161,8 +161,8 @@ That same day, Israel launched a massive wave of strikes across Gaza.
 
 
 {.meta} 
-[](svg/#intro-pre.svg/-0.02,0.02,0.5/+vimeo-1138452992)
-[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he)
+[](svg/#intro-pre.svg/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,+vimeo-1138452992)
+[](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 Nibal was at home in Jabalya with her newborn. 
 
 Ahmad was at work in Israel.
@@ -170,13 +170,13 @@ Ahmad was at work in Israel.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.72716,34.76485,8.57,0.0,35.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home))
+[](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home))
 Nibal was terrified and went to stay with her parents nearby. 
 
 
 {.meta} 
 [](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
-[](map/#31.63011,34.71983,8.57,24.0,41.5/+unosat-damage-231015,~labels_he)
+[](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 A few days later, Israel revoked tens of thousands of permits from all workers from Gaza. Many were inside Israel and could not go home.
 
 
@@ -186,7 +186,7 @@ Ahmad and thousands of others instantly became “illegal aliens” in Israel.
 
 {.meta} 
 [](svg/#oct7.svg/0.45,0.41,2/+detainies-1,+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
-[](map/#31.63011,34.71983,8.57,24.0,41.5/+unosat-damage-231015,~labels_he)
+[](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 He and thousands of others were arrested in Israel within days.
 
 
@@ -717,7 +717,7 @@ We walked the streets, terrified.
 
 
 {.meta}
-[](svg/#back_home.svg/1,-0.16,2.95/+nibal_ruined_home1.jpg "The area of Nibal’s home after the bombing")
+[](svg/#back_home.svg/1,-0.16,2.95/+nibal_ruined_home1.jpg "The area of Nibal’s family home after the bombing")
 Later, Nibal learned that the building she had lived in most of her life with her extended family had been completely destroyed.
 
 
@@ -728,7 +728,7 @@ Later, Nibal learned that the building she had lived in most of her life with he
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/-0.66,1.26,3.27/+nibal_ruined_home2.jpg "The area of Nibal’s home after the bombing")
+[](svg/#permanent_impermanence.svg/-0.66,1.26,3.27/+nibal_ruined_home2.jpg "The area of Nibal’s family home after the bombing")
 [](map/#31.53196,34.47651,15.28,38.4,0.0/+pois.csv(poi,id=home),+pois(label-main,id=home),~labels_he,+villages,+cities)
 Nibal walked with Rita and about 50 people from her family to Gaza City, in search of safety.
 
@@ -768,7 +768,13 @@ The Israeli army keeps dropping leaflets ordering us to evacuate. We are living 
 
 
 {.testimony typewriter}
-Our lives have been destroyed and now it feels like a slow death. A life of humiliation, with no dignity, home or any stability.
+[](svg/#permanent_impermanence.svg/-3.38,-1.8,7.71/+home_nibal.png,~vimeo-1129867912,~vimeo-1136076786 "Nibal’s family home, before Oct. 2023")
+Our lives have been destroyed.
+
+
+{.testimony typewriter}
+[](svg/#permanent_impermanence.svg/-3.38,-1.8,7.71/+home_nibal_RUINED.png,~home_nibal.png,~vimeo-1129867912,~vimeo-1136076786 "Nibal’s family home, Oct. 2025")
+Now it feels like a slow death. A life of humiliation, with no dignity, home or any stability.
 
 
 {.testimony typewriter}
