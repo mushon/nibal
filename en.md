@@ -417,14 +417,14 @@ Whenever I could, I checked in with them over the phone.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
 [](bg:blank)
 
 We stayed there for about five months.  It was rough, but I felt we were slowly finding some peace. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
 [](bg:blank)
 
 On the morning of 7 October 2024, Rita called me “Mama” for the first time. I was thrilled.
