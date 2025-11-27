@@ -343,7 +343,8 @@ css: src/theme.css
 
 
 {.meta thumb}
-
+[](svg/#south.svg/-0.03,0.03,5.52/+rafah_tent_comp.jpg "עקורים במחנה אוהלים בח'אן יונס, 11 בדצמבר 2023. (רויטרס / איברהים אבו מוסטפא)")
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah))
 הצפיפות, המחסור במים ובמזון, תנאי הסניטציה הירודים והיעדר הפרטיות, הפכו את החיים במחנות העקורים לבלתי נסבלים, במיוחד עבור נשים ונערות.
 
 <a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
@@ -353,14 +354,14 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "ריתא במחנה העקורים ברפיח")
-[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah))    
+[](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg)
+[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah) "ריתא במחנה העקורים ברפיח")
 זה היה עינוי מתמשך, ככל הנראה מהתקופות הקשות בחיי.
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "ריתא במחנה העקורים ברפיח")
-[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah))
+[](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg)
+[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah) "ריתא במחנה העקורים ברפיח")
 לא סיפרתי על הקשיים למשפחה שלי, שהתנגדה מלכתחילה שאעקור דרומה. 
 התביישתי לספר להם איך אני חיה.
 
@@ -490,7 +491,7 @@ css: src/theme.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+idf-poly-outlines,+pois-he(label-main,id=al-zawaida),+pois-he#2(label-main,id=al-mawasi))
+[](map/#31.41688,34.35054,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow,+idf-poly-outlines,+pois-he(label-main,id=al-zawaida),+pois-he#2(label-main,id=al-mawasi))
 ניבאל השתחררה מבית החולים לאחר 40 יום. בשלב זה, היא, אחמד וריתא נאלצו לעקור שוב.
 
 
