@@ -129,7 +129,7 @@ Baby Rita was born in September 2023.
 {.meta}
 [](svg/#intro-pre.svg/0.41,-0.23,0.5/+vimeo-1138452992)
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/~labels_he,+villages,+cities)
-Five days later, Ahmad was issued a work permit and started a job as a construction laborer in Israel .
+Five days later, Ahmad was issued a work permit and started a job as a construction laborer in Israel.
 
 
 {.subheader}
@@ -487,7 +487,7 @@ The sandy area was largely off the electricity, water and sewage grids.
 
 {.meta thumb} 
 [](fg:blank)
-[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20251023 "Satellite image of the “humanitarian zone” in al-Mawasi, Khan Yunis, Jan. 2025 (ESRI Wayback)")
+[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20251023,+wayback:20231101 "Satellite image of the “humanitarian zone” in al-Mawasi, Khan Yunis, Jan. 2025 (ESRI Wayback)")
 
 Within months, the area was crammed with tents sheltering over 1 million IDPs from throughout the Strip.
 
@@ -518,7 +518,7 @@ Living in a tent again after the amputation was extremely hard. I needed help to
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/1.27,1.18,4.1/+rita_tent1 "Rita in the IDP camp in al-Mawasi")
+[](svg/#warehouse_bureij2.svg/-1.21,0.9,6.12/+rita_tent1 "Rita in the IDP camp in al-Mawasi")
 
 An intelligent, sensitive girl from a tent near us took pity on me and came every day to help me and care for Rita.
 
@@ -615,6 +615,8 @@ Despite her parents’ concerns, she went back to their apartment with Rita and 
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+villages,+cities "In red: Areas ordered to evacuate in the week after Israel violated the ceasefire in March 2025")
 But then the war resumed. 
 
+
+{.meta}
 [](svg/#ceasefire_hope.svg/-0.25,0.55,2.15/+@vimeo-1141082583)
 [](bg:blank)
 Living under the pressure of the Israeli blockade and airstrikes, tensions in the marriage resurfaced.
@@ -642,7 +644,6 @@ At first he was very supportive. But over time, I felt he was only taking care o
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.28,0.5,2.15/+@vimeo-1129871187,+vimeo-1137391158  "From Nibal’s TikTok account")
 I tried to focus on Rita. She was the most important thing. I did everything I could to overcome the tension with Ahmad and take care of her.
 
 
@@ -664,6 +665,8 @@ The devastating news came when the tension between Nibal and Ahmad was at its pe
 
 
 {.testimony typewriter}
+[](svg/#back_home.svg/1,1.25,3.49/+@vimeo-1129871187 "From Nibal’s TikTok account")
+[](bg:blank)
 I felt he couldn’t take care of Rita and me anymore. The strain of looking after us and getting us food and water made him irritable, and sometimes I was even afraid of him. 
 
 One day, he demanded I go back to my parents.
@@ -792,7 +795,7 @@ I look around and see my brothers’ wives caring for their families, and I’m 
 
 {.meta no-h}
 [](fg:blank)
-[](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),+pois-he(label-main,id=deir-al-balah),~labels_he,+villages,+cities "In red: The area remaining under Israeli control according to the first phase of the Oct. 2025 ceasefire deal")
+[](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),+pois(label-main,id=deir-al-balah),~labels_he,+villages,+cities "In red: The area remaining under Israeli control according to the first phase of the Oct. 2025 ceasefire deal")
 ### Oct 25
 On 10 October 2025, another ceasefire between Israel and Hamas took effect. 
 
@@ -826,7 +829,6 @@ Their story is the story of how the Gaza Strip was destroyed.
 
 {.meta thumb gofundme}
 In recent months, Nibal has shared her story on social and mainstream media. She hopes it will help raise money to get prosthetic limb surgery outside Gaza, so she can regain some of her independence.
-
 
 <a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="blank" class="thumb">
     Join the campaign:
@@ -871,7 +873,6 @@ B’Tselem will follow their story and share any developments in our newsletter:
 <script type="text/javascript" src="/src/mailchimp-script.js"></script>
   </div>
 
-
 {.meta thumb closing}
 ## Methodology and sources
 
@@ -881,6 +882,7 @@ For the full publication on displacement in the Gaza Strip, 2023–2025:
     “No Place Under Heaven”
     </strong>
 </a>
+
 
 ### Photos and Video
 - Courtesy of Nibal Al-Hisi
