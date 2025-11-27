@@ -406,14 +406,14 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
 [](bg:blank)
 
 החיים במחסן היו קצת יותר יציבים מאשר החיים באוהל, אבל הרגשתי חצויה. מצד אחד שמחתי להיות עם בעלי והבת שלי, ומצד שני, המרחק מהמשפחה ומהבית שלי בג׳אבליא גרם לי להרגיש בודדה ומנוכרת. התגעגעתי אליהם מאוד.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
 [](bg:blank)
 
 דיברתי איתם בטלפון בכל הזדמנות שהייתה לי.
@@ -574,7 +574,7 @@ css: src/theme.css
 אבל לא העזתי להסתכל במראה. 
 
 
-[](fg:blank)
+[](embed/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
 [](bg:blank)
 הרגשתי שגם ריתא בקושי מזהה אותי. 
 
