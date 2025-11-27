@@ -669,13 +669,13 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 אחמד התמודד באותה תקופה עם החותם שהותירה בו השהות במתקני הכליאה הישראליים.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 מאז שאחמד חזר אלינו מישראל הוא נראה לי מוטרד ולחוץ. משהו בו השתנה.
 במובן מסוים, הרגשתי, הוא איבד שם חלק מעצמו.
@@ -887,7 +887,7 @@ css: src/theme.css
 
 {.meta}
 [](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "תושבי העיר עזה נמלטים לאחר שהצבא הישראלי הורה להם להתפנות דרומה, 15 בספטמבר 2025. (רויטרס / מחמוד עיסא)")
-[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he,+idf-zones,+idf-poly-outlines)
+[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 
 סיפורה של ניבאל הוא רק אחד מבין שני מיליון סיפורים של תושבי עזה שחוו אובדן, רעב ועקירה מתמשכים.
 
