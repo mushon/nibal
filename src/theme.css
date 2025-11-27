@@ -542,7 +542,7 @@ input#mce-EMAIL{
     border: 1px solid #FA5F5F;
     background: #FA5F5F;
     font-family: Levit_1950, sans-serif;
-    height: 60px;
+    height: auto;
     padding: 8px 0 16px;
 }
 
