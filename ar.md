@@ -566,7 +566,8 @@ css: src/theme.css, src/ar.css
  لكني لم أجرؤ على النظر في المرآة. 
 
 
-[](fg:blank)
+{.testimony typewriter}
+[](embed/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
 [](bg:blank)
 شعرتُ أن ريتا بالكاد تعرفني.
 
