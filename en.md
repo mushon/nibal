@@ -668,13 +668,13 @@ Living under the pressure of the Israeli blockade and airstrikes, tensions in th
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 Ahmad was struggling with the consequences of his time in Israeli detention.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 After he was released from Israel, he seemed troubled and anxious. Something had changed. 
 In a way, it felt like he’d lost a part of himself there.
@@ -881,7 +881,7 @@ She is fighting to imagine a better future for herself and for Rita.
 
 {.meta}
 [](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
-[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he,+idf-zones,+idf-poly-outlines)
+[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 Nibal is one of nearly 2 million people in Gaza enduring loss, hunger and prolonged displacement.
 
 
