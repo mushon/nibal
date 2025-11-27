@@ -662,7 +662,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 
 منذ إطلاق سراح أحمد وعودته إلينا، بدا لي قلقًا ومتوترًا. لقد تغير فيه شيء ما. 
@@ -870,7 +870,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "سكان مدينة غزة يهربون بعد أن أمرهم الجيش الإسرائيلي بالانتقال جنوبًا. 15 أيلول 2025 (رويترز: محمود عيسى)")
-[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he,+idf-zones,+idf-poly-outlines)
+[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 قصة نِبال هي واحدة فقط من بين حوالي مليونيّ قصة لسكان قطاع غزة الذين عانوا من الفقدان والجوع والتهجير المستمر.
 
 
