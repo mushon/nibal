@@ -1,7 +1,7 @@
 id,name,lon,lat
 rafah,Rafah,34.254161,31.268667
 nuseirat,a-Nuseirat Refugee Camp,34.370346,31.457441
-al-zawaida,a-Zawaydah,34.359914,31.420459
+al-zawaida,Hospital in a-Zawaydah,34.359914,31.420459
 al-mawasi,al-Mawasi,34.268757,31.359485
 bureij,al-Bureij Refugee Camp,34.402363,31.438766
 gaza-2403,Gaza City,34.414577,31.502745
@@ -12,4 +12,5 @@ home,Nibal's parents,34.47961,31.52919
 khan-yunis,Khan Yunis,34.309683,31.344259
 couple-home,Ahmad and Nibal,34.478999,31.529865
 alaa-home,Nibal's sister,34.478516,31.529266
+
 
