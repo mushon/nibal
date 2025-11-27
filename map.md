@@ -1,149 +1,418 @@
-# Map Guide
+# Interactive Map Guide
 
-[](map/#23.99000,29.92877,2.00,0.0,0.0/~Gaza_border_dash,~Gaza_border_base "Map Overview")
-This comprehensive guide covers all features of the interactive map. Learn hash-driven camera control, layer toggling, dynamic data loading, historical satellite imagery, and cinematic animations.
+[](map/#31.30336,34.29179,9.53,37.6,0.0/~labels_he "Gaza Strip overview")
+
+This comprehensive guide covers all features of the interactive map system. Learn hash-driven camera control, layer toggling, dynamic data loading, historical satellite imagery, filtering, and cinematic animations.
 
 
-{.heading}
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0 "Basic map view")
 
 ## Introduction
 
-The map is controlled entirely through URL hash parameters:
+The map is controlled entirely through URL hash parameters. Everything — camera position, visible layers, animations — is encoded in the URL, making every view shareable and reproducible.
 
-`map/#lat,lng,zoom,bearing,pitch/+layerA,~layerB`
+**Basic hash structure:**
+```
+map/#lat,lng,zoom,bearing,pitch/+layerA,~layerB,+file:follow
+```
 
-[](map/#31.42380,34.35370,10.00,37.6,0.0 "Basic map view of Gaza")
-
-**Hash components:**
-- **Camera:** `lat,lng,zoom,bearing,pitch` (all numeric)
-- **Layers:** `+show`, `~hide`, `+file(style)`, `+file:follow`
-
-
-{.heading}
-
-## Camera Control
-
-[](map/#31.52888,34.47937,18.14,15.0,0 "Jabalia at high zoom, 15° rotation")
-The camera position uses five parameters: latitude, longitude, zoom (0–22), bearing (0–360°), and pitch (0–60°).
+**Example:**
+```
+map/#31.52888,34.47937,18.14,15.0,0/+satellite,+jabalia-rafah:follow
+```
 
 
+{.meta}
+[](map/#31.52888,34.47937,18.14,15.0,0 "High zoom view of Jabalia")
+
+## Editor Mode
+
+Press **E** on your keyboard to open the editor panel. This reveals:
+- All available layers (shown and hidden)
+- Current layer visibility states
+- Add Wayback imagery by date
+- Copy layer tokens to clipboard
+- Toggle layers on/off interactively
+
+The editor is essential for discovering layer names and building complex hash URLs.
+
+
+{.meta}
+[](map/#31.52888,34.47937,18.14,15.0,0 "Jabalia at 15° rotation")
+
+## Chapter 1: Camera Control
+
+The camera uses five numeric parameters: **latitude, longitude, zoom, bearing, pitch**.
+
+**Zoom levels:**
+- `0-3` — Global/regional view
+- `4-9` — Country/city scale  
+- `10-14` — Neighborhood detail
+- `15-18` — Street level
+- `19-22` — Building/room detail
+
+
+{.meta}
 [](map/#31.52956,34.47717,14.33,22.4,60.5 "Same location with 60° tilt")
-Adding pitch creates a 3D perspective view of the terrain.
+
+**Bearing** rotates the map (0–360°):
+- `0` — North up (default)
+- `90` — East up
+- `180` — South up
+- `270` — West up
 
 
-[](map/#31.41976,34.39009,10.00,37.6,0.0 "Wider view of Gaza")
-The camera smoothly flies between positions as you scroll or click links.
+{.meta}
+[](map/#31.52956,34.47717,14.33,22.4,60.5 "3D perspective view")
+
+**Pitch** tilts the camera (0–60°):
+- `0` — Flat overhead view
+- `30` — Gentle 3D perspective
+- `45` — Dramatic tilt
+- `60` — Maximum terrain view
+
+**Copy to try:**
+```
+map/#31.52956,34.47717,14.33,22.4,60.5
+```
 
 
-{.heading}
+{.meta}
+[](map/#31.41976,34.39009,10.00,37.6,0.0 "Wider Gaza view")
 
-## Layer Management
-
-[](map/#31.42380,34.35370,10.00,37.6,0.0/+idf-poly "IDF evacuation zone outlines")
-Show built-in style layers by adding `+layername` to the hash.
+The camera smoothly flies between positions as you scroll through chapters or click links. Duration and easing are automatic.
 
 
-[](map/#31.42380,34.35370,10.00,37.6,0.0/+idf-poly,+idf-poly-outlines "IDF zones with fills and outlines")
-Stack multiple layers together: polygons and their outlines.
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0/+idf-poly "IDF evacuation zones")
+
+## Chapter 2: Layer Management
+
+### Showing Layers
+
+Add `+layername` to show built-in style layers:
+
+```
+map/#31.42380,34.35370,10.00,37.6,0.0/+idf-poly
+```
 
 
-[](map/#31.42391,34.35369,10.00,37.6,0.0/~labels_he "Hide labels")
-Hide layers with `~layername` — useful for replacing default basemap layers.
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0/+idf-poly,+idf-poly-outlines "Zones with fills and outlines")
+
+### Stacking Multiple Layers
+
+Comma-separate layer tokens to stack them:
+
+```
+map/#31.42380,34.35370,10.00,37.6,0.0/+idf-poly,+idf-poly-outlines
+```
+
+**Layer order:** Rightmost layers appear **on top** visually. First-to-last in hash = bottom-to-top on map.
 
 
+{.meta}
+[](map/#31.42391,34.35369,10.00,37.6,0.0/~labels_he "Hidden Hebrew labels")
+
+### Hiding Layers
+
+Use `~layername` to hide default basemap layers:
+
+```
+map/#31.42391,34.35369,10.00,37.6,0.0/~labels_he
+```
+
+Useful for removing labels or replacing default satellite imagery.
+
+
+{.meta}
 [](map/#31.52374,34.43343,15.00,37.6,0.0/+overlay,~Gaza_border_dash,~Gaza_border_base "Custom overlay without borders")
-Combine hiding and showing to swap layers.
+
+### Swapping Layers
+
+Combine showing and hiding to swap basemap components:
+
+```
+map/#31.52374,34.43343,15.00,37.6,0.0/+overlay,~Gaza_border_dash,~Gaza_border_base
+```
 
 
-[](map/#31.53410,34.48202,15.34,37.6,0.0/+satellite,+family-home "Satellite with point markers")
-Open editor (click "E") to view the layers available in the map, both shown and hidden by default.
+{.meta}
+[](map/#31.53410,34.48202,15.34,37.6,0.0/+satellite,+family-home "Satellite with markers")
+
+**Use editor mode (press E) to discover all available layer names.**
 
 
-{.heading}
+{.meta}
+[](map/#31.43672,34.34664,10.16,37.6,0.0/+jabalia-rafah "Displacement path")
 
-## Loading External Data
+## Chapter 3: Loading External Data
 
-[](map/#31.43672,34.34664,10.16,37.6,0.0/+jabalia-rafah "Displacement path from Jabalia to Rafah: +jabalia-rafah")
-Load GeoJSON files from `/map/` by adding `+filename` to the hash.
+### GeoJSON Files
 
+Load GeoJSON from `/map/` by adding `+filename`:
 
-[](map/#31.47602,34.41973,11.17,37.6,0.0/+jabalia-deir-al-balah(by-foot) "Styled path using track layer appearance: +jabalia-deir-al-balah(by-foot)")
-Copy styles from existing layers with `+filename(sourceLayer)` syntax.
+```
+map/#31.43672,34.34664,10.16,37.6,0.0/+jabalia-rafah
+```
 
-
-[](map/#31.45086,34.38246,11.54,37.6,0.0/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines "External polygons layered above polygon outlines")
-Use `(sourceHint)` to control z-index and render order.
-
-
-[](map/#31.42380,34.35370,10.00,37.6,0.0/+displacement-points "CSV point data with lat/lng columns")
-CSV files with `lat`/`lng` columns automatically convert to point markers.
-
-The system searches: `filename.geojson` → `filename.csv` → `data/filename.csv`
+The system automatically finds `jabalia-rafah.geojson` in the map folder.
 
 
-{.heading}
+{.meta}
+[](map/#31.47602,34.41973,11.17,37.6,0.0/+jabalia-deir-al-balah(by-foot) "Styled path")
 
-## Wayback Imagery
+### Style Hints
 
-[](map/#31.52374,34.43343,15.00,37.6,0.0/+wayback:20240215 "ESRI Wayback: Feb 15, 2024")
-Load very high-resolution imagery with `+wayback:YYYYMMDD` — 30cm resolution in urban areas from Maxar satellites.
+Copy styles from existing layers with `+filename(sourceHint)`:
 
+```
+map/#31.47602,34.41973,11.17,37.6,0.0/+jabalia-deir-al-balah(by-foot)
+```
 
-[](map/#31.42380,34.35370,10.00,37.6,0.0/+wayback:20231007 "Wayback: Oct 7, 2023 — day before the attack")
-Historical archive back to February 2014. System selects closest available release date.
-
-
-[](map/#31.52374,34.43343,15.00,37.6,0.0/+wayback:20241101 "Wayback: Recent November 2024 imagery")
-Updated every few weeks. Free WMTS service, max zoom 22 for extreme detail.
+This applies the `by-foot` layer's appearance (dashed line, colors, width) to the loaded GeoJSON.
 
 
-{.heading}
+{.meta}
+[](map/#31.45086,34.38246,11.54,37.6,0.0/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines "External polygons layered")
 
-## Camera Animations
+### Z-Index Control
 
-[](map/#31.52090,34.47332,14.00,19.2,48.5/+jabalia-rafah:follow "Animate along displacement path")
-Create cinematic camera movements with `+layername:follow` — the camera flies along path geometry. 
+Use `(sourceHint)` to control rendering order and z-index:
 
+```
+map/#31.45086,34.38246,11.54,37.6,0.0/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines
+```
 
-[](map/#31.52090,34.47332,14.00,19.2,48.5/+jabalia-rafah:follow+ "counter added with follow+")
-A **distance ticker** automatically appears showing the cumulative distance traveled (0 km to total path length).
-
-
-[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+s.gaza,+nuseirat,+cities,+villages,+idf-poly-outlines "offset can be added after like :follow+10100")
-The **distance ticker** can start with an offset by marking the km count after the :follow+.
+The external polygon adopts `idf-poly` styles and appears in the correct layer stack.
 
 
-[](map/#31.52090,34.47332,14.00,19.2,48.5/~jabalia-rafah:follow,+wayback:20240215 "High-resolution flyover with Wayback")
-Use Wayback for detailed terrain visualization during animation. In this case the path is hidden with a ~jabalia-rafah:follow using the animation only for camera control.
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0/+pois.csv(poi) "CSV point markers")
+
+### CSV Point Data
+
+CSV files with `lat`/`lng` columns auto-convert to markers:
+
+```
+map/#31.42380,34.35370,10.00,37.6,0.0/+pois.csv(poi)
+```
+
+**Search order:** `filename.geojson` → `filename.csv` → `data/filename.csv`
 
 
-{.heading}
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0/+pois.csv(poi,id=home) "Filtered to single marker")
 
-## Embedding
+### Filtering Data
 
-[](map/#31.52888,34.47937,18.14,15.0,0/+jabalia "Map with caption overlay")
-Use Markdown link titles for captions: `[](map/#... "Your caption")`
+Add filter expressions in parentheses after sourceHint:
 
-Embed in iframes (control panel auto-hides). Hash updates trigger instant map changes without page reload.
+```
+map/#31.42380,34.35370,10.00,37.6,0.0/+pois.csv(poi,id=home)
+```
+
+**Filter syntax:**
+- `property=value` — Exact match
+- `property!=value` — Not equal
+- Comma-separate multiple filters (AND logic)
 
 
-{.heading}
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=rafah) "Multiple filtered instances")
+
+### Multiple Instances with Filters
+
+Use `#counter` to load the same file multiple times with different filters:
+
+```
+map/#31.42380,34.35370,10.00,37.6,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=rafah)
+```
+
+Each instance gets unique styling and filtering.
+
+
+{.meta}
+[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20231101 "Al-Mawasi before displacement")
+
+## Chapter 4: Wayback Satellite Imagery
+
+### Loading Historical Imagery
+
+Access ESRI Wayback archive with `+wayback:YYYYMMDD`:
+
+```
+map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20231101
+```
+
+**Features:**
+- 30cm resolution in urban areas (Maxar satellites)
+- Historical archive: February 2014 → present
+- Updated every few weeks
+- Free WMTS service, max zoom level 22
+
+
+{.meta}
+[](map/#31.42380,34.35370,10.00,37.6,0.0/+wayback:20231007 "October 7, 2023 — day before attack")
+
+### Specific Dates
+
+Request specific dates — system finds closest available release:
+
+```
+map/#31.42380,34.35370,10.00,37.6,0.0/+wayback:20231007
+```
+
+
+{.meta}
+[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20251005,+wayback:20231101 "Comparing two dates")
+
+### Comparing Multiple Dates
+
+Stack multiple Wayback layers to compare time periods:
+
+```
+map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20251005,+wayback:20231101
+```
+
+**Visual order:** Rightmost date appears on top. Toggle visibility in editor mode to compare.
+
+**Use editor mode** to add Wayback layers by date picker.
+
+
+{.meta}
+[](map/#31.52090,34.47332,14.00,19.2,48.5/+jabalia-rafah:follow "Camera animation along path")
+
+## Chapter 5: Camera Animations
+
+### Following Paths
+
+Create cinematic camera movements with `+layername:follow`:
+
+```
+map/#31.52090,34.47332,14.00,19.2,48.5/+jabalia-rafah:follow
+```
+
+The camera flies along LineString geometry, maintaining bearing and pitch throughout.
+
+
+{.meta}
+[](map/#31.52090,34.47332,14.00,19.2,48.5/+jabalia-rafah:follow+ "Animation with distance ticker")
+
+### Distance Ticker
+
+Add `+` to display cumulative distance traveled:
+
+```
+map/#31.52090,34.47332,14.00,19.2,48.5/+jabalia-rafah:follow+
+```
+
+A white circular overlay appears at the line tip showing `0.0 km` → `total km` in real-time.
+
+
+{.meta}
+[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home "Animation with offset")
+
+### Ticker Offset
+
+Start the counter at a specific kilometer mark:
+
+```
+map/#31.47949,34.42091,12.96,0.0,39.0/+gaza-nuseirat(by-foot):follow+10100
+```
+
+Use `+offset` where offset is a number (e.g., `:follow+10100` starts at 10.1 km).
+
+
+{.meta}
+[](map/#31.52090,34.47332,14.00,19.2,48.5/~jabalia-rafah:follow,+wayback:20240215 "Hidden path with Wayback flyover")
+
+### Hidden Animation Paths
+
+Use `~layername:follow` to animate camera while hiding the path:
+
+```
+map/#31.52090,34.47332,14.00,19.2,48.5/~jabalia-rafah:follow,+wayback:20240215
+```
+
+Perfect for terrain visualization without visible guide lines.
+
+
+{.meta}
+[](map/#31.52888,34.47937,18.14,15.0,0/+jabalia "Map with caption")
+
+## Chapter 6: Captions & Embedding
+
+### Link Titles as Captions
+
+Use Markdown link title syntax for overlay captions:
+
+```markdown
+[](map/#31.52888,34.47937,18.14,15.0,0/+jabalia "Your caption text here")
+```
+
+
+{.meta}
+[](map/#31.52888,34.47937,18.14,15.0,0/+jabalia,+wayback:20241015 "Combined layers with caption")
+
+### Iframe Embedding
+
+Embed maps in iframes — control panel auto-hides in embedded contexts:
+
+```html
+<iframe src="map/#31.52888,34.47937,18.14,15.0,0/+jabalia"></iframe>
+```
+
+Hash updates trigger instant map changes without page reload.
+
+
+{.meta}
+[](map/#31.38169,34.34570,10.45,1.6,59.0/+jabalia,+rafah,+wayback:20241015 "All features combined")
 
 ## Quick Reference
 
-[](map/#31.38169,34.34570,10.45,1.6,59.0/+jabalia,+rafah,+wayback:20241015 "Combined features demo")
+**Hash structure:**
+```
+map/#lat,lng,zoom,bearing,pitch/+layer,~hide,+file(style,filter):follow+offset
+```
 
-**Hash tokens:**
-- `+layer` show | `~layer` hide | `+file` load GeoJSON/CSV
-- `+file(source)` copy styles | `+file:follow` animate camera
+**Camera:**
+- `lat,lng` — WGS84 coordinates
+- `zoom` — 0 (world) to 22 (extreme detail)
+- `bearing` — 0–360° rotation
+- `pitch` — 0–60° tilt
+
+**Layer tokens:**
+- `+layer` — Show layer
+- `~layer` — Hide layer  
+- `+file` — Load GeoJSON/CSV
+- `+file(sourceHint)` — Copy styles
+- `+file(source,filter)` — Apply filter
+- `+file#N` — Load same file multiple times
+- `+file:follow` — Animate camera
+- `+file:follow+` — Show distance ticker
+- `+file:follow+1000` — Ticker offset
+
+**Wayback:**
+- `+wayback:YYYYMMDD` — Historical satellite imagery
+- Stack multiple dates for comparison
+- Rightmost date appears on top
+
+**Filters:**
+- `property=value` — Exact match
+- `property!=value` — Not equal
+- Comma-separate for AND logic
 
 **Distance Ticker:**
-- Simply add + to start from 0 `:follow+`
-- Add offset after + to continue from say 1000km `:follow+1000`
-- White circular overlay (80px) at line tip position
-- Displays cumulative distance: `0.0 km` → `total km`
-- Updates in real-time, hides on completion/cancel
-- Only visible when following GeoJSON LineString paths
+- White circular overlay (80px diameter)
+- Cumulative distance: `0.0 km` → `total km`
+- Real-time updates during animation
+- Auto-hides on completion/cancel
 
-
-## TBC…
+**Editor Mode (press E):**
+- View all available layers
+- Add Wayback by date picker
+- Copy layer tokens
+- Toggle visibility
+- Essential for building complex URLs
