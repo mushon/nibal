@@ -656,7 +656,7 @@ Despite her parents’ concerns, she went back to their apartment with Rita and 
 
 
 {.meta}
-[](fg:blank)
+[](svg/#ceasefire_hope.svg/-1.26,-1.49,3.09/+attack_march_25.JPG)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+villages,+cities "In red: Areas ordered to evacuate in the week after Israel violated the ceasefire in March 2025")
 But then the war resumed. 
 
