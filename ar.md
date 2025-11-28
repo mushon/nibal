@@ -89,7 +89,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294)
+[](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 لأنني الأصغر، كان والداي وإخوتي يدللونني دائمًا.
@@ -363,8 +363,7 @@ css: src/theme.css, src/ar.css
 [](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
-<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion
-" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
    أيار 2024: اقتحام رفح
