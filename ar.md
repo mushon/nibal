@@ -89,7 +89,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294)
+[](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 لأنني الأصغر، كان والداي وإخوتي يدللونني دائمًا.
@@ -181,19 +181,19 @@ css: src/theme.css, src/ar.css
 
 
 {.meta} 
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
+[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 بعد 7 تشرين الأول بأيام قليلة، ألغت إسرائيل جميع تصاريح العمل لعشرات آلاف العمال الفلسطينيين من قطاع غزة، بينما كان بعضهم لا يزال داخل إسرائيل دون تمكّنهم من العودة إلى بيوتهم.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
+[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 أصبح أحمد وآلاف العمال، فجأة، "مقيمين غير شرعيين".
 
 
 {.meta} 
-[](svg/#oct7.svg/0.45,0.41,2/+detainies-1,+detainies-2 "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
+[](svg/#oct7.svg/0.67,0.68,2.51/+detainies-1,+detainies-2 "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 في الأيام التي تلت ذلك، اعتقلت إسرائيل آلاف العمال داخل أراضيها، بمن فيهم أحمد، زوج نِبال، أيضًا.
 
@@ -311,7 +311,7 @@ css: src/theme.css, src/ar.css
 
 
 {.meta} 
-[](svg/#south.svg/0.73,0.65,2.87/+ahmed_detained-comp.jpg "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سرحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
+[](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "!!! add caption")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
 التقت نِبال وريتا بأحمد بعد احتجازه في أحد مرافق الاعتقال الإسرائيلية دون محاكمة لعدة أشهر.
 
@@ -363,8 +363,7 @@ css: src/theme.css, src/ar.css
 [](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
-<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion
-" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
    أيار 2024: اقتحام رفح
@@ -398,14 +397,14 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "مخيم الشاطئ للاجئين في مدينة غزة، في تموز 2025 (رويترز: محمود عيسى)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "مخيم الشاطئ للاجئين في مدينة غزة، في تموز 2025 (رويترز: محمود عيسى)")
 [](bg:blank)
 
 كانت الحياة في المخزن أكثر استقرارًا بعض الشيء، لكنني كنت أشعر بأنني ممزقة. من ناحية، كنت سعيدة بوجودي مع زوجي وابنتي، ومن ناحية أخرى، اشتقت لعائلتي. البعد عن عائلتي ومنزلي جعلني أشعر بالوحدة والاغتراب.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "مخيم الشاطئ للاجئين في مدينة غزة، في تموز 2025 (رويترز: محمود عيسى)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "مخيم الشاطئ للاجئين في مدينة غزة، في تموز 2025 (رويترز: محمود عيسى)")
 [](bg:blank)
 
 
@@ -413,14 +412,14 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "ريتا في المخزن في البريج، من حساب نبال على تيك توك")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "ريتا في المخزن في البريج، من حساب نبال على تيك توك")
 [](bg:blank)
 
 سكنّا هناك نحو خمسة أشهر. عشنا في ظروف صعبة، لكنني شعرت أننا، رويدًا رويدًا، استطعنا الفوز ببعض الراحة.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "ريتا في المخزن في البريج، من حساب نبال على تيك توك")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "ريتا في المخزن في البريج، من حساب نبال على تيك توك")
 [](bg:blank)
 في صباح يوم 7 تشرين الأول 2024، نادتني ريتا "أمي" للمرة الأولى. كان ذلك مؤثراً للغاية.
 
@@ -566,7 +565,8 @@ css: src/theme.css, src/ar.css
  لكني لم أجرؤ على النظر في المرآة. 
 
 
-[](fg:blank)
+{.testimony typewriter}
+[](embed/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
 [](bg:blank)
 شعرتُ أن ريتا بالكاد تعرفني.
 
@@ -619,14 +619,14 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "من حساب نبال على تيك توك")
+[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+@vimeo-1129854927 "من حساب نبال على تيك توك")
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main,id=home))
 
 استقبلتني العائلة بالأحضان والأغاني والبكاء. في الليالي، كنا نلتقي جميعًا، جميع الأخوة، في منزل والديّ.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.01,-0.47,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
+[](svg/#ceasefire_hope.svg/0.05,-0.56,2.32/+nibal_rita_happy.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main,id=home))
 
 
@@ -634,7 +634,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main,id=home))
 
 
@@ -642,14 +642,14 @@ css: src/theme.css, src/ar.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main,id=home))
 بعد حوالي شهر من الراحة والتعافي في منزل والديها، طلب أحمد من نِبال العودة إليه.
 استجابت نِبال لطلبه، رغم تحفظ والديها، وعادت مع ريتا إلى شقتهم، حيث استأجروا مساعِدة لها.
 
 
 {.meta}
-[](fg:blank)
+[](svg/#ceasefire_hope.svg/-1.26,-1.49,3.09/+attack_march_25.JPG)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar "بالأحمر: أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة خلال الأسبوع الذي تلا انتهاك وقف إطلاق النار في آذار 2025")
 ولكن عندها تجددت الحرب بضراوة أشدّ. تحت ضغط القصف والحصار، عادت علاقة نِبال وأحمد إلى التأزم من جديد.
 
@@ -662,7 +662,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 
 منذ إطلاق سراح أحمد وعودته إلينا، بدا لي قلقًا ومتوترًا. لقد تغير فيه شيء ما. 
@@ -718,7 +718,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home),+pois-ar(label-main,id=home),+pois-ar#2(label-main,id=couple-home),~labels_he,+labels_ar)
+[](map/#31.52964,34.47981,15.54,38.4,0.0/+pois-ar(label-main,id=home),+pois-ar#2(label-main,id=couple-home),~labels_he,+labels_ar)
 
 في بداية حزيران 2025، بعد بضعة أشهر من عودتها إلى شقتها وشقة أحمد، تركت نِبال منزلها وعادت مع ريتا إلى منزل والديها.
 
@@ -869,8 +869,8 @@ css: src/theme.css, src/ar.css
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/0.76,-1.17,3.23/+@vimeo-1139274686,+refugees_end-comp.jpg "سكان مدينة غزة يهربون بعد أن أمرهم الجيش الإسرائيلي بالانتقال جنوبًا. 15 أيلول 2025 (رويترز: محمود عيسى)")
-[](bg:blank)
+[](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "سكان مدينة غزة يهربون بعد أن أمرهم الجيش الإسرائيلي بالانتقال جنوبًا. 15 أيلول 2025 (رويترز: محمود عيسى)")
+[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 قصة نِبال هي واحدة فقط من بين حوالي مليونيّ قصة لسكان قطاع غزة الذين عانوا من الفقدان والجوع والتهجير المستمر.
 
 
@@ -932,7 +932,7 @@ css: src/theme.css, src/ar.css
 ## المنهجية والمصادر
 
 <a href="https://btselem.org/" target="blank" class="dontinflect thumb">
-للتقرير الكامل حول التهجير في قطاع غزة، 2023-2025: 
+للتقرير الكامل حول التهجير في قطاع غزة،: 
     <strong>
     ״لا مكان تحت السماء״
     </strong>

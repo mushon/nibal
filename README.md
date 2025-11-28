@@ -92,7 +92,7 @@ css: src/theme.css
 
 {.testimony typewriter}
 [](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294)
-[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
+[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base "מתוך חשבון הטיקטוק של ניבאל")
 
 בגלל שאני הקטנה, ההורים והאחים שלי תמיד פינקו אותי.
 
@@ -185,19 +185,19 @@ css: src/theme.css
 
 
 {.meta} 
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/~labels_he)
 בימים שאחרי כן, ישראל שללה את כלל היתרי העבודה של עשרות אלפי העובדים הפלסטינים מרצועת עזה, בשעה שחלקם שוהים בשטח ישראל ולא יכולים לשוב לביתם. 
 
 
 {.meta}
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/~labels_he)
 אחמד ואלפי עובדים אחרים הפכו באחת ל״שוהים בלתי-חוקיים״.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.45,0.41,2/+detainies-1,+detainies-2 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
+[](svg/#oct7.svg/0.67,0.68,2.51/+detainies-1,+detainies-2 "פלסטינים שנעצרו בידי הצבא הישראלי לאחר ששוחררו לרפיח, 28 בדצמבר 2023. (רויטרס / בסאם מסעוד)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/~labels_he)
 מיד לאחר מכן, ישראל עצרה אלפי עובדים פלסטינים בשטחה - בהם גם את אחמד, בעלה של ניבאל.
 
@@ -230,7 +230,7 @@ css: src/theme.css
 {.meta} 
 [](fg:blank)
 [](map/#31.52287,34.46534,12.90,-3.2,39.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home) "הערכת צפיפות בניינים שניזוקו ברצועת עזה לאחר השבוע הראשון למתקפה. מקור: UNOSAT")
-ניבאל, שחששה מיציאה למסע הקשה לדרום הרצועה לבדה עם בתה בת החודש, מחליטה להישאר בבית הוריה בג׳אבליא. 
+ניבאל, שחששה מיציאה למסע הקשה לדרום הרצועה לבדה עם בתה בת החודש, החליטה להישאר בבית הוריה בג׳אבליא. 
 
 
 {.testimony typewriter}
@@ -313,7 +313,7 @@ css: src/theme.css
 
 
 {.meta} 
-[](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "!!! להחליף למלא וגם בתרגומים ולהוסיף קאפשן")
+[](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "פלסטינים ששוחררו מבתי כלא בישראל מחוץ לבית החולים נאסר בח'אן יונס, 13 באוקטובר 2025. (מג'די פאתחי / NurPhoto)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah)) 
 ניבאל וריתא פגשו את אחמד לאחר שהוחזק באחד ממתקני הכליאה הישראליים ללא משפט במשך חודשים. 
 
@@ -371,8 +371,7 @@ css: src/theme.css
 [](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly) "בתמונה: צווי הפינוי שהפיץ הצבא הישראלי לתושבי ושוהי רפיח ב-6 במאי 2024")
 בתחילת מאי 2024, פחות מחודשיים לאחר הגעתם של ניבאל, אחמד וריתא לעיר, הפיץ הצבא הישראלי צווי פינוי חדשים שדרשו מתושבי רפיח ומהעקורים השוהים בה להתפנות.  
 
-<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion
-" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     מאי 2024: הפלישה לרפיח
@@ -406,28 +405,28 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (רויטרס / מחמוד עיסא)")
 [](bg:blank)
 
 החיים במחסן היו קצת יותר יציבים מאשר החיים באוהל, אבל הרגשתי חצויה. מצד אחד שמחתי להיות עם בעלי והבת שלי, ומצד שני, המרחק מהמשפחה ומהבית שלי בג׳אבליא גרם לי להרגיש בודדה ומנוכרת. התגעגעתי אליהם מאוד.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "מחנה הפליטים א-שאטי בעיר עזה, 15 ביולי 2025. (REUTERS/מחמוד עיסא)")
 [](bg:blank)
 
 דיברתי איתם בטלפון בכל הזדמנות שהייתה לי.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
 [](bg:blank)
 
 גרנו במחסן בערך חמישה חודשים. חיינו בתנאים לא פשוטים, אבל הרגשתי שלאט לאט הצלחנו למצוא קצת נחת.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "ריתא במחסן באל-בוריג׳, מתוך חשבון הטיקטוק של ניבאל")
 [](bg:blank)
 בבוקר של ה-7 באוקטובר 2024 ריתא קראה לי "אמא" בפעם הראשונה. זה היה מרגש מאוד.
 
@@ -571,10 +570,11 @@ css: src/theme.css
 {.testimony typewriter}
 [](svg/#warehouse_bureij2.svg/-1.13,0.91,3.93/+nibal_after_amputation)
 [](bg:blank)
-אבל לא העזתי להסתכל במראה. 
+אבל לא העזתי להסתכל במראה.
 
 
-[](fg:blank)
+{.testimony typewriter}
+[](embed/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
 [](bg:blank)
 הרגשתי שגם ריתא בקושי מזהה אותי. 
 
@@ -628,37 +628,36 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+@vimeo-1129854927 "מתוך חשבון הטיקטוק של ניבאל")
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-he(label-main,id=home))
-
 
 המשפחה קיבלה אותי בבית בחיבוקים, שירים ובכי. בלילות נפגשנו כל האחים בבית ההורים שלי.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.01,-0.47,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
+[](svg/#ceasefire_hope.svg/0.05,-0.56,2.32/+nibal_rita_happy.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-he(label-main,id=home))
 
 האחיות שלי היו לצידי כל הזמן ועזרו לי בהכל: להתקלח, להתלבש, לאכול ולטפל בריתא. 
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-he(label-main,id=home))
 
 הן החליפו לה חיתולים, חיבקו אותה ושיחקו איתה. בזכותן הרגשתי שהחיים שלי מתחילים לחזור למסלול.
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-he(label-main,id=home))
 אחרי כחודש של מנוחה והחלמה בבית הוריה, אחמד ביקש מניבאל לשוב אליו. 
 ניבאל נענתה לבקשתו למרות הסתייגות הוריה, וחזרה עם ריתא לדירתם המשותפת, שם הם שכרו עזרה עבורה.
 
 
 {.meta}
-[](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines "באדום: צווי הפינוי שהפציץ הצבא הישראלי לתושבי עזה בשבוע שלאחר הפרת הפסקת האש במרץ 2025")
+[](svg/#ceasefire_hope.svg/-1.26,-1.49,3.09/+attack_march_25.JPG)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines "!!! באדום: צווי הפינוי שהפיץ הצבא הישראלי לתושבי עזה בשבוע שלאחר הפרת הפסקת האש במרץ 2025. בתמונה: תקיפה ישראלית במרכז העיר עזה, 22 במרץ 2025. (סאהר אל־ע'ורה / ZUMA Press Wire)")
 אבל אז התחדשה המלחמה ביתר שאת. 
 
 
@@ -670,13 +669,13 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 אחמד התמודד באותה תקופה עם החותם שהותירה בו השהות במתקני הכליאה הישראליים.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 מאז שאחמד חזר אלינו מישראל הוא נראה לי מוטרד ולחוץ. משהו בו השתנה.
 במובן מסוים, הרגשתי, הוא איבד שם חלק מעצמו.
@@ -730,9 +729,9 @@ css: src/theme.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home),+pois-he(label-main,id=home),+pois-he#2(label-main,id=couple-home))
+[](map/#31.52964,34.47981,15.54,38.4,0.0/+pois-he(label-main,id=home),+pois-he#2(label-main,id=couple-home))
 
-בתחילת יוני 2025, החליטה ניבאל לחזור עם ריתא לבית הוריה הסמוך.
+בתחילת יוני 2025, ניבאל החליטה לחזור עם ריתא לבית הוריה הסמוך.
  
 
 {.testimony typewriter}
@@ -887,8 +886,8 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/0.76,-1.17,3.23/+@vimeo-1139274686,+refugees_end-comp.jpg "תושבי העיר עזה נמלטים לאחר שהצבא הישראלי הורה להם להתפנות דרומה, 15 בספטמבר 2025. (רויטרס / מחמוד עיסא)")
-[](bg:blank)
+[](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "תושבי העיר עזה נמלטים לאחר שהצבא הישראלי הורה להם להתפנות דרומה, 15 בספטמבר 2025. (רויטרס / מחמוד עיסא)")
+[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 
 סיפורה של ניבאל הוא רק אחד מבין שני מיליון סיפורים של תושבי עזה שחוו אובדן, רעב ועקירה מתמשכים.
 
@@ -944,7 +943,7 @@ css: src/theme.css
 ## מתודולוגיה ומקורות
 
 <a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
-לפרסום המלא על עקירה ברצועת עזה, 2023-2025
+לפרסום המלא על עקירה ברצועת עזה
     <strong>
     ״אין מקום מתחת לשמיים״
     </strong>

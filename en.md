@@ -106,7 +106,8 @@ After high-school, I majored in English and Translation at Al-Azhar University i
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
+[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")
+[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 In my final year, I met Ahmad. I felt that he really got me.
 I married him even though my parents objected. I knew we wouldn’t live in luxury, but he was my precious treasure.
@@ -186,19 +187,19 @@ Nibal was terrified and went to stay with her parents nearby.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 A few days later, Israel revoked tens of thousands of permits from all workers from Gaza. Many were inside Israel and could not go home.
 
 
 {.meta}
-[](svg/#oct7.svg/0.47,0.52,2.02/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 Ahmad and thousands of others instantly became “illegal aliens” in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.45,0.41,2/+detainies-1,+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.67,0.68,2.51/+detainies-1,+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 He and thousands of others were arrested in Israel within days.
 
@@ -316,7 +317,7 @@ But seeing him also shocked me. He had lost so much weight, and it looked like h
 
 
 {.meta} 
-[](svg/#south.svg/0.73,0.65,2.87/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "Palestinians released from Israeli prisons arrive outside the Nasser hospital in Khan Yunis, 13 Oct. 2025 (Majdi Fathi/NurPhoto)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
 Nibal and Rita met Ahmad after he had been held in an Israeli detention facility for months, without trial. 
 
@@ -368,8 +369,7 @@ I was ashamed to tell them how I was living.
 [](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+villages,+cities "Military evacuation orders for Rafah issued in early May 2024")
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
-<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion
-" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
     For more information, see:
     <strong>
     May 2024: The invasion of Rafah
@@ -403,28 +403,28 @@ The family reached al-Bureij Refugee Camp in the central Gaza Strip and rented a
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "A-Shati R.C. in Gaza City, 15 July 2025 (Reuters/Mahmoud Issa)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "A-Shati R.C. in Gaza City, 15 July 2025 (Reuters/Mahmoud Issa)")
 [](bg:blank)
 
 Living in the storage room was a bit more stable than in the tent, but I felt torn. I was grateful to be with my husband and daughter, but really missed my family up north. I felt lonely and alienated, far from home.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/-0.08,-0.43,2.71/+warehouse_new-compressed.jpg "A-Shati R.C. in Gaza City, 15 July 2025 (Reuters/Mahmoud Issa)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "A-Shati R.C. in Gaza City, 15 July 2025 (Reuters/Mahmoud Issa)")
 [](bg:blank)
 
 Whenever I could, I checked in with them over the phone.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
 [](bg:blank)
 
 We stayed there for about five months.  It was rough, but I felt we were slowly finding some peace. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.18,0.57,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
+[](svg/#warehouse_bureij1.svg/0.27,0.35,2.26/+@vimeo-1130687838 "Rita in the storage room in al-Bureij. From Nibal’s TikTok account")
 [](bg:blank)
 
 On the morning of 7 October 2024, Rita called me “Mama” for the first time. I was thrilled.
@@ -574,7 +574,8 @@ I tried to stay well-groomed, to get dressed and put on makeup with help, and le
 But I couldn’t look in the mirror.
 
 
-[](fg:blank)
+{.testimony typewriter}
+[](embed/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
 [](bg:blank)
 It felt like even Rita barely recognized me. 
 
@@ -628,36 +629,36 @@ Nibal’s relatives picked them up at the Netzarim checkpoint. They took Ahmad t
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg,+@vimeo-1129854927 "From Nibal’s TikTok account")
+[](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+@vimeo-1129854927 "From Nibal’s TikTok account")
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois(label-main,id=home))
 
 My family welcomed me with hugging, singing and tears. My  brothers and sisters came over every evening.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.01,-0.47,1.93/+nibal_rita_home.jpg,+nibal_rita_happy.jpg)
+[](svg/#ceasefire_hope.svg/0.05,-0.56,2.32/+nibal_rita_happy.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois(label-main,id=home))
 
 My sisters never left my side. They helped me with everything: showering, dressing, eating, caring for Rita.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois(label-main,id=home))
 
 They changed her diapers, held her and played with her. Thanks to them, I felt my life was slowly getting back on track. 
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/0.53,-0.52,1.93/+nibal_rita_home.jpg)
+[](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
 [](map/#31.53564,34.47997,11.77,0.0,39.0/+pois(label-main,id=home))
 After about a month of recovery with her parents, Ahmad asked Nibal to join him.
 Despite her parents’ concerns, she went back to their apartment with Rita and the couple hired help.
 
 
 {.meta}
-[](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+villages,+cities "In red: Areas ordered to evacuate in the week after Israel violated the ceasefire in March 2025")
+[](svg/#ceasefire_hope.svg/-1.26,-1.49,3.09/+attack_march_25.JPG)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+villages,+cities "!!! In red: Areas ordered to evacuate in the week after Israel violated the ceasefire in March 2025. In the photo: Israeli airstrike in central Gaza City, 22 March 2025 (Saher Alghorra/ZUMA Press Wire)")
 But then the war resumed. 
 
 
@@ -668,13 +669,13 @@ Living under the pressure of the Israeli blockade and airstrikes, tensions in th
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 Ahmad was struggling with the consequences of his time in Israeli detention.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/-0.46,0.56,2.15/+@vimeo-1141082583,+ahmad_rita_srgb.jpg)
+[](svg/#ceasefire_hope.svg/-0.54,0.55,2.15/+vimeo-1141082583,+@vimeo-1141231313)
 [](bg:blank)
 After he was released from Israel, he seemed troubled and anxious. Something had changed. 
 In a way, it felt like he’d lost a part of himself there.
@@ -726,7 +727,7 @@ One day, he demanded I go back to my parents.
 
 {.meta}
 [](fg:blank)
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=couple-home),+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
+[](map/#31.52964,34.47981,15.54,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
 
 A few months after returning to their apartment, Nibal moved back to her parents with Rita in early June 2025.
 
@@ -804,6 +805,7 @@ They sheltered in an abandoned restaurant belonging to friends, and later in a c
 
 During those weeks, Israel launched another ground invasion into Gaza City.
 
+
 {.meta thumb} 
 [](svg/#permanent_impermanence.svg/0.64,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~@vimeo-1136076786 "A leaflet ordering evacuation dropped by an Israeli plane in Gaza City, 9 Sept. 2025 (Reuters/Dawoud Abu Alkas)")
 [](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),+pois.csv(poi,id=gaza-2509),~labels_he,+villages,+cities)
@@ -880,7 +882,8 @@ She is fighting to imagine a better future for herself and for Rita.
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/0.76,-1.17,3.23/+@vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
+[](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
+[](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 Nibal is one of nearly 2 million people in Gaza enduring loss, hunger and prolonged displacement.
 
 
@@ -941,7 +944,7 @@ B’Tselem will follow their story and share any developments in our newsletter:
 ## Methodology and sources
 
 <a href="https://btselem.org/" target="blank" class="dontinflect thumb">
-For the full publication on displacement in the Gaza Strip, 2023–2025:
+For the full publication on displacement in the Gaza Strip:
     <strong>
     “No Place Under Heaven”
     </strong>
