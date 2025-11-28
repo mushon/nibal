@@ -516,7 +516,7 @@ The sandy area was largely off the electricity, water and sewage grids.
 
 {.meta thumb} 
 [](fg:blank)
-[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20251023,+wayback:20231101 "Satellite image of the “humanitarian zone” in al-Mawasi, Khan Yunis, Jan. 2025 (ESRI Wayback)")
+[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20231101,+wayback:20251005 "Satellite image of the “humanitarian zone” in al-Mawasi, Khan Yunis, Jan. 2025 (ESRI Wayback)")
 
 Within months, the area was crammed with tents sheltering over 1 million IDPs from throughout the Strip.
 
