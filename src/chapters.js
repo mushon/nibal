@@ -546,6 +546,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
       
+      // Check if current section target is a subheader and update body class
+      const currentTarget = currentTargetId ? document.getElementById(currentTargetId) : null;
+      const isCurrentSubheader = currentTarget && currentTarget.classList && currentTarget.classList.contains('subheader');
+      
+      if (isCurrentSubheader) {
+        document.body.classList.add('sec-subheader');
+      } else {
+        document.body.classList.remove('sec-subheader');
+      }
+      
       // Mark all dots as visited, future, or current based on scroll position
       // Note: 'current' class on sections is now handled by core index.html
       targetPositions.forEach(pos => {

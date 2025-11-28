@@ -98,7 +98,7 @@
 }
 
 /* Timestamp items (sections with H3/H4) show labels by default */
-.chapter-item.timestamp .chapter-label {
+.sec-subheader .chapter-item.timestamp .chapter-label {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
 }
@@ -233,5 +233,13 @@
   #chapter-nav .chapter-heading-item .chapter-dot {
     width: 20px;
     height: 6px;
+  }
+
+  .chapter-item.timestamp .chapter-label {
+    opacity: 0;
+  }
+
+  body.sec-subheader .chapter-item.timestamp .chapter-label {
+    opacity: 1;
   }
 }
