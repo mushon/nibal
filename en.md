@@ -110,6 +110,11 @@ After high-school, I majored in English and Translation at Al-Azhar University i
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 In my final year, I met Ahmad. I felt that he really got me.
+
+
+{.testimony typewriter}
+[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")
+[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 I married him even though my parents objected. I knew we wouldn’t live in luxury, but he was my precious treasure.
 
 
@@ -124,14 +129,14 @@ We got married in September 2022 and moved into our own apartment in his family�
 [](svg/#intro-pre.svg/0.26,-0.41,2.4/+vimeo-1137392053,+vimeo-1137391389,+@vimeo-1137393585 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
-We led a happy life, surrounded by the love and warmth of family.
+We were unemployed and survived with our families’ help.
 
 
 {.testimony typewriter}
 [](svg/#intro-pre.svg/0.26,-0.41,2.4/+vimeo-1137392053,+vimeo-1137391389,+@vimeo-1137393585 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
-We were unemployed and survived with our families’ help.
+We led a happy life, surrounded by the love and warmth of family.
 
 
 {.meta}
@@ -360,7 +365,7 @@ It was constant torment, probably the hardest time in my life.
 {.testimony typewriter}
 [](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "Rita in the IDP camp in Rafah")
 [](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+villages,+cities) 
-I didn’t tell my family how hard it was, because they didn’t want me to go south.
+I didn’t tell my parents how hard it was, because they didn’t want me to go south.
 I was ashamed to tell them how I was living.  
 
 
@@ -605,7 +610,7 @@ But I was losing hope.
 {.subheader}
 [](fg:blank)
 [](bg:blank)
-## A glimmer of hope: Ceasefire
+## Ceasefire
 
 
 {.meta}
@@ -706,15 +711,15 @@ I tried to focus on Rita. She was the most important thing. I did everything I c
 
 
 {.meta}
-[](svg/#back_home.svg/-0.94,-0.44,3.87/+@vimeo-1129860275 "‘Alaa’s home after the bombing that killed her three children")
-[](map/#31.53551,34.47021,14.64,38.4,0.0/+pois.csv(poi,id=alaa-home),+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
+[](fg:blank)
+[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),+pois#3(label-main,id=home))
 
 In April 2025, Israel bombed the home of Nibal’s sister ‘Alaa in Jabalya, killing all three of her children: Wasim, 10, Muhannad, 8, and Khawlah, 5. 
 
 
 {.meta}
 [](svg/#back_home.svg/-0.94,-0.44,3.87/+@vimeo-1129860275 "‘Alaa’s home after the bombing that killed her three children")
-[](map/#31.53551,34.47021,14.64,38.4,0.0/+pois.csv(poi,id=alaa-home),+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
+[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=alaa-home),+pois.csv#3(poi,id=home),~labels_he,+villages,+cities)
 The devastating news came when the tension between Nibal and Ahmad was at its peak.
 
 
@@ -727,8 +732,7 @@ One day, he demanded I go back to my parents.
 
 {.meta}
 [](fg:blank)
-[](map/#31.52964,34.47981,15.54,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
-
+[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+villages,+cities)
 A few months after returning to their apartment, Nibal moved back to her parents with Rita in early June 2025.
 
 
@@ -741,7 +745,7 @@ My family welcomed us again with love, but the house was full of grief. My siste
 
 {.testimony typewriter}
 [](svg/#back_home.svg/-1.03,-1.4,3.73/+nibal_home_smile3.heic)
-[](map/#31.53433,34.47235,14.64,38.4,0.0/+pois.csv(poi,id=home),+pois(label-main,id=home))
+[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),+pois(label-main,id=home))
 
 I was frustrated because I couldn’t do anything on my own, and I struggled to care for Rita. 
 Even with all the support from my parents, I felt like a burden for them, too. 
@@ -749,26 +753,26 @@ Even with all the support from my parents, I felt like a burden for them, too.
 
 {.testimony typewriter}
 [](svg/#back_home.svg/-0.65,-0.68,3.73/+@vimeo-1137391856,+vimeo-1137392312,+nibal_ruined_home1.jpg "An airstrike in the family’s neighborhood, August 2025")
-[](map/#31.53433,34.47235,14.64,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
+[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
 
 There were airstrikes in our area all the time. Many people were displaced again. But my extended family is huge, and we had nowhere to go without splitting up.
 
 
 {.meta}
 [](svg/#back_home.svg/-0.65,-0.68,3.73/+@vimeo-1137391856,+vimeo-1137392312,+nibal_ruined_home1.jpg "An airstrike in the family’s neighborhood, August 2025")
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
+[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
 In late August 2025, Israeli forces entered Jabalya and advanced toward the family’s neighborhood.
 
 
 {.meta}
 [](svg/#back_home.svg/-0.65,-0.68,3.73/+@vimeo-1137391856,+vimeo-1137392312,+nibal_ruined_home1.jpg "An airstrike in the family’s neighborhood, August 2025")
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
+[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),+pois.csv(poi,id=alaa-home),~labels_he,+villages,+cities)
 A bomb hit her aunt’s house next door, killing Nibal’s cousin and injuring several relatives.
 
 
 {.testimony typewriter}
 [](svg/#back_home.svg/-0.09,-0.88,3.73/+@vimeo-1137392312,+nibal_ruined_home1.jpg "Residents displaced from a-Nazlah neighborhood in Jabalya on the day of the bombing")
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
+[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=alaa-home),~labels_he,+villages,+cities)
 
 We heard a huge explosion and screams outside. People were running. They told us the Israeli army had ordered everyone to evacuate the area within 15 minutes. 
 We ran outside terrified, almost empty-handed. I left behind our papers, clothes, everything. But we got out in time.
@@ -776,7 +780,7 @@ We ran outside terrified, almost empty-handed. I left behind our papers, clothes
 
 {.testimony typewriter}
 [](svg/#back_home.svg/-0.09,-0.88,3.73/+@vimeo-1137392312,+nibal_ruined_home1.jpg "Residents displaced from a-Nazlah neighborhood in Jabalya on the day of the bombing")
-[](map/#31.52971,34.48003,14.64,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
+[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),~labels_he,+villages,+cities)
 We walked the streets, terrified.
 
 
@@ -794,7 +798,7 @@ Later, Nibal learned that the building she had lived in most of her life with he
 
 {.meta}
 [](svg/#permanent_impermanence.svg/-0.66,1.26,3.27/+nibal_ruined_home2.jpg "The area of Nibal’s family home after the bombing")
-[](map/#31.53196,34.47651,15.28,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2509),~labels_he,+villages,+cities)
+[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2509)~labels_he,+villages,+cities)
 Nibal walked with Rita and about 50 people from her family to Gaza City, in search of safety.
 They sheltered in an abandoned restaurant belonging to friends, and later in a cramped apartment in Gaza City.
 
