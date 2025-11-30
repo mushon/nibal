@@ -18,7 +18,7 @@ css: src/theme.css, src/ar.css
     <a href="#ar" class="dontinflect" data-reload>عربي</a>
 </div>
 
-<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
    للتقرير الكامل حول التهجير في قطاع غزة:
     <strong>
    ״لا مكان تحت السماء״
@@ -214,7 +214,7 @@ css: src/theme.css, src/ar.css
 [](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 13 تشرين الأول 2023")
 أوامر الإخلاء الجماعي الأولى، التي صدرت في 13 تشرين الأول، أمرت نحو مليون شخص من سكان شمال القطاع بمغادرة منازلهم والنزوح إلى جنوب القطاع في غضون 24 ساعة.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
     أوامر الإخلاء و"الممرات الآمنة"
@@ -344,9 +344,11 @@ css: src/theme.css, src/ar.css
 
 الاكتظاظ، نقص المياه والغذاء، تردي ظروف الصرف الصحي وانعدام الخصوصية، جعلت الحياة في مراكز المهجّرين لا تطاق، وخاصة بالنسبة للنساء والفتيات.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
-    <strong> ظروف الحياة في مجمّعات المهجَّرين compounds</strong>
+    <strong>
+        ظروف الحياة في مجمّعات المهجَّرين 
+        </strong>
 </a>
 
 
@@ -368,7 +370,7 @@ css: src/theme.css, src/ar.css
 [](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
-<a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
    أيار 2024: اقتحام رفح
@@ -514,7 +516,7 @@ css: src/theme.css, src/ar.css
 
 خلال بضعة أشهر، امتلأت "المنطقة الإنسانية"، بالكامل، بالخيام التي اضطر أكثر من مليون شخص هُجِّروا من جميع أنحاء القطاع إلى العيش فيها.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
     موجات الهجرة و״المناطق الإنسانية״
@@ -805,7 +807,7 @@ css: src/theme.css, src/ar.css
 [](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),+pois.csv(poi,id=gaza-2509),~labels_he,+labels_ar)
 أوامر الإخلاء التي أصدرها الجيش الإسرائيلي في أوائل أيلول 2025، بعد أسابيع قليلة من وصول عائلة نِبال إلى المدينة، تأمر حوالي 1,2 مليون شخص بالنزوح من مكان إقامتهم، مرة أخرى.
 
-<a href="https://btselem.org/" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
     آب ـ أيلول 2025: تدمير مدينة غزة
@@ -933,7 +935,7 @@ css: src/theme.css, src/ar.css
 {.meta thumb closing}
 ## المنهجية والمصادر
 
-<a href="https://btselem.org/" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
 للتقرير الكامل حول التهجير في قطاع غزة: 
     <strong>
     ״لا مكان تحت السماء״
