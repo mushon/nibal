@@ -375,17 +375,23 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.hash = newHash;
     }
 
-    // Helper function to create scroll handler
-    function createScrollHandler(targetId) {
-      return function(ev) {
-        ev.preventDefault();
-        
-        // Clear all iframes with about:blank to clean up state
+  // Track if this is the initial hash or a user-triggered change
+  let isInitialHash = true;
+
+  // Helper function to create scroll handler
+  function createScrollHandler(targetId) {
+    return function(ev) {
+      ev.preventDefault();
+      
+      // Clear all iframes with about:blank to clean up state
+      // Only do this on user-triggered navigation, not initial load
+      if (!isInitialHash) {
         document.querySelectorAll('iframe').forEach(iframe => {
           iframe.src = 'about:blank';
         });
-        
-        const target = document.getElementById(targetId);
+      }
+      
+      const target = document.getElementById(targetId);
         if (!target) return;
         
         // Get scroll position and dimensions
@@ -703,9 +709,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!hash) return;
     
     // Clear all iframes with about:blank to clean up state
-    document.querySelectorAll('iframe').forEach(iframe => {
-      iframe.src = 'about:blank';
-    });
+    // Only do this on user-triggered navigation, not initial load
+    if (!isInitialHash) {
+      document.querySelectorAll('iframe').forEach(iframe => {
+        iframe.src = 'about:blank';
+      });
+    }
     
     // Match patterns like #:36 or #draft:36 or #anything:123
     const match = hash.match(/:(\d+)$/);
@@ -767,11 +776,15 @@ document.addEventListener('DOMContentLoaded', function () {
     window.__snapSuppressUntil = Date.now();
   }
 
-  // Listen for hash changes
-  window.addEventListener('hashchange', handleHashJump);
+  // Listen for hash changes (but not the initial one)
+  window.addEventListener('hashchange', () => {
+    isInitialHash = false; // After initial load, all hash changes are user-triggered
+    handleHashJump();
+  });
   
   // Handle initial hash on page load (with a delay to ensure content is ready)
   setTimeout(() => {
     handleHashJump();
+    isInitialHash = false; // Mark initial hash as processed
   }, 500);
 });
