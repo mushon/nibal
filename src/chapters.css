@@ -139,15 +139,14 @@
 /* Mobile: full-height touch-friendly rail */
 @media (max-width: 800px) {
   #chapter-nav {
-    top: 0;
-    left: 16px; /* More space from edge */
-    height: 100vh;
+    top: 8px;
+    left: 8px;
+    bottom: 8px;
     height: 100dvh; /* Use dynamic viewport height for mobile browsers */
     transform: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 4vh 0; /* Proportional padding */
+    padding: 0; /* Proportional padding */
     gap: 1px; /* Default 1px gap between all items */
     /* Prevent the page from scrolling while swiping the rail */
     touch-action: none;
@@ -160,7 +159,6 @@
   #chapter-nav .chapter-item {
     flex: 1 1 0;
     min-height: 0; /* Allow items to shrink below content size */
-    width: 48px; /* Larger hit area */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,19 +167,10 @@
     margin: 0;
   }
 
-  /* Larger dots on mobile for better visibility */
-  #chapter-nav .chapter-dot {
-    width: 18px;
-    height: 6px;
-    border-width: 2px;
-  }
-
-  /* Larger labels on mobile */
-  #chapter-nav .chapter-label {
-    font-size: 16px; /* Increased from 13px */
-    padding: 8px 14px; /* More generous padding */
-    left: calc(100% + 16px); /* More space from nav */
-    border-radius: 6px;
+  #chapter-nav .chapter-item button{
+    width: 4px;
+    height: 1px;
+    border-width: 1px;
   }
 
   #chapter-nav .chapter-label::before {
@@ -227,12 +216,6 @@
 
   #chapter-nav .chapter-item.chapter-heading-item:first-child {
     border-top: 0; /* No extra gap before first chapter */
-  }
-  
-  /* Larger dots for chapter headings too */
-  #chapter-nav .chapter-heading-item .chapter-dot {
-    width: 20px;
-    height: 6px;
   }
 
   .chapter-item.timestamp .chapter-label {

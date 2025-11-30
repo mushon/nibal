@@ -614,10 +614,16 @@ input#mce-EMAIL{
         padding: 0 0 20dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
         justify-content: end;
         overflow: hidden; /* hide scrolling on main if content overflows */
+        position: relative;
     }
 
     section:first-of-type {
         justify-content: end;
+    }
+
+    section:first-of-type #logo img{
+        width: 75%;
+        height: 75%;
     }
 
     section.testimony{
@@ -631,16 +637,17 @@ input#mce-EMAIL{
     }
 
     section > a.thumb{
-        font-size: 0.8em;
-        min-width: 400px;
-    }
-
-    section:first-of-type > a.thumb{
-        margin: 40px auto 40px;
+        margin-bottom: 80px !important;
+        transform: none !important;
+        left: auto !important;
+        padding: 24px 140px 8px 8px;
+        background-position: bottom right;
+        min-height: 48px;
+        background-size: 160px;
+        font-size: 0.9em;
     }
 
     section:first-of-type > div#lang{
         margin: 80px 0 320px;
     }
 }
-

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Dynamic Mapbox Map with Hash Control</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
@@ -15,6 +15,15 @@
       width: 100%;
       background: #333; 
     }
+    
+    /* Mobile portrait: scale map canvas to compensate for 70dvh height constraint */
+    @media (max-width: 1000px) and (orientation: portrait) {
+      #map {
+        transform: scale(1.15);
+        transform-origin: top left;
+      }
+    }
+    
     #layer-controls {
       position: fixed;
       top: 0;
@@ -2520,6 +2529,16 @@ function populateFilterPropsDropdown(layerId, selectEl) {
 
 const { camera, layers } = parseHash();
 
+// Solution 1: Force Device Pixel Ratio in Mapbox
+// Prevents mobile scaling issues where map appears zoomed out with tiny labels
+if (window.devicePixelRatio > 1) {
+  const mapContainer = document.getElementById('map');
+  if (mapContainer) {
+    mapContainer.style.zoom = '100%';
+    mapContainer.style.transform = 'scale(1)';
+  }
+}
+
 const map = new mapboxgl.Map({
   container: 'map',
   style,
@@ -2527,12 +2546,46 @@ const map = new mapboxgl.Map({
   zoom: camera.zoom,
   bearing: camera.bearing,
   pitch: camera.pitch,
-  interactive: true  // Will be disabled if /static flag is present
+  interactive: true,  // Will be disabled if /static flag is present
+  pixelRatio: window.devicePixelRatio || 1  // Force correct pixel ratio for mobile
 });
 // Expose map globally for add-layer UI logic
 window.map = map;
 
+// Solution 5: Force immediate map resize with native resolution on mobile
+// This addresses portrait mode scaling where labels appear tiny
+if (window.innerWidth <= 1000) {
+  // On mobile, force immediate resize before everything settles
+  const forceMapResize = () => {
+    if (map) {
+      map.resize();
+      // Force canvas to use device pixel ratio correctly
+      const canvas = map.getCanvas();
+      if (canvas) {
+        canvas.style.imageRendering = 'crisp-edges';
+        canvas.width = window.innerWidth * window.devicePixelRatio;
+        canvas.height = window.innerHeight * window.devicePixelRatio;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+      }
+      console.log(`[map] Forced resize on mobile: ${window.innerWidth}x${window.innerHeight} @ ${window.devicePixelRatio}x`);
+    }
+  };
+  
+  // Aggressive: resize multiple times as page loads
+  forceMapResize();
+  setTimeout(forceMapResize, 50);
+  setTimeout(forceMapResize, 100);
+  setTimeout(forceMapResize, 200);
+}
+
 map.on('load', () => {
+  // Immediately resize map on load (critical for portrait mode on mobile)
+  if (window.innerWidth <= 1000) {
+    map.resize();
+    console.log('[map] Resized on load event');
+  }
+  
   // After all layers are loaded, if :follow is present in the hash, trigger follow logic directly (no hashchange event)
   const { camera: camInit, layers: layersInit, dynamicGeojsonToLoad: dynInit, followId: followInit, followOffset: followOffsetInit, showTicker: showTickerInit, followHidden: followHiddenInit, showMapUI, isStatic } = parseHash();
   if (followInit) {
@@ -2661,7 +2714,7 @@ map.on('load', () => {
     if (parsedCamera) {
       map.jumpTo({
         center: parsedCamera.center,
-        zoom: parsedCamera.zoom,
+        zoom: parsedCamera.zoom + (window.innerWidth <= 1000 ? -1 : 0),
         bearing: parsedCamera.bearing,
         pitch: parsedCamera.pitch,
         animate: false
@@ -2703,6 +2756,11 @@ map.on('load', () => {
 
 // Update hash on camera move
 map.on('moveend', () => {
+  // Don't update hash if we just applied mobile zoom adjustment (prevents loop)
+  if (window._skipNextHashUpdate) {
+    window._skipNextHashUpdate = false;
+    return;
+  }
   // During free-camera follow animation, don't write to the hash —
   // it can re-introduce :follow and cause unintended restarts.
   if (isFreeCameraAnimating) return;
@@ -3030,6 +3088,9 @@ window.addEventListener('hashchange', () => {
   const currentHash = window.location.hash;
   if (window._lastHashState === currentHash) return;
   window._lastHashState = currentHash;
+  
+  // Reset mobile zoom adjustment flag for this new hash
+  window._mobileZoomAdjusted = false;
 
   // Always cancel any running follow immediately so we can apply new state
   if (isFreeCameraAnimating) {
@@ -3273,11 +3334,17 @@ window.addEventListener('hashchange', () => {
   // 5. Fly to hash geolocation (with animation), then start follow only after fly completes
   const flyOpts = {
     center: [camera.center[0], camera.center[1]],
-    zoom: camera.zoom,
+    zoom: camera.zoom + (window.innerWidth <= 1000 && !window._mobileZoomAdjusted ? -1 : 0),
     bearing: camera.bearing,
     pitch: camera.pitch,
     duration: 1200
   };
+  
+  // Mark that we've applied the mobile zoom adjustment for this hash
+  if (window.innerWidth <= 1000 && !window._mobileZoomAdjusted) {
+    window._mobileZoomAdjusted = true;
+    window._skipNextHashUpdate = true; // Prevent moveend from updating hash with new zoom
+  }
 
   // Always start follow if followId is present after camera update
   map.flyTo(flyOpts);
@@ -3356,6 +3423,41 @@ window.addEventListener('hashchange', () => {
   } else {
   }
 });
+
+// Solution 3: Add Map Resize Observer for orientation changes
+// This ensures the map properly recalculates when device rotates or container resizes
+const resizeObserver = new ResizeObserver(() => {
+  if (window.map && window.map.resize) {
+    setTimeout(() => {
+      window.map.resize();
+      console.log('[map] Resized due to container change');
+    }, 100);
+  }
+});
+
+// Observe the map container for size changes
+const mapContainer = document.getElementById('map');
+if (mapContainer) {
+  resizeObserver.observe(mapContainer);
+}
+
+// Handle orientation change for iOS Safari
+window.addEventListener('orientationchange', () => {
+  console.log('[map] Orientation changed, resizing map');
+  setTimeout(() => {
+    if (window.map && window.map.resize) {
+      window.map.resize();
+      console.log('[map] Map resized after orientation change');
+    }
+  }, 200);
+});
+
+// Also trigger resize on window resize (for responsive behavior)
+window.addEventListener('resize', () => {
+  if (window.map && window.map.resize) {
+    window.map.resize();
+  }
+}, { passive: true });
 </script>
 </body>
 </html>
