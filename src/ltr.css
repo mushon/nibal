@@ -18,12 +18,13 @@
 .ltr section > a.thumb{
     border-right: none;
     border-left: #FA5F5F 8px solid;
-    padding: 48px 16px 0 220px;
+    padding: 32px 16px 4px 144px;
     background-position: left bottom;
     background-image: image-set(
         url(assets/report_thumb_en.png) 1x,
         url(assets/report_thumb_en@2x.png) 2x
     );
+    line-height: 1.2em;
 }
 
 .ltr section:first-child > a.thumb{
