@@ -379,48 +379,49 @@ document.addEventListener('DOMContentLoaded', function () {
     function createScrollHandler(targetId) {
       return function(ev) {
         ev.preventDefault();
+        
+        // Clear all iframes with about:blank to clean up state
+        document.querySelectorAll('iframe').forEach(iframe => {
+          iframe.src = 'about:blank';
+        });
+        
         const target = document.getElementById(targetId);
         if (!target) return;
-        window.__snapSuppressUntil = Date.now() + 1500;
-        window.__chaptersAnimating = true;
+        
+        // Get scroll position and dimensions
         const scroller = document.querySelector('main') || document.scrollingElement || document.documentElement;
+        const currentScrollTop = scroller.scrollTop || window.pageYOffset;
+        const targetRect = target.getBoundingClientRect();
+        const targetTop = targetRect.top + currentScrollTop;
+        const targetHeight = targetRect.height;
         const viewportHeight = scroller.clientHeight || window.innerHeight;
-        const targetTop = target.getBoundingClientRect().top + (scroller.scrollTop || window.pageYOffset);
-        const centeredTop = targetTop - (viewportHeight / 2) + (target.offsetHeight / 2);
-        let scrollDone = false;
-        function onScrollDone() {
-          if (scrollDone) return;
-          scrollDone = true;
-          window.__chaptersAnimating = false;
-            // Extend snap suppression to cover the skip flag clearing delay
-            window.__snapSuppressUntil = Math.max(window.__snapSuppressUntil || 0, Date.now() + 600);
-          // Now update overlays/iframes for the target section
-          if (window.overlayManager && typeof window.overlayManager.update === 'function') {
-            window.overlayManager.update();
-          }
-        }
-        if (window.__smoothScrollTo) {
-          try {
-            window.__smoothScrollTo(scroller, centeredTop, { source: 'nav', callback: onScrollDone });
-          } catch (e) {
-            try {
-              if (scroller === document.scrollingElement || scroller === document.documentElement) {
-                window.scrollTo({ top: centeredTop, behavior: 'smooth' });
-              } else {
-                scroller.scrollTo({ top: centeredTop, behavior: 'smooth' });
-              }
-              setTimeout(onScrollDone, 1000);
-            } catch (e) { /* swallow */ }
-          }
+        
+        // Determine if target is above or below current view
+        const currentCenterOfViewport = currentScrollTop + (viewportHeight / 2);
+        const targetCenter = targetTop + (targetHeight / 2);
+        const isTargetBelow = targetCenter > currentCenterOfViewport;
+        
+        // Calculate jump position: show 50% of target from the direction it's coming from
+        let jumpScrollTop;
+        if (isTargetBelow) {
+          // Target is below: position so target's top edge is at viewport's bottom edge
+          // This shows the target coming up from below
+          jumpScrollTop = targetTop - (viewportHeight / 2);
         } else {
-          try {
-            if (scroller === document.scrollingElement || scroller === document.documentElement) {
-              window.scrollTo({ top: centeredTop, behavior: 'smooth' });
-            } else {
-              scroller.scrollTo({ top: centeredTop, behavior: 'smooth' });
-            }
-            setTimeout(onScrollDone, 1000);
-          } catch (e) { /* swallow */ }
+          // Target is above: position so target's bottom edge is at viewport's top edge
+          // This shows the target coming down from above
+          jumpScrollTop = targetTop + targetHeight - (viewportHeight / 2);
+        }
+        
+        // Clamp to valid scroll range
+        const maxScroll = (scroller.scrollHeight || document.documentElement.scrollHeight) - viewportHeight;
+        jumpScrollTop = Math.max(0, Math.min(jumpScrollTop, maxScroll));
+        
+        // Jump directly (instant scroll)
+        if (scroller === document.scrollingElement || scroller === document.documentElement) {
+          window.scrollTo({ top: jumpScrollTop });
+        } else {
+          scroller.scrollTop = jumpScrollTop;
         }
       };
     }
@@ -698,6 +699,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const hash = window.location.hash;
     if (!hash) return;
     
+    // Clear all iframes with about:blank to clean up state
+    document.querySelectorAll('iframe').forEach(iframe => {
+      iframe.src = 'about:blank';
+    });
+    
     // Match patterns like #:36 or #draft:36 or #anything:123
     const match = hash.match(/:(\d+)$/);
     if (!match) return;
@@ -717,53 +723,41 @@ document.addEventListener('DOMContentLoaded', function () {
       console.warn('[chapters] Section not found:', targetId);
       return;
     }
-    // Set flag to suppress section observer inflection during jump
-    window.__skipSectionInflection = true;
-    window.__targetSectionId = targetId;
-    window.__snapSuppressUntil = Date.now() + 1500;
-    window.__chaptersAnimating = true;
+    
+    // Get scroll position and dimensions
     const scroller = document.querySelector('main') || document.scrollingElement || document.documentElement;
+    const currentScrollTop = scroller.scrollTop || window.pageYOffset;
+    const targetRect = target.getBoundingClientRect();
+    const targetTop = targetRect.top + currentScrollTop;
+    const targetHeight = targetRect.height;
     const viewportHeight = scroller.clientHeight || window.innerHeight;
-    const targetTop = target.getBoundingClientRect().top + (scroller.scrollTop || window.pageYOffset);
-    const centeredTop = targetTop - (viewportHeight / 2) + (target.offsetHeight / 2);
-    let scrollDone = false;
-    function onScrollDone() {
-      if (scrollDone) return;
-      scrollDone = true;
-      window.__chaptersAnimating = false;
-      // Delay clearing skip flag to ensure all IntersectionObserver callbacks have processed
-      // IntersectionObserver callbacks can be batched/delayed, so wait longer
-      setTimeout(() => {
-        window.__skipSectionInflection = false;
-        window.__targetSectionId = null;
-      }, 500);
-      // Now update overlays/iframes for the target section
-      if (window.overlayManager && typeof window.overlayManager.update === 'function') {
-        window.overlayManager.update();
-      }
-    }
-    if (window.__smoothScrollTo) {
-      try {
-        window.__smoothScrollTo(scroller, centeredTop, { source: 'hash', callback: onScrollDone });
-      } catch (e) {
-        try {
-          if (scroller === document.scrollingElement || scroller === document.documentElement) {
-            window.scrollTo({ top: centeredTop, behavior: 'smooth' });
-          } else {
-            scroller.scrollTo({ top: centeredTop, behavior: 'smooth' });
-          }
-          setTimeout(onScrollDone, 1000);
-        } catch (e) { /* swallow */ }
-      }
+    
+    // Determine if target is above or below current view
+    const currentCenterOfViewport = currentScrollTop + (viewportHeight / 2);
+    const targetCenter = targetTop + (targetHeight / 2);
+    const isTargetBelow = targetCenter > currentCenterOfViewport;
+    
+    // Calculate jump position: show 50% of target from the direction it's coming from
+    let jumpScrollTop;
+    if (isTargetBelow) {
+      // Target is below: position so target's top edge is at viewport's bottom edge
+      // This shows the target coming up from below
+      jumpScrollTop = targetTop - (viewportHeight / 2);
     } else {
-      try {
-        if (scroller === document.scrollingElement || scroller === document.documentElement) {
-          window.scrollTo({ top: centeredTop, behavior: 'smooth' });
-        } else {
-          scroller.scrollTo({ top: centeredTop, behavior: 'smooth' });
-        }
-        setTimeout(onScrollDone, 1000);
-      } catch (e) { /* swallow */ }
+      // Target is above: position so target's bottom edge is at viewport's top edge
+      // This shows the target coming down from above
+      jumpScrollTop = targetTop + targetHeight - (viewportHeight / 2);
+    }
+    
+    // Clamp to valid scroll range
+    const maxScroll = (scroller.scrollHeight || document.documentElement.scrollHeight) - viewportHeight;
+    jumpScrollTop = Math.max(0, Math.min(jumpScrollTop, maxScroll));
+    
+    // Jump directly (instant scroll)
+    if (scroller === document.scrollingElement || scroller === document.documentElement) {
+      window.scrollTo({ top: jumpScrollTop });
+    } else {
+      scroller.scrollTop = jumpScrollTop;
     }
   }
 

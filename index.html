@@ -1474,12 +1474,6 @@
                 if (en.isIntersecting) {
                     const sec = en.target;
                     
-                    // Skip inflection for intermediate sections during hash jumps
-                    // Only process the target section when skip flag is active
-                    if (window.__skipSectionInflection && sec.id !== window.__targetSectionId) {
-                        return; // Skip all non-target sections during programmatic jumps
-                    }
-                    
                     // Mark this section as having inflection in progress
                     const inflectionId = 'inflection-' + (sec.id || Date.now());
                     window.__activeInflectionId = inflectionId;
@@ -1511,15 +1505,15 @@
                         // than a programmatic navigation (nav click / scripted scroll).
                         const now = Date.now();
                         const recentUser = (now - (window.__userInputAt || 0)) < 700; // ms
+                        
+                        // During programmatic scroll to target, suppress inflection until scroll completes
+                        const duringProgrammaticScroll = window.__scrollInflectionPending && sec.id !== window.__scrollTargetId;
                         const programmaticScrollActive = !!(window.__scrollAnimating || (window.__snapSuppressUntil && now < window.__snapSuppressUntil));
 
                         // If a recent user gesture occurred and no programmatic
                         // scroll suppression is active, perform the same centering
-                        // calculation used by navbar buttons. We intentionally
-                        // duplicate the minimal centering logic here rather than
-                        // depending on a global helper so this page works even if
-                        // `chapters.js` hasn't exposed a function.
-                        if (recentUser && !programmaticScrollActive) {
+                        // calculation used by navbar buttons.
+                        if (recentUser && !programmaticScrollActive && !duringProgrammaticScroll) {
                             try {
                                 const scroller = document.querySelector('main') || document.scrollingElement || document.documentElement;
                                 const viewportHeight = (scroller && scroller.clientHeight) || window.innerHeight;
@@ -1545,9 +1539,10 @@
                             } catch (e) { /* swallow */ }
                         }
 
-                        // In dual-iframe mode, load links sequentially with small delays to avoid blocking typewriter
-                        const isDualMode = document.body.classList.contains('dual-iframe');
-                        if (isDualMode) {
+                        // If a recent user gesture occurred and no programmatic
+                        // scroll suppression is active, perform the same centering
+                        // calculation used by navbar buttons.
+                        if (recentUser && !programmaticScrollActive && !duringProgrammaticScroll) {
                             // Find all inflection links in this section
                             const allLinks = Array.from(sec.querySelectorAll('a:not(.dontinflect)'));
                             
