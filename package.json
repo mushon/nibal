@@ -10,5 +10,8 @@
   },
   "scripts": {
     "test:svg": "node tests/svg-safe-area.e2e.js"
+  },
+  "dependencies": {
+    "playwright": "^1.57.0"
   }
 }
