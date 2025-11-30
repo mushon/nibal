@@ -20,7 +20,7 @@ css: src/theme.css, src/ltr.css
 </div>
 
 <a href="https://www.btselem.org/hebrew/202511_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
-    To the full report:
+    For the full report on forced displacement in Gaza:
     <strong>
     "No Place Under Heaven"
     </strong>
@@ -948,7 +948,7 @@ B’Tselem will follow their story and share any developments in our newsletter:
 ## Methodology and sources
 
 <a href="https://btselem.org/" target="blank" class="dontinflect thumb">
-For the full publication on displacement in the Gaza Strip:
+For the full report on forced displacement in Gaza:
     <strong>
     “No Place Under Heaven”
     </strong>
