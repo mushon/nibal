@@ -54,7 +54,7 @@ Images also load in the foreground overlay.
 
 ## Video Overlay
 
-[](vid/#dQw4w9WgXcQ "Video in foreground")
+[](vim/#dQw4w9WgXcQ "Video in foreground")
 
 Videos load in the foreground, map visible through transparent areas.
 

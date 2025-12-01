@@ -30,7 +30,7 @@ When enabled via frontmatter:
 - **Foreground Frame** (`#foreground-frame`, z-index: 2)
   - Displays all other content (default/fallback)
   - Transparent background to show map beneath
-  - Includes: `cmp/`, `img/`, `vid/`, and any other paths
+  - Includes: `cmp/`, `img/`, `vim/`, and any other paths
   - Becomes click-through when inactive (via `.inactive` class)
 
 ## Link Routing
@@ -39,7 +39,7 @@ When enabled via frontmatter:
 map/index.html#...    → background-frame (map layer)
 cmp/index.html#...    → foreground-frame (overlay)
 img/index.html#...    → foreground-frame (overlay)
-vid/index.html#...    → foreground-frame (overlay)
+vim/index.html#...    → foreground-frame (overlay)
 anything-else/...     → foreground-frame (overlay)
 ```
 
@@ -57,7 +57,7 @@ dual-iframe: true
 [](cmp/#data&1920&1080&none&viz.svg "Transparent overlay on map")
 
 ## Add Video Overlay
-[](vid/#dQw4w9WgXcQ "Video with transparent areas")
+[](vim/#dQw4w9WgXcQ "Video with transparent areas")
 
 ## Update Map While Keeping Overlay
 [](map/#31.4,34.3,14,45,0/+layers "Map updates, overlays persist")
