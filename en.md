@@ -32,7 +32,7 @@ css: src/theme.css, src/ltr.css
 {.meta}
 [](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he)
-For two years, Israel has been displacing Palestinians repeatedly throughout Gaza.
+For two years of genocidal assault on the Gaza Strip, Israel has repeatedly forced the overwhelming majority of its residents to flee their homes again and again.
 
 
 {.meta}
