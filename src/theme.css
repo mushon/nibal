@@ -130,7 +130,7 @@ section.meta p {
 
 section > a.thumb{
     display: block;
-    background: #000;
+    background-color: #000;
     background-image: image-set(
         url(assets/report_thumb.png) 1x,
         url(assets/report_thumb@2x.png) 2x
@@ -149,7 +149,7 @@ section > a.thumb{
 
 section:first-child > a.thumb{
     text-align: right;
-    margin: 40px auto;
+    margin: 40px auto 0;
     display: block;
     position: absolute;
     bottom: 10vh;
@@ -159,7 +159,7 @@ section:first-child > a.thumb{
 }
 
 section > a.thumb:hover{
-    background: #FA5F5F;
+    background-color: #FA5F5F;
     background-image: image-set(
         url(assets/report_thumb-hover.png) 1x,
         url(assets/report_thumb-hover@2x.png) 2x
@@ -179,7 +179,7 @@ section.gofundme p{
 }
 
 section.gofundme > a.thumb{
-    background: #000;
+    background-color: #000;
     background-image: image-set(
         url(assets/gofundme_thumb.png) 1x,
         url(assets/gofundme_thumb@2x.png) 2x
@@ -191,7 +191,7 @@ section.gofundme > a.thumb{
 }
 
 section.gofundme > a.thumb:hover{
-    background: #02A85C;
+    background-color: #02A85C;
     background-image: image-set(
         url(assets/gofundme_thumb-hover.png) 1x,
         url(assets/gofundme_thumb-hover@2x.png) 2x
@@ -493,7 +493,7 @@ iframe {
 
 /* Newsletter signup form tweaks */
 #mc_embed_signup{
-    background: #000;
+    background-color: #000;
     font-size: 1em;
     padding: .4em .8em 1.6em;
     border-right: 8px solid #FA5F5F;
@@ -637,7 +637,7 @@ input#mce-EMAIL{
     }
 
     section > a.thumb{
-        margin-bottom: 80px !important;
+        /* margin-bottom: 80px !important; */
         transform: none !important;
         left: auto !important;
         padding: 24px 140px 8px 8px;
@@ -650,4 +650,7 @@ input#mce-EMAIL{
     section:first-of-type > div#lang{
         margin: 240px 0 160px;
     }
+
+    section:first-child > a.thumb{
+        margin-bottom: 80px;
 }

@@ -63,3 +63,10 @@
     border-right: 0;
     border-left: 8px solid #FA5F5F;
 }
+
+.ltr .inflect-caption {
+    direction: ltr;
+    text-align: left;
+    left: 7vw;
+    right: auto;
+}
