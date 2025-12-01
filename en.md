@@ -488,8 +488,8 @@ That and having Ahmad with me.
 {.testimony typewriter}
 [](fg:blank)
 [](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
-My parents were beside themselves with worry. They were afraid I wouldn’t survive, and they kept checking on me through Ahmad
-When my condition improved slightly, I finally managed to call my mother myself. She couldn’t believe I was still alive, and she broke down crying on the phone.
+My parents were beside themselves with worry. They were afraid I wouldn’t survive, and they kept checking on me through Ahmad.
+When my condition improved slightly, I finally managed to call my mother myself. She couldn’t believe I was still alive, and broke down crying.
 
 
 {.meta}
