@@ -14,9 +14,9 @@ css: src/theme.css, src/ltr.css
 </div>
 
 <div id="lang">
-    <a href="#" class="dontinflect" data-reload>עברית</a>
-    <a href="#en" class="dontinflect" data-reload>English</a>
-    <a href="#ar" class="dontinflect" data-reload>عربي</a>
+    <a href="?#" class="dontinflect" data-reload>עברית</a>
+    <a href="?#en" class="dontinflect" data-reload>English</a>
+    <a href="?#ar" class="dontinflect" data-reload>عربي</a>
 </div>
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
@@ -249,7 +249,7 @@ We didn’t leave and go south despite the bombing, hunger and fear. I suffered 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
 [](map/#31.52965,34.48083,14.83,38.4,0.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_en)
-I was so scared something would happen to my baby. 
+I was so scared something would happen to my baby.
 
 
 {.meta} 
