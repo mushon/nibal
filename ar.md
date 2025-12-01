@@ -174,7 +174,7 @@ css: src/theme.css, src/ar.css
 
 
 {.meta} 
-[](svg/#intro-pre.svg/0.57,-0.33,1.16/+vimeo-1138452992)
+[](fg:blank)
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home))
 كانت نِبال في ذلك الوقت في منزلها في جباليا مع ابنتها ريتا، التي كانت تبلغ من العمر شهرًا واحدًا فقط.
 
@@ -200,13 +200,13 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.43482,34.38239,9.64,-10.4,42.0/+IDF_zone_081023(idf-poly),~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 8 تشرين الأول 2023")
+[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 13 تشرين الأول 2023")
 في تلك الأيام، بدأ الجيش الإسرائيلي بإصدار أوامر الإخلاء الجماعي الأولى لسكان غزة.
 
 
 {.meta thumb} 
 [](fg:blank)
-[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 13 تشرين الأول 2023")
+[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_ar)
 أوامر الإخلاء الجماعي الأولى، التي صدرت في 13 تشرين الأول، أمرت نحو مليون شخص من سكان شمال القطاع بمغادرة منازلهم والنزوح إلى جنوب القطاع في غضون 24 ساعة.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect thumb">
@@ -219,25 +219,25 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](svg/#oct7.svg/-0.32,-0.25,2.53/+@vimeo-1136099759 "رحلة على شارع صلاح الدين، 14 تشرين الأول 2023 (محمد زعنون)")
-[](map/#31.37390,34.16724,9.97,-10.4,42.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar)
+[](map/#31.37390,34.16724,9.97,-10.4,42.0/+north,+arrow,+unosat-damage-231015,~labels_he,+labels_ar)
 تحت القصف العنيف، اضطر مئات الآلاف من الناس إلى اتخاذ قرار سريع بشأن المكان الذي سيهربون إليه، دون معرفة ما إذا كانوا سيتمكنون من العودة إلى منازلهم ومتى.
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
+[](map/#31.52287,34.46534,12.90,-3.2,39.0/+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar "تقدير اكتظاظ المباني التي تضررت في قطاع غزة بعد الأسبوع الأول من الهجوم. المصدر: UNOSAT")
 نِبال، التي كانت تخشى الخروج في تلك الرحلة الصعبة إلى جنوب القطاع بمفردها، مع ابنتها البالغة من العمر شهرًا واحدًا، قررت البقاء مؤقتًا في منزل والديها في جباليا.
 
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.53103,34.47759,13.51,38.4,0.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar)
+[](map/#31.53103,34.47759,13.51,38.4,0.0/+unosat-damage-231015,+pois-ar(label-main,id=home),~labels_he,+labels_ar)
 بقينا رغم القصف والجوع والخوف. عانيتُ كثيرًا في تلك الفترة. اشتقتُ كثيرًا إلى أحمد ولم أستطع تخيّل النزوح بمفردي مع ريتا، بدونه وبدون دعم عائلتي.
 
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.52965,34.48083,14.83,38.4,0.0/+north,+arrow,+unosat-damage-231015,+pois.csv(poi,id=home),~labels_he,+labels_ar)
+[](map/#31.52965,34.48083,14.83,38.4,0.0/+unosat-damage-231015,+pois-ar(label-main,id=home),~labels_he,+labels_ar)
 كنت خائفة عليها جدًا.
 
 
@@ -492,7 +492,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.36106,34.26832,13.74,0.0,39.0/+pois-ar(label-main-ar,id=al-mawasi))
+[](map/#31.36106,34.26832,13.74,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot),+pois-ar(label-main-ar,id=al-mawasi))
 وصلوا إلى "المنطقة الإنسانية" في المواصي، حيث أقاموا في خيمة، مرة أخرى.
 
 
@@ -624,28 +624,27 @@ css: src/theme.css, src/ar.css
 
 {.testimony typewriter}
 [](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+@vimeo-1129854927 "من حساب نبال على تيك توك")
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home))
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+al-mawasi-jabalia(by-car),+pois-ar(label-main-ar,id=home),~labels_he,+labels_ar)
 
 استقبلتني العائلة بالأحضان والأغاني والبكاء. في الليالي، كنا نلتقي جميعًا، جميع الأخوة، في منزل والديّ.
 
 
 {.testimony typewriter}
 [](svg/#ceasefire_hope.svg/0.05,-0.56,2.32/+nibal_rita_happy.jpg)
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home))
-
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home),~labels_he)
 
 كانت أخواتي بجانبي طوال الوقت وساعدنني في كل شيء: الاستحمام، ارتداء الملابس، تناول الطعام والاعتناء بريتا. 
 
 
 {.testimony typewriter}
 [](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home))
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home),~labels_he)
 كنّ يغيرن حفاضاتها، يحتضنّها ويلعبن معها. بفضلهن، شعرت أن حياتي بدأت تعود إلى مسارها.
 
 
 {.meta}
 [](svg/#ceasefire_hope.svg/0.69,-0.67,2.32/+nibal_rita_home.jpg)
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home))
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home),~labels_he)
 بعد حوالي شهر من الراحة والتعافي في منزل والديها، طلب أحمد من نِبال العودة إليه.
 استجابت نِبال لطلبه، رغم تحفظ والديها، وعادت مع ريتا إلى شقتهم، حيث استأجروا مساعِدة لها.
 
@@ -712,7 +711,7 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#back_home.svg/0.89,1.01,3.06/+@vimeo-1129871187 "From Nibal’s TikTok account")
+[](svg/#back_home.svg/0.89,1.01,3.06/+@vimeo-1129871187 "من حساب نبال على تيك توك")
 [](bg:blank)
 شعرتُ، في ذلك الوقت، بأنه لم يعد قادرًا على الاعتناء بي وبريتا. صعوبة رعايتنا والاعتناء بنا وتوفير المياه والطعام لنا جعلته عصبيًا وكنت في بعض اللحظات أشعر بالخوف منه.
 في مرحلة ما، طالبني بالعودة إلى منزل والديّ.
@@ -853,9 +852,14 @@ css: src/theme.css, src/ar.css
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/2.02,-1.82,5.68/+@vimeo-1139274686 "من حساب نِبال على إنستغرام")
+[](svg/#permanent_impermanence.svg/7.29,-7.02,15.43/+nibal_next_to_ruins3.jpg)
 [](bg:blank)
 في الأسابيع التي تلت ذلك، واصلت إسرائيل هجماتها على القطاع بدرجات متفاوتة من القوة والشدّة.
+
+
+{.meta}
+[](svg/#permanent_impermanence.svg/7.29,-7.02,15.43/+nibal_next_to_ruins3.jpg)
+[](bg:blank)
 
 
 {.meta}
@@ -932,9 +936,8 @@ css: src/theme.css, src/ar.css
 
 
 {.meta thumb closing}
-[](svg/#permanent_impermanence.svg/-1.03,-1.53,5.21/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
-## المنهجية والمصادر
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
 للتقرير الكامل حول التهجير في قطاع غزة: 
@@ -942,6 +945,14 @@ css: src/theme.css, src/ar.css
     ״لا مكان تحت السماء״
     </strong>
 </a>
+
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="blank" class="dontinflect">قانونية الإخلاء</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect">موجات التهجير و"المناطق الإنسانية"</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect">أوامر الإخلاء و"الممرات الآمنة"</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect">ظروف المعيشة في مجمعات المهجَّرين</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="blank" class="dontinflect">القصف في مجمعات المهجَّرين</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="blank" class="dontinflect">محو الحيّز المدني</a>
+
 
 ### صور وفيديو
 - من نبال الهسي مشكورة
