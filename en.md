@@ -885,7 +885,7 @@ She is fighting to imagine a better future for herself and for Rita.
 {.meta}
 [](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
 [](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
-Nibal is one of nearly 2 million people in Gaza enduring loss, hunger and prolonged displacement.
+Nibal’s story is just one of 2 million stories in Gaza – stories of people suffering loss, hunger and ongoing displacement, forced by Israel to live in unbearable conditions, abandoned by the international community and left with no real hope for a better future.
 
 
 {.meta}
