@@ -140,13 +140,13 @@ We led a happy life, surrounded by the love and warmth of family.
 
 
 {.meta}
-[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053,+vimeo-1137388732,+vimeo-1137388732 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 Baby Rita was born in September 2023.
 
 
 {.meta}
-[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053,+vimeo-1137388732,+vimeo-1137388732 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 Five days later, Ahmad was issued a work permit and started a job as a construction laborer in Israel.
 
