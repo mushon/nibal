@@ -965,17 +965,17 @@ For the full report on forced displacement in Gaza:
 
 
 {.meta thumb closing}
-### Photos and Video
+## Photos and Video
 - Courtesy of Nibal Al-Hisi
 - Activestills
 - REUTERS
 - IDF Spokesperson's Unit
 
-### Geographic data
+## Geographic data
 - Mapbox.com
 - ESRI Wayback
 - Gazamap.com
 
-### Product Design and Development
+## Product Design and Development
 - <a href="http://mushon.com" target="blank" class="dontinflect">Mushon Zer-Aviv</a>, Studio Shual
 - Built on top of  <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>

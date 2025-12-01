@@ -957,17 +957,17 @@ css: src/theme.css, src/ar.css
 
 
 {.meta closing}
-### صور وفيديو
+## صور وفيديو
 - من نبال الهسي مشكورة
 - REUTERS
 - الناطق بلسان الجيش الإسرائيلي
   
-### معلومات جغرافية
+## معلومات جغرافية
 - Mapbox.com
 - ESRI Wayback
 - Gazamap.com
 
-### تصميم وتطوير المنتج
+## تصميم وتطوير المنتج
  
 - <a href="http://mushon.com" target="blank" class="dontinflect">موشون زر- أفيف</a>, ستوديو شوعال
 - Built on top of <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>

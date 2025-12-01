@@ -962,17 +962,17 @@ css: src/theme.css
 
 
 {.meta closing}
-### צילומים ווידאו
+## צילומים ווידאו
 - באדיבות ניבאל אל-היסי
 - Activestills
 - REUTERS
 - דובר צה״ל
 
-### מידע גיאוגרפי
+## מידע גיאוגרפי
 - Mapbox.com
 - ESRI Wayback
 - Gazamap.com
 
-### עיצוב ופיתוח מוצר
+## עיצוב ופיתוח מוצר
 - <a href="http://mushon.com" target="blank" class="dontinflect">מושון זר-אביב</a>, סטודיו שועל
 - Built on top of <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>
