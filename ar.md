@@ -287,58 +287,58 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois.csv#4(poi,id=rafah),+pois-ar(label-main-ar,id=nuseirat),+pois-ar#2(label-main-ar,id=rafah),~labels_he,+labels_ar)
+[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois.csv#4(poi,id=rafah),+pois-ar(label-main-ar,id=nuseirat),+pois-ar#2(label-main-ar,id=rafah),~labels_he)
 في منطقة النصيرات، تجتمعان مع أحمد، الذي لم تلتقياه منذ نحو ستة أشهر.
 
 
 {.meta}
 [](fg:blank)
-[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+pois.csv(poi,id=rafah),+pois-ar(label-main-ar,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+pois.csv(poi,id=rafah),+pois-ar(label-main-ar,id=rafah),~labels_he) 
 من هناك، يواصل الثلاثة طريقهم إلى الخيمة التي أقامها أحمد في رفح.
 
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.26878,34.25305,15.23,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.26878,34.25305,15.23,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 
 تأثرتُ كثيرًا برؤية أحمد. كان يعانق ريتا ويقبّلها بلا توقف.
 
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 
 لكن اللقاء به كان صادمًا أيضًا. لقد فقد الكثير من وزنه وبدا وكأنه فقد بريق الحياة.
 
 
 {.meta} 
 [](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "فلسطينيون تم الإفراج عنهم من سجون إسرائيلية أمام مستشفى ناصر في خان يونس، 13 تشرين الأول 2025 (مجدي فتحي / NurPhoto)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 التقت نِبال وريتا بأحمد بعد احتجازه في أحد مرافق الاعتقال الإسرائيلية دون محاكمة لعدة أشهر.
 
 
 {.meta} 
 [](svg/#south.svg/-0.02,0.65,2.87/+ahmed_detained-comp.jpg "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سراحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 وثقت بتسيلم ومنظمات أخرى لحقوق الإنسان كيف أن إسرائيل تبنّت، منذ 7 تشرين الأول 2023، سياسة منهجية تجاه السجناء الفلسطينيين تقوم على العنف المتواتر، الشديد والتعسفي، التجويع ومنع العلاج الطبي، مما أدى إلى عشرات الوفيات.
 منذ ذلك الحين وحتى اليوم، تحرم إسرائيل معظم هؤلاء من الحقوق الأساسية، بما في ذلك الحق في محاكمة عادلة، وتحتجزهم في مرافق اعتقال تعمل كشبكة من معسكرات التعذيب.
 
 
 {.meta} 
 [](svg/#south.svg/-0.82,2.16,7.52/+ahmed_detained-comp.jpg "فلسطينيون اعتقلهم الجيش الإسرائيلي بعد أن تم إطلاق سراحهم إلى رفح. 28 كانون الأول 2023 (رويترز: باسم مسعود)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 لا يزال بعض سكان غزة الذين اعتقلوا داخل إسرائيل في الأيام التي أعقبت 7 تشرين الأول محتجَزين في مراكز الاعتقال الإسرائيلية حتى اليوم.
 
 
 {.meta}
 [](svg/#south.svg/-0.03,0.03,5.52/+rafah_tent_comp.jpg "مهجَّرون في معسكر خيام في خان يونس، 11 كانون الأول 2023 (رويترز: إبراهيم أبو مصطفى)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 على الرغم من فرحة لم الشمل مع أحمد، وجدت نِبال صعوبة في التأقلم مع الحياة في الخيمة في رفح.
 
 
 {.meta thumb}
 [](svg/#south.svg/-0.03,0.03,5.52/+rafah_tent_comp.jpg "مهجَّرون في معسكر خيام في خان يونس، 11 كانون الأول 2023 (رويترز: إبراهيم أبو مصطفى)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 
 الاكتظاظ، نقص المياه والغذاء، تردي ظروف الصرف الصحي وانعدام الخصوصية، جعلت الحياة في مراكز المهجّرين لا تطاق، وخاصة بالنسبة للنساء والفتيات.
 
@@ -352,13 +352,13 @@ css: src/theme.css, src/ar.css
 
 {.testimony typewriter}
 [](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "ريتا في مخيم للمهجرين في رفح")
-[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar)    
+[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he)    
 كان ذلك عذابًا متواصلًا، من أصعب الفترات في حياتي على الأرجح.
 
 
 {.testimony typewriter}
 [](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "ريتا في مخيم للمهجرين في رفح")
-[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he,+labels_ar) 
+[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 لم أخبر عائلتي عن الصعوبات، لأنها عارضت في البداية نزوحي إلى الجنوب. 
 كنت أخجل من إخبارهم بظروف حياتي.
 
