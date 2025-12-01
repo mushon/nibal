@@ -650,8 +650,8 @@ css: src/theme.css, src/ar.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-1.07,-1.44,3.09/+attack_march_25.jpg)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar "بالأحمر: أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة خلال الأسبوع الذي تلا انتهاك وقف إطلاق النار في آذار 2025. في الصورة: هجوم إسرائيلي على وسط مدينة غزة، 22 آذار 2025 (ساهر الغرّة/ ZUMA Press Wire)")
+[](http://svg/#ceasefire_hope.svg/-2.23,-2.6,6.44/+attack_march_25.jpg "هجوم إسرائيلي على وسط مدينة غزة، 22 آذار 2025 (ساهر الغرّة/ ZUMA Press Wire)")
+[](bg:blank)
 ولكن عندها تجددت الحرب بضراوة أشدّ. تحت ضغط القصف والحصار، عادت علاقة نِبال وأحمد إلى التأزم من جديد.
 
 
@@ -801,7 +801,7 @@ css: src/theme.css, src/ar.css
 
 {.meta thumb} 
 [](svg/#permanent_impermanence.svg/0.64,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~@vimeo-1136076786 "أحد سكان مدينة غزة يحمل أمر إخلاء ألقته طائرة إسرائيلية، 9 أيلول 2025 (رويترز: داود أبو الكاس)")
-[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),+pois.csv(poi,id=gaza-2509),~labels_he,+labels_ar)
+[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_ar)
 أوامر الإخلاء التي أصدرها الجيش الإسرائيلي في أوائل أيلول 2025، بعد أسابيع قليلة من وصول عائلة نِبال إلى المدينة، تأمر حوالي 1,2 مليون شخص بالنزوح من مكان إقامتهم، مرة أخرى.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
@@ -814,7 +814,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+pois.csv(poi,id=gaza-2509),+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar,+pois-ar(label-main-ar,id=deir-al-balah))
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar,+pois-ar(label-main-ar,id=deir-al-balah))
 نزحت العائلة مرة أخرى، إلى الجنوب هذه المرة، إلى مجمع خيام في دير البلح.
 
 

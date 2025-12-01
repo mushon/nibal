@@ -650,8 +650,8 @@ css: src/theme.css
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-1.07,-1.44,3.09/+attack_march_25.jpg)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines "באדום: צווי הפינוי שהפיץ הצבא לתושבי עזה בשבוע שלאחר הפרת הפסקת האש במרץ 2025. בתמונה: תקיפה ישראלית במרכז העיר עזה, 22 במרץ 2025. (סאהר אל־ע'ורה / ZUMA Press Wire)")
+[](http://svg/#ceasefire_hope.svg/-2.23,-2.6,6.44/+attack_march_25.jpg "תקיפה ישראלית במרכז העיר עזה, 22 במרץ 2025. (סאהר אל־ע'ורה / ZUMA Press Wire)")
+[](bg:blank)
 אבל אז ישראל הפרה את הפסקת האש, והמתקפה על הרצועה התחדשה ביתר שאת. 
 
 
@@ -809,7 +809,7 @@ css: src/theme.css
 
 {.meta thumb} 
 [](svg/#permanent_impermanence.svg/0.64,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~@vimeo-1136076786 "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, 9 בספטמבר 2025. (רויטרס / דאווד אבו אלקאס)")
-[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),+pois.csv(poi,id=gaza-2509))
+[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly))
 צווי הפינוי שהוציא הצבא בתחילת ספטמבר 2025 לתושבי צפון הרצועה הורו לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
 <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
@@ -822,7 +822,7 @@ css: src/theme.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+pois.csv(poi,id=gaza-2509),+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,+pois-he(label-main,id=deir-al-balah))
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,+pois-he(label-main,id=deir-al-balah))
 המשפחה נעקרה שוב, הפעם דרומה, למתחם אוהלים בדיר אל-בלח. 
 
 

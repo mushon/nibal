@@ -654,8 +654,8 @@ Despite her parents’ concerns, she went back to their apartment with Rita and 
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-1.07,-1.44,3.09/+attack_march_25.jpg)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+IDF_zone_21_25_03_25(idf-poly),+idf-poly-outlines,~labels_he,+labels_en "!!! In red: Areas ordered to evacuate in the week after Israel violated the ceasefire in March 2025. In the photo: Israeli airstrike in central Gaza City, 22 March 2025 (Saher Alghorra/ZUMA Press Wire)")
+[](http://svg/#ceasefire_hope.svg/-2.23,-2.6,6.44/+attack_march_25.jpg "Israeli airstrike in central Gaza City, 22 March 2025 (Saher Alghorra/ZUMA Press Wire)")
+[](bg:blank)
 But then the war resumed. 
 
 
@@ -804,7 +804,7 @@ During those weeks, Israel launched another ground invasion into Gaza City.
 
 {.meta thumb} 
 [](svg/#permanent_impermanence.svg/0.64,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~@vimeo-1136076786 "A leaflet ordering evacuation dropped by an Israeli plane in Gaza City, 9 Sept. 2025 (Reuters/Dawoud Abu Alkas)")
-[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),+pois.csv(poi,id=gaza-2509),~labels_he,+labels_en)
+[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_en)
 In early September 2025, just weeks after Nibal arrived in Gaza City, Israel ordered about 1.2 million people to evacuate the city.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
@@ -817,7 +817,7 @@ In early September 2025, just weeks after Nibal arrived in Gaza City, Israel ord
 
 {.meta}
 [](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+pois.csv(poi,id=gaza-2509),+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_en,+pois(label-main,id=deir-al-balah)))
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_en,+pois(label-main,id=deir-al-balah)))
 The family fled south again, this time to a tent camp in Deir al-Balah.  
 
 
