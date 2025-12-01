@@ -89,28 +89,28 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294 "من حساب نبال على تيك توك")
+[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 لأنني الأصغر، كان والداي وإخوتي يدللونني دائمًا.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+vimeo-1137390294,+parents-w-baby,+@vimeo-1137392053 "من حساب نبال على تيك توك")
+[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 بعد المدرسة الثانوية، واصلت دراسة اللغة الإنجليزية والترجمة في جامعة الأزهر في مدينة غزة.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "من حساب نبال على تيك توك")
+[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137392053,+@vimeo-1137391389 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 في سنتي الأخيرة في الجامعة، تعرفت على أحمد. شعرت بأنه يشبهني وأنه يفهمني.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "من حساب نبال على تيك توك")
+[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137392053,+@vimeo-1137391389 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 تزوجت منه رغم معارضة أهلي. كنت أعرف أننا لن نعيش حياة رغيدة، لكنني شعرت أنه جوهرَتي.
 
@@ -162,7 +162,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.38461,34.38113,10.13,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused),+oct7-hamas-ar#2(bubbles))
+[](map/#31.37022,34.37989,9.79,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused),+oct7-hamas-ar#2(bubbles))
 قُتل 1,220 شخصًا في ذلك الهجوم، بمن فيهم نساء ومسنون وأطفال. 
 أصيب آلاف واختُطف إلى قطاع غزة 252 شخصًا، أحياءً وجثثًا.
 
@@ -200,7 +200,7 @@ css: src/theme.css, src/ar.css
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 13 تشرين الأول 2023")
+[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,~labels_he,+labels_ar "بالأحمر: المناطق التي شملتها أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان قطاع غزة في 13 تشرين الأول 2023")
 في تلك الأيام، بدأ الجيش الإسرائيلي بإصدار أوامر الإخلاء الجماعي الأولى لسكان غزة.
 
 
@@ -365,7 +365,7 @@ css: src/theme.css, src/ar.css
 
 {.meta thumb} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
+[](map/#31.46074,34.32738,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -482,6 +482,13 @@ css: src/theme.css, src/ar.css
 [](svg/#warehouse_bureij2.svg/-2.04,1.3,10.73/+rita_tent1)
 [](bg:blank)
 سألت عن ريتا فأخبروني أنها سليمة وبصحة جيدة. هذا ما أبقاني صامدة. كان أحمد إلى جانبي.
+
+
+{.testimony typewriter}
+[](fg:blank)
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=home))
+جُنَّ والداي من شدّة القلق. كانا يخشيان ألا أنجو، وكانا يتابعان حالتي باستمرار من خلال أحمد.
+وعندما تحسّن وضعي قليلًا، تمكّنت أخيرًا من الاتصال بوالدتي بنفسي — أردتُ أن تسمع صوتي وتطمئن أنني على قيد الحياة. لم تصدّق أنني ما زلت حيّة، وانفجرت بالبكاء عبر الهاتف.
 
 
 {.meta}
