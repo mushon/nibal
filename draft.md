@@ -57,7 +57,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1134865613%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
+[](vim/#vimeo.com%2F1134865613%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
 
 אני הצעירה מבין תשעה אחים ושלוש אחיות.  
 
@@ -68,13 +68,13 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1130641184/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1130641184/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
 
 אחרי התיכון, המשכתי ללימודי אנגלית ותרגום באוניברסיטת אל-אזהר בעיר עזה.
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1130634353/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1130634353/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
 
 בשנה האחרונה באוניברסיטה הכרתי את אחמד. הרגשתי שהוא דומה לי, שהוא מבין אותי. 
 
@@ -82,7 +82,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1130834125%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1130834125%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
 
 בספטמבר 2022 עברנו לגור בדירה משלנו בבניין של המשפחה של אחמד, בג׳אבליא, לא רחוק מהוריי. היו לנו חיים מאושרים, מלאים באהבה ועטופים בחום של המשפחה. 
 
@@ -92,7 +92,7 @@ css: src/theme.css
 
 
 {.meta}
-[](embed/#vimeo.com%2F1130634480%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1130634480%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון הטיקטוק של ניבאל")
 שנה אחרי החתונה, בספטמבר 2023, נולדת לניבאל ואחמד בתם, ריתא. 
 
 
@@ -164,7 +164,7 @@ css: src/theme.css
 
 
 {.meta} 
-[](embed/#vimeo.com%2F1136099759%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
+[](vim/#vimeo.com%2F1136099759%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
 תחת ההפצצות הכבדות, נאלצים מאות אלפי בני אדם להחליט במהירות לאן להימלט, מבלי לדעת אם ומתי יוכלו לשוב לבתיהם.
 
 
@@ -202,7 +202,7 @@ css: src/theme.css
 
 
 {.meta}
-[](embed/#vimeo.com%2F1133751988%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
+[](vim/#vimeo.com%2F1133751988%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
 בעדותה תיארה ניבאל נסיעה רוויית אימה, במהלכה ראתה מבעד לחלון המכונית את ההפצצות הכבדות באזורים סביבם.
 
 {.meta} 
@@ -255,7 +255,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1131608820%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
+[](vim/#vimeo.com%2F1131608820%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
 זה היה עינוי מתמשך, ככל הנראה מהתקופות הקשות בחיי.
 
 
@@ -317,7 +317,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 {.testimony typewriter showdate}
 ### Oct 24
 
-[](embed/#vimeo.com%2F1130687838%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1130687838%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "מתוך חשבון הטיקטוק של ניבאל")
 
 גרנו שם בערך חמישה חודשים. חיינו בתנאים לא פשוטים, אבל הרגשתי שלאט לאט הצלחנו למצוא קצת נחת.
 
@@ -372,7 +372,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
  
 
 {.meta thumb} 
-[](embed/#vimeo.com%2F1132225660%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
+[](vim/#vimeo.com%2F1132225660%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
 כבר בתחילת המתקפה הגדירה ישראל שטח באזור העיירה אל-מוואסי כ״אזור הומניטרי״. 
 
 תוך מספר חודשים, האזור המדברי, שרובו אינו מחובר לתשתיות חשמל, מים וביוב, התמלא עד אפס מקום באוהלים, בהם נאלצו לחיות מעל למיליון בני אדם שנעקרו מכל רחבי הרצועה.
@@ -401,7 +401,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1129846713%3Fshare%3Dcopy/autoplay,loop,auto  "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1129846713%3Fshare%3Dcopy/autoplay,loop,auto  "מתוך חשבון הטיקטוק של ניבאל")
 
 החיים באל-מוואסי היו קשים מאוד. בגלל הפציעה אני לא יכולה להשתמש בשירותים באופן עצמאי, והשירותים שם היו פרימיטיביים מאוד. הביך אותי כל-כך לבקש בכל פעם עזרה. 
 
@@ -431,19 +431,19 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1132490042%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון האינסטגרם של ניבאל")
+[](vim/#vimeo.com%2F1132490042%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "מתוך חשבון האינסטגרם של ניבאל")
 
 הרגשתי שגם ריתא בקושי מזהה אותי. פחדתי שהיא משתנה, שהיא מאבדת משמחת החיים ומהחיוניות שלה.
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1131602000%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
+[](vim/#vimeo.com%2F1131602000%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
 
 אבל אחמד היה שם בשבילי. הוא אמר לי, ״אני אהיה הידיים שלך, העיקר שלך ולריתא יהיה טוב״.
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1131630900%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover  "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1131630900%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover  "מתוך חשבון הטיקטוק של ניבאל")
 
 חלמתי שנחזור לצפון הרצועה, לחיק המשפחה שלי, לימים שבהם כולנו היינו ביחד. כל-כך התגעגעתי אליהם. 
 
@@ -456,7 +456,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.meta}
-[](embed/#vimeo.com%2F1136076448%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
+[](vim/#vimeo.com%2F1136076448%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
 אחרי כחודשיים של חיים באוהל באל-מוואסי, בינואר 2025 התבשרו תושבי הרצועה, וניבאל ביניהם, על כניסתה לתוקף של הפסקת האש בין ישראל לחמאס. 
 
 בשבועות שלאחר מכן, כחצי מיליון עקורים התחילו לשוב לבתיהם בצפון הרצועה. 
@@ -469,7 +469,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1129854927%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1129854927%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
 
 המשפחה קיבלה אותי בחיבוקים, שירים ובכי. בלילות נפגשנו כל האחים בבית ההורים שלי.
 
@@ -493,7 +493,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.meta}
-[](embed/#vimeo.com%2F1129871187%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1129871187%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל")
 אבל אז התחדשה המלחמה ביתר שאת. 
 
 תחת ההפצצות והמצור, מערכת היחסים של ניבאל ואחמד נקלעה למשבר.
@@ -504,7 +504,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.meta}
-[](embed/#vimeo.com%2F1130598335%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover  "מתוך חשבון הטיקטוק של ניבאל")
+[](vim/#vimeo.com%2F1130598335%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover  "מתוך חשבון הטיקטוק של ניבאל")
 ניבאל סיפרה אז על הכאב הנפשי שחווה, שהחמיר תחת הקושי של שלושתם לשרוד בתנאי המצור.  
 
 
@@ -528,7 +528,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.meta}
-[](embed/#vimeo.com%2F1129860275%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "תיעוד של בית אחותה של ניבאל לאחר ההפצצה, לצד תמונות של ילדיה שנהרגו")
+[](vim/#vimeo.com%2F1129860275%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "תיעוד של בית אחותה של ניבאל לאחר ההפצצה, לצד תמונות של ילדיה שנהרגו")
 באפריל 2025 הפציץ הצבא הישראלי את ביתה של אלאא, אחותה של ניבאל, בג׳אבליא. כתוצאה מההפצצה נהרגו שלושת ילדיה של אלאא: וסים, בן 10, מוהנד, בן 8, וח'וולה, בת 5. 
 
 
@@ -560,7 +560,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1130637017%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
+[](vim/#vimeo.com%2F1130637017%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover)
 
 ההפצצות באזור שלנו נמשכו כל הזמן, והרבה אנשים עקרו. אבל המשפחה המורחבת שלי גדולה מאוד ולא היה לנו לאן ללכת.
 
@@ -574,7 +574,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1129867099%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "תושבים נעקרים משכונת א-נזלה בג׳אבליא ביום ההפצצה")
+[](vim/#vimeo.com%2F1129867099%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "תושבים נעקרים משכונת א-נזלה בג׳אבליא ביום ההפצצה")
 
 שמענו פיצוץ עז, ואז המון צעקות מבחוץ. ראינו אנשים רצים. אמרו לנו שהצבא הישראלי ציווה לפנות את האזור תוך רבע שעה. יצאנו מהבית מבוהלים בלי לקחת איתנו כמעט כלום. שכחתי בבית את התעודות שלנו, הבגדים שלנו, הכול. אבל הצלחנו להימלט בזמן. 
 
@@ -599,7 +599,7 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.meta thumb} 
-[](embed/#vimeo.com%2F1136076786%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
+[](vim/#vimeo.com%2F1136076786%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop)
 
 בסוף אוגוסט 2025 פתחה ישראל במתקפה קרקעית נוספת על העיר עזה. 
 
@@ -621,14 +621,14 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1129867912%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל. בטקסט שצירפה לסרטון כתבה: ״בין ההריסות, ״אנשים נושאים את מה שנשאר מחייהם, כאילו גוררים שרידי מולדת על משאית״")
+[](vim/#vimeo.com%2F1129867912%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון הטיקטוק של ניבאל. בטקסט שצירפה לסרטון כתבה: ״בין ההריסות, ״אנשים נושאים את מה שנשאר מחייהם, כאילו גוררים שרידי מולדת על משאית״")
 הייתי מותשת מהעקירה החוזרת ונשנית, וחששתי שריתא ואני לא נצליח להסתגל שוב לחיים באוהל.
 
 הצבא הישראלי מפזר כל הזמן כרוזים שמורים לנו להתפנות, ואנחנו חיים בחוסר אונים ובפחד. החיים שלנו נהרסו, הם הפכו למוות מתמשך. חיי השפלה ועלבון, בלי בית, בלי טיפת יציבות.
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1132487425%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "ניבאל ואביה באוהל בדיר אל-בלח")
+[](vim/#vimeo.com%2F1132487425%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,cover "ניבאל ואביה באוהל בדיר אל-בלח")
 
 כל דבר בחיים שלי כרוך בסבל עכשיו. החום באוהל נורא, ואני מזיעה אבל לא יכולה להתרחץ לבד. אני סובלת מאוד מעקיצות, כי אני לא יכולה אפילו להתגרד. אני מביטה סביבי ורואה את נשות האחים שלי עסוקות עם המשפחות שלהן, ואני מתביישת לבקש עזרה.
 
@@ -636,14 +636,14 @@ https://www.reutersconnect.com/detail?id=tag%3Areuters.com%2C2024%3Anewsml_MT1NU
 {.meta showdate}
 ### Oct 25
 
-[](embed/#vimeo.com%2F1130636986%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "מתחם אוהלים בדיר אל-בלח, 8 באוקטובר 2025. (רויטרס)")
+[](vim/#vimeo.com%2F1130636986%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop "מתחם אוהלים בדיר אל-בלח, 8 באוקטובר 2025. (רויטרס)")
 ב-10 לאוקטובר 2025 נכנסה לתוקף הפסקת האש בין ישראל לחמאס. 
 
 בשבועות שלאחר מכן, ישראל ממשיכה את תקיפותיה ברצועה בעוצמות משתנות.
 
 
 {.meta}
-[](embed/#vimeo.com%2F1130690065%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון האינסטגרם של ניבאל")
+[](vim/#vimeo.com%2F1130690065%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto "מתוך חשבון האינסטגרם של ניבאל")
 גם עם שוך ההפצצות, ניבאל, ריתא ובני משפחתן חשופים לסכנת חיים יומיומית. החיים במחנה האוהלים, יחד עם ההתמודדות עם האובדן של בני משפחתה, הרס הבית והנכות הקשה ממשיכים להותיר משקעים בנפשה ובגופה של ניבאל.
 
 

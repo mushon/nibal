@@ -572,7 +572,7 @@ But I couldn’t look in the mirror.
 
 
 {.testimony typewriter}
-[](embed/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
+[](vim/#vimeo.com%2F1141224369%3Fshare%3Dcopy%26fl%3Dsv%26fe%3Dci/autoplay,loop,auto)
 [](bg:blank)
 It felt like even Rita barely recognized me. 
 

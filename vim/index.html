@@ -94,7 +94,7 @@
 <body>
   <div id="vimeo-crop-container">
     <div class="preloader"></div>
-    <iframe id="vimeo-embed" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="vimeo_embed"></iframe>
+    <iframe id="vimeo-embed" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-presentation allow-fullscreen" title="vimeo_embed"></iframe>
   </div>
   <script>
     // Defer player.js loading - not needed for basic iframe embed
@@ -127,15 +127,17 @@
         'api=1' // Enable Vimeo player API for event detection
       ];
       // Lower quality on mobile to reduce crashes
-      if (isMobile) {
-        params.push('quality=360p');
-      }
+      // Don't add quality param - let Vimeo auto-negotiate for device
+      // This fixes compatibility on devices that don't support 360p
       return 'https://player.vimeo.com/video/' + id + '?' + params.join('&');
     }
     var loadTimeout = null;
     var isVisible = true; // Start as visible since iframe fills viewport
     var hasLoadedOnce = false;
     var playerReady = false;
+    var currentId = null;
+    var loadAttempts = 0;
+    var maxLoadAttempts = 2;
     
     function updateVimeoEmbed() {
       try {
@@ -152,23 +154,41 @@
           
           if (!iframe) return;
           
+          // Reset attempts when loading a new video
+          if (currentId !== id) {
+            currentId = id;
+            loadAttempts = 0;
+          }
+          
           // Load immediately on first load, or if visible
           if (isVisible || !hasLoadedOnce) {
             // Prevent redundant reloads
             if (iframe.src !== src) {
+              console.log('[vimeo] Loading video ' + id + ' (attempt ' + (loadAttempts + 1) + '/' + maxLoadAttempts + ')');
               iframe.src = src;
               hasLoadedOnce = true;
+              loadAttempts++;
               
-              // Fallback: hide preloader after 1.5 seconds if events don't fire
+              // Fallback: hide preloader after 3 seconds if events don't fire
               setTimeout(function() {
                 if (!playerReady) {
                   var iframe = document.getElementById('vimeo-embed');
                   var preloader = document.querySelector('.preloader');
+                  console.log('[vimeo] Timeout reached, showing iframe');
                   if (iframe) iframe.classList.add('playing');
                   if (preloader) preloader.classList.add('hidden');
                   playerReady = true;
+                  
+                  // If still not ready and we haven't exceeded attempts, try again
+                  if (loadAttempts < maxLoadAttempts) {
+                    console.log('[vimeo] Retrying load...');
+                    setTimeout(function() {
+                      playerReady = false;
+                      updateVimeoEmbed();
+                    }, 1000);
+                  }
                 }
-              }, 1500);
+              }, 3000);
             }
           }
         }, 50);
@@ -202,13 +222,17 @@
         if (data.event === 'play' || data.event === 'timeupdate' || data.event === 'ready') {
           var iframe = document.getElementById('vimeo-embed');
           var preloader = document.querySelector('.preloader');
+          console.log('[vimeo] Event received: ' + data.event);
           if (iframe && !playerReady) {
             iframe.classList.add('playing');
             if (preloader) preloader.classList.add('hidden');
             playerReady = true;
+            console.log('[vimeo] Video ready via ' + data.event);
           }
         }
-      } catch(e) {}
+      } catch(e) {
+        // Silently ignore non-Vimeo messages
+      }
     }, { passive: true });
     
     // Only control video via hash changes

@@ -1846,18 +1846,18 @@ function autoAttachVideoOverlays(){
       }
       // Match patterns: vimeo-1234567, embed-vimeo.com%2F1234567, etc.
       let url = null;
-      // Pattern: vimeo-1234567 -> embed/#vimeo.com%2F1234567/autoplay,loop,cover
+      // Pattern: vimeo-1234567 -> vim/#vimeo.com%2F1234567/autoplay,loop,cover
       const vimeoMatch = id.match(/^vimeo-(\d+)$/i);
       if (vimeoMatch){
         const videoId = vimeoMatch[1];
-        url = `embed/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
+        url = `vim/#vimeo.com%2F${videoId}/autoplay,loop,cover`;
       }
       // Pattern: embed-* -> extract full embed URL from id
       // e.g., embed-vimeo.com%2F1234567 or embed-vimeo.com%2F1234567%2Fautoplay
       const embedMatch = id.match(/^embed-(.+)$/i);
       if (embedMatch && !url){
         const embedPath = embedMatch[1];
-        url = `embed/#${embedPath}`;
+        url = `vim/#${embedPath}`;
       }
       if (url && isDisplayed){
         // Only attach if not already present
