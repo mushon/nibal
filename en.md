@@ -92,28 +92,28 @@ I’m the youngest of nine brothers and three sisters.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.64,-0.11,2.4/+parents-w-baby,+@vimeo-1137390294)
+[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 So my family always spoiled me.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+vimeo-1137390294,+parents-w-baby,+@vimeo-1137392053 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 After high-school, I majored in English and Translation at Al-Azhar University in Gaza City.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 In my final year, I met Ahmad. I felt that he really got me.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137390294,+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/-0.07,-0.36,2.4/+vimeo-1137392053,+@vimeo-1137391389 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 I married him even though my parents objected. I knew we wouldn’t live in luxury, but he was my precious treasure.
 
@@ -140,13 +140,13 @@ We led a happy life, surrounded by the love and warmth of family.
 
 
 {.meta}
-[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053,+vimeo-1137390294,+vimeo-1137388732,+vimeo-1137388732 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053,+vimeo-1137388732,+vimeo-1137388732 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 Baby Rita was born in September 2023.
 
 
 {.meta}
-[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053,+vimeo-1137390294,+vimeo-1137388732,+vimeo-1137388732 "From Nibal’s TikTok account")
+[](svg/#intro-pre.svg/1.14,-0.37,3.26/+@vimeo-1138452992,+vimeo-1137393585,+vimeo-1137391389,+vimeo-1137392053,+vimeo-1137388732,+vimeo-1137388732 "From Nibal’s TikTok account")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 Five days later, Ahmad was issued a work permit and started a job as a construction laborer in Israel.
 
@@ -167,7 +167,7 @@ On 7 October 2023, Hamas and other armed Palestinian groups carried out the dead
 
 {.meta} 
 [](fg:blank)
-[](map/#31.38461,34.38113,10.13,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused),+oct7-hamas-en#2(bubbles))
+[](map/#31.37022,34.37989,9.79,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused),+oct7-hamas-en#2(bubbles))
 Entering from Gaza, the attackers killed 1,220 people, including women, elderly people and children, and left tens of thousands injured. 
 They carried 252 people, some living and others dead, back to Gaza.
 
@@ -200,7 +200,7 @@ He and thousands of others were arrested in Israel within days.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_en "In red: Areas ordered to evacuate on 13 Oct. 2023")
+[](map/#31.41869,34.37279,10.00,37.6,0.0/+north,~labels_he,+labels_en "In red: Areas ordered to evacuate on 13 Oct. 2023")
 Meanwhile, the military began issuing evacuation orders for areas throughout Gaza.
 
 
@@ -361,7 +361,7 @@ I was ashamed to tell them how I was living.
 
 {.meta thumb} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.45106,34.33247,10.35,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_en "Military evacuation orders for Rafah issued in early May 2024")
+[](map/#31.46074,34.32738,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_en "Military evacuation orders for Rafah issued in early May 2024")
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -483,6 +483,13 @@ I was in shock. It felt like they were still there, or were going to grow back.
 [](bg:blank)
 I asked about Rita, and they told me she was fine. That’s what kept me going, along with Ahmad by my side. 
 That and having Ahmad with me.
+
+
+{.testimony typewriter}
+[](fg:blank)
+[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
+My parents were beside themselves with worry. They were afraid I wouldn’t survive, and they kept checking on me through Ahmad
+When my condition improved slightly, I finally managed to call my mother myself. She couldn’t believe I was still alive, and she broke down crying on the phone.
 
 
 {.meta}
