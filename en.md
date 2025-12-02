@@ -31,14 +31,26 @@ css: src/theme.css, src/ltr.css
 
 {.meta}
 [](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+Since October 2023, the Israeli regime has been carrying out genocide in the Gaza Strip. 
+
+
+{.meta}
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+It has killed tens of thousands of people, injured hundreds of thousands more, destroyed homes and critical infrastructure and starved most of the population – all as part of a systematic, coordinated attack aimed at annihilating all facets of life in Gaza.
+
+
+{.meta}
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he)
-For two years of genocidal assault on Gaza, Israel has repeatedly forced the overwhelming majority of its residents to flee their homes again and again.
+Over the course of two years, Israel repeatedly ordered Gaza’s residents to uproot themselves. Approximately 1.9 million people, about 90% of Gaza’s population, were displaced at least once since October 2023, often after losing family members and most of their belongings.
 
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+idf-zones,+idf-poly-outlines "In red: Areas ordered to evacuate from Oct. 2023 to Oct. 2025")
-Most of the displacement follows on military evacuation orders.
+Most of the displacement followed on military evacuation orders.
 
 
 {.meta}
@@ -361,7 +373,7 @@ I was ashamed to tell them how I was living.
 
 {.meta thumb} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.46074,34.32738,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_en "Military evacuation orders for Rafah issued in early May 2024")
+[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_en "Military evacuation orders for Rafah issued in early May 2024")
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -433,7 +445,7 @@ But then, everything changed.
 
 {.meta no-h}
 ### Oct 24
-[](http://svg/#warehouse_bureij2.svg/-16.71,-1.35,58.58/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-16.71,-1.35,58.58/+nibal_xray)
 [](bg:blank)
 That morning, Israel attacked al-Bureij. 
 Nibal remembers hearing relentless shelling.
@@ -487,7 +499,7 @@ That and having Ahmad with me.
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
+[](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
 My parents were beside themselves with worry. They were afraid I wouldn’t survive, and they kept checking on me through Ahmad.
 When my condition improved slightly, I finally managed to call my mother myself. She couldn’t believe I was still alive, and broke down crying.
 
