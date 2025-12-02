@@ -30,8 +30,20 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+منذ تشرين الأول 2023، ينفذ النظام الإسرائيلي إبادة جماعية في قطاع غزة.
+
+
+{.meta}
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+قتلُ عشرات الآلاف من الأشخاص، إصابة مئات الآلاف بجراح، تدمير هائل للمباني والبنية التحتية الحيوية وتجويع غالبية السكان - كل هذا يتم بشكل منهجي، كجزء من هجوم منسق يهدف إلى تدمير جميع مقوّمات الحياة في القطاع.
+
+
+{.meta}
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he)
-‏على مدى عامين من الهجوم الإبادي على قطاع غزة، أجبرت إسرائيل الغالبية الساحقة من سكان القطاع على النزوح عن منازلهم مرارًا وتكرارًا.
+‏على مدار عامين، أمرت إسرائيل سكان القطاع بالرحيل عن أماكنهم، مرارًا وتكرارًا. نزح حوالي 1,9 مليون فلسطيني، يمثلون حوالي 90% من سكان قطاع غزة، مرة واحدة على الأقل منذ تشرين الأول 2023، بعد أن يكونوا قد فقدوا أفراد عائلاتهم ومعظم ممتلكاتهم في الغالب.
 
 
 {.meta}
@@ -365,7 +377,7 @@ css: src/theme.css, src/ar.css
 
 {.meta thumb} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.46074,34.32738,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
+[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -436,7 +448,7 @@ css: src/theme.css, src/ar.css
 
 {.meta no-h}
 ### Oct 24
-[](http://svg/#warehouse_bureij2.svg/-16.71,-1.35,58.58/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-16.71,-1.35,58.58/+nibal_xray)
 [](bg:blank)
 في ذلك الصباح، قصف الجيش الإسرائيلي البريج. تحدثت نِبال عن ضجيج قصف لا يتوقف.
 
@@ -486,7 +498,7 @@ css: src/theme.css, src/ar.css
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=home))
+[](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=home))
 جُنَّ والداي من شدّة القلق. كانا يخشيان ألا أنجو، وكانا يتابعان حالتي باستمرار من خلال أحمد.
 وعندما تحسّن وضعي قليلًا، تمكّنت أخيرًا من الاتصال بوالدتي بنفسي — أردتُ أن تسمع صوتي وتطمئن أنني على قيد الحياة. لم تصدّق أنني ما زلت حيّة، وانفجرت بالبكاء عبر الهاتف.
 
