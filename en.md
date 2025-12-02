@@ -38,7 +38,7 @@ Since October 2023, the Israeli regime has been carrying out genocide in the Gaz
 {.meta}
 [](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
-It has killed tens of thousands of people, injured hundreds of thousands more, destroyed homes and critical infrastructure and starved most of the population – all as part of a systematic, coordinated attack aimed at annihilating all facets of life in Gaza.
+It has killed tens of thousands of people, injured hundreds of thousands more, destroyed homes and infrastructure and starved most of the population – all as part of a systematic, coordinated attack aimed at annihilating all facets of life in Gaza.
 
 
 {.meta}
