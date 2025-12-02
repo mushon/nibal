@@ -500,7 +500,7 @@ That and having Ahmad with me.
 {.testimony typewriter}
 [](fg:blank)
 [](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
-My parents were frantic with worry. They were afraid I wouldn’t make it and kept checking up with Ahmad. 
+My parents were frantic with worry. They were afraid I wouldn’t make it and kept checking in with Ahmad. 
 When I felt a bit better, in the hospital, I finally managed to call my mother. I wanted her to hear that I was okay. She couldn’t believe I was alive and couldn't stop crying.
 
 
