@@ -139,10 +139,10 @@
 /* Mobile: full-height touch-friendly rail */
 @media (max-width: 800px) {
   #chapter-nav {
-    top: 8px;
+    top: 2dvh;
     left: 8px;
-    bottom: 8px;
-    height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+    bottom: 2dvh;
+    height: 96dvh; /* Use dynamic viewport height for mobile browsers */
     transform: none;
     display: flex;
     flex-direction: column;

@@ -102,7 +102,7 @@ section p{
 
 section:first-child h1 em{
     font-size: 0.8em;
-    margin-bottom: 0.5em;
+    /* margin-bottom: 0.5em; */
     display: block;
     color: #FA5F5F;
     font-style: normal;
