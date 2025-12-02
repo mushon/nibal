@@ -2744,6 +2744,8 @@ document.addEventListener('keydown', function(e) {
           iframe.src = '';
           iframe.setAttribute('frameborder','0');
           iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+          iframe.setAttribute('playsinline', '');
+          iframe.setAttribute('webkit-playsinline', '');
           iframe.style.width = '100%';
           iframe.style.height = '100%';
           iframe.style.border = '0';
@@ -2848,6 +2850,8 @@ document.addEventListener('keydown', function(e) {
       iframe.src = '';
       iframe.setAttribute('frameborder','0');
       iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+      iframe.setAttribute('playsinline', '');
+      iframe.setAttribute('webkit-playsinline', '');
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       iframe.setAttribute('title', 'video-embed');
       iframe.style.width = '100%';

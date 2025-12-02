@@ -31,20 +31,32 @@ css: src/theme.css, src/ltr.css
 
 {.meta}
 [](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+Since October 2023, the Israeli regime has been carrying out genocide in the Gaza Strip. 
+
+
+{.meta}
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+It has killed tens of thousands of people, injured hundreds of thousands more, destroyed homes and infrastructure and starved most of the population – all as part of a systematic, coordinated attack aimed at annihilating all facets of life in Gaza.
+
+
+{.meta}
+[](svg/#intro-pre.svg/-0.02,1.21,1.52/+nibal2023,~displacement)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he)
-For two years of genocidal assault on Gaza, Israel has repeatedly forced the overwhelming majority of its residents to flee their homes again and again.
+Over the course of two years, Israel repeatedly ordered Gaza’s residents to uproot themselves. Approximately 1.9 million people, about 90% of Gaza’s population, were displaced at least once since October 2023, often after losing family members and most of their belongings.
 
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+idf-zones,+idf-poly-outlines "In red: Areas ordered to evacuate from Oct. 2023 to Oct. 2025")
-Most of the displacement follows on military evacuation orders.
+Most of the displacement followed on military evacuation orders.
 
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+idf-zones "In red: Areas ordered to evacuate from Oct. 2023 to Oct. 2025")
-Even without orders, many have fled the massive bombardments throughout the Strip.
+Yet many orders are misleading or issued after the area is attacked – creating chaos and mass danger for civilians.
 
 
 {.meta}
@@ -54,7 +66,7 @@ People also fled of their own accord, escaping the frequent airstrikes that rain
 
 
 {.meta}
-[](svg/#intro-pre.svg/0.34,0.36,1.81/+displacement "In the photo: residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
+[](svg/#intro-pre.svg/0.34,0.36,1.81/+displacement "In the photo: residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters/Mahmoud Issa)")
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+unosat-damage-231015)
 Throughout the offensive, Israel has prevented these Internally Displaced Persons (IDPs) from accessing safe shelter with food, water and basic services.
 
@@ -88,14 +100,7 @@ My name is Nibal al-Hisi. I’m 25. When the war began in October 2023, I was li
 [](svg/#intro-pre.svg/-0.67,0.25,2.4/,+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
-I’m the youngest of nine brothers and three sisters.
-
-
-{.testimony typewriter}
-[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053 "From Nibal’s TikTok account")
-[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
-
-So my family always spoiled me.
+I’m the youngest of nine brothers and three sisters. So my family always spoiled me.
 
 
 {.testimony typewriter}
@@ -167,7 +172,7 @@ On 7 October 2023, Hamas and other armed Palestinian groups carried out the dead
 
 {.meta} 
 [](fg:blank)
-[](map/#31.37022,34.37989,9.79,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused),+oct7-hamas-en#2(bubbles))
+[](map/#31.38518,34.39275,9.64,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused),+oct7-hamas-en#2(bubbles))
 Entering from Gaza, the attackers killed 1,220 people, including women, elderly people and children, and left tens of thousands injured. 
 They carried 252 people, some living and others dead, back to Gaza.
 
@@ -180,20 +185,20 @@ That same day, Israel launched a massive wave of strikes across Gaza.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home))
+[](map/#31.51976,34.47657,10.89,-10.4,42.0/+unosat-damage-231015,~labels_he,+pois.csv(poi,id=home) "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
 Nibal was at home in Jabalya with her newborn. 
 Ahmad was at work in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.81,0.72,2.51/+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.67,0.85,2.51/+detainies-2,+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 A few days later, Israel revoked tens of thousands of permits from all workers from Gaza. Many were inside Israel and could not go home.
 Ahmad and thousands of others instantly became “illegal aliens” in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.67,0.68,2.51/+detainies-1,+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.79,0.96,2.51/+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+unosat-damage-231015,~labels_he)
 He and thousands of others were arrested in Israel within days.
 
@@ -304,14 +309,14 @@ I was overjoyed to see Ahmad. He hugged and kissed Rita again and again.
 
 
 {.testimony typewriter}
-[](fg:blank)
+[](svg/#south.svg/-7.16,-9.58,34.47/+prisoners_kid)
 [](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 
 But seeing him also shocked me. He had lost so much weight, and it looked like he’d lost his spark. 
 
 
 {.meta} 
-[](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "Palestinians released from Israeli prisons arrive outside the Nasser hospital in Khan Yunis, 13 Oct. 2025 (Majdi Fathi/NurPhoto)")
+[](svg/#south.svg/-2.43,-3.55,12.19/+prisoners_kid "Palestinians released from Israeli prisons arrive outside the Nasser hospital in Khan Yunis, 13 Oct. 2025 (NurPhoto/Majdi Fathi)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 Nibal and Rita met Ahmad after he had been held in an Israeli detention facility for months, without trial. 
 
@@ -361,7 +366,7 @@ I was ashamed to tell them how I was living.
 
 {.meta thumb} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.46074,34.32738,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_en "Military evacuation orders for Rafah issued in early May 2024")
+[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),~labels_he,+labels_en "Military evacuation orders for Rafah issued in early May 2024")
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -433,53 +438,53 @@ But then, everything changed.
 
 {.meta no-h}
 ### Oct 24
-[](svg/#warehouse_bureij2.svg/-14.13,6.94,49.62/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-16.71,-1.35,58.58/+nibal_xray)
 [](bg:blank)
 That morning, Israel attacked al-Bureij. 
 Nibal remembers hearing relentless shelling.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-22.36,12.45,88.4/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-14.53,2.75,58.58/+nibal_xray)
 [](bg:blank)
 Ahmad went out to see where the shells were landing, and Nibal stayed inside with Rita. 
 She talked to her family on the phone to try and stay calm. 
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-9.29,5.24,31.47/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-17.15,3.61,61.92/+nibal_xray)
 [](bg:blank)
 While she was on the phone, a shell hit the room. 
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-14.33,5.34,54.39/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-4.73,0.63,16.15/+nibal_xray)
 [](bg:blank)
 Badly injured, Nibal managed to call for help among the ruins and was taken to the hospital. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.54,1.18,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
 [](bg:blank)
 
 I woke up in the hospital and found my hands gone.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-2.54,1.18,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
 [](bg:blank)
 The shelling cut Nibal’s arms off at the elbow and badly burned her. She was treated in harsh conditions, in a hospital overwhelmed with injuries.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.54,1.18,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-1.09,0.35,3.64/+nibal_xray,+nibal_after_amputation)
 [](bg:blank)
 
 I was in shock. It felt like they were still there, or were going to grow back. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.04,1.3,10.73/+rita_tent1)
+[](svg/#warehouse_bureij2.svg/-2.04,0.09,10.04/+nibal_xray,+nibal_after_amputation,+rita_tent1)
 [](bg:blank)
 I asked about Rita, and they told me she was fine. That’s what kept me going, along with Ahmad by my side. 
 That and having Ahmad with me.
@@ -487,9 +492,9 @@ That and having Ahmad with me.
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
-My parents were beside themselves with worry. They were afraid I wouldn’t survive, and they kept checking on me through Ahmad.
-When my condition improved slightly, I finally managed to call my mother myself. She couldn’t believe I was still alive, and broke down crying.
+[](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home))
+My parents were frantic with worry. They were afraid I wouldn’t make it and kept checking in with Ahmad. 
+When I felt a bit better, in the hospital, I finally managed to call my mother. I wanted her to hear that I was okay. She couldn’t believe I was alive and couldn't stop crying.
 
 
 {.meta}
@@ -531,27 +536,27 @@ Within months, the area was crammed with tents sheltering over 1 million IDPs fr
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/0.84,-0.74,3.83/+winter_triple_comp.jpg "Winter in an IDP camp in Khan Yunis, 31 Dec. 2024 (Activestills/Doaa Albaz)")
+[](svg/#warehouse_bureij2.svg/0.86,-1.07,3.83/+winter_triple_comp.jpg "Winter in an IDP camp in Khan Yunis, 31 Dec. 2024 (Activestills/Doaa Albaz)")
 [](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20231101,+wayback:20251005 "Satellite image of the “humanitarian zone” in al-Mawasi, Khan Yunis, Jan. 2025 (ESRI Wayback)")
 IDP accounts from November 2024, when the family arrived, describe extreme overcrowding, acute shortages of food and water, and no shelter from the harsh winter.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/1.19,-0.09,3.58/+wheelchaor_triple_comp.jpg "Akram ‘Adil, a boy who lost a leg in an Israeli attack, in an IDP camp in Gaza City, 13 Dec. 2024 (Anadolu/Mahmoud Issa)")
+[](svg/#warehouse_bureij2.svg/1.22,-0.49,3.65/+wheelchaor_triple_comp.jpg "Akram ‘Adil, a boy who lost a leg in an Israeli attack, in an IDP camp in Gaza City, 13 Dec. 2024 (Anadolu/Mahmoud Issa)")
 [](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20231101,+wayback:20251005 "Satellite image of the “humanitarian zone” in al-Mawasi, Khan Yunis, Jan. 2025 (ESRI Wayback)")
 Nibal had to start begin her recovery in inhumane conditions. 
 Tens of thousands of IDPs with injuries, disabilities and amputated limbs, many caused in Israeli attacks, are still struggling to survive in tents.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/0.78,0.99,3.44/+@vimeo-1129846713  "From Nibal’s TikTok account")
+[](svg/#warehouse_bureij2.svg/0.84,0.59,3.44/+@vimeo-1129846713  "From Nibal’s TikTok account")
 [](bg:blank)
 
 Living in a tent again after the amputation was extremely hard. I needed help to use the toilets and was so embarrassed to ask every time. 
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-1.21,0.9,6.12/+rita_tent1 "Rita in the IDP camp in al-Mawasi")
+[](svg/#warehouse_bureij2.svg/-0.77,0.04,4.1/+rita_tent1 "Rita in the IDP camp in al-Mawasi")
 [](bg:blank)
 
 An intelligent, sensitive girl from a tent near us took pity on me and came every day to help me and care for Rita.
@@ -559,20 +564,20 @@ An intelligent, sensitive girl from a tent near us took pity on me and came ever
 
 {.testimony typewriter}
 [](fg:blank)
-[](svg/#warehouse_bureij2.svg/-2.06,1.89,6.89/+nibal_after_amputation)
+[](svg/#warehouse_bureij2.svg/-2,1.15,6.89/+nibal_after_amputation)
 
 I struggled to accept my new body.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.06,1.89,6.89/+nibal_after_amputation)
+[](svg/#warehouse_bureij2.svg/-2,1.15,6.89/+nibal_after_amputation)
 [](bg:blank)
 
 I tried to stay well-groomed, to get dressed and put on makeup with help, and leave the tent.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-1.13,0.91,3.93/+nibal_after_amputation)
+[](svg/#warehouse_bureij2.svg/-1.01,0.41,3.52/+nibal_after_amputation)
 [](bg:blank)
 
 But I couldn’t look in the mirror.
@@ -661,7 +666,7 @@ Despite her parents’ concerns, she went back to their apartment with Rita and 
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-2.23,-2.6,6.44/+attack_march_25.jpg "Israeli airstrike in central Gaza City, 22 March 2025 (Saher Alghorra/ZUMA Press Wire)")
+[](svg/#ceasefire_hope.svg/-2.23,-2.6,6.44/+attack_march_25.jpg "Israeli airstrike in central Gaza City, 22 March 2025 (ZUMA Press Wire/Saher Alghorra)")
 [](bg:blank)
 But then the war resumed. 
 
@@ -890,7 +895,7 @@ She is fighting to imagine a better future for herself and for Rita.
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters / Mahmoud Issa)")
+[](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters/Mahmoud Issa)")
 [](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 Nibal’s story is just one of 2 million stories in Gaza – stories of people suffering loss, hunger and ongoing displacement, forced by Israel to live in unbearable conditions, abandoned by the international community and left with no real hope for a better future.
 
