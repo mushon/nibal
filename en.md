@@ -56,7 +56,7 @@ Most of the displacement followed on military evacuation orders.
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
 [](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+idf-zones "In red: Areas ordered to evacuate from Oct. 2023 to Oct. 2025")
-Even without orders, many have fled the massive bombardments throughout the Strip.
+Yet many orders are misleading or issued after the area is attacked – creating chaos and mass danger for civilians.
 
 
 {.meta}
