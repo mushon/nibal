@@ -352,13 +352,13 @@ Living crammed together without enough food and water, with no privacy and poor 
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "Rita in the IDP camp in Rafah")
+[](svg/#south.svg/-0.42,-1.15,6.03/+rita_tent2.jpg "Rita in the IDP camp in Rafah")
 [](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he)    
 It was constant torment, probably the hardest time in my life.
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.53,-2.08,8.19/+rita_tent2.jpg "Rita in the IDP camp in Rafah")
+[](svg/#south.svg/-0.42,-1.15,6.03/+rita_tent2.jpg "Rita in the IDP camp in Rafah")
 [](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 I didn’t tell my parents how hard it was, because they didn’t want me to go south.
 I was ashamed to tell them how I was living.  
@@ -716,14 +716,19 @@ I tried to focus on Rita. She was the most important thing. I did everything I c
 
 {.meta}
 [](fg:blank)
-[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),+pois#3(label-main,id=home),~labels_he)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),+pois#3(label-main,id=home),~labels_he)
 
 In April 2025, Israel bombed the home of Nibal’s sister ‘Alaa in Jabalya, killing all three of her children: Wasim, 10, Muhannad, 8, and Khawlah, 5. 
 
 
 {.meta}
-[](svg/#back_home.svg/-0.94,-0.44,3.87/+@vimeo-1129860275 "‘Alaa’s home after the bombing that killed her three children")
-[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois(label-main,id=alaa-home),~labels_he,+labels_en)
+[](svg/#back_home.svg/-1.16,-0.78,6.7/+@vimeo-1129860275 "‘Alaa’s home after the bombing that killed her three children")
+[](bg:blank)
+
+
+{.meta}
+[](svg/#back_home.svg/0.89,1.01,3.06/+@vimeo-1129871187 "From Nibal’s TikTok account")
+[](bg:blank)
 The devastating news came when the tension between Nibal and Ahmad was at its peak.
 
 
@@ -736,7 +741,7 @@ One day, he demanded I go back to my parents.
 
 {.meta}
 [](fg:blank)
-[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+labels_en)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+labels_en)
 A few months after returning to their apartment, Nibal moved back to her parents with Rita in early June 2025.
 
 
@@ -748,7 +753,7 @@ My family welcomed us again with love, but the house was full of grief. My siste
 
 
 {.testimony typewriter}
-[](svg/#back_home.svg/-1.03,-1.4,3.73/+nibal_home_smile3.heic)
+[](svg/#back_home.svg/0.94,-0.57,3.11/+nibal_home_smile3.heic)
 [](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),+pois(label-main,id=home),~labels_he)
 
 I was frustrated because I couldn’t do anything on my own, and I struggled to care for Rita. 
@@ -789,7 +794,7 @@ We walked the streets, terrified.
 
 
 {.meta}
-[](svg/#back_home.svg/0.68,-1.28,4.6/+nibal_ruined_home1.jpg "The area of Nibal’s family home after the bombing")
+[](svg/#back_home.svg/1.08,0.72,4.82/+nibal_ruined_home1.jpg "The area of Nibal’s family home after the bombing")
 [](bg:blank)
 Later, Nibal learned that the building she had lived in most of her life with her extended family had been completely destroyed.
 
@@ -842,14 +847,14 @@ The Israeli army keeps dropping leaflets ordering us to evacuate. We are living 
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/-3.38,-1.8,7.71/+home_nibal.png,~vimeo-1129867912,~vimeo-1136076786 "Nibal’s family home, before Oct. 2023")
+[](svg/#permanent_impermanence.svg/-0.66,-1.1,4.35/+home_nibal.png,~vimeo-1129867912,~vimeo-1136076786 "Nibal’s family home, before Oct. 2023")
 [](bg:blank)
 
 Our lives have been destroyed.
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/-3.38,-1.8,7.71/+home_nibal_RUINED.png,~home_nibal.png,~vimeo-1129867912,~vimeo-1136076786 "Nibal’s family home, Oct. 2025")
+[](svg/#permanent_impermanence.svg/-0.66,-1.1,4.35/+home_nibal_RUINED.png,~home_nibal.png,~vimeo-1129867912,~vimeo-1136076786 "Nibal’s family home, Oct. 2025")
 [](bg:blank)
 
 Now it feels like a slow death. A life of humiliation, with no dignity, home or any stability.
@@ -872,13 +877,13 @@ Israel continued to bomb the Gaza Strip in the weeks that followed.
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/7.3,-7.02,15.43/+nibal_next_to_ruins3.jpg)
+[](svg/#permanent_impermanence.svg/2.16,-2.2,5.41/+nibal_next_to_ruins3.jpg)
 [](bg:blank)
 Despite the ceasefire, Nibal and her family are still in constant danger.
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/7.3,-7.02,15.43/+nibal_next_to_ruins1.jpg)
+[](svg/#permanent_impermanence.svg/2.16,-2.2,5.41/+nibal_next_to_ruins1.jpg)
 [](bg:blank)
 
 
@@ -895,7 +900,7 @@ She is fighting to imagine a better future for herself and for Rita.
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/0.7,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters/Mahmoud Issa)")
+[](svg/#permanent_impermanence.svg/0.56,-0.99,2.7/+vimeo-1139274686,+refugees_end-comp.jpg "Residents flee Gaza City following military orders to go south, 15 Sept. 2025 (Reuters/Mahmoud Issa)")
 [](map/#31.41306,34.39134,9.30,38.4,0.0/~labels_he)
 Nibal’s story is just one of 2 million stories in Gaza – stories of people suffering loss, hunger and ongoing displacement, forced by Israel to live in unbearable conditions, abandoned by the international community and left with no real hope for a better future.
 
@@ -920,7 +925,7 @@ In recent months, Nibal has shared her story on social and mainstream media. She
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/-1.03,-1.53,5.21/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](svg/#permanent_impermanence.svg/-1.29,-1.59,5.21/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 **Nibal and Rita’s ordeal is not over.**  
 
