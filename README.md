@@ -723,7 +723,7 @@ css: src/theme.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois-he(label-main,id=alaa-home),+pois-he#2(label-main,id=couple-home),+pois-he#3(label-main,id=home),~labels_he)
+[](map/#31.52947,34.47904,17.00,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-he(label-main,id=alaa-home),+pois-he#2(label-main,id=couple-home),+pois-he#3(label-main,id=home),~labels_he "הערכת צפיפות בניינים שניזוקו בג׳אבליא עד לתחילת אפריל 2025. מקור: UNOSAT")
 באפריל 2025 הפציץ הצבא הישראלי את הבית הסמוך לבית הזוג, בו חיה משפחתה של אלאא, אחותה של ניבאל.  
 
 כתוצאה מההפצצה נהרגו שלושת ילדיה של אלאא: וסים, בן 10, מוהנד, בן 8, וח'וולה, בת 5.
@@ -769,8 +769,8 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#back_home.svg/-0.43,0.71,2.35/+@vimeo-1137391856,+vimeo-1137392312 "הפצצות בשכונת א-נזלה בג׳אבליא, אוגוסט 2025")
-[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
+[](fg:blank)
+[](map/#31.53028,34.47787,17.18,38.4,0.0/+UNOSAT_jabalia_25-07-08(poly-scale),+pois.csv(poi,id=home),~labels_he "הערכת צפיפות בניינים שניזוקו בג׳אבליא עד לתחילת יולי 2025. מקור: UNOSAT")
 
 ההפצצות באזור שלנו נמשכו כל הזמן והרבה אנשים סביבנו נעקרו שוב. אבל המשפחה המורחבת שלי גדולה מאוד ולא היה לנו לאן ללכת בלי שנצטרך להתפצל.
 
