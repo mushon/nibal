@@ -61,8 +61,13 @@ Yet many orders are misleading or issued after the area is attacked – creating
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
-[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+unosat-damage-231015 "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+UNOSAT_gaza_23-10-15(poly-scale) "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
 People also fled of their own accord, escaping the frequent airstrikes that rained down death and destruction throughout the Strip.
+
+
+{.meta}
+[](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+UNOSAT_gaza_25-10-11(poly-scale) "!!! add translation")
 
 
 {.meta}
