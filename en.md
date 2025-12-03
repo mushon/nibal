@@ -716,14 +716,19 @@ I tried to focus on Rita. She was the most important thing. I did everything I c
 
 {.meta}
 [](fg:blank)
-[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),+pois#3(label-main,id=home),~labels_he)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois(label-main,id=alaa-home),+pois#2(label-main,id=couple-home),+pois#3(label-main,id=home),~labels_he)
 
 In April 2025, Israel bombed the home of Nibal’s sister ‘Alaa in Jabalya, killing all three of her children: Wasim, 10, Muhannad, 8, and Khawlah, 5. 
 
 
 {.meta}
-[](svg/#back_home.svg/-0.94,-0.44,3.87/+@vimeo-1129860275 "‘Alaa’s home after the bombing that killed her three children")
-[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois(label-main,id=alaa-home),~labels_he,+labels_en)
+[](svg/#back_home.svg/-1.16,-0.78,6.7/+@vimeo-1129860275 "‘Alaa’s home after the bombing that killed her three children")
+[](bg:blank)
+
+
+{.meta}
+[](svg/#back_home.svg/0.89,1.01,3.06/+@vimeo-1129871187 "From Nibal’s TikTok account")
+[](bg:blank)
 The devastating news came when the tension between Nibal and Ahmad was at its peak.
 
 
@@ -736,7 +741,7 @@ One day, he demanded I go back to my parents.
 
 {.meta}
 [](fg:blank)
-[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+labels_en)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+labels_en)
 A few months after returning to their apartment, Nibal moved back to her parents with Rita in early June 2025.
 
 
