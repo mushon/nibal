@@ -717,15 +717,19 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),+pois-ar#3(label-main-ar,id=home),~labels_he)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),+pois-ar#3(label-main-ar,id=home),~labels_he)
 في نيسان 2025، قصف الجيش الإسرائيلي منزل آلاء، شقيقة نِبال، في جباليا. 
+نتيجة للقصف، قُتل أطفال آلاء الثلاثة: وسيم (10 سنوات) ومهند (8 سنوات) وخولة (5 سنوات).
 
 
 {.meta}
-[](svg/#back_home.svg/-0.94,-0.44,3.87/+@vimeo-1129860275 "توثيق منزل شقيقة نبال بعد القصف، إلى جانب صور أولادها الذين قُتلوا")
-[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois-ar(label-main-ar,id=alaa-home),~labels_he)
-نتيجة للقصف، قُتل أطفال آلاء الثلاثة: وسيم (10 سنوات) ومهند (8 سنوات) وخولة (5 سنوات).
+[](svg/#back_home.svg/-1.16,-0.78,6.7/+@vimeo-1129860275 "توثيق منزل شقيقة نبال بعد القصف، إلى جانب صور أولادها الذين قُتلوا")
+[](bg:blank)
 
+
+{.meta}
+[](svg/#back_home.svg/0.89,1.01,3.06/+@vimeo-1129871187 "من حساب نبال على تيك توك")
+[](bg:blank)
 تلقت نِبال الأخبار السيئة عن أولاد أختها في الوقت الذي وصل فيه التوتر بينها وبين أحمد إلى ذروته.
 
 
@@ -738,7 +742,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52946,34.47918,17.18,38.4,0.0/+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he)
 
 في بداية حزيران 2025، بعد بضعة أشهر من عودتها إلى شقتها وشقة أحمد، تركت نِبال منزلها وعادت مع ريتا إلى منزل والديها.
 
