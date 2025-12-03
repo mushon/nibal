@@ -4,7 +4,7 @@
   left: 24px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1px;
   z-index: 1200;
   pointer-events: auto;
   align-items: baseline;
@@ -98,9 +98,24 @@
 }
 
 /* Timestamp items (sections with H3/H4) show labels by default */
+.chapter-item.timestamp .chapter-label {
+  background-color: transparent;
+  color: #FA5F5F;
+}
+
+.chapter-item.timestamp .chapter-label::before {
+  border-right: 6px solid #FA5F5F;
+}
+
+/* Timestamp items (sections with H3/H4) show labels by default */
 .sec-subheader .chapter-item.timestamp .chapter-label {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
+}
+
+.chapter-item.timestamp .chapter-dot {
+  background-color: #FA5F5F;
+  opacity: 1;
 }
 
 /* Desktop only: smaller timestamp labels by default, full size on hover */
@@ -147,7 +162,7 @@
     display: flex;
     flex-direction: column;
     padding: 0; /* Proportional padding */
-    gap: 1px; /* Default 1px gap between all items */
+    gap: .5px; /* Default 1px gap between all items */
     /* Prevent the page from scrolling while swiping the rail */
     touch-action: none;
     -webkit-user-select: none;

@@ -126,17 +126,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const chapterBtn = document.createElement('button');
         chapterBtn.className = 'chapter-dot chapter-heading-dot';
         chapterBtn.type = 'button';
-        chapterBtn.setAttribute('aria-label', chapterTitle);
+        // In editor mode, include section number in aria-label and title
+        const ariaLabel = document.body && document.body.classList.contains('editor')
+          ? `${chapterTitle} (${String(idx + 1).padStart(2, '0')})`
+          : chapterTitle;
+        chapterBtn.setAttribute('aria-label', ariaLabel);
+        chapterBtn.setAttribute('title', ariaLabel);
         chapterBtn.dataset.target = child.id;  // Points to the main child (container or heading itself)
         chapterBtn.dataset.type = 'chapter';
 
         const label = document.createElement('span');
         label.className = 'chapter-label';
-        // In editor mode, append section number to label
-        const displayText = document.body && document.body.classList.contains('editor') 
-          ? `${chapterTitle}: ${String(idx + 1).padStart(2, '0')}` 
-          : chapterTitle;
-        label.textContent = displayText;
+        label.textContent = chapterTitle;
 
         // Attach handlers to the container so entire area including borders is clickable
         chapterItem.addEventListener('click', createScrollHandler(child.id));
@@ -173,18 +174,19 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         } catch (e) { /* swallow */ }
         
-        sectionBtn.setAttribute('aria-label', sectionTitle);
+        // In editor mode, include section number in aria-label and title
+        const sectionAriaLabel = document.body && document.body.classList.contains('editor')
+          ? `${sectionTitle} (${String(idx + 1).padStart(2, '0')})`
+          : sectionTitle;
+        sectionBtn.setAttribute('aria-label', sectionAriaLabel);
+        sectionBtn.setAttribute('title', sectionAriaLabel);
         sectionBtn.dataset.target = child.id;
         sectionBtn.dataset.type = 'section';
         
         // Add tooltip label
         const sectionLabel = document.createElement('span');
         sectionLabel.className = 'chapter-label';
-        // In editor mode, append section number to label
-        const sectionDisplayText = document.body && document.body.classList.contains('editor')
-          ? `${sectionTitle}: ${String(idx + 1).padStart(2, '0')}`
-          : sectionTitle;
-        sectionLabel.textContent = sectionDisplayText;
+        sectionLabel.textContent = sectionTitle;
 
         // Attach handlers to the container so entire area including borders is clickable
         sectionItem.addEventListener('click', createScrollHandler(child.id));
