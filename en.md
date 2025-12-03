@@ -314,14 +314,14 @@ I was overjoyed to see Ahmad. He hugged and kissed Rita again and again.
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-5.58,-7.46,26.89/+prisoners_kid)
+[](svg/#south.svg/-0.9,-1.71,7.98/+prisoners_kid)
 [](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 
 But seeing him also shocked me. He had lost so much weight, and it looked like he’d lost his spark. 
 
 
 {.meta} 
-[](svg/#south.svg/-2.47,-3.66,12.49/+prisoners_kid "Palestinians released from Israeli prisons arrive outside the Nasser hospital in Khan Yunis, 13 Oct. 2025 (NurPhoto/Majdi Fathi)")
+[](svg/#south.svg/-0.29,-1.02,3.82/+prisoners_kid "Palestinians released from Israeli prisons arrive outside the Nasser hospital in Khan Yunis, 13 Oct. 2025 (NurPhoto/Majdi Fathi)")
 [](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 Nibal and Rita met Ahmad after he had been held in an Israeli detention facility for months, without trial. 
 
@@ -415,7 +415,7 @@ Living in the storage room was a bit more stable than in the tent, but I felt to
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg "A-Shati R.C. in Gaza City, 15 July 2025 (Reuters/Mahmoud Issa)")
+[](svg/#warehouse_bureij1.svg/0.01,-0.53,2.31/+warehouse_new-compressed.jpg)
 [](bg:blank)
 
 Whenever I could, I checked in with them over the phone.
@@ -489,7 +489,7 @@ I was in shock. It felt like they were still there, or were going to grow back.
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.57,0.24,12.54/+nibal_xray,+nibal_after_amputation,+rita_tent1)
+[](svg/#warehouse_bureij2.svg/-2.6,0.24,12.54/+rita_tent1,+nibal_xray)
 [](bg:blank)
 I asked about Rita, and they told me she was fine. That’s what kept me going, along with Ahmad by my side. 
 That and having Ahmad with me.
@@ -844,7 +844,7 @@ The family fled south again, this time to a tent camp in Deir al-Balah.
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/0.23,-0.89,4.05/+@vimeo-1129867912 "From Nibal’s TikTok account. She wrote: ״Amid the rubble, people depart carrying what remains of their lives, as if hauling the remnants of a homeland on a truck״")
+[](svg/#permanent_impermanence.svg/0.2,-0.85,3.14/+@vimeo-1129867912 "From Nibal’s TikTok account. She wrote: ״Amid the rubble, people depart carrying what remains of their lives, as if hauling the remnants of a homeland on a truck״")
 [](bg:blank)
 
 I’m exhausted from being displaced over and over. I’m afraid Rita and I won’t be able to adjust to a tent again. 
@@ -987,6 +987,9 @@ For the full report on forced displacement in Gaza:
 
 
 {.meta thumb closing}
+[](fg:blank)
+[](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+
 ## Photos and Video
 - Courtesy of Nibal Al-Hisi
 - Activestills
