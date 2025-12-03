@@ -723,7 +723,7 @@ css: src/theme.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois-he(label-main,id=alaa-home),+pois-he#2(label-main,id=couple-home),+pois-he#3(label-main,id=home),~labels_he)
+[](map/#31.52942,34.47911,18.34,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-he(label-main,id=alaa-home),+pois-he#2(label-main,id=couple-home),+pois-he#3(label-main,id=home),~labels_he)
 באפריל 2025 הפציץ הצבא הישראלי את הבית הסמוך לבית הזוג, בו חיה משפחתה של אלאא, אחותה של ניבאל.  
 
 כתוצאה מההפצצה נהרגו שלושת ילדיה של אלאא: וסים, בן 10, מוהנד, בן 8, וח'וולה, בת 5.
