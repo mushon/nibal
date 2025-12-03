@@ -101,7 +101,6 @@
 .chapter-item.timestamp .chapter-label {
   background-color: transparent;
   color: #FA5F5F;
-  padding: 0;
 }
 
 .chapter-item.timestamp .chapter-label::before {
