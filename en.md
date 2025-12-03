@@ -516,13 +516,13 @@ They went to the “humanitarian zone” in al-Mawasi and got a tent.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.37125,34.28097,14.97,40.0,1.2/+wayback:20231101,~labels_he "Satellite image of the designated “humanitarian zone” in al-Mawasi, Khan Yunis, May 2023 (ESRI Wayback)")
+[](map/#31.37125,34.28097,13.97,40.0,1.2/+wayback:20231101,~labels_he "Satellite image of the designated “humanitarian zone” in al-Mawasi, Khan Yunis, May 2023 (ESRI Wayback)")
 From the start of the offensive, Israel designated a “humanitarian zone” near the southern town of al-Mawasi.
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.37047,34.28073,15.79,40.0,1.2/+wayback:20231101,~labels_he "Satellite image of the area designated after Oct. 2023 a “humanitarian zone” in al-Mawasi, Khan Yunis, May 2023 (ESRI Wayback)")
+[](map/#31.37047,34.28073,14.79,40.0,1.2/+wayback:20231101,~wayback:20251005,~labels_he "Satellite image of the area designated after Oct. 2023 a “humanitarian zone” in al-Mawasi, Khan Yunis, May 2023 (ESRI Wayback)")
 The sandy area was largely off the electricity, water and sewage grids.
 
 
