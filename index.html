@@ -1089,6 +1089,14 @@
                             const parts = [bgCaption, fgCaption].filter(c => c.trim().length > 0);
                             const combined = parts.join(' • ');
                             
+                            console.log('[updateCombinedCaption]', { 
+                                bgCaption, 
+                                fgCaption, 
+                                combined, 
+                                willDisplay: !!combined,
+                                timestamp: Date.now()
+                            });
+                            
                             if (!combined) {
                                 el.style.display = 'none';
                                 el.textContent = '';
@@ -1109,89 +1117,136 @@
                         } catch(e){ /* swallow */ }
                     }
 
-                    function setCaptionFromLink(a){
+                    // Update caption by checking ALL currently active inflection links
+                    function updateInflectCaption() {
                         try {
                             const isDualMode = document.body.classList.contains('dual-iframe');
-                            if (!a) {
-                                // Clear both captions
-                                bgCaption = '';
-                                fgCaption = '';
-                                updateCombinedCaption();
-                                // Reset both iframe opacities to 1
-                                document.getElementById('background-frame').style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
-                                document.getElementById('background-frame').style.opacity = 1;
-                                document.getElementById('foreground-frame').style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
-                                document.getElementById('foreground-frame').style.opacity = 1;
-                                document.getElementById('if').style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
-                                document.getElementById('if').style.opacity = 1;
-                                return;
-                            }
-
-                            // Determine target opacity from alpha_X class
-                            let targetAlpha = 1;
-                            if (a.classList) {
-                                for (const cls of a.classList) {
-                                    if (cls.startsWith('alpha_')) {
-                                        const val = parseFloat(cls.replace('alpha_', ''));
-                                        if (!isNaN(val)) targetAlpha = val;
-                                    }
-                                }
-                            }
-
-                            const title = (a.getAttribute('title') || a.getAttribute('data-caption') || a.textContent || '').trim();
-                            const rawHref = a.getAttribute('href') || '';
-
+                            
+                            // Find all active inflection links
+                            const activeLinks = Array.from(document.querySelectorAll('a.active[href]'));
+                            const inflectableLinks = activeLinks.filter(link => 
+                                !link.classList.contains('dontinflect') && link.getAttribute('href')
+                            );
+                            
+                            console.log('[updateInflectCaption] Found active links:', inflectableLinks.length, 
+                                inflectableLinks.map(l => ({
+                                    href: l.getAttribute('href'),
+                                    title: l.getAttribute('title'),
+                                    text: l.textContent.substring(0, 20)
+                                }))
+                            );
+                            
                             if (isDualMode) {
-                                const isMapLink = rawHref.includes('/map/') || rawHref.includes('/map#') || rawHref.match(/\/map$/);
-                                if (isMapLink) {
-                                    // Only update background caption if title exists
-                                    if (title) {
-                                        bgCaption = title;
-                                    }
-                                    // Animate background iframe opacity
-                                    const bgFrame = document.getElementById('background-frame');
-                                    if (bgFrame) {
-                                        bgFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
-                                        bgFrame.style.opacity = targetAlpha;
-                                    }
-                                } else {
-                                    // Only update foreground caption if title exists
-                                    if (title) {
-                                        fgCaption = title;
-                                    }
-                                    // Animate foreground iframe opacity
-                                    const fgFrame = document.getElementById('foreground-frame');
-                                    if (fgFrame) {
-                                        fgFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
-                                        fgFrame.style.opacity = targetAlpha;
+                                // Separate links by layer (map vs other)
+                                const bgLinks = inflectableLinks.filter(link => {
+                                    const href = link.getAttribute('href') || '';
+                                    return href.includes('/map/') || href.includes('/map#') || href.match(/\/map$/);
+                                });
+                                const fgLinks = inflectableLinks.filter(link => {
+                                    const href = link.getAttribute('href') || '';
+                                    return !(href.includes('/map/') || href.includes('/map#') || href.match(/\/map$/));
+                                });
+                                
+                                // Get captions and opacities from background links
+                                // Collect ALL non-empty captions, use last link's alpha
+                                let bgAlpha = 1;
+                                const bgCaptions = [];
+                                if (bgLinks.length > 0) {
+                                    bgLinks.forEach(link => {
+                                        const caption = (link.getAttribute('title') || link.getAttribute('data-caption') || '').trim();
+                                        if (caption) {
+                                            bgCaptions.push(caption);
+                                        }
+                                    });
+                                    // Use the last link for alpha regardless of whether it has a caption
+                                    const lastBgLink = bgLinks[bgLinks.length - 1];
+                                    for (const cls of lastBgLink.classList) {
+                                        if (cls.startsWith('alpha_')) {
+                                            const val = parseFloat(cls.replace('alpha_', ''));
+                                            if (!isNaN(val)) bgAlpha = val;
+                                        }
                                     }
                                 }
-                                updateCombinedCaption();
+                                // Combine all background captions (use last non-empty, or join if multiple)
+                                bgCaption = bgCaptions.length > 0 ? bgCaptions[bgCaptions.length - 1] : '';
+                                
+                                // Get captions and opacities from foreground links
+                                // Collect ALL non-empty captions, use last link's alpha
+                                let fgAlpha = 1;
+                                const fgCaptions = [];
+                                if (fgLinks.length > 0) {
+                                    fgLinks.forEach(link => {
+                                        const caption = (link.getAttribute('title') || link.getAttribute('data-caption') || '').trim();
+                                        if (caption) {
+                                            fgCaptions.push(caption);
+                                        }
+                                    });
+                                    // Use the last link for alpha regardless of whether it has a caption
+                                    const lastFgLink = fgLinks[fgLinks.length - 1];
+                                    for (const cls of lastFgLink.classList) {
+                                        if (cls.startsWith('alpha_')) {
+                                            const val = parseFloat(cls.replace('alpha_', ''));
+                                            if (!isNaN(val)) fgAlpha = val;
+                                        }
+                                    }
+                                }
+                                // Combine all foreground captions (use last non-empty, or join if multiple)
+                                fgCaption = fgCaptions.length > 0 ? fgCaptions[fgCaptions.length - 1] : '';
+                                
+                                // Update iframe opacities
+                                const bgFrame = document.getElementById('background-frame');
+                                const fgFrame = document.getElementById('foreground-frame');
+                                if (bgFrame) {
+                                    bgFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                    bgFrame.style.opacity = bgAlpha;
+                                }
+                                if (fgFrame) {
+                                    fgFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
+                                    fgFrame.style.opacity = fgAlpha;
+                                }
                             } else {
-                                // Single iframe mode - use original behavior
-                                bgCaption = title;
+                                // Single iframe mode - collect all non-empty captions from active links
+                                let alpha = 1;
+                                const allCaptions = [];
+                                
+                                if (inflectableLinks.length > 0) {
+                                    inflectableLinks.forEach(link => {
+                                        const caption = (link.getAttribute('title') || link.getAttribute('data-caption') || '').trim();
+                                        if (caption) {
+                                            allCaptions.push(caption);
+                                        }
+                                    });
+                                    // Use last link for alpha regardless of whether it has a caption
+                                    const lastLink = inflectableLinks[inflectableLinks.length - 1];
+                                    for (const cls of lastLink.classList) {
+                                        if (cls.startsWith('alpha_')) {
+                                            const val = parseFloat(cls.replace('alpha_', ''));
+                                            if (!isNaN(val)) alpha = val;
+                                        }
+                                    }
+                                }
+                                
+                                // Use last non-empty caption
+                                bgCaption = allCaptions.length > 0 ? allCaptions[allCaptions.length - 1] : '';
                                 fgCaption = '';
-                                updateCombinedCaption();
-                                // Animate main iframe opacity
+                                
+                                // Update iframe opacity
                                 const mainFrame = document.getElementById('if');
                                 if (mainFrame) {
                                     mainFrame.style.transition = 'opacity 400ms cubic-bezier(.22,1,.36,1)';
-                                    mainFrame.style.opacity = targetAlpha;
+                                    mainFrame.style.opacity = alpha;
                                 }
                             }
-                        } catch(e){ /* swallow */ }
+                            
+                            // Update the combined caption display
+                            updateCombinedCaption();
+                        } catch(e) { 
+                            console.error('[CAPTION] Error:', e);
+                        }
                     }
 
-                    // Expose small helper so observers/click handlers can update caption
-                    window.__setInflectCaptionFromLink = setCaptionFromLink;
-                    // Expose a clearing helper to explicitly empty caption on link changes
-                    window.__clearInflectCaption = function(){
-                        try {
-                            bgCaption = '';
-                            fgCaption = '';
-                            updateCombinedCaption();
-                        } catch(e) { /* swallow */ }
-                    };
+                    // Expose the caption updater globally
+                    window.__updateInflectCaption = updateInflectCaption;
                 } catch(e) { /* swallow */ }
             })();
 
@@ -1218,8 +1273,6 @@
         function setIframeIfPathChanged(newHref) {
             // Check if we're in dual-iframe mode
             const isDualMode = document.body.classList.contains('dual-iframe');
-            // On any link change, proactively clear the caption to avoid stale text
-            try { if (window.__clearInflectCaption) window.__clearInflectCaption(); } catch(e){}
             
             // Handle special clear patterns in dual-iframe mode
             if (isDualMode) {
@@ -1425,7 +1478,9 @@
     // with IntersectionObserver we can check what is visible    
     function initializeObservers() {
         const isMobilePortrait = window.matchMedia("(max-width: 1000px) and (orientation: portrait)").matches;
-        const observer = new IntersectionObserver((entries) => {            
+        const observer = new IntersectionObserver((entries) => {
+            let captionNeedsUpdate = false;
+            
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     // Add active class only to the visible link
@@ -1442,11 +1497,9 @@
                         if (isDualMode) {
                             try { 
                                 const full = new URL(rawHref, window.location.href).href; 
-                                try { if (window.__clearInflectCaption) window.__clearInflectCaption(); } catch(e){}
                                 setIframeIfPathChanged(full); 
                             } catch(e){ 
                                 try {
-                                    try { if (window.__clearInflectCaption) window.__clearInflectCaption(); } catch(e){}
                                     setIframeIfPathChanged(visibleLink.href);
                                 } catch(e2) {
                                     console.warn('Link observer failed to load:', rawHref, e2);
@@ -1455,21 +1508,17 @@
                         } else {
                             try { 
                                 const full = new URL(rawHref, window.location.href).href; 
-                                try { if (window.__clearInflectCaption) window.__clearInflectCaption(); } catch(e){}
                                 setIframeNext(full); 
                             } catch(e){ 
                                 try {
-                                    try { if (window.__clearInflectCaption) window.__clearInflectCaption(); } catch(e){}
                                     setIframeNext(visibleLink.href);
                                 } catch(e2) {
                                     console.warn('Link observer failed to load:', rawHref, e2);
                                 }
                             }
                         }
-                        try {
-                            // After clearing, set caption from the newly visible link
-                            if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(visibleLink);
-                        } catch(e){}
+                        // Mark that caption needs update after all entries processed
+                        captionNeedsUpdate = true;
                         // Start any typewriter animation for the section that contains this link
                         // after the iframe has been asked to load the path. Use a short delay
                         // to allow the iframe transition to start.
@@ -1478,9 +1527,23 @@
                             // (typewriter removed)
                         } catch (e) { /* swallow */ }
                     }
+                } else {
+                    // Link is leaving view - remove active class
+                    entry.target.classList.remove("active");
+                    // Mark that caption needs update after all entries processed
+                    captionNeedsUpdate = true;
                 }
-                else entry.target.classList.remove("active")
             });
+            
+            // Update caption ONCE after all entries in this batch have been processed
+            // Use setTimeout to ensure all active class changes have been applied
+            if (captionNeedsUpdate) {
+                setTimeout(() => {
+                    try {
+                        if (window.__updateInflectCaption) window.__updateInflectCaption();
+                    } catch(e) { /* swallow */ }
+                }, 0);
+            }
         },{
             rootMargin: isMobilePortrait ? "-50% 0px 0px 0px" : "0px"
         });
@@ -1491,9 +1554,12 @@
         // sections and when a section enters view, pick its first inflection
         // link and update the iframe accordingly.
         const sectionObserver = new IntersectionObserver((entries) => {
+            let captionNeedsUpdate = false;
+            
             entries.forEach(en => {
                 if (en.isIntersecting) {
                     const sec = en.target;
+                    console.log('[Section entering]', sec.textContent.substring(0, 50));
                     
                     // Mark this section as having inflection in progress
                     const inflectionId = 'inflection-' + (sec.id || Date.now());
@@ -1541,7 +1607,7 @@
                                 if (a) {
                                     const full = new URL(a.href, window.location.href).href;
                                     if (window.__setIframeNext) window.__setIframeNext(full);
-                                    if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(a);
+                                    if (window.__updateInflectCaption) window.__updateInflectCaption();
                                 }
                             } catch(e){}
                             window.__typewriterSuppressed = false;
@@ -1601,6 +1667,10 @@
                             
                             // Load links sequentially with guaranteed completion tracking
                             allLinks.forEach((link, index) => {
+                                // Mark link as active since it's in the visible section
+                                link.classList.add('active');
+                                console.log('[Section entering] Marking link as active:', link.getAttribute('href'), 'title:', link.getAttribute('title'));
+                                
                                 const linkHref = link.getAttribute('href');
                                 if (linkHref) {
                                     const delay = index * 30; // 30ms stagger for smoother loading
@@ -1630,13 +1700,8 @@
                             
                             // Set captions from all links in dual-iframe mode
                             if (allLinks.length > 0) {
-                                try { 
-                                    if (window.__setInflectCaptionFromLink) {
-                                        // Clear captions first, then process all links to build combined caption
-                                        window.__setInflectCaptionFromLink(null);
-                                        allLinks.forEach(link => window.__setInflectCaptionFromLink(link));
-                                    }
-                                } catch(e){}
+                                // Mark that caption needs update after all sections processed
+                                captionNeedsUpdate = true;
                             }
                             
                             // Guaranteed completion after reasonable timeout
@@ -1653,7 +1718,7 @@
                                     console.warn('Failed to load inflection:', raw);
                                 }
                             }
-                            try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(a); } catch(e){}
+                            try { if (window.__updateInflectCaption) window.__updateInflectCaption(); } catch(e){}
                             
                             // Release typewriter suppression with guaranteed execution
                             const completeInflection = () => {
@@ -1667,8 +1732,31 @@
                             setTimeout(completeInflection, 100);
                         }
                     } catch(e) { /* swallow */ }
+                } else {
+                    // Section is leaving view - remove active class from all its links
+                    const sec = en.target;
+                    console.log('[Section leaving]', sec.textContent.substring(0, 50));
+                    try {
+                        const allLinks = Array.from(sec.querySelectorAll('a:not(.dontinflect)'));
+                        console.log('[Section leaving] Removing active from', allLinks.length, 'links');
+                        allLinks.forEach(link => link.classList.remove('active'));
+                        // Mark that caption needs update after all sections processed
+                        captionNeedsUpdate = true;
+                    } catch(e) { /* swallow */ }
                 }
             });
+            
+            console.log('[Section observer] Batch complete, captionNeedsUpdate:', captionNeedsUpdate);
+            
+            // Update caption ONCE after all section entries have been processed
+            // Use setTimeout to ensure all active class changes have been applied  
+            if (captionNeedsUpdate) {
+                setTimeout(() => {
+                    try {
+                        if (window.__updateInflectCaption) window.__updateInflectCaption();
+                    } catch(e) { /* swallow */ }
+                }, 0);
+            }
         }, { threshold: 0.25 });
 
         // Global: Track current section regardless of snap/fs-video-mobile
@@ -2014,7 +2102,8 @@
             if (firstSection) {
                 const allLinks = Array.from(firstSection.querySelectorAll('a:not(.dontinflect)'));
                 allLinks.forEach((link, index) => {
-                    if (index === 0) link.classList.add('active');
+                    // In dual-iframe mode, mark ALL links as active since we load them all
+                    link.classList.add('active');
                     const rawHref = link.getAttribute('href');
                     if (rawHref) {
                         // In dual-iframe mode, load all links immediately without timeout
@@ -2029,10 +2118,9 @@
                 });
                 if (allLinks.length > 0) {
                     try { 
-                        if (window.__setInflectCaptionFromLink) {
-                            // Clear captions first, then process all links to build combined caption
-                            window.__setInflectCaptionFromLink(null);
-                            allLinks.forEach(link => window.__setInflectCaptionFromLink(link));
+                        if (window.__updateInflectCaption) {
+                            // Update caption based on all active links
+                            window.__updateInflectCaption();
                         }
                     } catch(e){}
                 }
@@ -2044,7 +2132,7 @@
                 firstLink.classList.add('active');
                 const rawHref = firstLink.getAttribute('href');
                 try { const full = new URL(rawHref, window.location.href).href; setIframeIfPathChanged(full); } catch(e){ setIframeIfPathChanged(firstLink.href); }
-                try { if (window.__setInflectCaptionFromLink) window.__setInflectCaptionFromLink(firstLink); } catch(e){}
+                try { if (window.__updateInflectCaption) window.__updateInflectCaption(); } catch(e){}
             }
         }
 
