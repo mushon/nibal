@@ -4,48 +4,6 @@ body-class: snap fs-video-mobile editor
 css: src/theme.css
 ---
 
-<script>
-window.copyToClipboard = function(text, elementId, successMessage) {
-  const btn = document.getElementById(elementId);
-  if (btn) {
-    btn.style.transform = 'scale(0.95)';
-    btn.style.opacity = '0.7';
-  }
-  
-  navigator.clipboard.writeText(text).then(() => {
-    if (btn) {
-      btn.style.transform = 'scale(1)';
-      btn.style.opacity = '1';
-    }
-    
-    const msg = document.createElement('div');
-    msg.textContent = successMessage;
-    msg.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #FA5F5F;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 4px;
-      font-size: 14px;
-      z-index: 9999;
-    `;
-    document.body.appendChild(msg);
-    
-    setTimeout(() => {
-      msg.remove();
-    }, 2000);
-  }).catch(() => {
-    if (btn) {
-      btn.style.transform = 'scale(1)';
-      btn.style.opacity = '1';
-    }
-    alert('Failed to copy link');
-  });
-};
-</script>
-
 # _עקירתה של_ ניבאל אל-היסי
 [](map/#31.30336,34.29179,9.53,37.6,0.0/~labels_he)
 [](svg/#intro-pre.svg/-0.01,0.45,1.52/+nibal2023,+displacement)
