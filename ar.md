@@ -151,13 +151,6 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 [](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053 "من حساب نبال على تيك توك")
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
-لأنني الأصغر، كان والداي وإخوتي يدللونني دائمًا.
-
-
-{.testimony typewriter}
-[](svg/#intro-pre.svg/-0.39,-0.21,2.4/+@vimeo-1137392053)
-[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
-
 بعد المدرسة الثانوية، واصلت دراسة اللغة الإنجليزية والترجمة في جامعة الأزهر في مدينة غزة.
 
 
@@ -179,12 +172,6 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 في أيلول 2022، انتقلنا للعيش في شقة خاصة بنا في بناية خاصة بعائلة أحمد، في جباليا، ليس بعيدًا عن والديّ.
-
-
-{.testimony typewriter}
-[](svg/#intro-pre.svg/0.26,-0.41,2.4/+vimeo-1137392053,+vimeo-1137391389,+@vimeo-1137393585)
-[](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
-كنا عاطلين عن العمل ولم يكن وضعنا الاقتصادي سهلًا، لكننا صمدنا بفضل دعم عائلتينا.
 
 
 {.testimony typewriter}
@@ -221,7 +208,7 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 
 {.meta} 
 [](fg:blank)
-[](map/#31.38518,34.39275,9.64,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused),+oct7-hamas-ar#2(bubbles))
+[](map/#31.38936,34.38357,10.27,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused),+oct7-hamas-ar#2(bubbles))
 قُتل 1,220 شخصًا في ذلك الهجوم، بمن فيهم نساء ومسنون وأطفال. 
 أصيب آلاف واختُطف إلى قطاع غزة 252 شخصًا، أحياءً وجثثًا.
 
@@ -307,12 +294,6 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 
 
 {.meta} 
-[](svg/#oct7.svg/0,-0.47,2/+ruined_jabalia "سكان يعاينون موقع الهجوم الإسرائيلي على منزل في جباليا، 3 كانون الثاني 2024 (رويترز: عماد غبون)")
-[](bg:blank)
-تم توثيق سكان بقوا في جباليا وهم يتجولون بين الأنقاض، يحاولون جمع ما تبقى من ممتلكاتهم.
-
-
-{.meta} 
 [](fg:blank)
 [](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+pois-ar(label-main-ar,id=khan-yunis),+pois-ar#2(label-main-ar,id=home),~labels_he,+labels_ar)
 في شباط 2024، أطلق الجيش الإسرائيلي سراح أحمد، فوصل إلى خان يونس في جنوب قطاع غزة. 
@@ -348,18 +329,12 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 [](fg:blank)
 [](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois.csv#4(poi,id=rafah),+pois-ar(label-main-ar,id=nuseirat),+pois-ar#2(label-main-ar,id=rafah),~labels_he)
 في منطقة النصيرات، تجتمعان مع أحمد، الذي لم تلتقياه منذ نحو ستة أشهر.
-
-
-{.meta}
-[](fg:blank)
-[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+pois.csv(poi,id=rafah),+pois-ar(label-main-ar,id=rafah),~labels_he) 
 من هناك، يواصل الثلاثة طريقهم إلى الخيمة التي أقامها أحمد في رفح.
 
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.26878,34.25305,15.23,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
-
+[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+pois.csv(poi,id=rafah),+pois-ar(label-main-ar,id=rafah),~labels_he) 
 تأثرتُ كثيرًا برؤية أحمد. كان يعانق ريتا ويقبّلها بلا توقف.
 
 
@@ -413,13 +388,7 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 [](svg/#south.svg/-0.34,-0.98,5.32/+rita_tent2.jpg "ريتا في مخيم للمهجرين في رفح")
 [](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he)    
 كان ذلك عذابًا متواصلًا، من أصعب الفترات في حياتي على الأرجح.
-
-
-{.testimony typewriter}
-[](svg/#south.svg/-0.34,-0.98,5.32/+rita_tent2.jpg "ريتا في مخيم للمهجرين في رفح")
-[](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
-لم أخبر عائلتي عن الصعوبات، لأنها عارضت في البداية نزوحي إلى الجنوب. 
-كنت أخجل من إخبارهم بظروف حياتي.
+كنتُ أخجل من إخبار والديّ بظروف حياتي.
 
 
 {.meta thumb} 
@@ -528,7 +497,7 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 {.meta}
 [](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
 [](bg:blank)
-نتيجة للقصف، بُترت يدا نِبال من تحت المرفقين وأصيبت بحروق خطيرة. كان المستشفى الذي نُقلت إليه يعاني من عبء هائل من الجرحى وعالجها الأطباء في ظل ظروف صعبة.
+نتيجة للقصف، بُترت يدا نِبال من تحت المرفقين وأصيبت بحروق خطيرة. 
 
 
 {.testimony typewriter}
@@ -606,13 +575,6 @@ window.copyToClipboard = function(text, elementId, successMessage) {
 [](bg:blank)
 
 العودة إلى الحياة في الخيمة مرة أخرى بعد الإصابة كانت صعبة للغاية. لم أكن أستطيع استخدام المرحاض بمفردي. كنت أشعر بالحرج الشديد حين أضطر لطلب المساعدة في كل مرة.
-
-
-{.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-0.77,0.04,4.1/+rita_tent1 "ريتا في مخيم المهجرين في المواصي")
-[](bg:blank)
-
-ابنة الجيران، فتاة ذكية وحساسة تبلغ من العمر 16 عامًا، أشفقت عليّ وكانت تأتي كل يوم لمساعدتي ورعايتي، أنا وريتا.
 
 
 {.testimony typewriter}
