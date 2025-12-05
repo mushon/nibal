@@ -2049,10 +2049,14 @@ function startViewer(){
     return loadSVG(url).then(() => {
       try {
         if (parsed.params) {
-              // animate into the requested params rather than snapping. Merge
-              // missing fields with captured defaults so unspecified values
-              // animate toward the default fit-to-container state.
-              return animateTo(mergeWithDefaults(parsed.params), 900).catch(()=>{});
+              // Apply params immediately on initial load for instant positioning
+              // Merge missing fields with captured defaults so unspecified values
+              // use the default fit-to-container state.
+              const mergedParams = mergeWithDefaults(parsed.params);
+              if (typeof mergedParams.x === 'number') state.tx = mergedParams.x;
+              if (typeof mergedParams.y === 'number') state.ty = mergedParams.y;
+              if (typeof mergedParams.s === 'number') state.scale = mergedParams.s;
+              render();
             }
       } catch (e) {
   /* Applying params failed */
@@ -2114,6 +2118,20 @@ window.addEventListener('hashchange', ()=>{
     
     // Load new SVG
     loadSVG(currentUrl).then(()=>{
+      // After SVG loads, apply params (x, y, zoom) if present
+      if (parsed.params) {
+        try {
+          const mergedParams = mergeWithDefaults(parsed.params);
+          // Apply params directly - update state and render immediately
+          if (typeof mergedParams.x === 'number') state.tx = mergedParams.x;
+          if (typeof mergedParams.y === 'number') state.ty = mergedParams.y;
+          if (typeof mergedParams.s === 'number') state.scale = mergedParams.s;
+          render();
+        } catch(e) {
+          console.warn('[svg] Error applying params after load:', e);
+        }
+      }
+      
       // After SVG loads, apply visibility from parsed hash
       if (parsed.vis) {
         try {
