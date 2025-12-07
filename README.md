@@ -2,6 +2,10 @@
 dual-iframe: true
 body-class: snap fs-video-mobile editor
 css: src/theme.css
+snap: true
+editor: true
+animate-sections: true
+extensions: [inflect-caption]
 ---
 
 # _מסע העקירה של_ ניבאל אל-היסי
