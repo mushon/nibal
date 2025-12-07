@@ -161,7 +161,7 @@ Five days later, Ahmad was issued a work permit and started a job as a construct
 
 
 {.meta no-h}
-### Oct 23
+#### Oct 23
 [](fg:blank)
 [](map/#31.37217,34.39109,10.61,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused))
 On 7 October 2023, Hamas and other armed Palestinian groups carried out the deadliest attack ever perpetrated against Israeli citizens.
@@ -258,7 +258,7 @@ Nibal decided to go meet him, despite her parents’ strong objections.
 
 
 {.meta no-h}
-## First Displacement
+### First Displacement
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "From Nibal’s Instagram account")
 [](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois(label-main,id=home),+pois#2(label-main,id=gaza-2403),~labels_he,+labels_en)
 Nibal’s father drove her and six-month-old Rita from Jabalya to Gaza City.
@@ -359,7 +359,7 @@ At the same time as ordering the evacuation, Israel intensified its strikes on t
 
 
 {.meta no-h}
-## Second Displacement
+### Second Displacement
 [](fg:blank)
 [](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),+pois#2(label-main,id=bureij),~labels_he,+labels_en)
 
@@ -413,7 +413,7 @@ But then, everything changed.
 
 
 {.meta no-h}
-### Oct 24
+#### Oct 24
 [](svg/#warehouse_bureij2.svg/-16.71,-1.35,58.58/+nibal_xray)
 [](bg:blank)
 That morning, Israel attacked al-Bureij. 
@@ -474,7 +474,7 @@ When I felt a bit better, in the hospital, I finally managed to call my mother. 
 
 
 {.meta no-h}
-## Third Displacement
+### Third Displacement
 [](fg:blank)
 [](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+idf-poly-outlines,+pois(label-main,id=al-zawaida),+pois#2(label-main,id=al-mawasi),~labels_he,+labels_en)
 Nibal was discharged from the hospital after 40 days. The family had to flee again.
@@ -588,7 +588,7 @@ But I was losing hope.
 
 
 {.meta no-h}
-## Fourth Displacement
+### Fourth Displacement
 [](svg/#ceasefire_hope.svg/-0.15,0.3,2.65/+@vimeo-1136076448 "IDPs return north along a-Rashid Road, 21 Jan. 2025 (Activestills/Yousef Zaanoun)")
 [](bg:blank)
 Two months after the family reached the tent, a second ceasefire between Israel and Hamas took effect in January 2025.
@@ -777,7 +777,7 @@ Later, Nibal learned that the building she had lived in most of her life with he
 
 
 {.meta no-h}
-## Fifth Displacement
+### Fifth Displacement
 [](fg:blank)
 [](map/#31.52993,34.49211,12.14,38.4,0.0/+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
 Nibal walked with Rita and about 50 people from her family to Gaza City, in search of safety.
@@ -805,7 +805,7 @@ In early September 2025, just weeks after Nibal arrived in Gaza City, Israel ord
 
 
 {.meta no-h}
-## Sixth Displacement
+### Sixth Displacement
 [](fg:blank)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_en,+pois(label-main,id=deir-al-balah)))
 The family fled south again, this time to a tent camp in Deir al-Balah.  
@@ -844,7 +844,7 @@ I look around and see my brothers’ wives caring for their families, and I’m 
 {.meta no-h}
 [](fg:blank)
 [](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),+pois(label-main,id=deir-al-balah),~labels_he,+labels_en "In red: The area remaining under Israeli control according to the first phase of the Oct. 2025 ceasefire deal")
-### Oct 25
+#### Oct 25
 On 10 October 2025, another ceasefire between Israel and Hamas took effect. 
 Israel continued to bomb the Gaza Strip in the weeks that followed.
 
