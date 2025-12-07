@@ -353,15 +353,17 @@
             text = fmConfig.text;
             const config = fmConfig.config || {};
             
-            // Load extensions based on frontmatter config
-            await loadExtensionsFromConfig(config);
-            
-            // Apply frontmatter settings via extension
+            // Apply frontmatter settings BEFORE loading extensions
+            // (extensions may check body classes during init)
             if (FrontmatterExt) {
                 if (config.css) FrontmatterExt.applyPageCss(config.css);
                 if (config.bodyClass) FrontmatterExt.applyBodyClasses(config.bodyClass);
                 if (config.dualIframe) FrontmatterExt.applyDualIframeMode(true);
             }
+            
+            // Now load extensions based on frontmatter config
+            // Extensions can now reliably check body classes in their init()
+            await loadExtensionsFromConfig(config);
             
             // Keep legacy variables for backwards compatibility
             const pageCssPath = config.css || null;
