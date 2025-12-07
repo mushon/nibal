@@ -417,6 +417,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const targetCenter = targetTop + (targetHeight / 2);
         const isTargetBelow = targetCenter > currentCenterOfViewport;
         
+        // Remove any existing animation classes from all sections
+        document.querySelectorAll('section').forEach(sec => {
+          sec.classList.remove('slide-from-bottom', 'slide-from-top');
+        });
+        
+        // Apply animation class based on direction
+        if (isTargetBelow) {
+          // Scrolling forward (down) - section should slide up from bottom
+          target.classList.add('slide-from-bottom');
+        } else {
+          // Scrolling backward (up) - section should slide down from top
+          target.classList.add('slide-from-top');
+        }
+        
         // Calculate jump position: show 50% of target from the direction it's coming from
         let jumpScrollTop;
         if (isTargetBelow) {
