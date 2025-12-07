@@ -774,9 +774,9 @@ Later, Nibal learned that the building she had lived in most of her life with he
 
 {.meta}
 [](fg:blank)
-[](map/#31.51870,34.48509,11.69,38.4,0.0/+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
+[](map/#31.52993,34.49211,12.14,38.4,0.0/+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
 Nibal walked with Rita and about 50 people from her family to Gaza City, in search of safety.
-They sheltered in an abandoned restaurant belonging to friends, and later in a cramped apartment in Gaza City.
+They sheltered in an abandoned restaurant belonging to friends, and later in a cramped apartment.
 
 
 {.meta} 
@@ -925,9 +925,7 @@ In recent months, Nibal has shared her story on social and mainstream media. She
 {.meta}
 [](svg/#permanent_impermanence.svg/-1.58,-1.98,6.47/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
-**Nibal and Rita’s ordeal is not over.**  
-
-B’Tselem will follow their story and share any developments in our newsletter:
+**Nibal and Rita’s ordeal is not over.**  B’Tselem will follow their story and share any developments in our newsletter:
 
 <div id="mc_embed_shell">
       <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
