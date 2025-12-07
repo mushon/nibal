@@ -163,7 +163,7 @@ Five days later, Ahmad was issued a work permit and started a job as a construct
 {.meta no-h}
 ### Oct 23
 [](fg:blank)
-[](map/#31.37217,34.39109,10.61,-10.4,42.0/~labels_he,+oct7-hamas(label-focused),+oct7-hamas#2(bubbles))
+[](map/#31.37217,34.39109,10.61,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused))
 On 7 October 2023, Hamas and other armed Palestinian groups carried out the deadliest attack ever perpetrated against Israeli citizens.
 Entering from Gaza, the attackers killed 1,220 people, and injured tens of thousands. 
 They carried 252 people, some living and others dead, back to Gaza.
@@ -787,7 +787,7 @@ During those weeks, Israel launched another ground invasion into Gaza City.
 
 
 {.meta thumb} 
-[](svg/#permanent_impermanence.svg/0.53,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~@vimeo-1136076786 "A leaflet ordering evacuation dropped by an Israeli plane in Gaza City, 9 Sept. 2025 (Reuters/Dawoud Abu Alkas)")
+[](svg/#permanent_impermanence.svg/0.53,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~vimeo-1136076786 "A leaflet ordering evacuation dropped by an Israeli plane in Gaza City, 9 Sept. 2025 (Reuters/Dawoud Abu Alkas)")
 [](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_en)
 In early September 2025, just weeks after Nibal arrived in Gaza City, Israel ordered about 1.2 million people to evacuate the city.
 
