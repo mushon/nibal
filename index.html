@@ -1008,6 +1008,9 @@
 
                         document.querySelector('main').innerHTML = html;
 
+                        // Reset scroll position to top when content changes
+                        window.scrollTo(0, 0);
+
                         // Record successful render so immediate duplicate invocations can be skipped
                         try { 
                             window.__lastRenderSuccessAt = Date.now(); 
@@ -1482,6 +1485,7 @@
 
     // with IntersectionObserver we can check what is visible    
     function initializeObservers() {
+        // Store observers globally so they can be cleaned up on content change
         const isMobilePortrait = window.matchMedia("(max-width: 1000px) and (orientation: portrait)").matches;
         const observer = new IntersectionObserver((entries) => {
             let captionNeedsUpdate = false;
@@ -2239,15 +2243,16 @@
     })();
     window.scheduleRenderMarkdown(0);
     
-    // Listen for hash changes and update markdown
+    // Listen for hash changes and reload the page to ensure clean state
     window.addEventListener('hashchange', () => {
-        // Reset the render suppression timer and candidate when hash changes to ensure immediate re-render
-        try { 
-            window.__lastRenderSuccessAt = 0; 
-            window.__lastRenderSuccessCandidate = null;
-            window.__lastRenderSuccessHash = null;
-        } catch(e){}
-        window.scheduleRenderMarkdown(0);
+        // Extract the file name from both old and new hash
+        const currentHash = window.location.hash.substring(1).replace(/:\d+$/, '') || 'README';
+        const lastRendered = window.__lastRenderSuccessHash || 'README';
+        
+        // If switching to a different file, reload the page
+        if (currentHash !== lastRendered) {
+            window.location.reload();
+        }
     });
 
         // Load Typed.js library from CDN
