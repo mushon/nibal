@@ -260,7 +260,8 @@ css: src/theme.css, src/ar.css
 [](bg:blank)
 ## الرحلة جنوبًا 
 
-
+{.meta no-h}
+## النزوح الأول
 {.meta} 
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "من حساب نِبال على إنستغرام")
 [](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
@@ -344,7 +345,8 @@ css: src/theme.css, src/ar.css
 كان ذلك عذابًا متواصلًا، من أصعب الفترات في حياتي على الأرجح.
 كنتُ أخجل من إخبار والديّ بظروف حياتي.
 
-
+{.meta no-h}
+## النزوح الثاني
 {.meta thumb} 
 [](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
 [](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main-ar,id=rafah),~labels_he,+labels_ar "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
@@ -472,7 +474,8 @@ css: src/theme.css, src/ar.css
 جُنَّ والداي من شدّة القلق. كانا يخشيان ألا أنجو، وكانا يتابعان حالتي باستمرار من خلال أحمد. 
 وعندما تحسّن وضعي قليلًا، تمكّنت أخيرًا من الاتصال بوالدتي بنفسي. أردتُ أن تسمع صوتي وتطمئن أنني على قيد الحياة. لم تصدّق أنني ما زلت حيّة وانفجرَت بالبكاء.
 
-
+{.meta no-h}
+## النزوح الثالث
 {.meta}
 [](fg:blank)
 [](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+idf-poly-outlines,+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=al-mawasi),~labels_he,+labels_ar)
@@ -585,6 +588,8 @@ css: src/theme.css, src/ar.css
 ## وقف إطلاق النار: كانون الثاني 2025
 
 
+{.meta no-h}
+## النزوح الرابع
 {.meta}
 [](svg/#ceasefire_hope.svg/-0.15,0.3,2.65/+@vimeo-1136076448 "مهجّرون على شارع الرشيد في طريق عودتهم إلى الشمال، 21 كانون الثاني 2025 (Activestills: يوسف زعنون)")
 [](bg:blank)
@@ -772,6 +777,8 @@ css: src/theme.css, src/ar.css
 ## مؤقـّتيّة دائمة
 
 
+{.meta no-h}
+## النزوح الخامس
 {.meta}
 [](fg:blank)
 [](map/#31.52993,34.49211,12.14,38.4,0.0/+pois-ar(label-main-ar,id=gaza-2509),+pois-ar#2(label-main-ar,id=home),~labels_he)
@@ -799,6 +806,8 @@ css: src/theme.css, src/ar.css
 </a>
 
 
+{.meta no-h}
+## النزوح السادس
 {.meta}
 [](fg:blank)
 [](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar,+pois-ar(label-main-ar,id=deir-al-balah))
