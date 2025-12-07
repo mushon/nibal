@@ -231,7 +231,7 @@ css: src/theme.css, src/ar.css
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.52965,34.48083,14.83,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-ar(label-main,id=home),~labels_he,+labels_ar)
+[](map/#31.52965,34.48083,14.83,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he,+labels_ar)
 كنت خائفة عليها جدًا.
 
 
@@ -239,6 +239,12 @@ css: src/theme.css, src/ar.css
 [](svg/#oct7.svg/0,-0.47,2/+ruined_jabalia "سكان يعاينون موقع الهجوم الإسرائيلي على منزل في جباليا، 3 كانون الثاني 2024 (رويترز: عماد غبون)")
 [](bg:blank)
 حتى نهاية 2023، غيّرت الغارات الجوية الإسرائيلية وجه شمال القطاع إلى درجة أنه لم يعد ممكنًا التعرف عليه.
+
+
+{.meta} 
+[](svg/#oct7.svg/0,-0.47,2/+ruined_jabalia "سكان يعاينون موقع الهجوم الإسرائيلي على منزل في جباليا، 3 كانون الثاني 2024 (رويترز: عماد غبون)")
+[](bg:blank)
+تم توثيق سكان بقوا في جباليا وهم يتجولون بين الأنقاض، يحاولون جمع ما تبقى من ممتلكاتهم. 
 
 
 {.meta} 
@@ -677,7 +683,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](fg:blank)
-[](map/#31.52950,34.47907,17.40,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he "تقييم الأضرار وشدّة الإصابات في المباني في جباليا حتى بداية نيسان 2025. المصدر: UNOSAT")
+[](map/#31.52957,34.47929,18.39,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he "تقييم الأضرار وشدّة الإصابات في المباني في جباليا حتى بداية نيسان 2025. المصدر: UNOSAT")
 في نيسان 2025، قصف الجيش الإسرائيلي منزل آلاء، شقيقة نِبال، في جباليا. 
 نتيجة للقصف، قُتل أطفال آلاء الثلاثة: وسيم (10 سنوات) ومهند (8 سنوات) وخولة (5 سنوات).
 
@@ -716,7 +722,7 @@ css: src/theme.css, src/ar.css
 
 {.testimony typewriter}
 [](svg/#back_home.svg/0.94,-0.57,3.11/+nibal_home_smile3.heic)
-[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
+[](map/#31.52943,34.47873,16.78,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
 
 كنت محبطة للغاية لأنني لم أستطع فعل أي شيء بنفسي ووجدتُ صعوبة في الاعتناء بريتا. 
 كان من الصعب عليّ استيعاب الفراق عن أحمد وأنا أفتقده كثيرًا. 
@@ -732,7 +738,7 @@ css: src/theme.css, src/ar.css
 
 {.meta}
 [](svg/#back_home.svg/-0.43,0.71,2.35/+@vimeo-1137391856,+vimeo-1137392312 "القصف في حي النزلة في جباليا، آب 2025")
-[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
+[](map/#31.52943,34.47873,16.78,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
 في نهاية آب 2025، دخلت قوات الجيش الإسرائيلي إلى جباليا وتقدمت نحو حيّ نِبال.
 
 
@@ -778,15 +784,15 @@ css: src/theme.css, src/ar.css
 
 
 {.meta} 
-[](map/#31.50774,34.46034,14.51,38.4,0.0/~labels_he,+labels_ar)
 [](svg/#permanent_impermanence.svg/-0.59,0.39,2.29/+@vimeo-1136076786 "سكان مهجّرون من مخيم الشاطئ للاجئين، قرب مدينة غزة، 19 أيلول 2025 (Activestills: يوسف زعنون)")
+[](map/#31.50806,34.46098,14.51,38.4,0.0/~labels_he,+labels_ar)
 
 في تلك الأسابيع ذاتها، شنت إسرائيل هجومًا بريًا آخر على مدينة غزة.
 
 
 {.meta thumb} 
 [](svg/#permanent_impermanence.svg/0.53,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~vimeo-1136076786 "أحد سكان مدينة غزة يحمل أمر إخلاء ألقته طائرة إسرائيلية، 9 أيلول 2025 (رويترز: داود أبو الكاس)")
-[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_ar)
+[](map/#31.50806,34.46098,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_ar)
 أوامر الإخلاء التي أصدرها الجيش الإسرائيلي في أوائل أيلول 2025، بعد أسابيع قليلة من وصول عائلة نِبال إلى المدينة، تأمر حوالي 1,2 مليون شخص بالنزوح من مكان إقامتهم، مرة أخرى.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
