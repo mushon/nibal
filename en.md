@@ -61,13 +61,13 @@ Yet many orders are misleading or issued after the area is attacked – creating
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
-[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+UNOSAT_gaza_23-10-15(poly-scale) "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+labels_en,+UNOSAT_gaza_23-10-15(poly-scale) "Assessment of building damage and impact severity in the Gaza Strip a week into the offensive. Red: Low density; Orange: Medium density; Yellow: High density (UNOSAT)")
 People also fled of their own accord, escaping the frequent airstrikes that rained down death and destruction throughout the Strip.
 
 
 {.meta}
 [](svg/#intro-pre.svg/0.34,0.36,1.81/~all)
-[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+UNOSAT_gaza_25-10-11(poly-scale) "!!! Assessed density of damage to buildings in the Gaza Strip two years into the offensive, 15 Oct. 2023 (UNOSAT)")
+[](map/#31.41661,34.37347,10.01,37.6,0.0/~labels_he,+labels_en,+UNOSAT_gaza_25-10-11(poly-scale) "!!! Assessment of building damage and impact severity in the Gaza Strip two years into the offensive. Red: Low density; Orange: Medium density; Yellow: High density (UNOSAT)")
 
 
 {.meta}
@@ -171,26 +171,26 @@ They carried 252 people, some living and others dead, back to Gaza.
 
 {.meta} 
 [](fg:blank)
-[](map/#31.38461,34.38113,10.13,-10.4,42.0/~labels_he,+labels_en,+UNOSAT_gaza_23-10-15(poly-scale) "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
+[](map/#31.38461,34.38113,10.13,-10.4,42.0/~labels_he,+labels_en,+UNOSAT_gaza_23-10-15(poly-scale) "Assessment of building damage and impact severity in the Gaza Strip a week into the offensive. Red: Low density; Orange: Medium density; Yellow: High density (UNOSAT)")
 That same day, Israel launched a massive wave of strikes across Gaza. 
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.51976,34.47657,10.89,-10.4,42.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he,+pois.csv(poi,id=home) "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
+[](map/#31.51976,34.47657,10.89,-10.4,42.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he,+pois.csv(poi,id=home))
 Nibal was at home in Jabalya with her newborn. 
 Ahmad was at work in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.56,0.74,2.51/+detainies-2,+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.82,1.09,3.68/+detainies-2,+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he)
 A few days later, Israel revoked tens of thousands of permits from all workers from Gaza. Many were inside Israel and could not go home.
 Ahmad and thousands of others instantly became “illegal aliens” in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.79,0.96,2.51/+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/1.13,1.4,3.68/+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he)
 He and thousands of others were arrested in Israel within days.
 
@@ -222,7 +222,7 @@ Under heavy fire, hundreds of thousands had to decide where to run without knowi
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home),~labels_he,+labels_en "Assessed density of damage to buildings in the Gaza Strip a week into the offensive, 15 Oct. 2023 (UNOSAT)")
+[](map/#31.52287,34.46534,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home),~labels_he,+labels_en "Assessment of building damage and impact severity in the Gaza Strip after the first week of the offensive. Red: Low density; Orange: Medium density; Yellow: High density (UNOSAT)")
 Nibal was afraid to travel alone with her baby, and moved with Rita to her nearby parents’ home.
 
 
