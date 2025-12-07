@@ -86,9 +86,10 @@
                 const cssPath = basePath + name + '.css';
                 
                 // Load CSS first (if exists) so styles are ready when JS initializes
+                // Use a simple fetch and check status to avoid console errors
                 try {
-                    const cssResp = await fetch(cssPath, { method: 'HEAD' });
-                    if (cssResp.ok) {
+                    const cssResp = await fetch(cssPath, { method: 'HEAD' }).catch(() => null);
+                    if (cssResp && cssResp.ok) {
                         const link = document.createElement('link');
                         link.rel = 'stylesheet';
                         link.href = cssPath;
@@ -478,8 +479,8 @@
                             window.__lastRenderSuccessHash = file;
                         } catch(e){}
 
-                        // apply per-page css after rendering
-                            try { applyPageCss(pageCssPath); } catch (e) {  }
+                        // CSS is already applied by frontmatter extension above
+                        // (removed duplicate applyPageCss call)
 
                         // If the markdown included a leading body-class marker, apply it to <body>
                         // Remove any previously applied classes from earlier renders (kept in data-body-classes)
