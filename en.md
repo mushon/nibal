@@ -228,8 +228,8 @@ We didn’t leave and go south despite the bombing, hunger and fear. I suffered 
 
 
 {.testimony typewriter}
-[](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.52965,34.48083,14.83,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he,+labels_en)
+[](svg/#oct7.svg/-2.13,1.96,5.7/+nibal_rita_hands-comp.jpg)
+[](bg:blank)
 I was so scared something would happen to my baby.
 
 
