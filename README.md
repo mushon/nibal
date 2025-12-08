@@ -291,7 +291,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.9,-1.71,7.98/+prisoners_kid)
+[](svg/#south.svg/-0.9,-1.78,7.98/+prisoners_kid)
 [](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 אבל המפגש איתו היה גם מזעזע. הוא ירד המון במשקל, ונראה שהוא איבד את ניצוץ החיים שלו. 
 
@@ -338,7 +338,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.34,-0.98,5.32/+rita_tent2.jpg)
+[](svg/#south.svg/-0.26,-1.31,6.94/+rita_tent2.jpg)
 [](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he "ריתא במחנה העקורים ברפיח")
 זה היה עינוי מתמשך, ככל הנראה מהתקופות הקשות בחיי.
 התביישתי לספר להורים שלי איך אני חיה.
@@ -443,14 +443,14 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.09,0.11,7.1/+nibal_xray)
 [](bg:blank)
 
 התעוררתי בבית החולים וראיתי שנכרתו לי הידיים. 
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.09,0.11,7.1/+nibal_xray)
 [](bg:blank)
 כתוצאה מפגיעת הפגז, ידיה של ניבאל נקטעו מתחת למרפק והיא נכוותה קשות. 
 
@@ -694,6 +694,10 @@ css: src/theme.css
 [](map/#31.52957,34.47929,18.39,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-he(label-main,id=alaa-home),+pois-he#2(label-main,id=couple-home),~labels_he "הערכת נזק וחומרת פגיעה במבנים בג׳אבליא עד לתחילת אפריל 2025. מקור: UNOSAT")
 באפריל 2025 הפציץ הצבא הישראלי את הבית הסמוך לבית הזוג, בו חיה משפחתה של אלאא, אחותה של ניבאל.  
 
+
+{.meta}
+[](svg/#back_home.svg/-0.41,-0.44,4.24/+alaas_kids.jpg)
+[](bg:blank)
 כתוצאה מההפצצה נהרגו שלושת ילדיה של אלאא: וסים, בן 10, מוהנד, בן 8, וח'וולה, בת 5.
 
 
@@ -801,7 +805,7 @@ css: src/theme.css
 
 
 {.meta thumb} 
-[](svg/#permanent_impermanence.svg/0.53,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~vimeo-1136076786 "תושב העיר עזה מחזיק בצו פינוי שהוטל ממטוס ישראלי, 9 בספטמבר 2025 (REUTERS/דאווד אבו אלקאס)")
+[](svg/#permanent_impermanence.svg/-0.59,0.39,2.29/+@vimeo-1136076786)
 [](map/#31.50806,34.46098,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly))
 צווי הפינוי שהוציא הצבא בתחילת ספטמבר 2025 לתושבי צפון הרצועה הורו לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
@@ -834,7 +838,7 @@ css: src/theme.css
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/-0.93,-1.59,6.21/+home_nibal_RUINED.png,~home_nibal.png "ביתה של ניבאל בג׳אבליא, אוקטובר 2025")
+[](svg/#permanent_impermanence.svg/-0.86,-1.59,6.21/+home_nibal_RUINED.png,~home_nibal.png "הריסות ביתה של ניבאל בג׳אבליא, אוקטובר 2025")
 [](bg:blank)
 
 הם הפכו למוות מתמשך. חיי השפלה ועלבון, בלי בית, בלי טיפת יציבות.
@@ -940,7 +944,7 @@ css: src/theme.css
 {.meta}
 [](svg/#permanent_impermanence.svg/-1.58,-1.98,6.47/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
-**המסע של ניבאל וריתא טרם נגמר.**  בצלם ימשיך לשמור על קשר עם ניבאל. אם יחול שינוי במצבה — נעדכן עליו בניוזלטר שלנו:
+בצלם ימשיך לשמור על קשר עם ניבאל. אם יחול שינוי במצבה — נעדכן עליו בניוזלטר שלנו:
 
 <div id="mc_embed_shell">
       <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
