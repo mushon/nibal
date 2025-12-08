@@ -99,12 +99,15 @@
                     }
                 }
                 
-                // Load JS module
+                // Load JS module and wait for it to be ready
                 return new Promise((resolve, reject) => {
                     const script = document.createElement('script');
                     script.src = jsPath;
                     script.setAttribute('data-extension', name);
-                    script.onload = () => resolve(name);
+                    script.onload = () => {
+                        // Give the extension a moment to register itself
+                        setTimeout(() => resolve(name), 10);
+                    };
                     script.onerror = () => reject(new Error(`Failed to load extension: ${name}`));
                     document.head.appendChild(script);
                 });
@@ -142,10 +145,14 @@
                 extensions.push(...config.extensions);
             }
             
+            console.log('[Extension Loader] Loading extensions:', extensions);
+            
             // Load all extensions in parallel
             if (extensions.length > 0) {
                 await Promise.all(extensions.map(ext => loadExtension(ext)));
             }
+            
+            console.log('[Extension Loader] All extensions loaded, initializing...');
             
             // Initialize extensions that were loaded
             for (const ext of extensions) {
@@ -156,12 +163,17 @@
                 
                 if (ExtensionAPI && typeof ExtensionAPI.init === 'function') {
                     try {
+                        console.log(`[Extension Loader] Initializing ${ext}...`);
                         ExtensionAPI.init();
                     } catch (e) {
                         console.error(`Failed to initialize ${ext}:`, e);
                     }
+                } else {
+                    console.log(`[Extension Loader] ${ext} has no init method (utility extension)`);
                 }
             }
+            
+            console.log('[Extension Loader] Initialization complete');
         }
         
         // ============================================================================
@@ -340,7 +352,8 @@
             }
 
             if (!text) {
-                                throw new Error('Could not fetch markdown for: ' + file + ' (checked ' + candidatePaths.join(', ') + ')');
+                console.error('[ERROR] Could not fetch markdown for:', file);
+                throw new Error('Could not fetch markdown for: ' + file + ' (checked ' + candidatePaths.join(', ') + ')');
             }
 
             // --- Load frontmatter extension and parse config ---
@@ -468,9 +481,9 @@
             // skip footer when on inflect page
             if (document.URL!="https://uclab.fh-potsdam.de/inflect/") html = html + "\n<footer>a story made with <strong><a class='dontinflect' href='https://uclab.fh-potsdam.de/inflect/'>!nflect</a></strong></footer>";
 
-                        document.querySelector('main').innerHTML = html;
+            document.querySelector('main').innerHTML = html;
 
-                        // Reset scroll position to top when content changes
+            // Reset scroll position to top when content changes
                         window.scrollTo(0, 0);
 
                         // Record successful render so immediate duplicate invocations can be skipped
@@ -723,7 +736,9 @@
                 }
             }catch(e){}
         } catch (error) {
-                    } finally {
+            console.error('[ERROR] renderMarkdown failed:', error);
+            console.error('[ERROR] Stack:', error.stack);
+        } finally {
             // Always reset the running flag so subsequent renders can proceed
             try { window.__renderMarkdownRunning = false; } catch(e){}
         }
