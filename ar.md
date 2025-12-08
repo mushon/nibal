@@ -230,8 +230,8 @@ css: src/theme.css, src/ar.css
 
 
 {.testimony typewriter}
-[](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.52965,34.48083,14.83,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he,+labels_ar)
+[](svg/#oct7.svg/-2.13,1.96,5.7/+nibal_rita_hands-comp.jpg)
+[](bg:blank)
 كنت خائفة عليها جدًا.
 
 
