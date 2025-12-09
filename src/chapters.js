@@ -447,12 +447,12 @@ document.addEventListener('DOMContentLoaded', function () {
             sec.classList.remove('slide-from-bottom', 'slide-from-top');
           });
           
-          // Apply animation: when going forward (down), slide up from bottom
-          // When going backward (up), slide down from top
+          // Apply animation: when going forward (down), slide down from top
+          // When going backward (up), slide up from bottom
           if (isTargetBelow) {
-            target.classList.add('slide-from-bottom');
-          } else {
             target.classList.add('slide-from-top');
+          } else {
+            target.classList.add('slide-from-bottom');
           }
           
           // Remove animation class after completion
