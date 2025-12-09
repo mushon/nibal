@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // getBoundingClientRect().top is relative to viewport, so:
         // - positive = below current view
         // - negative = above current view
-        const isTargetBelow = targetRect.top > 0;
+        const isTargetBelow = targetRect.top < 0;
         
         // Calculate jump position: show 50% of target from the direction it's coming from
         let jumpScrollTop;
