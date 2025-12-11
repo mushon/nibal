@@ -22,9 +22,7 @@
     <base href="./">
 
     <link rel="stylesheet" href="src/base.css">
-    <!-- Chapter navigation styles and behavior (global so scripts run reliably) -->
-    <link rel="stylesheet" href="src/chapters.css">
-    <script src="src/chapters.js" defer></script>
+    <!-- Extensions (chapters, typewriter, etc.) are loaded dynamically based on frontmatter -->
     <script src="src/hide-empty-anchors.js" defer></script>
     <style>
         /* Layout is controlled by external CSS files: base.css is always loaded.
@@ -86,7 +84,7 @@
                 const cssPath = basePath + name + '.css';
                 
                 // Only try to load CSS for extensions that have companion stylesheets
-                const extensionsWithCss = ['dual-iframe', 'section-animations'];
+                const extensionsWithCss = ['dual-iframe', 'section-animations', 'chapters'];
                 if (extensionsWithCss.includes(name)) {
                     try {
                         const link = document.createElement('link');
@@ -122,6 +120,9 @@
             if (!config) return;
             
             const extensions = [];
+            
+            // Chapters navigation is always loaded (core functionality)
+            extensions.push('chapters');
             
             // Auto-detect extensions based on frontmatter flags
             if (config.dualIframe) {
