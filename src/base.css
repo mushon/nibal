@@ -42,6 +42,7 @@ main {
     padding: 4vh 2vw;
     padding: 4dvh 2vw; /* Dynamic viewport height for mobile browsers */
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 10;
 }
 
