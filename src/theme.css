@@ -452,6 +452,7 @@ section:first-of-type,
 body.content-top section:first-of-type {
     justify-content: center;
     text-align: center; 
+    max-width: 100%;
 }
  
 section:first-of-type {
@@ -732,7 +733,6 @@ input#mce-EMAIL{
         bottom: auto;
         background: linear-gradient(0deg, rgba(34, 34, 34, 0.00) 0%, #333 90%);
         margin: 0;
-        }
     }
 
     body.content-top section {
@@ -748,7 +748,7 @@ input#mce-EMAIL{
     body.content-top .inflect-caption {
         bottom: 8px;
         top: auto;
-    } 
+    }
 
     /* body.content-top section {
         justify-content: end;

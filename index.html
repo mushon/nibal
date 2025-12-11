@@ -968,6 +968,8 @@
     function initializeObservers() {
         // Store observers globally so they can be cleaned up on content change
         const isMobilePortrait = window.matchMedia("(max-width: 1000px) and (orientation: portrait)").matches;
+        let captionUpdateTimeout = null; // Debounce caption updates across all observer callbacks
+        
         const observer = new IntersectionObserver((entries) => {
             let captionNeedsUpdate = false;
             
@@ -1026,14 +1028,24 @@
             // Update caption ONCE after all entries in this batch have been processed
             // Use setTimeout to ensure all active class changes have been applied
             if (captionNeedsUpdate) {
-                setTimeout(() => {
+                // Clear any pending update
+                if (captionUpdateTimeout) {
+                    clearTimeout(captionUpdateTimeout);
+                }
+                // Schedule update with debounce - only execute after scrolling settles
+                captionUpdateTimeout = setTimeout(() => {
                     try {
                         if (window.__updateInflectCaption) window.__updateInflectCaption();
                     } catch(e) { /* swallow */ }
-                }, 0);
+                    captionUpdateTimeout = null;
+                }, 200); // Wait 200ms after last change before updating
             }
         },{
-            rootMargin: isMobilePortrait ? "-50% 0px 0px 0px" : "0px"
+            // In content-top mode, content is at bottom of screen (0-20dvh)
+            // So we need to check the bottom half instead of top half
+            rootMargin: isMobilePortrait 
+                ? (document.body.classList.contains('content-top') ? "0px 0px -50% 0px" : "-50% 0px 0px 0px")
+                : "0px"
         });
 
         // Also observe sections: some markdown creates empty anchors inside

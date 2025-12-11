@@ -17,6 +17,9 @@
   let captionElement = null;
   let bgCaption = '';
   let fgCaption = '';
+  let lastCaption = '';
+  let hideTimeout = null;
+  let updateTimeout = null; // Debounce rapid updates
 
   // Update combined caption
   function updateCombinedCaption() {
@@ -26,10 +29,28 @@
       const parts = [bgCaption, fgCaption].filter(c => c.trim().length > 0);
       const combined = parts.join(' • ');
       
+      // Clear any pending hide timeout
+      if (hideTimeout) {
+        clearTimeout(hideTimeout);
+        hideTimeout = null;
+      }
+      
       if (!combined) {
-        captionElement.style.display = 'none';
+        // Don't hide immediately - persist last caption for a moment
+        // This prevents flashing when links rapidly enter/exit viewport on mobile
+        if (lastCaption && captionElement.style.display !== 'none') {
+          hideTimeout = setTimeout(() => {
+            captionElement.style.display = 'none';
+            lastCaption = '';
+          }, 2000); // Keep visible for 2s after losing active state
+        } else {
+          captionElement.style.display = 'none';
+        }
         return;
       }
+      
+      // Update caption content
+      lastCaption = combined;
       
       // Check for !!! note styling
       if (combined.startsWith('!!!')) {
@@ -112,6 +133,17 @@
     } catch(e) { /* swallow */ }
   }
 
+  // Debounced wrapper for updateInflectCaption
+  function debouncedUpdateInflectCaption() {
+    if (updateTimeout) {
+      clearTimeout(updateTimeout);
+    }
+    updateTimeout = setTimeout(() => {
+      updateInflectCaption();
+      updateTimeout = null;
+    }, 150); // 150ms debounce to prevent rapid repeated calls
+  }
+
   // Initialize caption element
   function init() {
     captionElement = document.getElementById('inflect-caption');
@@ -123,27 +155,23 @@
       document.body.appendChild(captionElement);
     }
 
-    // Expose update function globally
-    window.__updateInflectCaption = updateInflectCaption;
+    // Expose DEBOUNCED update function globally
+    window.__updateInflectCaption = debouncedUpdateInflectCaption;
 
     // Event-driven updates instead of polling
-    // Update when scrolling (debounced for performance)
-    let scrollTimeout;
-    document.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(updateInflectCaption, 100);
-    }, { passive: true });
+    // Note: Scroll updates handled by IntersectionObserver in main index.html
+    // which calls __updateInflectCaption after processing entries
     
     // Update on window messages (iframe communication)
     window.addEventListener('message', (e) => {
       if (e.data && (e.data.type === 'inflection-change' || e.data.type === 'active-link-change')) {
-        updateInflectCaption();
+        debouncedUpdateInflectCaption();
       }
     });
     
     // Update when body classes change (mode switches)
     const bodyObserver = new MutationObserver(() => {
-      updateInflectCaption();
+      debouncedUpdateInflectCaption();
     });
     bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     
@@ -153,6 +181,10 @@
 
   // Cleanup
   function cleanup() {
+    if (hideTimeout) {
+      clearTimeout(hideTimeout);
+      hideTimeout = null;
+    }
     if (captionElement && captionElement.parentNode) {
       captionElement.parentNode.removeChild(captionElement);
     }
