@@ -1,6 +1,6 @@
 ---
 dual-iframe: true
-body-class: snap ltr fs-video-mobile editor
+body-class: snap ltr fs-video-mobile editor content-top
 css: src/theme.css, src/ltr.css
 snap: true
 editor: true
