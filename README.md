@@ -1,6 +1,6 @@
 ---
 dual-iframe: true
-body-class: snap fs-video-mobile editor animate-sections
+body-class: snap fs-video-mobile editor animate-sections content-top
 css: src/theme.css
 snap: true
 editor: true

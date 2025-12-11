@@ -2,61 +2,9 @@
  * Dual-iframe Extension CSS
  * 
  * Styles for dual-layer iframe composition
+ * Note: Base styles are in theme.css, this file only has extension-specific overrides
  */
 
-/* Dual-iframe mode: stack background and foreground */
-body.dual-iframe #background-frame,
-body.dual-iframe #foreground-frame {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60vw;
-    height: 100vh;
-    height: 100dvh;
-    border: 0;
-    background: transparent;
-    pointer-events: auto;
-}
+/* Extension-specific styles can go here if needed */
+/* Currently all dual-iframe styles are in theme.css */
 
-/* Background sits behind foreground */
-body.dual-iframe #background-frame {
-    z-index: 1;
-}
-
-/* Foreground sits on top */
-body.dual-iframe #foreground-frame {
-    z-index: 2;
-    pointer-events: none; /* Let clicks pass through to background by default */
-}
-
-/* When foreground has content, enable pointer events */
-body.dual-iframe #foreground-frame:not([src=""]):not([src="about:blank"]) {
-    pointer-events: auto;
-}
-
-/* Inactive frames don't receive pointer events */
-body.dual-iframe #background-frame.inactive,
-body.dual-iframe #foreground-frame.inactive {
-    pointer-events: none !important;
-}
-
-/* Hide the main single iframe in dual mode */
-body.dual-iframe #if {
-    display: none;
-}
-
-/* Mobile: dual iframes stack vertically */
-@media (max-width: 1000px) and (orientation: portrait) {
-    body.dual-iframe #background-frame,
-    body.dual-iframe #foreground-frame {
-        left: 0;
-        width: 100vw;
-        height: 50vh;
-        height: 50dvh;
-    }
-    
-    body.dual-iframe #foreground-frame {
-        top: 50vh;
-        top: 50dvh;
-    }
-}
