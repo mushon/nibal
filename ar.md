@@ -159,7 +159,7 @@ extensions: [inflect-caption]
 #### Oct 23
 
 [](fg:blank)
-[](map/#31.37217,34.39109,10.61,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused))
+[](map/#31.36736,34.39816,10.39,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused))
 في 7 تشرين الأول 2023، نفذت حركة حماس وفصائل فلسطينية مسلحة أخرى من قطاع غزة الهجوم الأكثر دموية الذي وقع ضد مدنيين إسرائيليين، على الإطلاق.
 قُتل 1,220 شخصًا في ذلك الهجوم، بمن فيهم نساء ومسنون وأطفال. 
 أصيب آلاف واختُطف إلى قطاع غزة 252 شخصًا، أحياءً وجثثًا.
@@ -234,15 +234,21 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.52965,34.48083,14.83,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-ar(label-main,id=home),~labels_he,+labels_ar)
+[](svg/#oct7.svg/-2.13,1.96,5.7/+nibal_rita_hands-comp.jpg)
+[](bg:blank)
 كنت خائفة عليها جدًا.
 
 
 {.meta} 
-[](svg/#oct7.svg/0,-0.47,2/+ruined_jabalia "سكان يعاينون موقع الهجوم الإسرائيلي على منزل في جباليا، 3 كانون الثاني 2024 (رويترز: عماد غبون)")
+[](svg/#oct7.svg/0,-0.49,2/+ruined_jabalia "سكان يعاينون موقع الهجوم الإسرائيلي على منزل في جباليا، 3 كانون الثاني 2024 (رويترز: عماد غبون)")
 [](bg:blank)
 حتى نهاية 2023، غيّرت الغارات الجوية الإسرائيلية وجه شمال القطاع إلى درجة أنه لم يعد ممكنًا التعرف عليه.
+
+
+{.meta} 
+[](svg/#oct7.svg/0,-0.49,2/+ruined_jabalia "سكان يعاينون موقع الهجوم الإسرائيلي على منزل في جباليا، 3 كانون الثاني 2024 (رويترز: عماد غبون)")
+[](bg:blank)
+تم توثيق سكان بقوا في جباليا وهم يتجولون بين الأنقاض، يحاولون جمع ما تبقى من ممتلكاتهم. 
 
 
 {.meta} 
@@ -291,7 +297,7 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.9,-1.71,7.98/+prisoners_kid)
+[](svg/#south.svg/-0.9,-1.78,7.98/+prisoners_kid)
 [](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
 
 لكن اللقاء به كان صادمًا أيضًا. لقد فقد الكثير من وزنه وبدا وكأنه فقد بريق الحياة.
@@ -337,7 +343,7 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.34,-0.98,5.32/+rita_tent2.jpg "ريتا في مخيم للمهجرين في رفح")
+[](svg/#south.svg/-0.26,-1.31,6.94/+rita_tent2.jpg "ريتا في مخيم للمهجرين في رفح")
 [](map/#31.27517,34.20911,12.96,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he)    
 كان ذلك عذابًا متواصلًا، من أصعب الفترات في حياتي على الأرجح.
 كنتُ أخجل من إخبار والديّ بظروف حياتي.
@@ -442,14 +448,14 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.09,0.11,7.1/+nibal_xray)
 [](bg:blank)
 
 استيقظت في المستشفى ورأيت أنهم قد بتروا كلتا يديّ.
 
 
 {.meta}
-[](svg/#warehouse_bureij2.svg/-2.53,0.24,8.59/+nibal_xray)
+[](svg/#warehouse_bureij2.svg/-2.09,0.11,7.1/+nibal_xray)
 [](bg:blank)
 نتيجة للقصف، بُترت يدا نِبال من تحت المرفقين وأصيبت بحروق خطيرة. 
 
@@ -656,7 +662,7 @@ extensions: [inflect-caption]
 {.meta}
 [](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "من حساب نبال على تيك توك")
 [](bg:blank)
-وصفت نِبال أيضًا إحباط أحمد المستمر، الذي كان يجد صعوبة في جلب الماء والغذاء لعائلته في واقع الحصار المشدد الذي فرضته إسرائيل مرة أخرى، وروت كيف كان هذا الإحباط يُوجَّه إليها أحيانًا. 
+وصفت نِبال أيضًا إحباط أحمد المستمر، إذ كان يجد صعوبة في جلب الماء والغذاء لعائلته في واقع الحصار المشدد الذي فرضته إسرائيل مرة أخرى، وروت كيف كان هذا الإحباط يُوجَّه إليها أحيانًا. 
 
 
 {.testimony typewriter}
@@ -681,8 +687,13 @@ extensions: [inflect-caption]
 
 {.meta}
 [](fg:blank)
-[](map/#31.52950,34.47907,17.40,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he "تقييم الأضرار وشدّة الإصابات في المباني في جباليا حتى بداية نيسان 2025. المصدر: UNOSAT")
+[](map/#31.52957,34.47929,18.39,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he "تقييم الأضرار وشدّة الإصابات في المباني في جباليا حتى بداية نيسان 2025. المصدر: UNOSAT")
 في نيسان 2025، قصف الجيش الإسرائيلي منزل آلاء، شقيقة نِبال، في جباليا. 
+
+
+{.meta}
+[](svg/#back_home.svg/-0.41,-0.44,4.24/+alaas_kids.jpg)
+[](bg:blank)
 نتيجة للقصف، قُتل أطفال آلاء الثلاثة: وسيم (10 سنوات) ومهند (8 سنوات) وخولة (5 سنوات).
 
 
@@ -720,7 +731,7 @@ extensions: [inflect-caption]
 
 {.testimony typewriter}
 [](svg/#back_home.svg/0.94,-0.57,3.11/+nibal_home_smile3.heic)
-[](map/#31.53028,34.47787,17.18,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
+[](map/#31.52943,34.47873,16.78,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
 
 كنت محبطة للغاية لأنني لم أستطع فعل أي شيء بنفسي ووجدتُ صعوبة في الاعتناء بريتا. 
 كان من الصعب عليّ استيعاب الفراق عن أحمد وأنا أفتقده كثيرًا. 
@@ -736,14 +747,14 @@ extensions: [inflect-caption]
 
 {.meta}
 [](svg/#back_home.svg/-0.43,0.71,2.35/+@vimeo-1137391856,+vimeo-1137392312 "القصف في حي النزلة في جباليا، آب 2025")
-[](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
+[](map/#31.52943,34.47873,16.78,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
 في نهاية آب 2025، دخلت قوات الجيش الإسرائيلي إلى جباليا وتقدمت نحو حيّ نِبال.
 
 
 {.meta}
 [](svg/#back_home.svg/-0.43,0.71,2.35/+@vimeo-1137391856,+vimeo-1137392312 "القصف في حي النزلة في جباليا، آب 2025")
 [](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=alaa-home),~labels_he)
-القصف يقترب أكثر فأكثر من المنزل. 
+القصف يقترب من المنزل، أكثر فأكثر. 
 في مرحلة ما، أصابت إحدى القذائف منزل عمّها، المجاور لمنزل والديها. قُتلت ابنة عمة نِبال في القصف وأصيب عدد آخر من أفراد عائلتها.
 
 
@@ -782,15 +793,15 @@ extensions: [inflect-caption]
 
 
 {.meta} 
-[](map/#31.50774,34.46034,14.51,38.4,0.0/~labels_he,+labels_ar)
 [](svg/#permanent_impermanence.svg/-0.59,0.39,2.29/+@vimeo-1136076786 "سكان مهجّرون من مخيم الشاطئ للاجئين، قرب مدينة غزة، 19 أيلول 2025 (Activestills: يوسف زعنون)")
+[](map/#31.50806,34.46098,14.51,38.4,0.0/~labels_he,+labels_ar)
 
 في تلك الأسابيع ذاتها، شنت إسرائيل هجومًا بريًا آخر على مدينة غزة.
 
 
 {.meta thumb} 
-[](svg/#permanent_impermanence.svg/0.53,0.69,2.43/+IDF_order_gaza_city-comp.jpg,~vimeo-1136076786 "أحد سكان مدينة غزة يحمل أمر إخلاء ألقته طائرة إسرائيلية، 9 أيلول 2025 (رويترز: داود أبو الكاس)")
-[](map/#31.50774,34.46034,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_ar)
+[](svg/#permanent_impermanence.svg/-0.59,0.39,2.29/+@vimeo-1136076786)
+[](map/#31.50806,34.46098,14.51,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_ar)
 أوامر الإخلاء التي أصدرها الجيش الإسرائيلي في أوائل أيلول 2025، بعد أسابيع قليلة من وصول عائلة نِبال إلى المدينة، تأمر حوالي 1,2 مليون شخص بالنزوح من مكان إقامتهم، مرة أخرى.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
@@ -822,7 +833,7 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/-0.93,-1.59,6.21/+home_nibal_RUINED.png,~home_nibal.png "منطقة منزل نبال, تشرين الأول 2025")
+[](svg/#permanent_impermanence.svg/-0.86,-1.59,6.21/+home_nibal_RUINED.png,~home_nibal.png "منطقة منزل نبال, تشرين الأول 2025")
 [](bg:blank)
 حياة ذل وإهانة، بلا بيت، بلا ذرة استقرار.
 
@@ -923,7 +934,7 @@ extensions: [inflect-caption]
 {.meta thumb closing}
 [](svg/#permanent_impermanence.svg/-1.58,-1.98,6.47/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
-**رحلة نِبال وريتا لم تنته بعد.** تحلم نِبال باللحظة التي ستتمكن فيها من البدء بالتعافي وبناء حياة جديدة لها ولريتا، تمامًا مثل مئات الآلاف من العائلات الأخرى في غزة:
+تحلم نِبال باللحظة التي ستتمكن فيها من البدء بالتعافي وبناء حياة جديدة لها ولريتا، تمامًا مثل مئات الآلاف من العائلات الأخرى في غزة:
 
 <div id="mc_embed_shell">
       <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
