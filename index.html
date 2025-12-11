@@ -117,12 +117,16 @@
         
         // Load extensions from frontmatter config
         async function loadExtensionsFromConfig(config) {
-            if (!config) return;
-            
             const extensions = [];
             
             // Chapters navigation is always loaded (core functionality)
             extensions.push('chapters');
+            
+            if (!config) {
+                // Load chapters even without config
+                await Promise.all(extensions.map(ext => loadExtension(ext)));
+                return;
+            }
             
             // Auto-detect extensions based on frontmatter flags
             if (config.dualIframe) {
@@ -482,6 +486,11 @@
             if (document.URL!="https://uclab.fh-potsdam.de/inflect/") html = html + "\n<footer>a story made with <strong><a class='dontinflect' href='https://uclab.fh-potsdam.de/inflect/'>!nflect</a></strong></footer>";
 
             document.querySelector('main').innerHTML = html;
+
+            // Reinitialize chapters navigation after content changes
+            if (window.initChapters && typeof window.initChapters === 'function') {
+                window.initChapters();
+            }
 
             // Reset scroll position to top when content changes
                         window.scrollTo(0, 0);

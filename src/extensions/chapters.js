@@ -1,4 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Initialize chapters navigation
+// Can be called either on DOMContentLoaded or when dynamically loaded after DOM is ready
+window.initChapters = function initChapters() {
+  console.log('[Chapters] Initializing chapters navigation...');
+  
   // Helper: find headings that mark chapters
   function findHeadings() {
     const headingSet = new Set();
@@ -824,4 +828,13 @@ document.addEventListener('DOMContentLoaded', function () {
     handleHashJump();
     isInitialHash = false; // Mark initial hash as processed
   }, 500);
-});
+}
+
+// Run initialization when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', window.initChapters);
+} else {
+  // DOM already loaded, run immediately (but content may not be there yet)
+  // Will be called again after markdown renders
+  window.initChapters();
+}
