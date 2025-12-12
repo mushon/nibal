@@ -708,6 +708,7 @@ input#mce-EMAIL{
 
     section:first-child > a.thumb{
         position: relative;
+        margin-top: 224px;
     }
 
     section.closing > a.thumb{
