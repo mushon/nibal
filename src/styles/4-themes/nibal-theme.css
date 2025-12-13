@@ -1,80 +1,23 @@
 /**
  * Nibal Theme
  * All visual styling: colors, typography, shadows, backgrounds
- * Theme-specific fonts and appearance
+ * 
+ * Structure:
+ * 1. Fonts
+ * 2. Base HTML/Body
+ * 3. Typography
+ * 4. Layout Overrides
+ * 5. Section Styles
+ * 6. Components
+ * 7. Utility Classes
+ * 8. Mobile Responsive
  */
 
-/* Theme-specific base colors and defaults (from original base.css) */
-html, body {
-    direction: ltr;
-    background-color: #efefef;
-    color: #111;
-}
-
-h1 { font-size: 2.4em; font-weight: 200; margin-bottom: 0; }
-h2 { font-size: 1.8em; }
-h3 { font-size: 1.4em; }
-h4 { font-size: 1.2em; }
-
-p { font-size: 1em; line-height: 1.5em; }
-
-a { color: #0b66a8; }
-
-footer { opacity: 0.6; text-align: left; padding: 1rem 0; }
-
-/* Caption overlay for active inflection links */
-.inflect-caption {
-    position: fixed;
-    right: 2vw;
-    top: 8px;
-    max-width: 87vw;
-    background: rgba(0, 0, 0, 0.7);
-    color: #bbb;
-    padding: 0.2em 0.5em;
-    border-radius: 6px;
-    z-index: 1100;
-    font-size: 0.75em;
-    line-height: 1.4;
-    pointer-events: none;
-}
-.inflect-caption a { pointer-events: auto; }
-
-.inflect-caption.note-caption {
-    background: #ffd200;
-    color: #000;
-}
-
-body.content-top .inflect-caption {
-    top: auto;
-    bottom: 8px;
-}
-
-.bg-edit #chapter-nav{
-    left: calc(270px + 24px);
-}
-
-/* Nibal-specific theme starts here */
-
-/* Theme styles extracted from index.html
-   Contains fonts, typography, colors, and element-level theme rules.
-   Layout/positioning rules remain in index.html inline style.
-*/
+/* ============================================================================
+   1. FONTS
+   ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&display=swap');
-
-/* @font-face {
-    font-family: "Fedra Sans";
-    src: url("fonts/FedraSansHL-Book.woff2") format("woff2-variations");
-    font-style: normal;
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "Fedra Serif";
-    src: url("fonts/FedraSerifHL-Book.woff2") format("woff2-variations");
-    font-style: normal;
-    font-weight: 400;
-} */
 
 @font-face {
     font-family: "Levit_1950";
@@ -82,12 +25,70 @@ body.content-top .inflect-caption {
     font-style: normal;
     font-weight: bold;
 }
+
 @font-face {
     font-family: "Heb_hand";
     src: url("fonts/gadi-almog-regular-aaa.woff2") format("woff2-variations");
     font-style: normal;
     font-weight: regular;
 }
+
+/* ============================================================================
+   2. BASE HTML/BODY
+   ========================================================================= */
+
+html, body {
+    font-family: 'David Libre', 'Fedra Serif', serif;
+    direction: rtl;
+    font-weight: 250;
+    font-size: calc(1vw + 1vh);
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+code, pre, kbd, samp, tt, textarea {
+    font-family: "AtkinsonMono", monospace;
+}
+
+/**
+ * Nibal Theme
+ * All visual styling: colors, typography, shadows, backgrounds
+ * 
+ * Structure:
+ * 1. Fonts
+ * 2. Base HTML/Body
+ * 3. Typography  
+ * 4. Layout Overrides (main, iframe, section)
+ * 5. Section Styles (themed sections)
+ * 6. Components (thumbs, forms, buttons, etc)
+ * 7. Utility Classes
+ * 8. Mobile Responsive
+ */
+
+/* ============================================================================
+   1. FONTS
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&display=swap');
+
+@font-face {
+    font-family: "Levit_1950";
+    src: url("fonts/Levit_1950-BlackExtended.woff") format("woff2-variations");
+    font-style: normal;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Heb_hand";
+    src: url("fonts/gadi-almog-regular-aaa.woff2") format("woff2-variations");
+    font-style: normal;
+    font-weight: regular;
+}
+
+/* ============================================================================
+   2. BASE HTML/BODY  
+   ========================================================================= */
 /* Hide paragraphs that contain only a single empty anchor element with no other content */
 /* Use visibility:hidden + height:0 instead of display:none to preserve IntersectionObserver functionality */
 p.no-text {
@@ -714,6 +715,7 @@ input#mce-EMAIL{
         margin:  0 0;
         z-index: 10;
         background: linear-gradient(0deg, rgba(34, 34, 34, 0) 30%, rgba(34, 34, 34, 0.00) 55%);
+        overflow-y: auto;
         overflow-x: hidden;
         /* -webkit-backdrop-filter: blur(2px);
         backdrop-filter: blur(2px); */
@@ -725,7 +727,6 @@ input#mce-EMAIL{
         height: 100dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
         padding: 0; /* Use dvh (dynamic viewport) for Safari mobile UI */
         justify-content: end;
-        overflow: hidden; /* hide scrolling on main if content overflows */
         position: relative;
     }
 
