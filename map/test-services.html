@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map Services Integration Test</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    #test-panel {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      max-width: 400px;
+      max-height: 90vh;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    #test-panel h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .test-section {
+      margin: 15px 0;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 4px;
+    }
+    .test-section h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    button {
+      background: #0066cc;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 4px;
+      font-size: 12px;
+    }
+    button:hover {
+      background: #0052a3;
+    }
+    .status {
+      padding: 8px;
+      margin: 4px 0;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .status.info {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+    pre {
+      background: #fff;
+      padding: 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      overflow-x: auto;
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="test-panel">
+    <h2>🧪 Map Services Test</h2>
+    
+    <div class="test-section">
+      <h3>1. Hash Router</h3>
+      <button onclick="testHashParser()">Parse Current Hash</button>
+      <button onclick="testHashUpdate()">Update Hash</button>
+      <div id="hash-results"></div>
+    </div>
+    
+    <div class="test-section">
+      <h3>2. Data Loader</h3>
+      <button onclick="testLoadGeoJSON()">Load GeoJSON</button>
+      <button onclick="testLoadCSV()">Load CSV</button>
+      <div id="loader-results"></div>
+    </div>
+    
+    <div class="test-section">
+      <h3>3. Layer Manager</h3>
+      <button onclick="testAddLayer()">Add Layer</button>
+      <button onclick="testToggleLayer()">Toggle Layer</button>
+      <div id="layer-results"></div>
+    </div>
+    
+    <div class="test-section">
+      <h3>4. State Management</h3>
+      <button onclick="testStateEvents()">Test Events</button>
+      <div id="state-results"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { AppState } from './js/state/AppState.js';
+    import { HashRouter } from './js/services/HashRouter.js';
+    import { DataLoader } from './js/services/DataLoader.js';
+    import { LayerManager } from './js/services/LayerManager.js';
+    import { CONFIG } from './js/config.js';
+
+    // Initialize services
+    window.appState = new AppState();
+    window.hashRouter = new HashRouter(window.appState);
+    window.dataLoader = new DataLoader(window.appState);
+
+    // Initialize map
+    mapboxgl.accessToken = CONFIG.MAPBOX_ACCESS_TOKEN;
+    
+    mapboxgl.setRTLTextPlugin(
+      CONFIG.RTL_PLUGIN_URL,
+      null,
+      true
+    );
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: CONFIG.MAPBOX_STYLE,
+      center: CONFIG.DEFAULT_CAMERA.center,
+      zoom: CONFIG.DEFAULT_CAMERA.zoom,
+      bearing: CONFIG.DEFAULT_CAMERA.bearing,
+      pitch: CONFIG.DEFAULT_CAMERA.pitch
+    });
+
+    map.on('load', () => {
+      // Store map in state
+      window.appState.setMap(map);
+      
+      // Get all style layers
+      window.appState.allStyleLayers = map.getStyle().layers.map(l => ({ id: l.id }));
+      
+      // Store defaults
+      window.appState.allStyleLayers.forEach(layer => {
+        if (map.getLayer(layer.id)) {
+          const styleLayer = map.getStyle().layers.find(l => l.id === layer.id);
+          let vis = 'visible';
+          if (styleLayer && styleLayer.layout && typeof styleLayer.layout.visibility !== 'undefined') {
+            vis = styleLayer.layout.visibility;
+          }
+          window.appState.setStyleDefaultVisibility(layer.id, vis);
+          
+          try {
+            const filter = (styleLayer && typeof styleLayer.filter !== 'undefined') ? styleLayer.filter : null;
+            window.appState.setStyleDefaultFilter(layer.id, filter);
+          } catch (e) {
+            window.appState.setStyleDefaultFilter(layer.id, null);
+          }
+        }
+      });
+      
+      // Initialize LayerManager
+      window.layerManager = new LayerManager(window.appState, window.dataLoader);
+      
+      log('info', 'state-results', '✓ Map loaded and services initialized');
+      
+      // Parse initial hash
+      const hashState = window.hashRouter.parseHash();
+      log('info', 'hash-results', `Initial hash parsed: ${JSON.stringify(hashState.camera)}`);
+    });
+
+    // Helper functions
+    function log(type, containerId, message) {
+      const container = document.getElementById(containerId);
+      const div = document.createElement('div');
+      div.className = `status ${type}`;
+      div.textContent = message;
+      container.appendChild(div);
+      
+      // Limit to last 3 messages
+      while (container.children.length > 3) {
+        container.removeChild(container.firstChild);
+      }
+    }
+
+    function logPre(containerId, data) {
+      const container = document.getElementById(containerId);
+      const pre = document.createElement('pre');
+      pre.textContent = JSON.stringify(data, null, 2);
+      container.appendChild(pre);
+      
+      while (container.children.length > 4) {
+        container.removeChild(container.firstChild);
+      }
+    }
+
+    // Test functions
+    window.testHashParser = function() {
+      try {
+        const state = window.hashRouter.parseHash();
+        log('success', 'hash-results', '✓ Hash parsed successfully');
+        logPre('hash-results', {
+          camera: state.camera,
+          layerCount: state.layers.length,
+          followId: state.followId,
+          flags: { showMapUI: state.showMapUI, isStatic: state.isStatic }
+        });
+      } catch (e) {
+        log('error', 'hash-results', `✗ Error: ${e.message}`);
+      }
+    };
+
+    window.testHashUpdate = function() {
+      try {
+        const newCamera = {
+          center: { lat: 31.5, lng: 34.4 },
+          zoom: 12,
+          bearing: 0,
+          pitch: 0
+        };
+        window.hashRouter.updateHash(newCamera);
+        log('success', 'hash-results', '✓ Hash updated with new camera position');
+      } catch (e) {
+        log('error', 'hash-results', `✗ Error: ${e.message}`);
+      }
+    };
+
+    window.testLoadGeoJSON = async function() {
+      try {
+        const data = await window.dataLoader.loadGeoJSON('gaza.geojson');
+        log('success', 'loader-results', `✓ Loaded ${data.features.length} features from gaza.geojson`);
+        logPre('loader-results', {
+          type: data.type,
+          featureCount: data.features.length,
+          firstFeatureType: data.features[0]?.geometry?.type
+        });
+      } catch (e) {
+        log('error', 'loader-results', `✗ Error: ${e.message}`);
+      }
+    };
+
+    window.testLoadCSV = async function() {
+      try {
+        const data = await window.dataLoader.loadGeoJSON('pois.csv');
+        log('success', 'loader-results', `✓ Loaded ${data.features.length} POIs from CSV`);
+        logPre('loader-results', {
+          type: data.type,
+          featureCount: data.features.length,
+          sampleProperties: data.features[0]?.properties
+        });
+      } catch (e) {
+        log('error', 'loader-results', `✗ Error: ${e.message}`);
+      }
+    };
+
+    window.testAddLayer = async function() {
+      try {
+        const layerId = await window.layerManager.addGeoJSONLayer('safe-area.geojson', {
+          visibility: 'visible',
+          sourceHint: null
+        });
+        log('success', 'layer-results', `✓ Added layer: ${layerId}`);
+        log('info', 'layer-results', `External layers: ${window.appState.externalLayers.size}`);
+      } catch (e) {
+        log('error', 'layer-results', `✗ Error: ${e.message}`);
+      }
+    };
+
+    window.testToggleLayer = function() {
+      try {
+        const layers = Array.from(window.appState.externalLayers);
+        if (layers.length === 0) {
+          log('error', 'layer-results', 'No external layers to toggle');
+          return;
+        }
+        
+        const layerId = layers[0];
+        const map = window.appState.getMap();
+        const currentVis = map.getLayoutProperty(layerId, 'visibility');
+        const newVis = currentVis === 'visible' ? 'none' : 'visible';
+        
+        window.layerManager.toggleVisibility(layerId, newVis === 'visible');
+        log('success', 'layer-results', `✓ Toggled ${layerId} to ${newVis}`);
+      } catch (e) {
+        log('error', 'layer-results', `✗ Error: ${e.message}`);
+      }
+    };
+
+    window.testStateEvents = function() {
+      let eventCount = 0;
+      
+      const handler = (data) => {
+        eventCount++;
+        log('success', 'state-results', `✓ Event fired: ${data.id || data}`);
+      };
+      
+      window.appState.on('layer:added', handler);
+      
+      // Trigger an event
+      window.appState.addStyleLayer({ id: 'test-layer', name: 'Test' });
+      
+      setTimeout(() => {
+        window.appState.off('layer:added', handler);
+        log('info', 'state-results', `Event system working: ${eventCount} events received`);
+      }, 100);
+    };
+  </script>
+</body>
+</html>
