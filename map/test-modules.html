@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Integration Test - Nibal Map</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    #test-results {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: white;
+      padding: 15px;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      max-width: 400px;
+      z-index: 1000;
+    }
+    .test-item {
+      margin: 5px 0;
+      padding: 5px;
+    }
+    .test-pass { color: green; }
+    .test-fail { color: red; }
+    .test-info { color: blue; }
+    h3 { margin: 0 0 10px 0; }
+  </style>
+</head>
+<body>
+  <div id="test-results">
+    <h3>Module Integration Test</h3>
+    <div id="test-output"></div>
+  </div>
+
+  <script type="module">
+    // Import all modules
+    import { CONFIG } from './js/config.js';
+    import { getDistance, getBearing, interpolateLine, easeInOutQuad } from './js/utils/geometry.js';
+    import { splitLayerTokens, parseParenArgs, buildParenArgs } from './js/utils/tokenParser.js';
+    import { isDesktopEnvironment, createElement, debounce, throttle } from './js/utils/dom.js';
+    import { AppState } from './js/state/AppState.js';
+    import { HashRouter } from './js/services/HashRouter.js';
+    import { DataLoader } from './js/services/DataLoader.js';
+    import { LayerManager } from './js/services/LayerManager.js';
+    import { MapService } from './js/services/MapService.js';
+    import { FollowMode } from './js/features/FollowMode.js';
+    import { LayerControls } from './js/ui/LayerControls.js';
+    import { AddLayerForm } from './js/ui/AddLayerForm.js';
+    import { DistanceTicker } from './js/ui/DistanceTicker.js';
+    import { MapUIControls } from './js/ui/MapUIControls.js';
+
+    const output = document.getElementById('test-output');
+    
+    function log(message, type = 'info') {
+      const div = document.createElement('div');
+      div.className = `test-item test-${type}`;
+      div.textContent = message;
+      output.appendChild(div);
+    }
+
+    function testModule(name, testFn) {
+      try {
+        testFn();
+        log(`✓ ${name}`, 'pass');
+        return true;
+      } catch (e) {
+        log(`✗ ${name}: ${e.message}`, 'fail');
+        return false;
+      }
+    }
+
+    // Run tests
+    log('Testing all extracted modules...', 'info');
+    console.log('--- Module Integration Test ---');
+
+    let passed = 0;
+    let total = 0;
+
+    // Phase 1: Utilities
+    total++; if (testModule('CONFIG', () => {
+      if (!CONFIG.MAPBOX_ACCESS_TOKEN) throw new Error('Missing token');
+      if (!CONFIG.DEFAULT_CAMERA) throw new Error('Missing camera config');
+    })) passed++;
+
+    total++; if (testModule('geometry.js', () => {
+      const dist = getDistance([0, 0], [0, 1]);
+      if (dist < 110000 || dist > 112000) throw new Error('Distance calculation failed');
+      const bearing = getBearing([0, 0], [0, 1]);
+      if (typeof bearing !== 'number') throw new Error('Bearing failed');
+    })) passed++;
+
+    total++; if (testModule('tokenParser.js', () => {
+      const tokens = splitLayerTokens('+layer1,+layer2(source,filter),:follow+100');
+      if (tokens.length !== 3) throw new Error('Token split failed');
+      const parsed = parseParenArgs('source,filter1,filter2');
+      if (parsed.sourceHint !== 'source') throw new Error('Paren parse failed');
+    })) passed++;
+
+    total++; if (testModule('dom.js', () => {
+      const el = createElement('div', { id: 'test', class: 'test-class' });
+      if (!el || el.tagName !== 'DIV') throw new Error('createElement failed');
+    })) passed++;
+
+    // Phase 2: State & Services
+    total++; if (testModule('AppState', () => {
+      const state = new AppState();
+      state.on('test', () => {});
+      state.emit('test');
+      state.off('test');
+    })) passed++;
+
+    total++; if (testModule('HashRouter', () => {
+      const state = new AppState();
+      const router = new HashRouter(state);
+      const parsed = router.parseHash();
+      if (!parsed.camera) throw new Error('Hash parse failed');
+    })) passed++;
+
+    total++; if (testModule('DataLoader', () => {
+      const state = new AppState();
+      const loader = new DataLoader(state);
+      if (typeof loader.loadGeoJSON !== 'function') throw new Error('Missing loadGeoJSON');
+    })) passed++;
+
+    total++; if (testModule('LayerManager', () => {
+      const state = new AppState();
+      const manager = new LayerManager(state);
+      if (typeof manager.addGeoJSONLayer !== 'function') throw new Error('Missing addGeoJSONLayer');
+    })) passed++;
+
+    total++; if (testModule('MapService', () => {
+      const state = new AppState();
+      const service = new MapService(state);
+      if (typeof service.initializeMap !== 'function') throw new Error('Missing initializeMap');
+    })) passed++;
+
+    // Phase 3: Features
+    total++; if (testModule('FollowMode', () => {
+      const state = new AppState();
+      const follow = new FollowMode(state);
+      if (typeof follow.start !== 'function') throw new Error('Missing start method');
+      if (typeof follow.cancel !== 'function') throw new Error('Missing cancel method');
+    })) passed++;
+
+    // Phase 4: UI Components
+    total++; if (testModule('LayerControls', () => {
+      const state = new AppState();
+      const router = new HashRouter(state);
+      const manager = new LayerManager(state);
+      const controls = new LayerControls(state, router, manager);
+      if (typeof controls.create !== 'function') throw new Error('Missing create method');
+    })) passed++;
+
+    total++; if (testModule('AddLayerForm', () => {
+      const state = new AppState();
+      const router = new HashRouter(state);
+      const form = new AddLayerForm(state, router);
+      if (typeof form.initialize !== 'function') throw new Error('Missing initialize');
+    })) passed++;
+
+    total++; if (testModule('DistanceTicker', () => {
+      const ticker = new DistanceTicker();
+      if (typeof ticker.show !== 'function') throw new Error('Missing show method');
+      if (typeof ticker.hide !== 'function') throw new Error('Missing hide method');
+    })) passed++;
+
+    total++; if (testModule('MapUIControls', () => {
+      const state = new AppState();
+      const controls = new MapUIControls(state);
+      if (typeof controls.initialize !== 'function') throw new Error('Missing initialize');
+    })) passed++;
+
+    // Summary
+    log('', 'info');
+    log(`Results: ${passed}/${total} tests passed`, passed === total ? 'pass' : 'fail');
+    
+    if (passed === total) {
+      log('All modules loaded and initialized successfully! ✓', 'pass');
+      log('Ready to proceed with CSS extraction and index.html integration.', 'info');
+    } else {
+      log(`${total - passed} module(s) failed - review errors above`, 'fail');
+    }
+  </script>
+</body>
+</html>

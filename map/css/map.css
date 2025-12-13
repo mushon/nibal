@@ -1,0 +1,27 @@
+/**
+ * Base map styles
+ * Core styles for the map container and Mapbox controls
+ */
+
+html, body, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: #333; 
+}
+
+#map .mapboxgl-ctrl a.mapboxgl-ctrl-logo {
+  margin-left: 40px;
+}
+
+/* Mobile portrait: scale map canvas to compensate for 70dvh height constraint */
+@media (max-width: 1000px) and (orientation: portrait) {
+  #map {
+    transform: scale(1.15);
+    transform-origin: top left;
+  }
+  #map .mapboxgl-ctrl a.mapboxgl-ctrl-logo {
+    margin-left: 10px;
+  }
+}
