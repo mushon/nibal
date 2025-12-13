@@ -3,17 +3,17 @@
  */
 
 /* Variables */
-@import './0-variables/colors.css';
+@import './variables/colors.css';
 
 /* Base styles (fonts, global defaults, layout) */
-@import './1-base/global.css';
+@import './base/global.css';
 
 /* Theme (all visual styling) */
-@import './4-themes/nibal-theme.css';
+/* @import './themes/nibal-theme.css'; */
 
-/* Languages */
-@import './5-languages/arabic.css';
-@import './5-languages/ltr.css';
+/* Languages (imported via frontmatter, not by default) */
+/* @import './languages/arabic.css'; */
+/* @import './languages/ltr.css'; */
 
 /* Extensions */
-@import './6-extensions/chapters.css';
+@import './extensions/chapters.css';

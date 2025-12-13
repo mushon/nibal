@@ -1,7 +1,7 @@
 ---
 dual-iframe: true
 body-class: snap fs-video-mobile editor animate-sections content-top
-css: src/theme.css
+css: src/styles/themes/nibal-theme.css
 snap: true
 editor: true
 extensions: [inflect-caption]

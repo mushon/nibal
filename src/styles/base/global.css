@@ -9,19 +9,21 @@
     font-family: "Atkinson";
     src: url("../../fonts/AtkinsonHyperlegibleNextVF-Variable.woff2") format("woff2-variations");
     font-style: normal;
+    font-weight: 100 1000;
 }
 
 @font-face {
     font-family: "AtkinsonMono";
-    src: url("../../fonts/AtkinsonHyperlegibleMono-Medium.woff2") format("woff2-variations");
+    src: url("../../fonts/AtkinsonHyperlegibleMono-Medium.woff2") format("woff2");
     font-style: normal;
+    font-weight: 500;
 }
 
 @font-face {
     font-family: "AtkinsonMono";
-    src: url("../../fonts/AtkinsonHyperlegibleMono-Bold.woff2") format("woff2-variations");
+    src: url("../../fonts/AtkinsonHyperlegibleMono-Bold.woff2") format("woff2");
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 /* Base element setup */
@@ -29,11 +31,11 @@ html, body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Atkinson", sans-serif;
+    font-family: var(--font-sans);
 }
 
 code, pre, kbd, samp, tt, textarea {
-    font-family: "AtkinsonMono", monospace;
+    font-family: var(--font-mono);
 }
 
 /* Base layout structure - desktop */
