@@ -1,29 +1,35 @@
-/**
- * Arabic Language Overrides
- * Font and typography specific to Arabic content
- */
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Arabic:wght@100..800&family=Vazirmatn:wght@100..900&display=swap');
 
-html[lang="ar"],
-body[lang="ar"],
-html[lang="ar"] body {
-  font-family: var(--font-family-body-ar), var(--font-family-body-he);
-  direction: rtl;
+body.ar {
+    font-family: 'Vazirmatn';
+    direction: rtl;
 }
 
-html[lang="ar"] h1,
-html[lang="ar"] h2,
-html[lang="ar"] h3,
-html[lang="ar"] h4,
-body[lang="ar"] h1,
-body[lang="ar"] h2,
-body[lang="ar"] h3,
-body[lang="ar"] h4 {
-  font-family: var(--font-family-display-ar), var(--font-family-display);
-  letter-spacing: normal;
+body.ar h1,
+body.ar h2,
+body.ar h3 {
+    font-family: 'Vazirmatn';
+    font-weight: 900;
+    -webkit-text-stroke: 0;
 }
 
-/* Arabic numerals if needed */
-html[lang="ar"] .numeral,
-body[lang="ar"] .numeral {
-  font-feature-settings: "ss01";
+section.testimony {
+     font-family: 'Playpen Sans Arabic', sans-serif;
+     font-weight: 400;
+    -webkit-text-stroke: 0;
+}
+
+.ar section:not(.gofundme) > a.thumb{
+    background-image: image-set(
+        url(assets/thumb_report_ar.png) 1x,
+        url(assets/thumb_report_ar@2x.png) 2x
+    );
+}
+
+@media (max-width: 1000px) and (orientation: portrait){
+    .ar section > a.thumb{
+        font-size: 0.85em;
+        line-height: 1.2em;
+        padding: 28px 140px 4px 8px;
+    }
 }

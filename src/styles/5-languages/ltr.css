@@ -1,50 +1,103 @@
-/**
- * Left-to-Right (LTR) Support
- * Explicit LTR adjustments (default behavior)
- */
+/* LTR adjustments */
 
-html[dir="ltr"],
-body[dir="ltr"] {
-  direction: ltr;
-  text-align: left;
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
+
+.ltr section{
+    direction: ltr;
 }
 
-html[dir="ltr"] main,
-body[dir="ltr"] main {
-  left: var(--layout-iframe-width);
-  right: 0;
-  text-align: left;
+.ltr section p{
+    border-right: none;
+    border-left: 8px solid #FA5F5F;
 }
 
-html[dir="ltr"] iframe,
-html[dir="ltr"] iframe#if,
-body[dir="ltr"] iframe,
-body[dir="ltr"] iframe#if {
-  left: 0;
-  right: auto;
+.ltr section.testimony {
+    font-family: "Shadows Into Light Two", cursive;
 }
 
-html[dir="ltr"] #background-frame,
-html[dir="ltr"] #foreground-frame,
-body[dir="ltr"] #background-frame,
-body[dir="ltr"] #foreground-frame {
-  left: 0;
-  right: auto;
+.ltr #chapter-nav .chapter-item{
+    direction: ltr;
 }
 
-/* Mobile LTR */
+.ltr section > a.thumb{
+    padding: 16px 32px 16px 200px;
+    border-right: none;
+    border-left: #FA5F5F 8px solid;
+    background-position: left 8px bottom 0;
+    line-height: 1.2em;
+}
+
+.ltr section:not(.gofundme)  > a.thumb {
+    background-image: image-set(
+        url(assets/thumb_report_en.png) 1x,
+        url(assets/thumb_report_en@2x.png) 2x
+    );
+}
+
+
+.ltr section > a.thumb::after{
+    right: 8px;
+    left: auto;
+}
+
+.ltr section:first-child > a.thumb{
+    text-align: left;
+}
+
+.ltr section.gofundme p{
+    border-right: none;
+    border-left: #02A85C 8px solid;
+}
+
+.ltr section.gofundme > a.thumb{
+    border-right: none;
+    border-left: #02A85C 8px solid;
+}
+
+.ltr #mc_embed_signup {
+    border-right: 0;
+    border-left: 8px solid #FA5F5F;
+}
+
+.ltr .inflect-caption {
+    direction: ltr;
+    text-align: left;
+    left: 7vw;
+    right: auto;
+}
+
+.ltr section.closing > a.thumb{
+    padding: 130px 16px 8px;
+    background-position: 8px 8px;
+}
+
+.ltr section.closing ul {
+    border-right: none;
+    border-left: #FA5F5F 8px solid;
+    padding: 0px 16px 0 48px;
+}
+
 @media (max-width: 1000px) and (orientation: portrait) {
-  html[dir="ltr"] main,
-  body[dir="ltr"] main {
-    left: 0;
-    right: 0;
-  }
-  
-  html[dir="ltr"] iframe,
-  html[dir="ltr"] iframe#if,
-  body[dir="ltr"] iframe,
-  body[dir="ltr"] iframe#if {
-    left: 0;
-    right: 0;
-  }
+    .ltr section.closing ul {
+        padding: 0px 8px 0 40px;
+    }
+
+    .ltr section.closing > a.thumb{
+        padding: 96px 16px 8px;
+        background-position: 8px 8px;
+    }
+
+    .ltr section.closing > a.thumb::after{
+        top: 4px;
+        margin: 0;
+    }
+
+    .ltr section > a.thumb{
+        padding: 16px 32px 16px 140px ;
+    }
+
+    .ltr section > a.thumb::after{
+        right: 4px;
+        left: auto;
+    }
 }

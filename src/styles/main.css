@@ -1,46 +1,16 @@
 /**
- * Nibal CSS - Main Stylesheet
- * 
- * Import order is critical:
- * 0. Variables (design tokens)
- * 1. Base (fonts, resets, global defaults)
- * 2. Layout (pure structure and positioning)
- * 3. Components (reusable component styles)
- * 4. Theme (visual styling that can be swapped)
- * 5. Languages (language-specific overrides)
- * 6. Extensions (optional functionality)
+ * Main CSS Entry Point - Exact Original Files in Modular Structure
  */
 
-/* 0. Variables - Design Tokens */
-@import './0-variables/colors.css';
-@import './0-variables/typography.css';
-@import './0-variables/spacing.css';
-@import './0-variables/layout.css';
-
-/* 1. Base - Foundation */
-@import './1-base/fonts.css';
+/* Base styles (fonts, global defaults, layout) */
 @import './1-base/global.css';
 
-/* 2. Layout - Structure */
-@import './2-layout/grid.css';
-@import './2-layout/sections.css';
-
-/* 3. Components - Reusable Elements */
-@import './3-components/buttons.css';
-@import './3-components/chapter-nav.css';
-
-/* 4. Theme - Visual Styling */
+/* Theme (all visual styling) */
 @import './4-themes/nibal-theme.css';
-/* Alternative theme (comment out nibal-theme and uncomment below to switch):
-@import './4-themes/base-theme.css';
-*/
 
-/* 5. Languages - Language Support */
-@import './5-languages/rtl.css';
-@import './5-languages/ltr.css';
+/* Languages */
 @import './5-languages/arabic.css';
-@import './5-languages/english.css';
+@import './5-languages/ltr.css';
 
-/* 6. Extensions - Optional Features */
+/* Extensions */
 @import './6-extensions/chapters.css';
-@import './6-extensions/dual-iframe.css';

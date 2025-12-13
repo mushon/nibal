@@ -1,96 +1,214 @@
-/**
- * Main Grid Layout
- * Pure structural positioning for iframe + main content
- */
+/* Main grid layout from base.css and theme.css */
 
-/* Iframe positioning */
-iframe,
-iframe#if {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: var(--layout-iframe-width);
-  height: var(--layout-iframe-height);
-  border: 0;
-  background: transparent;
-}
-
-/* Main content area */
 main {
-  position: absolute;
-  left: var(--layout-iframe-width);
-  top: 0;
-  bottom: 0;
-  right: 0;
-  padding: var(--space-main-padding-v) var(--space-main-padding-h);
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: var(--z-index-content);
+    position: absolute;
+    left: 60vw;
+    top: 0;
+    bottom: 0;
+    right: 0; /* reserve right-hand column for iframe */
+    padding: 4vh 2vw;
+    padding: 4dvh 2vw; /* Dynamic viewport height for mobile browsers */
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 10;
 }
 
-/* Dual iframe mode */
-body.dual-iframe #background-frame,
-body.dual-iframe #foreground-frame {
-  display: block;
+iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 60vw;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    border: 0;
+    background: transparent;
 }
 
+/* Layout rules from theme.css: make iframe and main match the committed appearance */
+main {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+
+iframe#if {
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dual iframe mode - background and foreground frames */
 #background-frame,
 #foreground-frame {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--layout-iframe-width);
-  height: var(--layout-iframe-height);
-  border: 0;
-  display: none;
+    top: 0;
+    height: 100vh;
+    width: 100% !important;
+    position: fixed;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+body.bg-edit #foreground-frame{
+    opacity: .25;
+    pointer-events: none;
+}
+
+body.fg-edit #background-frame{
+    pointer-events: none;
+}
+
+body.dual-iframe #background-frame,
+body.dual-iframe #foreground-frame {
+    display: block;
 }
 
 #background-frame {
-  z-index: var(--z-index-base);
+    z-index: 1;
 }
 
 #foreground-frame {
-  z-index: calc(var(--z-index-base) + 1);
-  pointer-events: none;
+    z-index: 2;
+    pointer-events: auto;
 }
 
 #foreground-frame.inactive {
-  opacity: 0;
+    pointer-events: none;
 }
 
-/* Edit mode adjustments */
-body.bg-edit #foreground-frame {
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-body.fg-edit #background-frame {
-  opacity: 0.3;
+iframe {
+    transition: opacity 0.1s ease-in;
 }
 
 body.editing-mode main {
-  z-index: calc(var(--z-index-content) + 100);
-  pointer-events: auto;
+    opacity: 0.15; /* 15% opacity */
+    pointer-events: none; /* allow clicking through */
 }
 
-body.bg-edit #chapter-nav {
-  left: calc(var(--layout-layer-panel-width) + var(--layout-chapter-nav-left));
-}
-
-/* Mobile portrait layout */
 @media (max-width: 1000px) and (orientation: portrait) {
-  iframe,
-  iframe#if {
-    position: fixed;
-    left: 0;
-    width: 100vw;
-    height: var(--layout-iframe-mobile-height);
-  }
-  
-  main {
-    right: 0;
-    left: 0;
-    padding: var(--space-vh-sm) var(--space-vw-md);
-  }
+    iframe { 
+        position: fixed; 
+        left: 0; 
+        width: 100vw; 
+        height: 50vh;
+        height: 50dvh; /* Dynamic viewport height for mobile browsers */
+    }
+    main { 
+        right: 0; 
+        left: 0; 
+        padding: 2vh 4vw;
+        padding: 2dvh 4vw; /* Dynamic viewport height for mobile browsers */
+    }
+}
+
+@media (max-width: 1000px) and (orientation: portrait) {
+    /* On narrow portrait screens stack the main content above the iframe
+       with both covering the viewport. The iframe stays behind and is
+       pointer-events:none so the main layer receives interaction. */
+    iframe#if {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 70dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
+        z-index: 0;
+        pointer-events: none; /* don't intercept taps when covered */
+    }
+
+    /* Dual iframe mode - mobile layout */
+    #background-frame,
+    #foreground-frame {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 70dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
+        pointer-events: none; /* don't intercept taps when covered */
+    }
+
+    #background-frame {
+        z-index: 0;
+    }
+
+    #foreground-frame {
+        z-index: 1;
+    }
+
+    body>div#iframe-container:after {
+        content: '';
+        position: absolute;
+        top: 70dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
+        width: 100%;
+        height: 15dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
+        margin-top: -15dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(51, 51, 51, 0.00) 0%, #333 90%);
+        display: block;
+        z-index: 1;
+    }
+
+    main {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100dvh; /* Use dvh (dynamic viewport) for Safari mobile UI */
+        padding: 5vw 3vw 5vw 7vw; /* leaving room for the navbar */
+        margin:  0 0;
+        z-index: 10;
+        background: linear-gradient(0deg, rgba(34, 34, 34, 0) 30%, rgba(34, 34, 34, 0.00) 55%);
+        overflow-x: hidden;
+        /* -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px); */
+    }
+
+    /* Body content-top mode adjustments */
+
+    body.content-top {
+        background-color: #222222;
+    }
+
+    body main {
+        background: linear-gradient(0deg, rgba(34, 34, 33, 0.00) 80%, #222 70%),linear-gradient(0deg, #222 0%, rgba(34, 34, 34, 0.00) 15%);
+    }
+
+    body.content-top #background-frame, 
+    body.content-top #foreground-frame {
+        margin-top: 20dvh;
+        height: 80dvh;
+    }
+
+    body.content-top>div#iframe-container:after{
+        top: 0;
+        bottom: auto;
+        background: linear-gradient(0deg, #2220 0%, #222 30%);
+        margin: 0;
+        height: 30dvh;
+    }
+
+    body.content-top section {
+        /* justify-content: end; */
+        margin: 0;
+        padding-top: 24px;
+    }
+
+    body.content-top section:first-of-type {
+        justify-content: flex-start;
+    }
+
+    body.content-top .inflect-caption {
+        bottom: 8px;
+        top: auto;
+    }
 }
