@@ -1,0 +1,47 @@
+/**
+ * Font Face Declarations
+ * All @font-face rules for custom fonts
+ */
+
+/* Atkinson Hyperlegible (English base) */
+@font-face {
+  font-family: "Atkinson";
+  src: url("../../fonts/AtkinsonHyperlegibleNextVF-Variable.woff2") format("woff2-variations");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AtkinsonMono";
+  src: url("../../fonts/AtkinsonHyperlegibleMono-Medium.woff2") format("woff2-variations");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AtkinsonMono";
+  src: url("../../fonts/AtkinsonHyperlegibleMono-Bold.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* Levit 1950 (Display headings) */
+@font-face {
+  font-family: "Levit_1950";
+  src: url("../../fonts/Levit_1950-BlackExtended.woff") format("woff");
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* Hebrew Handwriting */
+@font-face {
+  font-family: "Heb_hand";
+  src: url("../../fonts/gadi-almog-regular-aaa.woff2") format("woff2");
+  font-style: normal;
+  font-weight: regular;
+}
+
+/* Google Fonts (loaded via @import in language files) */
+/* - David Libre (Hebrew serif)
+ * - Vazirmatn (Arabic)
+ * - Playpen Sans Arabic (Arabic handwriting)
+ * - Shadows Into Light Two (English handwriting)
+ */

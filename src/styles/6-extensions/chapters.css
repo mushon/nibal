@@ -1,0 +1,242 @@
+/**
+ * Chapters Extension
+ * Side navigation with progress tracking
+ */
+
+/* Chapter navigation container */
+#chapter-nav {
+  position: fixed;
+  left: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: var(--z-index-nav);
+  pointer-events: auto;
+  align-items: baseline;
+  justify-content: space-evenly;
+  height: 96vh;
+  height: 96dvh;
+  top: var(--space-dvh-sm);
+  bottom: var(--space-dvh-sm);
+  direction: ltr;
+}
+
+/* Chapter items */
+.chapter-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: var(--border-width-sm) solid transparent;
+  direction: rtl;
+}
+
+.chapter-heading-item {
+  border-top: var(--space-sm) solid transparent;
+}
+
+.chapter-heading-item:first-child {
+  border-top: 0;
+}
+
+/* Chapter dots */
+.chapter-dot {
+  width: 12px;
+  height: 4px;
+  background: var(--color-white);
+  border: var(--border-width-md) solid var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: width var(--transition-normal) var(--ease-out),
+              opacity var(--transition-normal) var(--ease-out),
+              transform var(--transition-normal) var(--ease-out);
+  display: inline-block;
+  padding: 0;
+}
+
+.section-dot {
+  width: 12px;
+  height: 4px;
+  border-width: var(--border-width-sm);
+}
+
+.chapter-item:hover .chapter-dot {
+  transform: scale(1.06);
+}
+
+/* Progress states */
+.chapter-dot.visited {
+  opacity: 1;
+}
+
+.chapter-dot.future {
+  opacity: 0.5;
+}
+
+.chapter-dot.current {
+  width: 24px;
+}
+
+/* Chapter labels */
+.chapter-label {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--color-bg-overlay-dark);
+  color: var(--color-white);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast) var(--ease-out),
+              transform var(--transition-fast) var(--ease-out);
+  transform-origin: left center;
+}
+
+.chapter-item:hover .chapter-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  z-index: 10;
+}
+
+/* Timestamp items */
+.chapter-item.timestamp .chapter-label {
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+.chapter-item.timestamp .chapter-label::before {
+  display: none;
+}
+
+.sec-subheader .chapter-item.timestamp .chapter-label,
+#chapter-nav:hover .chapter-item.timestamp .chapter-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.chapter-item.timestamp .chapter-dot {
+  background-color: var(--color-primary);
+  opacity: 1;
+}
+
+/* Desktop hover effects */
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) {
+  .chapter-item.timestamp .chapter-label {
+    transform: translateY(-50%) translateX(0) scale(0.75);
+    font-size: var(--font-size-xs);
+  }
+
+  #chapter-nav .chapter-item.timestamp:hover .chapter-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+    font-size: var(--font-size-small);
+  }
+}
+
+/* Label arrow */
+.chapter-label::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid var(--color-bg-overlay-dark);
+}
+
+/* Mobile styles */
+@media (max-width: 800px) {
+  #chapter-nav {
+    top: var(--space-dvh-sm);
+    left: var(--space-sm);
+    bottom: var(--space-dvh-sm);
+    height: 96dvh;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 100;
+  }
+
+  body.sec-subheader #chapter-nav {
+    z-index: 1;
+  }
+
+  #chapter-nav .chapter-item {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    margin: 0;
+  }
+
+  #chapter-nav .chapter-item button {
+    width: 4px;
+    height: 1px;
+    border-width: var(--border-width-sm);
+  }
+
+  #chapter-nav .chapter-label::before {
+    left: -8px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid var(--color-bg-overlay-dark);
+  }
+
+  #chapter-nav .chapter-item.touch-hover .chapter-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  #chapter-nav .chapter-item.touch-hover .chapter-dot {
+    transform: scale(1.15);
+    width: 32px;
+  }
+
+  #chapter-nav .nav-touch-rail {
+    position: absolute;
+    left: -12px;
+    top: 0;
+    width: 32px;
+    height: 100%;
+    pointer-events: auto;
+    background: transparent;
+    z-index: 1;
+    touch-action: pan-y;
+    -ms-touch-action: pan-y;
+  }
+
+  #chapter-nav .chapter-item.chapter-heading-item {
+    flex: 1 1 0;
+    border-top: 7px solid transparent;
+    border-bottom: 0;
+    margin: 0;
+  }
+
+  #chapter-nav .chapter-item.chapter-heading-item:first-child {
+    border-top: 0;
+  }
+
+  .chapter-item.timestamp .chapter-label {
+    opacity: 0;
+    z-index: -1;
+  }
+
+  body.sec-subheader .chapter-item.timestamp .chapter-label {
+    opacity: 1;
+  }
+}

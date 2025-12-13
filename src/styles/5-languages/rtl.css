@@ -1,0 +1,72 @@
+/**
+ * Right-to-Left (RTL) Support
+ * Directional adjustments for Hebrew and Arabic
+ */
+
+html[dir="rtl"],
+body[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Main content RTL adjustments */
+html[dir="rtl"] main,
+body[dir="rtl"] main {
+  left: 0;
+  right: var(--layout-iframe-width);
+  text-align: right;
+}
+
+/* Iframe positioning for RTL */
+html[dir="rtl"] iframe,
+html[dir="rtl"] iframe#if,
+body[dir="rtl"] iframe,
+body[dir="rtl"] iframe#if {
+  left: auto;
+  right: 0;
+}
+
+/* Dual iframe RTL */
+html[dir="rtl"] #background-frame,
+html[dir="rtl"] #foreground-frame,
+body[dir="rtl"] #background-frame,
+body[dir="rtl"] #foreground-frame {
+  left: auto;
+  right: 0;
+}
+
+/* Blockquote border flip */
+html[dir="rtl"] blockquote,
+body[dir="rtl"] blockquote {
+  border-left: none;
+  border-right: var(--border-width-md) solid var(--color-border);
+  padding-left: 0;
+  padding-right: var(--space-md);
+  margin-right: 0;
+}
+
+/* List alignment */
+html[dir="rtl"] ul,
+html[dir="rtl"] ol,
+body[dir="rtl"] ul,
+body[dir="rtl"] ol {
+  padding-right: var(--space-lg);
+  padding-left: 0;
+}
+
+/* Mobile RTL */
+@media (max-width: 1000px) and (orientation: portrait) {
+  html[dir="rtl"] main,
+  body[dir="rtl"] main {
+    left: 0;
+    right: 0;
+  }
+  
+  html[dir="rtl"] iframe,
+  html[dir="rtl"] iframe#if,
+  body[dir="rtl"] iframe,
+  body[dir="rtl"] iframe#if {
+    left: 0;
+    right: 0;
+  }
+}

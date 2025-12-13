@@ -1,0 +1,96 @@
+/**
+ * Main Grid Layout
+ * Pure structural positioning for iframe + main content
+ */
+
+/* Iframe positioning */
+iframe,
+iframe#if {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--layout-iframe-width);
+  height: var(--layout-iframe-height);
+  border: 0;
+  background: transparent;
+}
+
+/* Main content area */
+main {
+  position: absolute;
+  left: var(--layout-iframe-width);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: var(--space-main-padding-v) var(--space-main-padding-h);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: var(--z-index-content);
+}
+
+/* Dual iframe mode */
+body.dual-iframe #background-frame,
+body.dual-iframe #foreground-frame {
+  display: block;
+}
+
+#background-frame,
+#foreground-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--layout-iframe-width);
+  height: var(--layout-iframe-height);
+  border: 0;
+  display: none;
+}
+
+#background-frame {
+  z-index: var(--z-index-base);
+}
+
+#foreground-frame {
+  z-index: calc(var(--z-index-base) + 1);
+  pointer-events: none;
+}
+
+#foreground-frame.inactive {
+  opacity: 0;
+}
+
+/* Edit mode adjustments */
+body.bg-edit #foreground-frame {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+body.fg-edit #background-frame {
+  opacity: 0.3;
+}
+
+body.editing-mode main {
+  z-index: calc(var(--z-index-content) + 100);
+  pointer-events: auto;
+}
+
+body.bg-edit #chapter-nav {
+  left: calc(var(--layout-layer-panel-width) + var(--layout-chapter-nav-left));
+}
+
+/* Mobile portrait layout */
+@media (max-width: 1000px) and (orientation: portrait) {
+  iframe,
+  iframe#if {
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: var(--layout-iframe-mobile-height);
+  }
+  
+  main {
+    right: 0;
+    left: 0;
+    padding: var(--space-vh-sm) var(--space-vw-md);
+  }
+}

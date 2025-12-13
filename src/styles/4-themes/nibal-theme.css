@@ -1,0 +1,166 @@
+/**
+ * Nibal Theme
+ * Current visual styling using CSS variables
+ */
+
+/* Body and background */
+body {
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body-he);
+  line-height: var(--line-height-normal);
+}
+
+/* Main content area styling */
+main {
+  background: linear-gradient(
+    to top,
+    var(--color-bg-page) 0%,
+    var(--color-bg-page-alpha-90) 30%,
+    var(--color-bg-page-alpha-75) 60%,
+    var(--color-bg-page-alpha-50) 90%,
+    var(--color-bg-page-alpha-0) 100%
+  );
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-black);
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  margin: var(--space-xl) 0 var(--space-md);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-normal);
+  margin: var(--space-lg) 0 var(--space-md);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-normal);
+  margin: var(--space-md) 0 var(--space-sm);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+  margin: var(--space-md) 0 var(--space-sm);
+}
+
+p {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 var(--space-md);
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Emphasis */
+strong, b {
+  font-weight: var(--font-weight-bold);
+}
+
+em, i {
+  font-style: italic;
+}
+
+/* Special text styles */
+.inflection,
+.inflection-only {
+  text-shadow: var(--shadow-text);
+}
+
+/* Subscribe link */
+a.subscribe {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  border: var(--border-width-sm) solid var(--color-border);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  display: inline-block;
+  transition: all var(--transition-normal) var(--ease-out);
+}
+
+a.subscribe:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+/* Code blocks */
+code {
+  background-color: var(--color-bg-muted);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-small);
+}
+
+pre {
+  background-color: var(--color-bg-muted);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: var(--border-width-md) solid var(--color-border);
+  padding-left: var(--space-md);
+  margin-left: 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Images */
+img {
+  border-radius: var(--radius-sm);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary-alpha-30);
+  color: var(--color-text-primary);
+}
+
+::-moz-selection {
+  background-color: var(--color-primary-alpha-30);
+  color: var(--color-text-primary);
+}
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar {
+  width: var(--space-sm);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-round);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}

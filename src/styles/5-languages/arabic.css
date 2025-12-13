@@ -1,0 +1,29 @@
+/**
+ * Arabic Language Overrides
+ * Font and typography specific to Arabic content
+ */
+
+html[lang="ar"],
+body[lang="ar"],
+html[lang="ar"] body {
+  font-family: var(--font-family-body-ar), var(--font-family-body-he);
+  direction: rtl;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+body[lang="ar"] h1,
+body[lang="ar"] h2,
+body[lang="ar"] h3,
+body[lang="ar"] h4 {
+  font-family: var(--font-family-display-ar), var(--font-family-display);
+  letter-spacing: normal;
+}
+
+/* Arabic numerals if needed */
+html[lang="ar"] .numeral,
+body[lang="ar"] .numeral {
+  font-feature-settings: "ss01";
+}

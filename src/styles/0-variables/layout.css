@@ -1,0 +1,42 @@
+/**
+ * Layout Variables
+ * Dimensions, breakpoints, and layout-specific values
+ */
+
+:root {
+  /* Breakpoints */
+  --breakpoint-mobile: 1000px;
+  --breakpoint-tablet: 800px;
+  
+  /* Layout Dimensions */
+  --layout-iframe-width: 60vw;
+  --layout-iframe-height: 100dvh;
+  --layout-iframe-mobile-height: 50dvh;
+  
+  --layout-section-max-width: 640px;
+  --layout-section-min-height: 90dvh;
+  
+  --layout-layer-panel-width: 280px;
+  --layout-chapter-nav-left: 24px;
+  --layout-chapter-nav-mobile: 8px;
+  
+  /* Z-index Scale */
+  --z-index-base: 1;
+  --z-index-content: 10;
+  --z-index-nav: 100;
+  --z-index-overlay: 1000;
+  --z-index-modal: 1100;
+  --z-index-tooltip: 1200;
+  
+  /* Timing & Animation */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.6s;
+  --transition-fade: 1.8s;
+  
+  --easing-default: ease;
+  --easing-in: ease-in;
+  --easing-out: ease-out;
+  --easing-in-out: ease-in-out;
+  --easing-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}

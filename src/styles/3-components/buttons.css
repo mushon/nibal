@@ -1,0 +1,81 @@
+/**
+ * Buttons Component
+ * Button styling patterns
+ */
+
+button,
+.button {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-family-body-he);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  text-decoration: none;
+  border: var(--border-width-sm) solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--ease-out);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+button:hover,
+.button:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active,
+.button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+button:disabled,
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Button variants */
+button.secondary,
+.button.secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-primary);
+}
+
+button.secondary:hover,
+.button.secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+button.outline,
+.button.outline {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+button.outline:hover,
+.button.outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Small buttons */
+button.small,
+.button.small {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-small);
+}
+
+/* Large buttons */
+button.large,
+.button.large {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-h4);
+}

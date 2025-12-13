@@ -1,0 +1,70 @@
+/**
+ * Global Base Styles
+ * Minimal element defaults and utility classes
+ */
+
+/* Box model reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Root & body */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-base);
+}
+
+/* Remove default margins */
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, figure {
+  margin: 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.img {
+  float: left;
+  width: 0;
+  height: 0;
+}
+
+/* Code */
+code, pre, kbd, samp, tt, textarea {
+  font-family: var(--font-family-mono);
+}
+
+/* Utility: hide empty inflection-only paragraphs */
+p.no-text,
+p.inflection-only {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Utility: prevent text selection */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Utility: prevent touch scrolling */
+.no-touch-scroll {
+  touch-action: none;
+}

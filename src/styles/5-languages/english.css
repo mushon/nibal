@@ -1,0 +1,23 @@
+/**
+ * English Language Overrides
+ * Font and typography specific to English content
+ */
+
+html[lang="en"],
+body[lang="en"],
+html[lang="en"] body {
+  font-family: var(--font-family-body-en);
+  direction: ltr;
+}
+
+html[lang="en"] h1,
+html[lang="en"] h2,
+html[lang="en"] h3,
+html[lang="en"] h4,
+body[lang="en"] h1,
+body[lang="en"] h2,
+body[lang="en"] h3,
+body[lang="en"] h4 {
+  font-family: var(--font-family-display-en), var(--font-family-display);
+  letter-spacing: var(--letter-spacing-tight);
+}

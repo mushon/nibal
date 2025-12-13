@@ -1,0 +1,50 @@
+/**
+ * Left-to-Right (LTR) Support
+ * Explicit LTR adjustments (default behavior)
+ */
+
+html[dir="ltr"],
+body[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] main,
+body[dir="ltr"] main {
+  left: var(--layout-iframe-width);
+  right: 0;
+  text-align: left;
+}
+
+html[dir="ltr"] iframe,
+html[dir="ltr"] iframe#if,
+body[dir="ltr"] iframe,
+body[dir="ltr"] iframe#if {
+  left: 0;
+  right: auto;
+}
+
+html[dir="ltr"] #background-frame,
+html[dir="ltr"] #foreground-frame,
+body[dir="ltr"] #background-frame,
+body[dir="ltr"] #foreground-frame {
+  left: 0;
+  right: auto;
+}
+
+/* Mobile LTR */
+@media (max-width: 1000px) and (orientation: portrait) {
+  html[dir="ltr"] main,
+  body[dir="ltr"] main {
+    left: 0;
+    right: 0;
+  }
+  
+  html[dir="ltr"] iframe,
+  html[dir="ltr"] iframe#if,
+  body[dir="ltr"] iframe,
+  body[dir="ltr"] iframe#if {
+    left: 0;
+    right: 0;
+  }
+}
