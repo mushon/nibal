@@ -27,8 +27,8 @@
 
 .ltr section:not(.gofundme)  > a.thumb {
     background-image: image-set(
-        url(../../assets/thumb_report_en.png) 1x,
-        url(../../assets/thumb_report_en@2x.png) 2x
+        url(../assets/thumb_report_en.png) 1x,
+        url(../assets/thumb_report_en@2x.png) 2x
     );
 }
 

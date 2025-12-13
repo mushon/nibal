@@ -1,7 +1,7 @@
 ---
 dual-iframe: true
 body-class: snap ltr fs-video-mobile editor content-top
-css: src/styles/themes/nibal-theme.css, src/styles/languages/ltr.css
+css: src/styles/nibal-theme.css, src/styles/ltr.css
 snap: true
 editor: true
 animate-sections: true

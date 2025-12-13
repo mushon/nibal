@@ -19,16 +19,16 @@
 
 @font-face {
     font-family: "Levit_1950";
-    src: url("../../fonts/Levit_1950-BlackExtended.woff2") format("woff2"),
-         url("../../fonts/Levit_1950-BlackExtended.woff") format("woff");
+    src: url("../fonts/Levit_1950-BlackExtended.woff2") format("woff2"),
+         url("../fonts/Levit_1950-BlackExtended.woff") format("woff");
     font-style: normal;
     font-weight: 900;
 }
 
 @font-face {
     font-family: "Heb_hand";
-    src: url("../../fonts/gadi-almog-regular-aaa.woff2") format("woff2"),
-         url("../../fonts/gadi-almog-regular-aaa.woff") format("woff");
+    src: url("../fonts/gadi-almog-regular-aaa.woff2") format("woff2"),
+         url("../fonts/gadi-almog-regular-aaa.woff") format("woff");
     font-style: normal;
     font-weight: 400;
 }
@@ -132,8 +132,8 @@ section > a.thumb{
     display: block;
     background-color: var(--color-black);
     background-image: image-set(
-        url(../../assets/thumb_report_he.png) 1x,
-        url(../../assets/thumb_report_he@2x.png) 2x
+        url(../assets/thumb_report_he.png) 1x,
+        url(../assets/thumb_report_he@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-position: right 8px bottom 0;
@@ -155,7 +155,7 @@ a.thumb::after {
     position: absolute;
     top: 50%;
     left: 4px;
-    background-image: url(../../assets/external-link.svg);
+    background-image: url(../assets/external-link.svg);
     background-size: contain;
     margin-top: -15px;
 }
@@ -177,7 +177,7 @@ section > a.thumb:hover{
 }
 
 section > a.thumb:hover:after {
-    background-image: url(../../assets/external-link_hover.svg) !important;
+    background-image: url(../assets/external-link_hover.svg) !important;
 }
 
 section > a.thumb strong{
@@ -192,8 +192,8 @@ section.gofundme p{
 section.gofundme > a.thumb{
     background-color: var(--color-black);
     background-image: image-set(
-        url(../../assets/thumb_gfm.png) 1x,
-        url(../../assets/thumb_gfm@2x.png) 2x
+        url(../assets/thumb_gfm.png) 1x,
+        url(../assets/thumb_gfm@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -202,7 +202,7 @@ section.gofundme > a.thumb{
 }
 
 section.gofundme > a.thumb::after{
-    background-image: url(../../assets/external-link_gfm.svg);
+    background-image: url(../assets/external-link_gfm.svg);
 }
 
 section.gofundme > a.thumb:hover{
@@ -220,7 +220,7 @@ section.testimony p{
     font-size: 1.2em;
     background-image: repeating-linear-gradient(0deg, rgb(from var(--color-primary) r g b / 0.4), rgb(from var(--color-primary) r g b / 0.4) 2px, transparent 2px, transparent);
     background-size: 1.5em 1.5em;
-    background-color: rgba(250, 95, 95, 0);
+    background-color: transparent;
     background-position-y: 1.5em;
     border-right: 4px solid var(--color-primary);
 }
@@ -439,7 +439,7 @@ section {
     margin: auto 0;
     padding-right: 3vh;
     max-width: 60vh;
-    color: #fff;
+    color: var(--color-white);
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -544,7 +544,7 @@ iframe {
 
 /* Newsletter signup form tweaks */
 #mc_embed_signup{
-    background-color: #000;
+    background-color: var(--color-black);
     font-size: 1em;
     padding: .4em .8em 1.6em;
     border-right: 8px solid var(--color-primary);
@@ -578,10 +578,10 @@ iframe {
     align-self: stretch;
     border-radius: 4px;
     border: 1px solid var(--color-primary);
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--color-bg-muted);
     font-size: 1em;
     font-family: var(--font-serif);
-    color: #fff;
+    color: var(--color-white);
 }
 
 input#mce-EMAIL{
@@ -652,7 +652,7 @@ input#mce-EMAIL{
         padding: 5vw 3vw 5vw 7vw; /* leaving room for the navbar */
         margin:  0 0;
         z-index: 10;
-        background: linear-gradient(0deg, rgba(34, 34, 34, 0) 30%, rgba(34, 34, 34, 0.00) 55%);
+        background: linear-gradient(0deg, rgba(34, 34, 34, 0) 30%, transparent 55%);
         overflow-y: auto;
         overflow-x: hidden;
         /* -webkit-backdrop-filter: blur(2px);

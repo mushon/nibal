@@ -1,19 +1,19 @@
 /**
- * Main CSS Entry Point - Exact Original Files in Modular Structure
+ * Main CSS Entry Point
  */
 
 /* Variables */
-@import './variables/colors.css';
+@import './colors.css';
 
-/* Base styles (fonts, global defaults, layout) */
-@import './base/global.css';
+/* Base styles */
+@import './global.css';
 
-/* Theme (all visual styling) */
-/* @import './themes/nibal-theme.css'; */
+/* Theme */
+@import './nibal-theme.css';
 
 /* Languages (imported via frontmatter, not by default) */
-/* @import './languages/arabic.css'; */
-/* @import './languages/ltr.css'; */
+/* @import './arabic.css'; */
+/* @import './ltr.css'; */
 
 /* Extensions */
-@import './extensions/chapters.css';
+@import './chapters.css';
