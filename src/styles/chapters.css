@@ -169,7 +169,8 @@
   }
 
   body.sec-subheader main{
-    z-index: 100;
+    z-index: 1000;
+    background: none;
   }
 
   /* Make each section button fill available height maximally */
