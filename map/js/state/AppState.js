@@ -125,6 +125,10 @@ export class AppState {
     return this.styleDefaultVisibility[layerId] || 'visible';
   }
   
+  removeStyleDefaultVisibility(layerId) {
+    delete this.styleDefaultVisibility[layerId];
+  }
+  
   setStyleDefaultFilter(layerId, filter) {
     this.styleDefaultFilter[layerId] = filter;
   }

@@ -211,10 +211,14 @@ export class HashRouter {
 
   /**
    * Update the URL hash with new camera/layer state
-   * @param {Object} camera - Optional camera object { center, zoom, bearing, pitch }
-   * @param {string[]} extraSegments - Additional hash segments (e.g., ['mapui', 'static'])
+   * @param {Object} options - Update options
+   * @param {Object} options.camera - Optional camera object { center, zoom, bearing, pitch }
+   * @param {string[]} options.layerTokens - Optional layer tokens array
+   * @param {string[]} options.extraSegments - Additional hash segments (e.g., ['mapui', 'static'])
    */
-  updateHash(camera = null, extraSegments = []) {
+  updateHash(options = {}) {
+    const { camera = null, layerTokens = null, extraSegments = [] } = options;
+    
     const existing = window.location.hash.replace('#', '');
     const parts = existing.split('/');
 
@@ -236,6 +240,12 @@ export class HashRouter {
     }
 
     let layersStr = parts[1] || '';
+    
+    // Update layers if provided
+    if (layerTokens !== null) {
+      layersStr = layerTokens.length > 0 ? layerTokens.join(',') : '';
+    }
+    
     const trailing = parts.slice(2).filter(Boolean);
 
     // Add any extra segments
