@@ -6,8 +6,11 @@
 :root {
   /* Font Families */
   --font-family-display: Levit_1950, sans-serif;
+  --font-family-display-en: Levit_1950, sans-serif;
+  --font-family-display-ar: Levit_1950, sans-serif;
   --font-family-body-he: 'David Libre', 'Fedra Serif', serif;
   --font-family-body-en: 'Atkinson', sans-serif;
+  --font-family-body-ar: 'Vazirmatn', sans-serif;
   --font-family-handwriting-he: 'Heb_hand', cursive;
   --font-family-handwriting-en: 'Shadows Into Light Two', cursive;
   --font-family-handwriting-ar: 'Playpen Sans Arabic', sans-serif;
