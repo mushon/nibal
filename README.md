@@ -92,13 +92,13 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.29,0.28,1/+nibal2023)
+[](svg/#intro-pre.svg/-0.29,0.18,1/+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 שמי ניבאל. אני בת 25. עד לאוקטובר 2023, גרתי בעיירה ג׳אבליא עם בעלי אחמד ובתנו התינוקת ריתא.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.67,0.25,2.4/,+nibal2023)
+[](svg/#intro-pre.svg/-0.71,0.43,2.4/,+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 אני הצעירה מבין תשעה אחים ושלוש אחיות.  
 
@@ -154,7 +154,7 @@ extensions: [inflect-caption]
 {.meta no-h}
 #### Oct 23
 [](fg:blank)
-[](map/#31.36736,34.39816,10.39,-10.4,42.0/~labels_he,+oct7-hamas(label-focused))
+[](map/#31.40472,34.39359,10.01,-10.4,42.0/~labels_he,+oct7-hamas(label-focused))
 ב-7 באוקטובר 2023 ביצעו ארגון חמאס ופלגים חמושים פלסטינים נוספים מרצועת עזה את המתקפה הקטלנית ביותר שתועדה אי פעם נגד אזרחים ישראלים.
 
 1,220 בני אדם נהרגו, עשרות אלפים נפצעו, ו-252 נחטפו לרצועת עזה.
@@ -213,13 +213,13 @@ extensions: [inflect-caption]
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home) "הערכת נזק וחומרת פגיעה במבנים ברצועת עזה כעבור השבוע הראשון למתקפה. אדום: צפיפות נמוכה; כתום: צפיפות בינונית; צהוב: צפיפות גבוהה. מקור: UNOSAT")
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home) "הערכת נזק וחומרת פגיעה במבנים ברצועת עזה כעבור השבוע הראשון למתקפה. אדום: צפיפות נמוכה; כתום: צפיפות בינונית; צהוב: צפיפות גבוהה. מקור: UNOSAT")
 ניבאל, שחששה מיציאה למסע הקשה לדרום הרצועה לבדה עם בתה בת החודש, עברה עם ריתא לבית הוריה הסמוך. 
 
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-he(label-main,id=home))
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-he(label-main,id=home))
 נשארנו בג׳אבליא למרות ההפצצות, הרעב והפחד. סבלתי מאוד בתקופה הזאת. אחמד חסר לי ולא יכולתי לדמיין את העקירה לבד עם ריתא, בלעדיו ובלי המשפחה שלי.
 
 
@@ -257,13 +257,13 @@ extensions: [inflect-caption]
 {.meta no-h}
 ### עקירה ראשונה
 [](fg:blank)
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-he(label-main,id=home),+pois-he#2(label-main,id=gaza-2403))
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-he(label-main,id=home),+pois-he#2(label-main,id=gaza-2403))
 את תחילת הדרך עשתה ניבאל עם אביה, שהסיע אותה ואת ריתא מביתם בג'אבליא לפאתי העיר עזה.
 
 
 {.meta}
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "מתוך חשבון האינסטגרם של ניבאל")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-he(label-main,id=home),+pois-he#2(label-main,id=gaza-2403))
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-he(label-main,id=home),+pois-he#2(label-main,id=gaza-2403))
 בעדותה תיארה ניבאל נסיעה רוויית אימה בדרכים הרוסות, במהלכה ראתה מבעד לחלון המכונית את ההפצצות הכבדות של הצבא הישראלי.
 
 
@@ -342,8 +342,8 @@ extensions: [inflect-caption]
 
 
 {.meta thumb} 
-[](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-he(label-main,id=rafah),+rafah-mawasi-line(arrow) "בתמונה: צווי הפינוי שהפיץ הצבא לתושבי ושוהי רפיח ב-6 במאי 2024")
+[](fg:blank)
+[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-he(label-main,id=rafah),+rafah-mawasi-line(arrow) "באדום: האזורים שנכללו תחת צווי הפינוי של הצבא בין ה-6 ל-11 במאי 2024")
 בתחילת מאי 2024, פחות מחודשיים לאחר הגעתם של ניבאל, אחמד וריתא לעיר, הפיץ הצבא הישראלי צווי פינוי חדשים שדרשו מתושבי רפיח ומהעקורים השוהים בה להתפנות.  
 
 <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -369,7 +369,7 @@ extensions: [inflect-caption]
 
 {.meta} 
 [](fg:blank)
-[](map/#31.44772,34.39655,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois-he(label-main,id=bureij))
+[](map/#31.44175,34.39885,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois-he(label-main,id=bureij))
 הם הגיעו למחנה הפליטים אל-בוריג׳ שבמרכז הרצועה, שם שכרו מחסן קטן מחברים.
 
 
@@ -460,7 +460,7 @@ extensions: [inflect-caption]
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois-he(label-main,id=al-zawaida),+pois-he#2(label-main,id=home))
+[](map/#31.41459,34.38374,10.01,-0.8,0.0/+pois-he(label-main,id=al-zawaida),+pois-he#2(label-main,id=home))
 ההורים שלי השתגעו מדאגה. הם חששו שלא אשרוד, וכל הזמן התעדכנו במצבי דרך אחמד. 
 כשמצבי השתפר קצת במהלך האשפוז, הצלחתי סוף סוף להתקשר בעצמי לאמא שלי. רציתי שהיא תשמע שאני בסדר. היא לא האמינה שאני עדיין חיה ולא הפסיקה לבכות.
 
@@ -625,7 +625,7 @@ extensions: [inflect-caption]
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.25,0.55,2.15/+@vimeo-1141082583 "סרטון מהרשתות, שימוש לפי סעיף 27א'")
+[](svg/#ceasefire_hope.svg/-0.19,0.6,2.15/+@vimeo-1141082583 "סרטון מהרשתות, שימוש לפי סעיף 27א'")
 [](bg:blank)
 תחת ההפצצות והמצור, מערכת היחסים של ניבאל ואחמד נקלעה למשבר.
 
@@ -650,13 +650,13 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "מתוך חשבון הטיקטוק של ניבאל")
 [](bg:blank)
 בהתחלה הוא מאוד תמך בי. אבל עם הזמן ועם הקושי האישי שלו, הרגשתי שהוא נאלץ לטפל בי מתוך רחמים.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "מתוך חשבון הטיקטוק של ניבאל")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "מתוך חשבון הטיקטוק של ניבאל")
 [](bg:blank)
 בתוך כל הקשיים, ניסיתי להתמקד בריתא. היא הייתה הדבר החשוב ביותר בשבילי, ועשיתי מה שיכולתי כדי להתגבר על המתיחות ביני לבין אחמד ולטפל בה.
 
@@ -765,7 +765,7 @@ extensions: [inflect-caption]
 {.meta no-h}
 ### עקירה חמישית
 [](fg:blank)
-[](map/#31.52993,34.49211,12.14,38.4,0.0/+pois-he(label-main,id=gaza-2509),+pois-he#2(label-main,id=home),~labels_he)
+[](map/#31.51737,34.47408,12.14,38.4,0.0/+home-gaza-city(2-by-foot),+pois-he(label-main,id=gaza-2509),+pois-he#2(label-main,id=home),~labels_he)
 ניבאל, ריתא וכ-50 מבני משפחתן המורחבת - הוריה של ניבאל, אחיה, בני זוגם וילדיהם - צעדו ברגל מג׳אבליא בחיפוש אחר מקום בטוח. 
 הם התמקמו במסעדה נטושה של חברים, ואחר-כך עברו לדירה קטנה וצפופה בעיר עזה.
 
@@ -798,7 +798,7 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#permanent_impermanence.svg/0.2,-0.85,3.14/+@vimeo-1129867912 "מתוך חשבון הטיקטוק של ניבאל. בטקסט שצירפה לסרטון כתבה: ״בין ההריסות, ״אנשים נושאים את מה שנשאר מחייהם, כאילו גוררים שרידי מולדת על משאית״")
+[](svg/#permanent_impermanence.svg/0.2,-0.85,3.14/+@vimeo-1129867912 "מתוך חשבון הטיקטוק של ניבאל. בטקסט שצירפה לסרטון כתבה: ״בין ההריסות, אנשים נושאים את מה שנשאר מחייהם, כאילו גוררים שרידי מולדת על משאית״")
 [](bg:blank)
 אני מותשת מהעקירה, וחוששת שריתא ואני לא נצליח להסתגל שוב לחיים באוהל.
 הצבא הישראלי מפזר כל הזמן כרוזים שמורים לנו להתפנות, ואנחנו חיים בחוסר אונים ובפחד. 
@@ -912,7 +912,7 @@ extensions: [inflect-caption]
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/-1.58,-1.98,6.47/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](svg/#permanent_impermanence.svg/-0.95,-1.21,3.91/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 בצלם ימשיך לשמור על קשר עם ניבאל. אם יחול שינוי במצבה — נעדכן עליו בניוזלטר שלנו:
 
@@ -958,6 +958,8 @@ extensions: [inflect-caption]
 {.meta closing}
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+
+עדותה של ניבאל נגבתה על-ידי תחקירנית בצלם אולפת אל-כורד.
 
 ## צילומים ווידאו
 - באדיבות ניבאל אל-היסי
