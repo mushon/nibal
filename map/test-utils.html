@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map Utilities Test</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .test-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .test-section h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .pass {
+      color: green;
+      font-weight: bold;
+    }
+    .fail {
+      color: red;
+      font-weight: bold;
+    }
+    .test-result {
+      margin: 8px 0;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 3px;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 3px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Map Utilities Test Suite</h1>
+  <div id="results"></div>
+
+  <script type="module">
+    import { getDistance, getBearing, interpolateLine, easeInOutQuad } from './js/utils/geometry.js';
+    import { 
+      splitLayerTokens, 
+      parseParenArgs, 
+      buildParenArgs, 
+      parseFilterExprToMapbox, 
+      combineFilterExprsToMapbox 
+    } from './js/utils/tokenParser.js';
+    import { isDesktopEnvironment, createElement, debounce, throttle } from './js/utils/dom.js';
+
+    const results = document.getElementById('results');
+    let passCount = 0;
+    let failCount = 0;
+
+    function addTestSection(title) {
+      const section = createElement('div', { className: 'test-section' });
+      const heading = createElement('h2', {}, title);
+      section.appendChild(heading);
+      results.appendChild(section);
+      return section;
+    }
+
+    function addTestResult(section, name, passed, actual, expected) {
+      const result = createElement('div', { className: 'test-result' });
+      const status = passed ? 
+        createElement('span', { className: 'pass' }, '✓ PASS') : 
+        createElement('span', { className: 'fail' }, '✗ FAIL');
+      
+      result.appendChild(status);
+      result.appendChild(document.createTextNode(` ${name}`));
+      
+      if (!passed) {
+        const details = createElement('pre', {}, 
+          `Expected: ${JSON.stringify(expected, null, 2)}\nActual: ${JSON.stringify(actual, null, 2)}`
+        );
+        result.appendChild(details);
+      }
+      
+      section.appendChild(result);
+      
+      if (passed) passCount++;
+      else failCount++;
+    }
+
+    function assertEqual(section, name, actual, expected) {
+      const passed = JSON.stringify(actual) === JSON.stringify(expected);
+      addTestResult(section, name, passed, actual, expected);
+    }
+
+    function assertCloseTo(section, name, actual, expected, tolerance = 0.01) {
+      const passed = Math.abs(actual - expected) < tolerance;
+      addTestResult(section, name, passed, actual, expected);
+    }
+
+    // Test geometry utilities
+    const geoSection = addTestSection('Geometry Utilities');
+    
+    // Test distance calculation (Gaza City to Khan Younis approximately 25km)
+    const gazaCity = [34.4668, 31.5167];
+    const khanYounis = [34.3056, 31.3456];
+    const dist = getDistance(gazaCity, khanYounis);
+    assertCloseTo(geoSection, 'getDistance(Gaza City, Khan Younis)', dist, 25000, 1000);
+
+    // Test bearing
+    const bearing = getBearing([0, 0], [1, 1]);
+    assertEqual(geoSection, 'getBearing returns number', typeof bearing, 'number');
+
+    // Test interpolation
+    const line = [[0, 0], [1, 0], [1, 1]];
+    const midpoint = interpolateLine(line, 0.5);
+    assertEqual(geoSection, 'interpolateLine at midpoint returns array', Array.isArray(midpoint), true);
+
+    // Test easing
+    assertEqual(geoSection, 'easeInOutQuad(0) = 0', easeInOutQuad(0), 0);
+    assertEqual(geoSection, 'easeInOutQuad(1) = 1', easeInOutQuad(1), 1);
+    assertCloseTo(geoSection, 'easeInOutQuad(0.5)', easeInOutQuad(0.5), 0.5, 0.01);
+
+    // Test token parser utilities
+    const tokenSection = addTestSection('Token Parser Utilities');
+
+    // Test splitLayerTokens
+    assertEqual(tokenSection, 
+      'splitLayerTokens with simple tokens',
+      splitLayerTokens('+layer1,~layer2,+layer3'),
+      ['+layer1', '~layer2', '+layer3']
+    );
+
+    assertEqual(tokenSection,
+      'splitLayerTokens with parentheses',
+      splitLayerTokens('+layer1(source),~layer2(name=foo,type!=bar)'),
+      ['+layer1(source)', '~layer2(name=foo,type!=bar)']
+    );
+
+    assertEqual(tokenSection,
+      'splitLayerTokens with .geojson extension',
+      splitLayerTokens('+pois.csv,+routes.geojson'),
+      ['+pois.csv', '+routes.geojson']
+    );
+
+    // Test parseParenArgs
+    assertEqual(tokenSection,
+      'parseParenArgs with source hint only',
+      parseParenArgs('roads'),
+      { sourceHint: 'roads', filters: [] }
+    );
+
+    assertEqual(tokenSection,
+      'parseParenArgs with filter only',
+      parseParenArgs('name=jabalia'),
+      { sourceHint: null, filters: ['name=jabalia'] }
+    );
+
+    assertEqual(tokenSection,
+      'parseParenArgs with source and filters',
+      parseParenArgs('roads,name=main,type!=bridge'),
+      { sourceHint: 'roads', filters: ['name=main', 'type!=bridge'] }
+    );
+
+    // Test buildParenArgs
+    assertEqual(tokenSection,
+      'buildParenArgs with source and filters',
+      buildParenArgs('roads', ['name=main', 'type!=bridge']),
+      '(roads,name=main,type!=bridge)'
+    );
+
+    assertEqual(tokenSection,
+      'buildParenArgs with empty inputs',
+      buildParenArgs(null, []),
+      ''
+    );
+
+    // Test parseFilterExprToMapbox
+    assertEqual(tokenSection,
+      'parseFilterExprToMapbox with single equality',
+      parseFilterExprToMapbox('name=jabalia'),
+      ['==', ['get', 'name'], 'jabalia']
+    );
+
+    assertEqual(tokenSection,
+      'parseFilterExprToMapbox with OR values',
+      parseFilterExprToMapbox('name=jabalia|beit_hanoun'),
+      ['any', ['==', ['get', 'name'], 'jabalia'], ['==', ['get', 'name'], 'beit_hanoun']]
+    );
+
+    assertEqual(tokenSection,
+      'parseFilterExprToMapbox with inequality',
+      parseFilterExprToMapbox('type!=boundary'),
+      ['!=', ['get', 'type'], 'boundary']
+    );
+
+    // Test combineFilterExprsToMapbox
+    assertEqual(tokenSection,
+      'combineFilterExprsToMapbox with single filter',
+      combineFilterExprsToMapbox(['name=jabalia']),
+      ['==', ['get', 'name'], 'jabalia']
+    );
+
+    assertEqual(tokenSection,
+      'combineFilterExprsToMapbox with multiple filters',
+      combineFilterExprsToMapbox(['name=jabalia', 'type!=boundary']),
+      ['all', ['==', ['get', 'name'], 'jabalia'], ['!=', ['get', 'type'], 'boundary']]
+    );
+
+    // Test DOM utilities
+    const domSection = addTestSection('DOM Utilities');
+
+    assertEqual(domSection,
+      'isDesktopEnvironment returns boolean',
+      typeof isDesktopEnvironment(),
+      'boolean'
+    );
+
+    const testEl = createElement('div', 
+      { className: 'test', id: 'test-el', dataset: { layer: 'test' } },
+      'Test content'
+    );
+    assertEqual(domSection, 'createElement creates element', testEl.tagName, 'DIV');
+    assertEqual(domSection, 'createElement sets className', testEl.className, 'test');
+    assertEqual(domSection, 'createElement sets id', testEl.id, 'test-el');
+    assertEqual(domSection, 'createElement sets dataset', testEl.dataset.layer, 'test');
+    assertEqual(domSection, 'createElement sets text content', testEl.textContent, 'Test content');
+
+    // Test debounce (simple check that it returns a function)
+    const debouncedFn = debounce(() => {}, 100);
+    assertEqual(domSection, 'debounce returns function', typeof debouncedFn, 'function');
+
+    // Test throttle
+    const throttledFn = throttle(() => {}, 100);
+    assertEqual(domSection, 'throttle returns function', typeof throttledFn, 'function');
+
+    // Summary
+    const summary = addTestSection('Test Summary');
+    const totalTests = passCount + failCount;
+    const successRate = ((passCount / totalTests) * 100).toFixed(1);
+    
+    summary.innerHTML += `
+      <p>Total Tests: ${totalTests}</p>
+      <p class="pass">Passed: ${passCount}</p>
+      <p class="fail">Failed: ${failCount}</p>
+      <p>Success Rate: ${successRate}%</p>
+    `;
+
+    if (failCount === 0) {
+      summary.innerHTML += '<p style="color: green; font-weight: bold; font-size: 1.2em;">✓ All tests passed!</p>';
+    }
+  </script>
+</body>
+</html>
