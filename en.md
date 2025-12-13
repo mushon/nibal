@@ -459,7 +459,7 @@ I asked about Rita, and they told me she was fine. That’s what kept me going. 
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.41459,34.38374,10.01,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home),~labels_he)
+[](map/#31.38437,34.30257,11.63,0.0,39.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home),~labels_he)
 My parents were frantic with worry. They were afraid I wouldn’t make it and kept checking in with Ahmad. 
 When I felt a bit better, in the hospital, I finally managed to call my mother. I wanted her to hear that I was okay. She couldn’t believe I was alive and couldn't stop crying.
 
@@ -699,7 +699,7 @@ One day, he demanded I go back to my parents.
 
 {.meta}
 [](fg:blank)
-[](map/#31.52942,34.47911,18.34,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+labels_en)
+[](map/#31.52962,34.47878,18.34,38.4,0.0/+pois(label-main,id=home),+pois#2(label-main,id=couple-home),~labels_he,+labels_en)
 A few months after returning to their apartment, Nibal moved back to her parents with Rita in early June 2025.
 
 
@@ -762,7 +762,7 @@ Later, Nibal learned that the building she had lived in most of her life with he
 {.meta no-h}
 ### Fifth Displacement
 [](fg:blank)
-[](map/#31.51737,34.47408,12.14,38.4,0.0/+home-gaza-city(2-by-foot),+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
+[](map/#31.52064,34.46792,13.22,38.4,0.0/+home-gaza-city(2-by-foot),+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
 Nibal walked with Rita and about 50 people from her family to Gaza City, in search of safety.
 They sheltered in an abandoned restaurant belonging to friends, and later in a cramped apartment.
 
