@@ -2,6 +2,9 @@
  * Main CSS Entry Point - Exact Original Files in Modular Structure
  */
 
+/* Variables */
+@import './0-variables/colors.css';
+
 /* Base styles (fonts, global defaults, layout) */
 @import './1-base/global.css';
 
