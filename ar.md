@@ -91,14 +91,14 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.29,0.28,1/+nibal2023)
+[](svg/#intro-pre.svg/-0.29,0.18,1/+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 اسمي نِبال الهسي. عمري 25 عامًا. حتى تشرين الأول 2023، كنت أعيش في جباليا مع زوجي أحمد وابنتنا الرضيعة ريتا.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.67,0.25,2.4/,+nibal2023)
+[](svg/#intro-pre.svg/-0.71,0.43,2.4/,+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 أنا الأصغر بين تسعة إخوة وثلاث أخوات.
@@ -159,7 +159,7 @@ extensions: [inflect-caption]
 #### Oct 23
 
 [](fg:blank)
-[](map/#31.36736,34.39816,10.39,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused))
+[](map/#31.40472,34.39359,10.01,-10.4,42.0/~labels_he,+oct7-hamas-ar(label-focused))
 في 7 تشرين الأول 2023، نفذت حركة حماس وفصائل فلسطينية مسلحة أخرى من قطاع غزة الهجوم الأكثر دموية الذي وقع ضد مدنيين إسرائيليين، على الإطلاق.
 قُتل 1,220 شخصًا في ذلك الهجوم، بمن فيهم نساء ومسنون وأطفال. 
 أصيب آلاف واختُطف إلى قطاع غزة 252 شخصًا، أحياءً وجثثًا.
@@ -223,13 +223,13 @@ extensions: [inflect-caption]
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home),~labels_he,+labels_ar "تقييم الأضرار وشدّة الإصابات في المباني في قطاع غزة بعد الأسبوع الأول من الهجوم. الأحمر: كثافة منخفضة؛ البرتقالي: كثافة متوسطة؛ الأصفر: كثافة عالية. المصدر: UNOSAT")
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home),~labels_he,+labels_ar "تقييم الأضرار وشدّة الإصابات في المباني في قطاع غزة بعد الأسبوع الأول من الهجوم. الأحمر: كثافة منخفضة؛ البرتقالي: كثافة متوسطة؛ الأصفر: كثافة عالية. المصدر: UNOSAT")
 نِبال، التي كانت تخشى الخروج في تلك الرحلة الصعبة إلى جنوب القطاع بمفردها، مع ابنتها البالغة من العمر شهرًا واحدًا، قررت البقاء مؤقتًا في منزل والديها في جباليا.
 
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.53103,34.47759,13.51,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-ar(label-main,id=home),~labels_he,+labels_ar)
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-ar(label-main,id=home),~labels_he,+labels_ar)
 بقينا رغم القصف والجوع والخوف. عانيتُ كثيرًا في تلك الفترة. اشتقتُ كثيرًا إلى أحمد ولم أستطع تخيّل النزوح بمفردي مع ريتا، بدونه وبدون دعم عائلتي.
 
 
@@ -264,16 +264,17 @@ extensions: [inflect-caption]
 [](bg:blank)
 ## الرحلة جنوبًا 
 
+
 {.meta no-h}
 ### النزوح الأول
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "من حساب نِبال على إنستغرام")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
 تبدأ نِبال رحلتها مع والدها، الذي يقلّها هي وريتا من منزلهما في جباليا إلى مدينة غزة. 
 
 
 {.meta}
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "من حساب نِبال على إنستغرام")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
 في إفادتها، تحدثت نِبال عن رحلة مليئة بالرعب في طرقات مدمّرة، شاهدت خلالها من نافذة السيارة قصفًا عنيفًا على المناطق المحيطة بهم.
 
 
@@ -350,8 +351,8 @@ extensions: [inflect-caption]
 
 
 {.meta thumb} 
-[](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main-ar,id=rafah),~labels_he,+labels_ar,+rafah-mawasi-line(arrow) "أوامر الإخلاء التي وزعها الجيش الإسرائيلي على سكان رفح في أيار 2024")
+[](fg:blank)
+[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main-ar,id=rafah),~labels_he,+labels_ar,+rafah-mawasi-line(arrow))
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -379,7 +380,7 @@ extensions: [inflect-caption]
 
 {.meta} 
 [](fg:blank)
-[](map/#31.44772,34.39655,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois-ar(label-main-ar,id=bureij),~labels_he,+labels_ar)
+[](map/#31.44175,34.39885,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois-ar(label-main-ar,id=bureij),~labels_he,+labels_ar)
 اضطرت نِبال وعائلتها الصغيرة إلى الفرار مرة أخرى ووصلوا إلى مخيم البريج للاجئين في وسط القطاع، حيث استأجروا مستودعًا صغيرًا من أصدقاء.
 
 
@@ -474,7 +475,7 @@ extensions: [inflect-caption]
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=home),~labels_he)
+[](map/#31.41459,34.38374,10.01,-0.8,0.0/+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=home),~labels_he)
 جُنَّ والداي من شدّة القلق. كانا يخشيان ألا أنجو، وكانا يتابعان حالتي باستمرار من خلال أحمد. 
 وعندما تحسّن وضعي قليلًا، تمكّنت أخيرًا من الاتصال بوالدتي بنفسي. أردتُ أن تسمع صوتي وتطمئن أنني على قيد الحياة. لم تصدّق أنني ما زلت حيّة وانفجرَت بالبكاء.
 
@@ -645,7 +646,7 @@ extensions: [inflect-caption]
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/-0.25,0.55,2.15/+@vimeo-1141082583 "فيديو من شبكات التواصل، استخدام بموجب المادة 27أ.")
+[](svg/#ceasefire_hope.svg/-0.19,0.6,2.15/+@vimeo-1141082583 "فيديو من شبكات التواصل، استخدام بموجب المادة 27أ.")
 [](bg:blank)
 
 كان أحمد يعاني في ذلك الوقت من الآثار التي خلّفها التنكيل الذي تعرّض له في مراكز الاعتقال الإسرائيلية.
@@ -666,14 +667,14 @@ extensions: [inflect-caption]
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "من حساب نبال على تيك توك")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "من حساب نبال على تيك توك")
 [](bg:blank)
 
 في البداية كان داعمًا جدًا لي. ولكن مع مرور الوقت، شعرتُ أنه مضطر لرعايتي بدافع الشفقة. 
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "من حساب نبال على تيك توك")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "من حساب نبال على تيك توك")
 [](bg:blank)
 
 في خضم كل الصعوبات، حاولتُ التركيز على ريتا. كانت أهم شيء بالنسبة لي وفعلتُ ما بوسعي للتغلب على التوتر بيني وبين أحمد والاعتناء بها.
@@ -787,7 +788,7 @@ extensions: [inflect-caption]
 {.meta no-h}
 ### النزوح الخامس
 [](fg:blank)
-[](map/#31.52993,34.49211,12.14,38.4,0.0/+pois-ar(label-main-ar,id=gaza-2509),+pois-ar#2(label-main-ar,id=home),~labels_he)
+[](map/#31.51737,34.47408,12.14,38.4,0.0/+home-gaza-city(2-by-foot),+pois-ar(label-main-ar,id=gaza-2509),+pois-ar#2(label-main-ar,id=home),~labels_he)
 نِبال، ريتا وحوالي 50 فردًا من عائلتهما الموسعة - والدا نِبال، أخواتها وإخوتها، أزواجهم وأطفالهم - ساروا على الأقدام من جباليا إلى مدينة غزة بحثًا عن مكان آمن.
 استقروا في مطعم مهجور تابع لأصدقاء، ثم في شقة مكتظة.
 
@@ -903,7 +904,7 @@ extensions: [inflect-caption]
 {.meta share-section closing}
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
-## شارك رحلة نِبال الحصي
+## شارك رحلة نِبال الهسي
 
 <div class="share-buttons">
   <button class="share-btn dontinflect" 
@@ -932,7 +933,7 @@ extensions: [inflect-caption]
 
 
 {.meta thumb closing}
-[](svg/#permanent_impermanence.svg/-1.58,-1.98,6.47/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](svg/#permanent_impermanence.svg/-0.95,-1.21,3.91/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 تحلم نِبال باللحظة التي ستتمكن فيها من البدء بالتعافي وبناء حياة جديدة لها ولريتا، تمامًا مثل مئات الآلاف من العائلات الأخرى في غزة:
 
@@ -990,6 +991,8 @@ extensions: [inflect-caption]
 {.meta closing}
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+
+سُجِّلَت إفادة نبال على يد باحثة بتسيلم الميدانية ألفت الكُرد. 
 
 ## صور وفيديو
 - من نبال الهسي مشكورة
