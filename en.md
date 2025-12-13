@@ -9,7 +9,7 @@ extensions: [inflect-caption]
 ---
 
 
-# _The Displacement Journey of_ Nibal Al-Hisi
+# _The Displacement of_ Nibal Al-Hisi
 [](map/#31.30336,34.29179,9.53,37.6,0.0/~labels_he)
 [](svg/#intro-pre.svg/0,0.17,1.52/+nibal2023,+displacement)
 
@@ -94,14 +94,14 @@ This is her story.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.29,0.28,1/+nibal2023)
+[](svg/#intro-pre.svg/-0.29,0.18,1/+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 My name is Nibal al-Hisi. I’m 25. When the war began in October 2023, I was living in my hometown of Jabalya with my husband Ahmad and our baby daughter Rita.
 
 
 {.testimony typewriter}
-[](svg/#intro-pre.svg/-0.67,0.25,2.4/,+nibal2023)
+[](svg/#intro-pre.svg/-0.71,0.43,2.4/,+nibal2023)
 [](map/#31.53332,34.48215,14.18,37.6,0.0/~labels_he,+Gaza_border_dash,+Gaza_border_base)
 
 I’m the youngest of nine brothers and three sisters.
@@ -162,7 +162,7 @@ Five days later, Ahmad was issued a work permit and started a job as a construct
 {.meta no-h}
 #### Oct 23
 [](fg:blank)
-[](map/#31.36736,34.39816,10.39,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused))
+[](map/#31.40472,34.39359,10.01,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused))
 On 7 October 2023, Hamas and other armed Palestinian groups carried out the deadliest attack ever perpetrated against Israeli citizens.
 Entering from Gaza, the attackers killed 1,220 people, and injured tens of thousands. 
 They carried 252 people, some living and others dead, back to Gaza.
@@ -221,13 +221,13 @@ Hundreds of thousands of people had to decide where to run under heavy fire, wit
 
 {.meta} 
 [](fg:blank)
-[](map/#31.52287,34.46534,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home),~labels_he,+labels_en "Assessment of building damage and impact severity in the Gaza Strip after the first week of the offensive. Red: Low density; Orange: Medium density; Yellow: High density (UNOSAT)")
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois.csv(poi,id=home),~labels_he,+labels_en "Assessment of building damage and impact severity in the Gaza Strip after the first week of the offensive. Red: Low density; Orange: Medium density; Yellow: High density (UNOSAT)")
 Nibal was afraid to travel alone with her baby and moved to her parents’ home nearby.
 
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.53103,34.47759,13.51,38.4,0.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois(label-main,id=home),~labels_he,+labels_en)
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois(label-main,id=home),~labels_he,+labels_en)
 We didn’t leave and go south despite the bombing, hunger and fear. I suffered a lot during that time. I missed Ahmad so much, and I couldn’t imagine going south alone with Rita without help from my husband and family.
 
 
@@ -265,13 +265,13 @@ Nibal decided to go meet him, despite her parents’ strong objections.
 {.meta no-h}
 ### First Displacement
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "From Nibal’s Instagram account")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois(label-main,id=home),+pois#2(label-main,id=gaza-2403),~labels_he,+labels_en)
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois(label-main,id=home),+pois#2(label-main,id=gaza-2403),~labels_he,+labels_en)
 Nibal’s father drove her and six-month-old Rita from Jabalya to Gaza City.
 
 
 {.meta}
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "From Nibal’s Instagram account")
-[](map/#31.50634,34.45154,12.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois(label-main,id=home),+pois#2(label-main,id=gaza-2403),~labels_he,+labels_en)
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois(label-main,id=home),+pois#2(label-main,id=gaza-2403),~labels_he,+labels_en)
 Nibal described a terrifying ride through ruins, seeing bombs rain down nearby.
 
 
@@ -345,8 +345,8 @@ I was ashamed to tell my parents how I was living.
 
 
 {.meta thumb} 
-[](svg/#south.svg/0.24,-1.2,2.76/+IDF_order_rafah)
-[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),~labels_he,+labels_en,+rafah-mawasi-line(arrow) "Military evacuation orders for Rafah issued in early May 2024")
+[](fg:blank)
+[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),~labels_he,+labels_en,+rafah-mawasi-line(arrow))
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -373,7 +373,7 @@ Nibal, Ahmad and Rita fled Rafah along with about 1 million people – most of t
 
 {.meta} 
 [](fg:blank)
-[](map/#31.44772,34.39655,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois(label-main,id=bureij),~labels_he,+labels_en)
+[](map/#31.44175,34.39885,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois(label-main,id=bureij),~labels_he,+labels_en)
 The family reached al-Bureij Refugee Camp in the central Gaza Strip and rented a small storage room from friends.
  
 
@@ -472,7 +472,7 @@ I asked about Rita, and they told me she was fine. That’s what kept me going. 
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.40988,34.36287,10.17,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home),~labels_he)
+[](map/#31.41459,34.38374,10.01,-0.8,0.0/+pois(label-main,id=al-zawaida),+pois#2(label-main,id=home),~labels_he)
 My parents were frantic with worry. They were afraid I wouldn’t make it and kept checking in with Ahmad. 
 When I felt a bit better, in the hospital, I finally managed to call my mother. I wanted her to hear that I was okay. She couldn’t believe I was alive and couldn't stop crying.
 
@@ -666,19 +666,19 @@ In a way, it felt like he’d lost a part of himself there.
 
 
 {.meta}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "From Nibal’s TikTok account")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "From Nibal’s TikTok account")
 [](bg:blank)
 Nibal described Ahmad’s psychological challenges, which worsened as the small family struggled to survive under blockade.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "From Nibal’s TikTok account")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "From Nibal’s TikTok account")
 [](bg:blank)
 At first he was very supportive. But over time, I felt he was only taking care of me out of pity.
 
 
 {.testimony typewriter}
-[](svg/#ceasefire_hope.svg/0.8,0.36,2.15/+@vimeo-1137391158  "From Nibal’s TikTok account")
+[](svg/#ceasefire_hope.svg/0.84,0.44,2.27/+@vimeo-1137391158  "From Nibal’s TikTok account")
 [](bg:blank)
 I tried to focus on Rita. She was the most important thing. I did everything I could to overcome the tension with Ahmad and take care of her.
 
@@ -765,7 +765,7 @@ A bomb hit her aunt’s house next door, killing Nibal’s cousin and injuring s
 [](map/#31.52947,34.47929,18.15,38.4,0.0/+pois.csv(poi,id=home),+pois.csv#2(poi,id=alaa-home),~labels_he,+labels_en)
 
 We heard a huge explosion and screams outside. People were running. They told us the Israeli army had ordered everyone to evacuate the area within 15 minutes. 
-We ran outside terrified, almost empty-handed. I left behind our papers, clothes, everything. But we got out in time.
+We ran outside terrified, carrying almost nothing. I left behind our papers, clothes, everything. But we got out in time.
 
 
 {.testimony typewriter}
@@ -789,7 +789,7 @@ Later, Nibal learned that the building she had lived in most of her life with he
 {.meta no-h}
 ### Fifth Displacement
 [](fg:blank)
-[](map/#31.52993,34.49211,12.14,38.4,0.0/+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
+[](map/#31.51737,34.47408,12.14,38.4,0.0/+home-gaza-city(2-by-foot),+pois(label-main,id=gaza-2509),+pois#2(label-main,id=home),~labels_he)
 Nibal walked with Rita and about 50 people from her family to Gaza City, in search of safety.
 They sheltered in an abandoned restaurant belonging to friends, and later in a cramped apartment.
 
@@ -939,7 +939,7 @@ Nibal has recently shared her story with various media outlets and online, hopin
 
 
 {.meta}
-[](svg/#permanent_impermanence.svg/-1.58,-1.98,6.47/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](svg/#permanent_impermanence.svg/-0.95,-1.21,3.91/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 B’Tselem will follow their story and share any developments in our newsletter:
 
@@ -995,6 +995,8 @@ For the full report on forced displacement in Gaza:
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
 
+ Nibal’s testimony was collected by B’Tselem field researcher Olfat al-Kurd.
+ 
 ## Photos and Video
 - Courtesy of Nibal Al-Hisi
 - Activestills
