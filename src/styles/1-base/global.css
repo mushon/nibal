@@ -1,5 +1,10 @@
-/* Base styles (original repo appearance) */
+/**
+ * Global Base Styles
+ * Structural defaults, base fonts, element setup
+ * NO theme-specific colors or visual styling
+ */
 
+/* Base font - Atkinson for accessibility */
 @font-face {
     font-family: "Atkinson";
     src: url("fonts/AtkinsonHyperlegibleNextVF-Variable.woff2") format("woff2-variations");
@@ -19,11 +24,9 @@
     font-weight: bold;
 }
 
+/* Base element setup */
 html, body {
     box-sizing: border-box;
-    direction: ltr;
-    background-color: #efefef;
-    color: #111;
     margin: 0;
     padding: 0;
     font-family: "Atkinson", sans-serif;
@@ -33,14 +36,15 @@ code, pre, kbd, samp, tt, textarea {
     font-family: "AtkinsonMono", monospace;
 }
 
+/* Base layout structure - desktop */
 main {
     position: absolute;
     left: 60vw;
     top: 0;
     bottom: 0;
-    right: 0; /* reserve right-hand column for iframe */
+    right: 0;
     padding: 4vh 2vw;
-    padding: 4dvh 2vw; /* Dynamic viewport height for mobile browsers */
+    padding: 4dvh 2vw;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 10;
@@ -53,22 +57,26 @@ iframe {
     bottom: 0;
     width: 60vw;
     height: 100vh;
-    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    height: 100dvh;
     border: 0;
     background: transparent;
 }
 
 section {
     margin: 6vh auto;
-    margin: 6dvh auto; /* Dynamic viewport height for mobile browsers */
+    margin: 6dvh auto;
     padding: 5vh 0;
-    padding: 5dvh 0; /* Dynamic viewport height for mobile browsers */
+    padding: 5dvh 0;
     max-width: 640px;
     min-height: 90vh;
-    min-height: 90dvh; /* Dynamic viewport height for mobile browsers */
+    min-height: 90dvh;
 }
 
-/* Section slide animations for navigation */
+section img { 
+    max-width: 100%; 
+}
+
+/* Section slide animations */
 @keyframes slideFromBottom {
     from {
         opacity: 0;
@@ -99,63 +107,19 @@ section.slide-from-top {
     animation: slideFromTop 0.6s ease-out forwards;
 }
 
-section img { max-width: 100%; }
-
-/* Caption overlay for active inflection links */
-.inflect-caption {
-    position: fixed;
-    right: 2vw;
-    top: 8px;
-    max-width: 87vw;
-    background: rgba(0, 0, 0, 0.7);
-    color: #bbb;
-    padding: 0.2em 0.5em;
-    border-radius: 6px;
-    z-index: 1100;
-    font-size: 0.75em;
-    line-height: 1.4;
-    pointer-events: none; /* don't block map or page interactions */
-}
-.inflect-caption a { pointer-events: auto; }
-
-/* Special styling for note captions (starting with !!!) */
-.inflect-caption.note-caption {
-    background: #ffd200;
-    color: #000;
-}
-
-body.content-top .inflect-caption {
-    top: auto;
-    bottom: 8px;
-}
-
-h1 { font-size: 2.4em; font-weight: 200; margin-bottom: 0; }
-h2 { font-size: 1.8em; }
-h3 { font-size: 1.4em; }
-h4 { font-size: 1.2em; }
-
-p { font-size: 1em; line-height: 1.5em; }
-
-a { color: #0b66a8; }
-
-footer { opacity: 0.6; text-align: left; padding: 1rem 0; }
-
-.bg-edit #chapter-nav{
-    left: calc(270px + 24px);
-}
-
+/* Base responsive layout - mobile */
 @media (max-width: 1000px) and (orientation: portrait) {
     iframe { 
         position: fixed; 
         left: 0; 
         width: 100vw; 
         height: 50vh;
-        height: 50dvh; /* Dynamic viewport height for mobile browsers */
+        height: 50dvh;
     }
     main { 
         right: 0; 
         left: 0; 
         padding: 2vh 4vw;
-        padding: 2dvh 4vw; /* Dynamic viewport height for mobile browsers */
+        padding: 2dvh 4vw;
     }
 }

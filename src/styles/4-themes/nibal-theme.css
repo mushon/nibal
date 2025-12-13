@@ -1,3 +1,60 @@
+/**
+ * Nibal Theme
+ * All visual styling: colors, typography, shadows, backgrounds
+ * Theme-specific fonts and appearance
+ */
+
+/* Theme-specific base colors and defaults (from original base.css) */
+html, body {
+    direction: ltr;
+    background-color: #efefef;
+    color: #111;
+}
+
+h1 { font-size: 2.4em; font-weight: 200; margin-bottom: 0; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.2em; }
+
+p { font-size: 1em; line-height: 1.5em; }
+
+a { color: #0b66a8; }
+
+footer { opacity: 0.6; text-align: left; padding: 1rem 0; }
+
+/* Caption overlay for active inflection links */
+.inflect-caption {
+    position: fixed;
+    right: 2vw;
+    top: 8px;
+    max-width: 87vw;
+    background: rgba(0, 0, 0, 0.7);
+    color: #bbb;
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
+    z-index: 1100;
+    font-size: 0.75em;
+    line-height: 1.4;
+    pointer-events: none;
+}
+.inflect-caption a { pointer-events: auto; }
+
+.inflect-caption.note-caption {
+    background: #ffd200;
+    color: #000;
+}
+
+body.content-top .inflect-caption {
+    top: auto;
+    bottom: 8px;
+}
+
+.bg-edit #chapter-nav{
+    left: calc(270px + 24px);
+}
+
+/* Nibal-specific theme starts here */
+
 /* Theme styles extracted from index.html
    Contains fonts, typography, colors, and element-level theme rules.
    Layout/positioning rules remain in index.html inline style.
