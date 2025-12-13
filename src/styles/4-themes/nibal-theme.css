@@ -21,14 +21,14 @@
 
 @font-face {
     font-family: "Levit_1950";
-    src: url("fonts/Levit_1950-BlackExtended.woff") format("woff2-variations");
+    src: url("../../fonts/Levit_1950-BlackExtended.woff") format("woff2-variations");
     font-style: normal;
     font-weight: bold;
 }
 
 @font-face {
     font-family: "Heb_hand";
-    src: url("fonts/gadi-almog-regular-aaa.woff2") format("woff2-variations");
+    src: url("../../fonts/gadi-almog-regular-aaa.woff2") format("woff2-variations");
     font-style: normal;
     font-weight: regular;
 }
@@ -74,14 +74,14 @@ code, pre, kbd, samp, tt, textarea {
 
 @font-face {
     font-family: "Levit_1950";
-    src: url("fonts/Levit_1950-BlackExtended.woff") format("woff2-variations");
+    src: url("../../fonts/Levit_1950-BlackExtended.woff") format("woff2-variations");
     font-style: normal;
     font-weight: bold;
 }
 
 @font-face {
     font-family: "Heb_hand";
-    src: url("fonts/gadi-almog-regular-aaa.woff2") format("woff2-variations");
+    src: url("../../fonts/gadi-almog-regular-aaa.woff2") format("woff2-variations");
     font-style: normal;
     font-weight: regular;
 }
@@ -195,8 +195,8 @@ section > a.thumb{
     display: block;
     background-color: #000;
     background-image: image-set(
-        url(assets/thumb_report_he.png) 1x,
-        url(assets/thumb_report_he@2x.png) 2x
+        url(../../assets/thumb_report_he.png) 1x,
+        url(../../assets/thumb_report_he@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-position: right 8px bottom 0;
@@ -218,7 +218,7 @@ a.thumb::after {
     position: absolute;
     top: 50%;
     left: 4px;
-    background-image: url(assets/external-link.svg);
+    background-image: url(../../assets/external-link.svg);
     background-size: contain;
     margin-top: -15px;
 }
@@ -240,7 +240,7 @@ section > a.thumb:hover{
 }
 
 section > a.thumb:hover:after {
-    background-image: url(assets/external-link_hover.svg) !important;
+    background-image: url(../../assets/external-link_hover.svg) !important;
 }
 
 section > a.thumb strong{
@@ -255,8 +255,8 @@ section.gofundme p{
 section.gofundme > a.thumb{
     background-color: #000;
     background-image: image-set(
-        url(assets/thumb_gfm.png) 1x,
-        url(assets/thumb_gfm@2x.png) 2x
+        url(../../assets/thumb_gfm.png) 1x,
+        url(../../assets/thumb_gfm@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -265,7 +265,7 @@ section.gofundme > a.thumb{
 }
 
 section.gofundme > a.thumb::after{
-    background-image: url(assets/external-link_gfm.svg);
+    background-image: url(../../assets/external-link_gfm.svg);
 }
 
 section.gofundme > a.thumb:hover{
