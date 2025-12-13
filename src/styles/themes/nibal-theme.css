@@ -218,7 +218,7 @@ section.testimony {
 section.testimony p{
     font-family: inherit;
     font-size: 1.2em;
-    background-image: repeating-linear-gradient(0deg, var(--color-primary)66, var(--color-primary)66 2px, transparent 2px, transparent);
+    background-image: repeating-linear-gradient(0deg, rgb(from var(--color-primary) r g b / 0.4), rgb(from var(--color-primary) r g b / 0.4) 2px, transparent 2px, transparent);
     background-size: 1.5em 1.5em;
     background-color: rgba(250, 95, 95, 0);
     background-position-y: 1.5em;
