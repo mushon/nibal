@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dynamic Mapbox Map with Hash Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+  
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
+  
+  <!-- Papa Parse for CSV parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  
+  <!-- Modular CSS -->
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/layer-controls.css">
+  <link rel="stylesheet" href="css/ui-controls.css">
+</head>
+<body>
+  <!-- Map container -->
+  <div id="map"></div>
+  
+  <!-- Layer controls sidebar -->
+  <div id="layer-controls" class="hidden">
+    <div id="layer-controls-header">
+      <div class="title-row">
+        <h3>Map Layers</h3>
+        <button id="add-layer-btn" title="Add new layer">＋</button>
+        <button id="reset-all-btn" title="Reset all layers to style defaults">↻</button>
+      </div>
+      <p class="hint">Press 'E' to toggle edit mode</p>
+      
+      <!-- Add layer form -->
+      <div id="add-layer-form">
+        <div id="layer-type-tabs" style="display: flex; gap: 4px; margin-bottom: 12px;">
+          <button id="tab-geodata" class="layer-tab active" data-tab="geodata">Geodata</button>
+          <button id="tab-satellite" class="layer-tab" data-tab="satellite">Satellite</button>
+        </div>
+        
+        <!-- GeoJSON/CSV input -->
+        <div id="geojson-input-group" class="layer-input-group">
+          <label for="new-layer-input">Layer filename</label>
+          <input id="new-layer-input" list="local-layer-files" placeholder="Type to search local files" autocomplete="off" />
+          <datalist id="local-layer-files"></datalist>
+          <label for="reference-layer-select" style="margin-top: 8px;">Position after layer (optional)</label>
+          <select id="reference-layer-select" title="Select a reference layer to insert after (optional)">
+            <option value="">-- No reference (add at top) --</option>
+          </select>
+        </div>
+        
+        <!-- Satellite date picker -->
+        <div id="satellite-input-group" class="layer-input-group" style="display:none;">
+          <label for="satellite-date-input">Satellite image date</label>
+          <input id="satellite-date-input" type="date" placeholder="YYYY-MM-DD" />
+          <p class="hint" style="font-size: 11px; margin: 4px 0 0; color: rgba(255,255,255,0.8);">
+            choose the date from the list on the 
+            <a id="wayback-open-new" href="https://livingatlas.arcgis.com/wayback/" target="_blank" rel="noopener noreferrer" style="color:#9fd1ff;text-decoration:underline;">Wayback site</a> 
+            and enter it in the date picker
+          </p>
+        </div>
+        
+        <button id="add-layer-confirm-btn" title="Add the selected layer">Add Layer</button>
+        <div id="add-layer-error"></div>
+      </div>
+    </div>
+    
+    <div id="layer-list"></div>
+    
+    <div id="layer-controls-footer">
+      <button id="copy-link-btn" title="Copy a shareable link to this exact map view and layer configuration">📋 Copy Link</button>
+    </div>
+  </div>
+  
+  <!-- Distance ticker (shown during follow mode) -->
+  <div id="distance-ticker"></div>
+  
+  <!-- Map UI controls (optional, shown with /mapui flag) -->
+  <!-- Can be added dynamically if needed -->
+  
+  <script type="module">
+    // Import all modules
+    import { CONFIG } from './js/config.js';
+    import { AppState } from './js/state/AppState.js';
+    import { HashRouter } from './js/services/HashRouter.js';
+    import { DataLoader } from './js/services/DataLoader.js';
+    import { LayerManager } from './js/services/LayerManager.js';
+    import { MapService } from './js/services/MapService.js';
+    import { FollowMode } from './js/features/FollowMode.js';
+    import { LayerControls } from './js/ui/LayerControls.js';
+    import { AddLayerForm } from './js/ui/AddLayerForm.js';
+    import { DistanceTicker } from './js/ui/DistanceTicker.js';
+    import { MapUIControls } from './js/ui/MapUIControls.js';
+
+    // Initialize application state
+    const appState = new AppState();
+    
+    // Initialize services
+    const hashRouter = new HashRouter(appState);
+    const dataLoader = new DataLoader(appState);
+    const layerManager = new LayerManager(appState);
+    const mapService = new MapService(appState);
+    
+    // Initialize features
+    const followMode = new FollowMode(appState);
+    
+    // Initialize UI components
+    const layerControls = new LayerControls(appState, hashRouter, layerManager);
+    const addLayerForm = new AddLayerForm(appState, hashRouter);
+    const distanceTicker = new DistanceTicker();
+    const mapUIControls = new MapUIControls(appState);
+    
+    // Parse initial hash
+    const hashState = hashRouter.parseHash();
+    
+    // Initialize map
+    async function initializeApp() {
+      try {
+        // Create map
+        const map = await mapService.initializeMap('map', {
+          center: hashState.camera.center,
+          zoom: hashState.camera.zoom,
+          bearing: hashState.camera.bearing,
+          pitch: hashState.camera.pitch
+        });
+        
+        // Setup mobile handlers
+        mapService.setupMobileHandlers(map);
+        
+        // Setup map event handlers
+        mapService.setupEventHandlers(map, hashRouter);
+        
+        // Initialize UI components
+        layerControls.initialize('layer-list');
+        layerControls.setupResetAllButton('reset-all-btn');
+        addLayerForm.initialize();
+        distanceTicker.initialize();
+        mapUIControls.initialize();
+        
+        // Show/hide layer controls based on context
+        setupLayerControlsVisibility();
+        
+        // Setup keyboard shortcuts
+        setupKeyboardShortcuts();
+        
+        // Populate local layer files datalist
+        populateLocalLayerDatalist();
+        
+        // Load dynamic layers from hash
+        if (hashState.dynamicGeojsonToLoad && hashState.dynamicGeojsonToLoad.length > 0) {
+          for (const layerSpec of hashState.dynamicGeojsonToLoad) {
+            await loadDynamicLayer(layerSpec);
+          }
+        }
+        
+        // Create initial layer controls
+        layerControls.create();
+        
+        // Setup hash change listener
+        window.addEventListener('hashchange', async () => {
+          const newHashState = hashRouter.parseHash();
+          
+          // Load any new dynamic layers
+          if (newHashState.dynamicGeojsonToLoad && newHashState.dynamicGeojsonToLoad.length > 0) {
+            for (const layerSpec of newHashState.dynamicGeojsonToLoad) {
+              // Check if layer already exists
+              if (!map.getLayer(layerSpec.name)) {
+                await loadDynamicLayer(layerSpec);
+              }
+            }
+          }
+          
+          // Refresh layer controls
+          layerControls.create();
+          
+          // Handle follow mode
+          if (newHashState.followId) {
+            startFollowMode(newHashState);
+          }
+        });
+        
+        // Start follow mode if specified in initial hash
+        if (hashState.followId) {
+          // Wait a bit for layers to load
+          setTimeout(() => {
+            startFollowMode(hashState);
+          }, 500);
+        }
+        
+        console.log('✓ Modular map application initialized successfully');
+        
+      } catch (error) {
+        console.error('Failed to initialize application:', error);
+      }
+    }
+    
+    // Load a dynamic layer (GeoJSON/CSV or Wayback)
+    async function loadDynamicLayer(layerSpec) {
+      const map = appState.map;
+      if (!map) return;
+      
+      try {
+        if (layerSpec.isWayback) {
+          await layerManager.addWaybackLayer(
+            layerSpec.name,
+            layerSpec.waybackDate,
+            layerSpec.sourceHint
+          );
+        } else {
+          const data = await dataLoader.loadGeoJSON(layerSpec.name);
+          if (data) {
+            await layerManager.addGeoJSONLayer(
+              layerSpec.name,
+              data,
+              layerSpec.sourceHint,
+              layerSpec.filter
+            );
+          }
+        }
+      } catch (error) {
+        console.error(`Failed to load layer ${layerSpec.name}:`, error);
+      }
+    }
+    
+    // Start follow mode animation
+    function startFollowMode(hashState) {
+      const map = appState.map;
+      if (!map || !hashState.followId) return;
+      
+      // Check if layer exists and has data
+      const source = map.getSource(hashState.followId);
+      if (!source || !source._data || !source._data.features) {
+        console.warn('Follow mode: layer not ready yet');
+        return;
+      }
+      
+      // Extract coordinates from geometry
+      let coords = [];
+      source._data.features.forEach(f => {
+        if (!f.geometry) return;
+        if (f.geometry.type === 'LineString') {
+          coords = coords.concat(f.geometry.coordinates);
+        } else if (f.geometry.type === 'Polygon') {
+          coords = coords.concat(f.geometry.coordinates[0]);
+        } else if (f.geometry.type === 'MultiLineString') {
+          coords = coords.concat(...f.geometry.coordinates);
+        } else if (f.geometry.type === 'MultiPolygon') {
+          coords = coords.concat(...f.geometry.coordinates.map(ring => ring[0]));
+        }
+      });
+      
+      if (coords.length > 1) {
+        followMode.start(
+          map,
+          coords,
+          () => {
+            // On completion: freeze camera and remove :follow
+            const c = map.getCenter();
+            const z = map.getZoom().toFixed(2);
+            const b = map.getBearing().toFixed(1);
+            const p = map.getPitch().toFixed(1);
+            const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
+            
+            let hash = window.location.hash.replace('#', '');
+            const parts = hash.split('/');
+            let layersStr = parts[1] || '';
+            
+            // Remove :follow from the layer token
+            const tokens = layersStr.split(',').map(t => t.replace(/:follow(?:\+\d*)?$/, ''));
+            layersStr = tokens.join(',');
+            
+            const trailing = parts.slice(2);
+            window.location.hash = `#${cameraStr}/${layersStr}${trailing.length ? '/' + trailing.join('/') : ''}`;
+          },
+          hashState.followId,
+          hashState.followOffset,
+          hashState.showTicker,
+          hashState.followHidden
+        );
+      }
+    }
+    
+    // Setup layer controls visibility
+    function setupLayerControlsVisibility() {
+      const controls = document.getElementById('layer-controls');
+      if (!controls) return;
+      
+      const hashLower = (location.hash || '').toLowerCase();
+      const hasShowUIFlag = hashLower.includes('/embed-ui') || hashLower.includes('/mapui');
+      
+      // Show layer sidebar if not in iframe and no embed-ui flag
+      if (!hasShowUIFlag && window.self === window.top) {
+        controls.classList.remove('hidden');
+      }
+    }
+    
+    // Setup keyboard shortcuts
+    function setupKeyboardShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        // Ignore if typing in an input field
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        
+        if (e.code === 'KeyE') {
+          e.preventDefault();
+          const controls = document.getElementById('layer-controls');
+          if (controls) {
+            const wasHidden = controls.classList.contains('hidden');
+            controls.classList.toggle('hidden');
+            
+            // Tell parent about edit mode change (for iframe embeds)
+            if (window.parent && window.parent !== window) {
+              window.parent.postMessage({ 
+                type: 'bg-edit-mode', 
+                enabled: wasHidden 
+              }, '*');
+            }
+          }
+        } else if (e.code === 'KeyF') {
+          e.preventDefault();
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'toggle-foreground-edit' }, '*');
+          }
+        } else if (e.code === 'KeyB') {
+          e.preventDefault();
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'toggle-background-edit' }, '*');
+          }
+        }
+      });
+    }
+    
+    // Populate local layer files datalist
+    function populateLocalLayerDatalist() {
+      const dl = document.getElementById('local-layer-files');
+      if (!dl) return;
+      
+      dl.innerHTML = '';
+      const seen = new Set();
+      
+      CONFIG.AVAILABLE_FILES.forEach(name => {
+        if (!seen.has(name)) {
+          seen.add(name);
+          const opt = document.createElement('option');
+          opt.value = name;
+          dl.appendChild(opt);
+        }
+      });
+    }
+    
+    // Start the application
+    initializeApp();
+  </script>
+</body>
+</html>
