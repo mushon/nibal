@@ -738,6 +738,7 @@ input#mce-EMAIL{
         background: linear-gradient(0deg, rgba(34, 34, 33, 0.00) 80%, #222 70%),linear-gradient(0deg, #222 0%, rgba(34, 34, 34, 0.00) 15%);
     }
 
+    /*
     body.content-top #background-frame, 
     body.content-top #foreground-frame {
         margin-top: 20dvh;
@@ -753,7 +754,6 @@ input#mce-EMAIL{
     }
 
     body.content-top section {
-        /* justify-content: end; */
         margin: 0;
         padding-top: 24px;
     }
@@ -766,9 +766,25 @@ input#mce-EMAIL{
         bottom: 8px;
         top: auto;
     }
+    */
+
+    body.content-top section {
+        justify-content: end;
+        padding-bottom: 32px;
+    }
+
+    body.content-top .inflect-caption {
+        justify-content: start;
+        top: 16px;
+        bottom: auto;
+    }
 
     section.end .logo {
         width: 90vw;
+    }
+
+    body main{
+        background: none;
     }
 
     /* body.content-top section {
