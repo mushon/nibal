@@ -701,13 +701,16 @@ input#mce-EMAIL{
         font-size: 0.9em;
     }
 
+    section.title-section > h1{
+        margin-top: 240px;
+    }
     section.title-section > div#lang{
         margin: 40px 0 64px;
     }
 
     section.title-section > a.thumb{
         position: relative;
-        margin-top: 224px;
+        margin-top: 64px;
     }
 
     section.closing > a.thumb{
