@@ -248,7 +248,7 @@ extensions: [inflect-caption]
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41524,34.36943,10.06,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+pois-ar(label-main-ar,id=khan-yunis),+pois-ar#2(label-main-ar,id=home),~labels_he,+labels_ar)
+[](map/#31.41391,34.38595,10.45,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+pois-ar(label-main-ar,id=khan-yunis),+pois-ar#2(label-main-ar,id=home),~labels_he,+labels_ar)
 في شباط 2024، أطلق الجيش الإسرائيلي سراح أحمد، فوصل إلى خان يونس في جنوب قطاع غزة. 
 
 على الرغم من معارضة والديها الشديدة، قررت نِبال التوجه جنوبًا، على أمل لم شملها بزوجها.
@@ -907,7 +907,7 @@ extensions: [inflect-caption]
 
 
 {.meta thumb closing}
-[](svg/#permanent_impermanence.svg/-0.95,-1.21,3.91/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 تحلم نِبال باللحظة التي ستتمكن فيها من البدء بالتعافي وبناء حياة جديدة لها ولريتا، تمامًا مثل مئات الآلاف من العائلات الأخرى في غزة:
 
@@ -963,8 +963,8 @@ extensions: [inflect-caption]
 
 
 {.meta closing}
-[](fg:blank)
-[](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
+[](svg/#permanent_impermanence.svg/-0.95,-1.21,3.91/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](bg:blank)
 
 ## سُجِّلَت إفادة نبال على يد باحثة بتسيلم الميدانية ألفت الكُرد. 
 
