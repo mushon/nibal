@@ -315,8 +315,7 @@ section.title-section.current>.logo {
 
 section.end .logo {
     position: sticky;
-    top: 50%;
-    width: 100vw;
+    top: 45%;
     text-align: center;
 }
 

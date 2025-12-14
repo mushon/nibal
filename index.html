@@ -489,9 +489,6 @@
                 html = html.replace(/<link[^>]*rel=["']?stylesheet["']?[^>]*>/gi, '');
             } catch (e) { /* swallow */ }
 
-            // skip footer when on inflect page
-            if (document.URL!="https://uclab.fh-potsdam.de/inflect/") html = html + "\n<footer>a story made with <strong><a class='dontinflect' href='https://uclab.fh-potsdam.de/inflect/'>!nflect</a></strong></footer>";
-
             document.querySelector('main').innerHTML = html;
 
             // Reinitialize chapters navigation after content changes
