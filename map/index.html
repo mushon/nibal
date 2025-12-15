@@ -1064,8 +1064,8 @@ function removeMapUIControls() {
 }
 
 // ===== FitBounds Helper Functions =====
-// Reference safe area size (600x600px) - the area we want to keep visible across all screens
-const SAFE_AREA_SIZE = 600;
+// Reference safe area size (500x500px) - the area we want to keep visible across all screens
+const SAFE_AREA_SIZE = 500;
 
 // Convert zoom level + center to geographic bounds that fit in safe area
 // Returns bounding box [[west, south], [east, north]]
@@ -1927,6 +1927,27 @@ function updateHash(map, visibleLayers) {
   const oldCameraStr = parts[0] || '';
   const layersStr = parts[1];
   const trailing = parts.slice(2);
+  
+  // Parse old zoom to check if it's within tolerance
+  const oldParts = oldCameraStr.split(',');
+  const oldZoom = oldParts.length >= 3 ? parseFloat(oldParts[2]) : null;
+  const newZoom = parseFloat(z);
+  
+  // If zoom is within 0.05 tolerance and center/bearing/pitch unchanged, skip update
+  if (oldZoom !== null && Math.abs(oldZoom - newZoom) < 0.05) {
+    const oldLat = oldParts.length >= 1 ? parseFloat(oldParts[0]) : null;
+    const oldLng = oldParts.length >= 2 ? parseFloat(oldParts[1]) : null;
+    const oldBearing = oldParts.length >= 4 ? parseFloat(oldParts[3]) : null;
+    const oldPitch = oldParts.length >= 5 ? parseFloat(oldParts[4]) : null;
+    
+    if (oldLat !== null && oldLng !== null &&
+        Math.abs(oldLat - c.lat) < 0.00001 &&
+        Math.abs(oldLng - c.lng) < 0.00001 &&
+        oldBearing !== null && Math.abs(oldBearing - parseFloat(b)) < 0.1 &&
+        oldPitch !== null && Math.abs(oldPitch - parseFloat(p)) < 0.1) {
+      return; // Prevent updates when values are essentially the same
+    }
+  }
   
   const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
   
