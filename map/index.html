@@ -435,6 +435,36 @@
     #map-ui-controls button.fullscreen-exit:hover {
       background: rgba(255,100,100,0.4);
     }
+    /* Visual bounds indicator (shown in edit mode) */
+    #bounds-indicator {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      border: 3px solid rgba(0, 150, 255, 0.8);
+      box-shadow: 0 0 20px rgba(0, 150, 255, 0.4), inset 0 0 20px rgba(0, 150, 255, 0.2);
+      background: rgba(0, 150, 255, 0.05);
+      display: none;
+      transition: all 0.3s ease;
+    }
+    #bounds-indicator.visible {
+      display: block;
+    }
+    #bounds-indicator::before {
+      content: 'Visual Bounds';
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 150, 255, 0.9);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
   </style>
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -445,6 +475,7 @@
 </head>
 <body>
 <div id="map"></div>
+<div id="bounds-indicator"></div>
 <div id="layer-controls" class="hidden">
   <div id="layer-controls-header">
     <div class="title-row">
@@ -515,6 +546,9 @@ document.addEventListener('keydown', function(e) {
     if (controls) {
       const wasHidden = controls.classList.contains('hidden');
       controls.classList.toggle('hidden');
+      
+      // Toggle bounds indicator when entering/exiting edit mode
+      toggleBoundsIndicator(wasHidden);
       
       // Tell parent about edit mode change
       if (window.parent && window.parent !== window) {
@@ -1062,6 +1096,100 @@ function removeMapUIControls() {
     el.remove();
   }
 }
+
+// ===== BOUNDS SYSTEM =====
+// Define the visual bounds that should fit in the viewport
+// This is similar to the SVG app's reference frame approach
+
+// Get the reference bounds (centered square based on viewport)
+function getReferenceBounds() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  
+  // Use a square that fits in the viewport, similar to SVG app
+  // The bounds size is 90% of the smaller dimension to leave some margin
+  const boundsSize = Math.min(vw, vh) * 0.9;
+  const boundsLeft = (vw - boundsSize) / 2;
+  const boundsTop = (vh - boundsSize) / 2;
+  
+  return {
+    size: boundsSize,
+    left: boundsLeft,
+    top: boundsTop,
+    width: boundsSize,
+    height: boundsSize,
+    centerX: boundsLeft + boundsSize / 2,
+    centerY: boundsTop + boundsSize / 2
+  };
+}
+
+// Update the visual bounds indicator position
+function updateBoundsIndicator() {
+  const indicator = document.getElementById('bounds-indicator');
+  if (!indicator) return;
+  
+  const bounds = getReferenceBounds();
+  indicator.style.left = bounds.left + 'px';
+  indicator.style.top = bounds.top + 'px';
+  indicator.style.width = bounds.width + 'px';
+  indicator.style.height = bounds.height + 'px';
+}
+
+// Calculate optimal zoom level to fit the desired geographic bounds in the reference frame
+// desiredBoundsMeters: the size of the geographic area we want to fit (in meters)
+// center: the center point { lat, lng }
+// Returns the zoom level that will make the desired bounds fit in the reference frame
+function calculateOptimalZoom(desiredBoundsMeters, center) {
+  if (!desiredBoundsMeters || desiredBoundsMeters <= 0) {
+    // Default bounds size if not specified: ~15km (good for regional view)
+    desiredBoundsMeters = 15000;
+  }
+  
+  const refBounds = getReferenceBounds();
+  const boundsPixels = refBounds.size;
+  
+  // Calculate meters per pixel at this latitude
+  // At zoom 0, the world is 256px wide and ~40075017 meters at the equator
+  // metersPerPixel = (40075017 * cos(lat)) / (256 * 2^zoom)
+  const latRad = (center.lat || 0) * Math.PI / 180;
+  const metersPerPixelAtZoom0 = (40075017 * Math.cos(latRad)) / 256;
+  
+  // We want: desiredBoundsMeters = boundsPixels * metersPerPixel
+  // metersPerPixel = metersPerPixelAtZoom0 / 2^zoom
+  // desiredBoundsMeters = boundsPixels * metersPerPixelAtZoom0 / 2^zoom
+  // 2^zoom = boundsPixels * metersPerPixelAtZoom0 / desiredBoundsMeters
+  // zoom = log2(boundsPixels * metersPerPixelAtZoom0 / desiredBoundsMeters)
+  
+  const zoom = Math.log2((boundsPixels * metersPerPixelAtZoom0) / desiredBoundsMeters);
+  
+  // Clamp to reasonable zoom range
+  return Math.max(0, Math.min(22, zoom));
+}
+
+// Toggle bounds indicator visibility based on edit mode
+function toggleBoundsIndicator(visible) {
+  const indicator = document.getElementById('bounds-indicator');
+  if (!indicator) return;
+  
+  if (visible) {
+    updateBoundsIndicator();
+    indicator.classList.add('visible');
+  } else {
+    indicator.classList.remove('visible');
+  }
+}
+
+// Update bounds indicator on window resize
+window.addEventListener('resize', () => {
+  updateBoundsIndicator();
+}, { passive: true });
+
+// Initialize bounds indicator
+document.addEventListener('DOMContentLoaded', () => {
+  updateBoundsIndicator();
+});
+
+// ===== END BOUNDS SYSTEM =====
 
 // Track externally loaded layers (not part of original style)
 const externalLayers = new Set();
@@ -2741,9 +2869,11 @@ map.on('load', () => {
   try {
     const { camera: parsedCamera } = parseHash();
     if (parsedCamera) {
+      // Use the zoom from hash directly without mobile adjustment
+      // The zoom should already be optimized for the screen size via bounds calculation
       map.jumpTo({
         center: parsedCamera.center,
-        zoom: parsedCamera.zoom + (window.innerWidth <= 1000 ? -1 : 0),
+        zoom: parsedCamera.zoom,
         bearing: parsedCamera.bearing,
         pitch: parsedCamera.pitch,
         animate: false
@@ -2784,11 +2914,6 @@ map.on('load', () => {
 
 // Update hash on camera move
 map.on('moveend', () => {
-  // Don't update hash if we just applied mobile zoom adjustment (prevents loop)
-  if (window._skipNextHashUpdate) {
-    window._skipNextHashUpdate = false;
-    return;
-  }
   // During free-camera follow animation, don't write to the hash —
   // it can re-introduce :follow and cause unintended restarts.
   if (isFreeCameraAnimating) return;
@@ -3116,9 +3241,6 @@ window.addEventListener('hashchange', () => {
   const currentHash = window.location.hash;
   if (window._lastHashState === currentHash) return;
   window._lastHashState = currentHash;
-  
-  // Reset mobile zoom adjustment flag for this new hash
-  window._mobileZoomAdjusted = false;
 
   // Always cancel any running follow immediately so we can apply new state
   if (isFreeCameraAnimating) {
@@ -3358,17 +3480,11 @@ window.addEventListener('hashchange', () => {
   // 5. Fly to hash geolocation (with animation), then start follow only after fly completes
   const flyOpts = {
     center: [camera.center[0], camera.center[1]],
-    zoom: camera.zoom + (window.innerWidth <= 1000 && !window._mobileZoomAdjusted ? -1 : 0),
+    zoom: camera.zoom,  // Use zoom directly from hash without mobile adjustment
     bearing: camera.bearing,
     pitch: camera.pitch,
     duration: 1200
   };
-  
-  // Mark that we've applied the mobile zoom adjustment for this hash
-  if (window.innerWidth <= 1000 && !window._mobileZoomAdjusted) {
-    window._mobileZoomAdjusted = true;
-    window._skipNextHashUpdate = true; // Prevent moveend from updating hash with new zoom
-  }
 
   // Always start follow if followId is present after camera update
   map.flyTo(flyOpts);
