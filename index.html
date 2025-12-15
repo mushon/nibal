@@ -974,6 +974,11 @@
         const isMobilePortrait = window.matchMedia("(max-width: 1000px) and (orientation: portrait)").matches;
         let captionUpdateTimeout = null; // Debounce caption updates across all observer callbacks
         
+        // Mobile layout configuration: In content-top mode, text appears at bottom of viewport.
+        // This value (0-1) represents where to measure section visibility from.
+        // 0.8 = bottom 20% of screen, matching the CSS layout for content-top mode.
+        const MOBILE_CONTENT_Y_RATIO = 0.8;
+        
         const observer = new IntersectionObserver((entries) => {
             let captionNeedsUpdate = false;
             
@@ -984,9 +989,9 @@
                         if (!visibleLink.classList.contains("dontinflect") && visibleLink.getAttribute("href") != "") {
                         visibleLink.classList.add('active');
                         
-                        // On mobile, let section observer handle iframe loading
-                        // to prevent race conditions with multiple intersecting sections.
-                        // On desktop, load iframes here for immediate response.
+                        // Desktop: Load iframes immediately when links intersect
+                        // Mobile: Let section observer handle loading to avoid race conditions
+                        // when multiple sections with different links are simultaneously visible
                         if (!isMobilePortrait) {
                             // Desktop mode: load iframe from link observer
                             const rawHref = visibleLink.getAttribute('href');
@@ -1056,44 +1061,35 @@
         const sectionObserver = new IntersectionObserver((entries) => {
             let captionNeedsUpdate = false;
             
-            // FIX for mobile: With threshold 0.25, multiple sections 
-            // can intersect at once. Only process the section closest to content area.
+            // Mobile-specific fix: When multiple sections intersect simultaneously
+            // (common with low threshold + compact mobile layout), choose only the
+            // section closest to where content is displayed to prevent race conditions.
             const intersectingEntries = entries.filter(e => e.isIntersecting);
-            
             let entriesToProcess = intersectingEntries;
             
             if (isMobilePortrait && intersectingEntries.length > 1) {
-                // Mobile: Multiple sections visible - find the one closest to content area
+                // Find section closest to bottom 20% of viewport (where text appears in content-top mode)
                 const viewportHeight = window.innerHeight;
-                const targetY = viewportHeight * 0.8; // Content at bottom 20%
+                const contentY = viewportHeight * MOBILE_CONTENT_Y_RATIO;
                 
                 intersectingEntries.sort((a, b) => {
-                    const aRect = a.target.getBoundingClientRect();
-                    const bRect = b.target.getBoundingClientRect();
-                    const aY = aRect.bottom; // Use bottom edge (text at bottom)
-                    const bY = bRect.bottom;
-                    const aDistance = Math.abs(aY - targetY);
-                    const bDistance = Math.abs(bY - targetY);
-                    return aDistance - bDistance; // Closer = first
+                    const aDistance = Math.abs(a.target.getBoundingClientRect().bottom - contentY);
+                    const bDistance = Math.abs(b.target.getBoundingClientRect().bottom - contentY);
+                    return aDistance - bDistance;
                 });
                 
-                // Only process the most-centered section
                 entriesToProcess = intersectingEntries.slice(0, 1);
                 
-                // CRITICAL: Clear ALL active links from other sections first
-                if (entriesToProcess.length > 0) {
-                    const chosenSection = entriesToProcess[0].target;
-                    const allSections = document.querySelectorAll('main > section');
-                    allSections.forEach(sec => {
-                        if (sec !== chosenSection) {
-                            const links = sec.querySelectorAll('a.active, [data-active="true"]');
-                            links.forEach(link => {
-                                link.classList.remove('active');
-                                link.removeAttribute('data-active');
-                            });
-                        }
-                    });
-                }
+                // Clear active links from all other sections to prevent old links from reloading
+                const chosenSection = entriesToProcess[0].target;
+                document.querySelectorAll('main > section').forEach(sec => {
+                    if (sec !== chosenSection) {
+                        sec.querySelectorAll('a.active, [data-active="true"]').forEach(link => {
+                            link.classList.remove('active');
+                            link.removeAttribute('data-active');
+                        });
+                    }
+                });
             }
             
             entriesToProcess.forEach(en => {
