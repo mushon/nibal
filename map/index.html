@@ -2045,7 +2045,12 @@ let cachedHashState = null;
 // Create layer controls
 function createLayerControls(map, visibleLayers) {
   const container = document.getElementById('layer-list');
-  if (!container) return;
+  if (!container) {
+    console.warn('[DEBUG] layer-list container not found');
+    return;
+  }
+  
+  console.log('[DEBUG] createLayerControls called with', visibleLayers.length, 'visible layers, allStyleLayers:', allStyleLayers.length);
   
   // Performance: Build HTML in array then join once
   const htmlParts = [];
@@ -2211,10 +2216,14 @@ function createLayerControls(map, visibleLayers) {
   
   if (!foundLayer) {
     htmlParts.push('<em>No toggleable layers found in the current style.</em>');
+    console.warn('[DEBUG] No toggleable layers found. allLayers.length:', allLayers.length);
+  } else {
+    console.log('[DEBUG] Found', htmlParts.length, 'layer controls to render');
   }
   
   // Performance: Single DOM update instead of multiple
   container.innerHTML = htmlParts.join('');
+  console.log('[DEBUG] Layer controls HTML updated, innerHTML length:', container.innerHTML.length);
   // Populate any active property dropdowns immediately
   container.querySelectorAll('select[data-filter-prop].active').forEach(sel => {
     const lid = sel.getAttribute('data-filter-prop');
@@ -2810,6 +2819,8 @@ map.on('load', () => {
   allStyleLayers = map.getStyle().layers.map(l => ({ id: l.id }));
   window.allStyleLayers = allStyleLayers; // Keep window reference in sync
   
+  console.log('[DEBUG] allStyleLayers loaded:', allStyleLayers.length, 'layers');
+  
   // Store the style default visibility for each layer
   allStyleLayers.forEach(layer => {
     if (map.getLayer(layer.id)) {
@@ -2912,6 +2923,7 @@ map.on('load', () => {
   // If no layers specified in hash, keep all at their style defaults (don't change)
   
   // Update the toggle list to reflect current visibility
+  console.log('[DEBUG] About to call createLayerControls with', allStyleLayers.length, 'total layers');
   createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
 
   // Inject map UI controls if flag present
