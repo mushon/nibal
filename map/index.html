@@ -1115,7 +1115,10 @@ function boundsToZoom(bounds, center) {
   const worldCircumference = 40075017 * Math.cos(latRad);
   const zoom = Math.log2(worldCircumference / (256 * metersPerPixel));
   
-  return Math.max(0, Math.min(22, zoom));
+  // Round to 2 decimal places to prevent drift from tiny floating point errors
+  const roundedZoom = Math.round(zoom * 100) / 100;
+  
+  return Math.max(0, Math.min(22, roundedZoom));
 }
 
 // Flag to prevent hash updates during programmatic map moves
@@ -1918,12 +1921,20 @@ function updateHash(map, visibleLayers) {
   const referenceZoom = boundsToZoom(boundsArray, [c.lng, c.lat]);
   const z = referenceZoom.toFixed(2);
   
-  // Preserve existing layer part of hash if present
+  // Check if hash actually changed to prevent unnecessary updates
   const hash = window.location.hash.replace('#', '');
   const parts = hash.split('/');
+  const oldCameraStr = parts[0] || '';
   const layersStr = parts[1];
   const trailing = parts.slice(2);
+  
   const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
+  
+  // Only update if camera position actually changed
+  if (oldCameraStr === cameraStr) {
+    return; // Prevent unnecessary hash updates
+  }
+  
   const newHash = `#${cameraStr}` + (layersStr !== undefined ? `/${layersStr}` : '') + (trailing.length ? `/${trailing.join('/')}` : '');
   window.location.replace(newHash);
 }
@@ -2624,8 +2635,8 @@ map.once('load', () => {
       pitch: camera.pitch,
       animate: false
     });
-    // Reset flag after fitBounds completes
-    setTimeout(() => { isFittingBounds = false; }, 100);
+    // Reset flag after fitBounds completes (longer timeout for safety)
+    setTimeout(() => { isFittingBounds = false; }, 500);
   }
 });
 
@@ -2843,7 +2854,7 @@ map.on('load', () => {
         pitch: parsedCamera.pitch,
         animate: false
       });
-      setTimeout(() => { isFittingBounds = false; }, 100);
+      setTimeout(() => { isFittingBounds = false; }, 500);
     } else if (parsedCamera) {
       map.jumpTo({
         center: parsedCamera.center,
@@ -3476,8 +3487,8 @@ window.addEventListener('hashchange', () => {
     });
   }
   
-  // Reset flag after animation completes
-  setTimeout(() => { isFittingBounds = false; }, 1300);
+  // Reset flag after animation completes (allow time for 1200ms animation + settling)
+  setTimeout(() => { isFittingBounds = false; }, 1500);
 
   // Always start follow if followId is present after camera update
   if (followId) {
