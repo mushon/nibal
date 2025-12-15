@@ -983,43 +983,39 @@
                     const visibleLink = entry.target;
                         if (!visibleLink.classList.contains("dontinflect") && visibleLink.getAttribute("href") != "") {
                         visibleLink.classList.add('active');
-                        // Use the raw href attribute to avoid races where scripts
-                        // (e.g. the typewriter) mutate link textContent or href.
-                        const rawHref = visibleLink.getAttribute('href');
-                        if (!rawHref) return; // Safety check
                         
-                        // In dual-iframe mode, call setIframeIfPathChanged directly to avoid timeout issues
-                        const isDualMode = window.__dualIframeMode === true;
-                        if (isDualMode) {
-                            try { 
-                                const full = new URL(rawHref, window.location.href).href; 
-                                setIframeIfPathChanged(full); 
-                            } catch(e){ 
-                                try {
-                                    setIframeIfPathChanged(visibleLink.href);
-                                } catch(e2) {
-                                                                    }
-                            }
-                        } else {
-                            try { 
-                                const full = new URL(rawHref, window.location.href).href; 
-                                setIframeNext(full); 
-                            } catch(e){ 
-                                try {
-                                    setIframeNext(visibleLink.href);
-                                } catch(e2) {
-                                                                    }
+                        // On mobile, let section observer handle iframe loading
+                        // to prevent race conditions with multiple intersecting sections.
+                        // On desktop, load iframes here for immediate response.
+                        if (!isMobilePortrait) {
+                            // Desktop mode: load iframe from link observer
+                            const rawHref = visibleLink.getAttribute('href');
+                            if (!rawHref) return;
+                            
+                            const isDualMode = window.__dualIframeMode === true;
+                            if (isDualMode) {
+                                try { 
+                                    const full = new URL(rawHref, window.location.href).href; 
+                                    setIframeIfPathChanged(full); 
+                                } catch(e){ 
+                                    try {
+                                        setIframeIfPathChanged(visibleLink.href);
+                                    } catch(e2) { }
+                                }
+                            } else {
+                                try { 
+                                    const full = new URL(rawHref, window.location.href).href; 
+                                    setIframeNext(full); 
+                                } catch(e){ 
+                                    try {
+                                        setIframeNext(visibleLink.href);
+                                    } catch(e2) { }
+                                }
                             }
                         }
+                        
                         // Mark that caption needs update after all entries processed
                         captionNeedsUpdate = true;
-                        // Start any typewriter animation for the section that contains this link
-                        // after the iframe has been asked to load the path. Use a short delay
-                        // to allow the iframe transition to start.
-                        try {
-                            const section = visibleLink.closest('section') || document.querySelector('main');
-                            // (typewriter removed)
-                        } catch (e) { /* swallow */ }
                     }
                 } else {
                     // Link is leaving view - remove active class
@@ -1060,7 +1056,47 @@
         const sectionObserver = new IntersectionObserver((entries) => {
             let captionNeedsUpdate = false;
             
-            entries.forEach(en => {
+            // FIX for mobile: With threshold 0.25, multiple sections 
+            // can intersect at once. Only process the section closest to content area.
+            const intersectingEntries = entries.filter(e => e.isIntersecting);
+            
+            let entriesToProcess = intersectingEntries;
+            
+            if (isMobilePortrait && intersectingEntries.length > 1) {
+                // Mobile: Multiple sections visible - find the one closest to content area
+                const viewportHeight = window.innerHeight;
+                const targetY = viewportHeight * 0.8; // Content at bottom 20%
+                
+                intersectingEntries.sort((a, b) => {
+                    const aRect = a.target.getBoundingClientRect();
+                    const bRect = b.target.getBoundingClientRect();
+                    const aY = aRect.bottom; // Use bottom edge (text at bottom)
+                    const bY = bRect.bottom;
+                    const aDistance = Math.abs(aY - targetY);
+                    const bDistance = Math.abs(bY - targetY);
+                    return aDistance - bDistance; // Closer = first
+                });
+                
+                // Only process the most-centered section
+                entriesToProcess = intersectingEntries.slice(0, 1);
+                
+                // CRITICAL: Clear ALL active links from other sections first
+                if (entriesToProcess.length > 0) {
+                    const chosenSection = entriesToProcess[0].target;
+                    const allSections = document.querySelectorAll('main > section');
+                    allSections.forEach(sec => {
+                        if (sec !== chosenSection) {
+                            const links = sec.querySelectorAll('a.active, [data-active="true"]');
+                            links.forEach(link => {
+                                link.classList.remove('active');
+                                link.removeAttribute('data-active');
+                            });
+                        }
+                    });
+                }
+            }
+            
+            entriesToProcess.forEach(en => {
                 if (en.isIntersecting) {
                     const sec = en.target;
                     const sectionText = sec.textContent.substring(0, 50).replace(/\s+/g, ' ');
@@ -1239,19 +1275,23 @@
                             setTimeout(completeInflection, 100);
                         }
                     } catch(e) { /* swallow */ }
-                } else {
-                    // Section is leaving view - remove active class from all its links
-                    const sec = en.target;
-                    const sectionText = sec.textContent.substring(0, 50).replace(/\s+/g, ' ');
-                                        try {
-                        const allLinks = Array.from(sec.querySelectorAll('a:not(.dontinflect)'));
-                        if (allLinks.length > 0) {
-                                                    }
-                        allLinks.forEach(link => link.classList.remove('active'));
-                        // Mark that caption needs update after all sections processed
-                        captionNeedsUpdate = true;
-                    } catch(e) { /* swallow */ }
                 }
+            });
+            
+            // Also handle exiting sections separately (always remove their links)
+            const exitingEntries = entries.filter(e => !e.isIntersecting);
+            exitingEntries.forEach(en => {
+                // Section is leaving view - remove active class from all its links
+                const sec = en.target;
+                const sectionText = sec.textContent.substring(0, 50).replace(/\s+/g, ' ');
+                                    try {
+                    const allLinks = Array.from(sec.querySelectorAll('a:not(.dontinflect)'));
+                    if (allLinks.length > 0) {
+                                                }
+                    allLinks.forEach(link => link.classList.remove('active'));
+                    // Mark that caption needs update after all sections processed
+                    captionNeedsUpdate = true;
+                } catch(e) { /* swallow */ }
             });
             
             // Update caption ONCE after all section entries have been processed
