@@ -435,36 +435,6 @@
     #map-ui-controls button.fullscreen-exit:hover {
       background: rgba(255,100,100,0.4);
     }
-    /* Visual bounds indicator (shown in edit mode) */
-    #bounds-indicator {
-      position: fixed;
-      pointer-events: none;
-      z-index: 999;
-      border: 3px solid rgba(0, 150, 255, 0.8);
-      box-shadow: 0 0 20px rgba(0, 150, 255, 0.4), inset 0 0 20px rgba(0, 150, 255, 0.2);
-      background: rgba(0, 150, 255, 0.05);
-      display: none;
-      transition: all 0.3s ease;
-    }
-    #bounds-indicator.visible {
-      display: block;
-    }
-    #bounds-indicator::before {
-      content: 'Visual Bounds';
-      position: absolute;
-      top: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 150, 255, 0.9);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      white-space: nowrap;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
   </style>
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -475,7 +445,6 @@
 </head>
 <body>
 <div id="map"></div>
-<div id="bounds-indicator"></div>
 <div id="layer-controls" class="hidden">
   <div id="layer-controls-header">
     <div class="title-row">
@@ -546,9 +515,6 @@ document.addEventListener('keydown', function(e) {
     if (controls) {
       const wasHidden = controls.classList.contains('hidden');
       controls.classList.toggle('hidden');
-      
-      // Toggle bounds indicator when entering/exiting edit mode
-      toggleBoundsIndicator(wasHidden);
       
       // Tell parent about edit mode change
       if (window.parent && window.parent !== window) {
@@ -1097,133 +1063,6 @@ function removeMapUIControls() {
   }
 }
 
-// ===== BOUNDS SYSTEM =====
-// Define the visual bounds that should fit in the viewport
-// This is similar to the SVG app's reference frame approach
-
-// Get the reference bounds (centered square based on viewport)
-function getReferenceBounds() {
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  
-  // Use a square that fits in the viewport, similar to SVG app
-  // The bounds size is 90% of the smaller dimension to leave some margin
-  const boundsSize = Math.min(vw, vh) * 0.9;
-  const boundsLeft = (vw - boundsSize) / 2;
-  const boundsTop = (vh - boundsSize) / 2;
-  
-  return {
-    size: boundsSize,
-    left: boundsLeft,
-    top: boundsTop,
-    width: boundsSize,
-    height: boundsSize,
-    centerX: boundsLeft + boundsSize / 2,
-    centerY: boundsTop + boundsSize / 2
-  };
-}
-
-// Update the visual bounds indicator position
-function updateBoundsIndicator() {
-  const indicator = document.getElementById('bounds-indicator');
-  if (!indicator) return;
-  
-  const bounds = getReferenceBounds();
-  indicator.style.left = bounds.left + 'px';
-  indicator.style.top = bounds.top + 'px';
-  indicator.style.width = bounds.width + 'px';
-  indicator.style.height = bounds.height + 'px';
-}
-
-// Calculate geographic bounds from center point and bounds size in meters
-// Returns LngLatBounds-compatible array [[west, south], [east, north]]
-// center can be array [lng, lat] or object {lng, lat} / {lat, lng}
-function calculateGeographicBounds(center, boundsMeters) {
-  // Normalize center to lat/lng values
-  let lat, lng;
-  if (Array.isArray(center)) {
-    lng = center[0];
-    lat = center[1];
-  } else {
-    lat = center.lat;
-    lng = center.lng;
-  }
-  
-  // Use simple approximation: 1 degree latitude ≈ 111,320 meters
-  // 1 degree longitude ≈ 111,320 * cos(latitude) meters
-  const latRad = lat * Math.PI / 180;
-  const metersPerDegreeLat = 111320;
-  const metersPerDegreeLng = 111320 * Math.cos(latRad);
-  
-  const latOffset = boundsMeters / metersPerDegreeLat;
-  const lngOffset = boundsMeters / metersPerDegreeLng;
-  
-  return [
-    [lng - lngOffset, lat - latOffset], // southwest
-    [lng + lngOffset, lat + latOffset]  // northeast
-  ];
-}
-
-// Calculate bounds size in meters from map's current view and reference bounds
-// This determines how many meters from center to edge should be visible
-function calculateBoundsMetersFromView(map) {
-  const center = map.getCenter();
-  const refBounds = getReferenceBounds();
-  
-  // Get the pixel coordinates of the center
-  const centerPx = map.project(center);
-  
-  // Calculate a point at the edge of the reference bounds square
-  // Use the right edge (centerX + size/2)
-  const edgePx = {
-    x: refBounds.centerX + refBounds.size / 2,
-    y: refBounds.centerY
-  };
-  
-  // Convert edge pixel back to geographic coordinates
-  const edgeGeo = map.unproject(edgePx);
-  
-  // Calculate distance in meters using Haversine formula
-  const R = 6371000; // Earth's radius in meters
-  const lat1Rad = center.lat * Math.PI / 180;
-  const lat2Rad = edgeGeo.lat * Math.PI / 180;
-  const dLat = lat2Rad - lat1Rad;
-  const dLng = (edgeGeo.lng - center.lng) * Math.PI / 180;
-  
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-            Math.sin(dLng/2) * Math.sin(dLng/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  const distance = R * c;
-  
-  return distance;
-}
-
-// Toggle bounds indicator visibility based on edit mode
-function toggleBoundsIndicator(visible) {
-  const indicator = document.getElementById('bounds-indicator');
-  if (!indicator) return;
-  
-  if (visible) {
-    updateBoundsIndicator();
-    indicator.classList.add('visible');
-  } else {
-    indicator.classList.remove('visible');
-  }
-}
-
-// Update bounds indicator on window resize
-window.addEventListener('resize', () => {
-  updateBoundsIndicator();
-}, { passive: true });
-
-// Initialize bounds indicator
-document.addEventListener('DOMContentLoaded', () => {
-  updateBoundsIndicator();
-});
-
-// ===== END BOUNDS SYSTEM =====
-
 // Track externally loaded layers (not part of original style)
 const externalLayers = new Set();
 
@@ -1355,15 +1194,16 @@ function parseHash() {
     return (typeof val === 'number' && !isNaN(val)) ? val : def;
   }
 
-  // Parse camera: supports both old format (lat,lng,zoom,bearing,pitch) and new format (lat,lng,bounds,bearing,pitch)
-  // If cameraParts[2] > 100, treat it as bounds in meters; otherwise as zoom level
-  const hasBounds = cameraParts.length >= 3 && cameraParts[2] > 100;
-  
+  // Apply mobile zoom adjustment ONCE during parsing (not reactively)
+  // This ensures smooth experience on mobile without oscillation
+  const isMobile = window.innerWidth <= 1000;
+  const baseZoom = pickNum(cameraParts[2], defaultCamera.zoom);
+  const adjustedZoom = isMobile ? baseZoom - 1 : baseZoom;
+
   return {
     camera: {
       center: [pickNum(cameraParts[1], defaultCamera.center[0]), pickNum(cameraParts[0], defaultCamera.center[1])],
-      zoom: hasBounds ? null : pickNum(cameraParts[2], defaultCamera.zoom),
-      boundsMeters: hasBounds ? cameraParts[2] : null,
+      zoom: adjustedZoom,
       bearing: pickNum(cameraParts[3], defaultCamera.bearing),
       pitch: pickNum(cameraParts[4], defaultCamera.pitch)
     },
@@ -2001,30 +1841,15 @@ async function loadWaybackLayer(dateStr, toLayer) {
 // Update hash from map state
 function updateHash(map, visibleLayers) {
   const c = map.getCenter();
+  const z = map.getZoom().toFixed(2);
   const b = map.getBearing().toFixed(1);
   const p = map.getPitch().toFixed(1);
-  
-  // Check if we're in edit mode (layer controls visible)
-  const controls = document.getElementById('layer-controls');
-  const isEditMode = controls && !controls.classList.contains('hidden');
-  
-  // In edit mode, store bounds instead of zoom
-  let zoomOrBounds;
-  if (isEditMode) {
-    // Calculate bounds size in meters from current view
-    const boundsMeters = calculateBoundsMetersFromView(map);
-    zoomOrBounds = Math.round(boundsMeters);
-  } else {
-    // In non-edit mode, store zoom (for backward compatibility or direct zoom specification)
-    zoomOrBounds = map.getZoom().toFixed(2);
-  }
-  
   // Preserve existing layer part of hash if present
   const hash = window.location.hash.replace('#', '');
   const parts = hash.split('/');
   const layersStr = parts[1];
   const trailing = parts.slice(2);
-  const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${zoomOrBounds},${b},${p}`;
+  const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
   const newHash = `#${cameraStr}` + (layersStr !== undefined ? `/${layersStr}` : '') + (trailing.length ? `/${trailing.join('/')}` : '');
   window.location.replace(newHash);
 }
@@ -2045,12 +1870,7 @@ let cachedHashState = null;
 // Create layer controls
 function createLayerControls(map, visibleLayers) {
   const container = document.getElementById('layer-list');
-  if (!container) {
-    console.warn('[DEBUG] layer-list container not found');
-    return;
-  }
-  
-  console.log('[DEBUG] createLayerControls called with', visibleLayers.length, 'visible layers, allStyleLayers:', allStyleLayers.length);
+  if (!container) return;
   
   // Performance: Build HTML in array then join once
   const htmlParts = [];
@@ -2216,14 +2036,10 @@ function createLayerControls(map, visibleLayers) {
   
   if (!foundLayer) {
     htmlParts.push('<em>No toggleable layers found in the current style.</em>');
-    console.warn('[DEBUG] No toggleable layers found. allLayers.length:', allLayers.length);
-  } else {
-    console.log('[DEBUG] Found', htmlParts.length, 'layer controls to render');
   }
   
   // Performance: Single DOM update instead of multiple
   container.innerHTML = htmlParts.join('');
-  console.log('[DEBUG] Layer controls HTML updated, innerHTML length:', container.innerHTML.length);
   // Populate any active property dropdowns immediately
   container.querySelectorAll('select[data-filter-prop].active').forEach(sel => {
     const lid = sel.getAttribute('data-filter-prop');
@@ -2711,12 +2527,11 @@ if (window.devicePixelRatio > 1) {
   }
 }
 
-// Initialize map with temporary zoom if bounds are specified (will be adjusted via fitBounds)
 const map = new mapboxgl.Map({
   container: 'map',
   style,
   center: camera.center,
-  zoom: camera.zoom || camera.boundsMeters ? 10 : defaultCamera.zoom, // Temporary zoom if using bounds
+  zoom: camera.zoom,
   bearing: camera.bearing,
   pitch: camera.pitch,
   interactive: true,  // Will be disabled if /static flag is present
@@ -2759,17 +2574,6 @@ map.on('load', () => {
   
   // After all layers are loaded, if :follow is present in the hash, trigger follow logic directly (no hashchange event)
   const { camera: camInit, layers: layersInit, dynamicGeojsonToLoad: dynInit, followId: followInit, followOffset: followOffsetInit, showTicker: showTickerInit, followHidden: followHiddenInit, showMapUI, isStatic } = parseHash();
-  
-  // Apply fitBounds if bounds are specified in hash (instead of zoom)
-  if (camInit.boundsMeters) {
-    const bbox = calculateGeographicBounds(camInit.center, camInit.boundsMeters);
-    map.fitBounds(bbox, {
-      padding: 0,
-      bearing: camInit.bearing,
-      pitch: camInit.pitch,
-      animate: false
-    });
-  }
   if (followInit) {
     // Only start follow if not already running (avoid double-trigger)
     if (!window._isFollowStarted) {
@@ -2818,8 +2622,6 @@ map.on('load', () => {
   // Get all layers from the style
   allStyleLayers = map.getStyle().layers.map(l => ({ id: l.id }));
   window.allStyleLayers = allStyleLayers; // Keep window reference in sync
-  
-  console.log('[DEBUG] allStyleLayers loaded:', allStyleLayers.length, 'layers');
   
   // Store the style default visibility for each layer
   allStyleLayers.forEach(layer => {
@@ -2923,7 +2725,6 @@ map.on('load', () => {
   // If no layers specified in hash, keep all at their style defaults (don't change)
   
   // Update the toggle list to reflect current visibility
-  console.log('[DEBUG] About to call createLayerControls with', allStyleLayers.length, 'total layers');
   createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
 
   // Inject map UI controls if flag present
@@ -2946,25 +2747,13 @@ map.on('load', () => {
   try {
     const { camera: parsedCamera } = parseHash();
     if (parsedCamera) {
-      if (parsedCamera.boundsMeters) {
-        // Use fitBounds if bounds are specified
-        const bbox = calculateGeographicBounds(parsedCamera.center, parsedCamera.boundsMeters);
-        map.fitBounds(bbox, {
-          padding: 0,
-          bearing: parsedCamera.bearing,
-          pitch: parsedCamera.pitch,
-          animate: false
-        });
-      } else if (parsedCamera.zoom) {
-        // Use zoom if specified (backward compatibility)
-        map.jumpTo({
-          center: parsedCamera.center,
-          zoom: parsedCamera.zoom,
-          bearing: parsedCamera.bearing,
-          pitch: parsedCamera.pitch,
-          animate: false
-        });
-      }
+      map.jumpTo({
+        center: parsedCamera.center,
+        zoom: parsedCamera.zoom,  // Zoom already adjusted in parseHash for mobile
+        bearing: parsedCamera.bearing,
+        pitch: parsedCamera.pitch,
+        animate: false
+      });
     }
   } catch (e) {
       }
@@ -3565,28 +3354,16 @@ window.addEventListener('hashchange', () => {
   }
 
   // 5. Fly to hash geolocation (with animation), then start follow only after fly completes
-  if (camera.boundsMeters) {
-    // Use fitBounds if bounds are specified
-    const bbox = calculateGeographicBounds(camera.center, camera.boundsMeters);
-    map.fitBounds(bbox, {
-      padding: 0,
-      bearing: camera.bearing,
-      pitch: camera.pitch,
-      duration: 1200
-    });
-  } else {
-    // Use flyTo if zoom is specified
-    const flyOpts = {
-      center: [camera.center[0], camera.center[1]],
-      zoom: camera.zoom,
-      bearing: camera.bearing,
-      pitch: camera.pitch,
-      duration: 1200
-    };
-    map.flyTo(flyOpts);
-  }
+  const flyOpts = {
+    center: [camera.center[0], camera.center[1]],
+    zoom: camera.zoom,  // Zoom already adjusted in parseHash for mobile
+    bearing: camera.bearing,
+    pitch: camera.pitch,
+    duration: 1200
+  };
 
   // Always start follow if followId is present after camera update
+  map.flyTo(flyOpts);
   if (followId) {
     // Wait for both flyTo and source readiness before starting follow
     let followReady = false;
