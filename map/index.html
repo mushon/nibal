@@ -1313,28 +1313,66 @@ function parseHash() {
     return (typeof val === 'number' && !isNaN(val)) ? val : def;
   }
 
-  // Parse camera position and convert zoom to geographic bounds
-  const center = [pickNum(cameraParts[1], defaultCamera.center[0]), pickNum(cameraParts[0], defaultCamera.center[1])];
-  const zoom = pickNum(cameraParts[2], defaultCamera.zoom);
-  const bearing = pickNum(cameraParts[3], defaultCamera.bearing);
-  const pitch = pickNum(cameraParts[4], defaultCamera.pitch);
+  // Parse camera position - support two formats:
+  // Format 1 (old): lat,lon,zoom,bearing,pitch (5 params)
+  // Format 2 (new): latA,lonA,latB,lonB,bearing,pitch (6 params - bounding box)
+  let center, zoom, bounds, bearing, pitch;
+  let needsHashConversion = false;
   
-  // Store the original zoom from hash to prevent updates later (iframe mode only)
-  originalHashZoom = zoom;
-  
-  // Only use bounds for fitBounds in iframe mode without show-ui and not in edit mode
-  // In standalone or edit mode, use direct zoom instead
-  let bounds = null;
-  if (isInIframe && !showMapUI && !isEditMode) {
-    // Convert reference zoom to geographic bounds for fitBounds
+  if (cameraParts.length === 6) {
+    // New format: latA,lonA,latB,lonB,bearing,pitch (bounding box)
+    const latA = pickNum(cameraParts[0], defaultCamera.center[1]);
+    const lonA = pickNum(cameraParts[1], defaultCamera.center[0]);
+    const latB = pickNum(cameraParts[2], defaultCamera.center[1] + 0.1);
+    const lonB = pickNum(cameraParts[3], defaultCamera.center[0] + 0.1);
+    bearing = pickNum(cameraParts[4], defaultCamera.bearing);
+    pitch = pickNum(cameraParts[5], defaultCamera.pitch);
+    
+    // Calculate center from bounding box
+    center = [(lonA + lonB) / 2, (latA + latB) / 2];
+    
+    // Set bounds for fitBounds
+    bounds = [[lonA, latA], [lonB, latB]]; // [[west, south], [east, north]]
+    
+    // Calculate zoom from bounds for reference (not used directly)
+    zoom = boundsToZoom(bounds, center);
+  } else {
+    // Old format: lat,lon,zoom,bearing,pitch (5 params)
+    // This will be auto-converted to bbox format
+    center = [pickNum(cameraParts[1], defaultCamera.center[0]), pickNum(cameraParts[0], defaultCamera.center[1])];
+    zoom = pickNum(cameraParts[2], defaultCamera.zoom);
+    bearing = pickNum(cameraParts[3], defaultCamera.bearing);
+    pitch = pickNum(cameraParts[4], defaultCamera.pitch);
+    
+    // Convert zoom + center to geographic bounds
     bounds = zoomToBounds(center, zoom);
+    
+    // Mark that we need to update hash to new format
+    needsHashConversion = true;
+  }
+  
+  // Store the original zoom from hash (for reference only, not used for positioning)
+  originalHashZoom = zoom;
+
+  // Schedule hash conversion if needed (after map loads)
+  if (needsHashConversion && bounds) {
+    // Convert to new bbox format: latA,lonA,latB,lonB,bearing,pitch
+    setTimeout(() => {
+      const [[lonA, latA], [lonB, latB]] = bounds;
+      const bboxCameraStr = `${latA.toFixed(5)},${lonA.toFixed(5)},${latB.toFixed(5)},${lonB.toFixed(5)},${bearing.toFixed(1)},${pitch.toFixed(1)}`;
+      const hash = window.location.hash.replace('#', '');
+      const parts = hash.split('/');
+      const trailing = parts.slice(1); // Preserve layers and flags
+      const newHash = `#${bboxCameraStr}` + (trailing.length ? `/${trailing.join('/')}` : '');
+      window.location.replace(newHash);
+    }, 100);
   }
 
   return {
     camera: {
       center,
-      zoom,  // Original zoom from hash
-      bounds,  // Geographic bounds (only set for iframe mode)
+      zoom,  // Calculated zoom from bounds (for reference)
+      bounds,  // Geographic bounds for fitBounds
       bearing,
       pitch
     },
@@ -1981,31 +2019,16 @@ function updateHash(map, visibleLayers) {
   const layersStr = parts[1];
   const trailing = parts.slice(2);
   
-  // Check if /show-ui flag is present
-  const hasShowUI = trailing.some(seg => seg === 'show-ui');
+  // Get current bounds from map
+  const currentBounds = map.getBounds();
   
-  let z;
+  // Build new camera string using bounding box format: latA,lonA,latB,lonB,bearing,pitch
+  const latA = currentBounds.getSouth().toFixed(5);
+  const lonA = currentBounds.getWest().toFixed(5);
+  const latB = currentBounds.getNorth().toFixed(5);
+  const lonB = currentBounds.getEast().toFixed(5);
   
-  // Determine zoom update strategy:
-  // - In iframe WITHOUT show-ui: preserve original zoom (prevent loops)
-  // - In standalone OR edit mode OR with show-ui: recalculate zoom from bounds
-  if (isInIframe && !hasShowUI && !isEditMode) {
-    // iframe mode: preserve original zoom to prevent loops
-    const oldParts = oldCameraStr.split(',');
-    z = oldParts.length >= 3 ? oldParts[2] : (originalHashZoom !== null ? originalHashZoom.toFixed(2) : '10.00');
-  } else {
-    // Standalone/edit mode: calculate zoom from current view bounds
-    const currentBounds = map.getBounds();
-    const boundsArray = [
-      [currentBounds.getWest(), currentBounds.getSouth()],
-      [currentBounds.getEast(), currentBounds.getNorth()]
-    ];
-    const referenceZoom = boundsToZoom(boundsArray, [c.lng, c.lat]);
-    z = referenceZoom.toFixed(2);
-  }
-  
-  // Build new camera string
-  const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
+  const cameraStr = `${latA},${lonA},${latB},${lonB},${b},${p}`;
   
   // Only update if camera position actually changed
   if (oldCameraStr === cameraStr) {
@@ -2773,11 +2796,14 @@ map.on('load', () => {
         if (coords.length > 1) {
           followPathWithFreeCamera(map, coords, () => {
             // On completion: freeze current camera into the hash and remove :follow to avoid jumping back
-            const c = map.getCenter();
-            const z = map.getZoom().toFixed(2);
+            const bounds = map.getBounds();
             const b = map.getBearing().toFixed(1);
             const p = map.getPitch().toFixed(1);
-            const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
+            const latA = bounds.getSouth().toFixed(5);
+            const lonA = bounds.getWest().toFixed(5);
+            const latB = bounds.getNorth().toFixed(5);
+            const lonB = bounds.getEast().toFixed(5);
+            const cameraStr = `${latA},${lonA},${latB},${lonB},${b},${p}`;
             let hash = window.location.hash.replace('#', '');
             const parts = hash.split('/');
             let layersStr = parts[1] || '';
@@ -3596,11 +3622,14 @@ window.addEventListener('hashchange', () => {
         window._isFollowStarted = true;
   followPathWithFreeCamera(map, coords, () => {
           // On completion: freeze current camera into the hash and remove :follow to avoid jumping back
-          const c = map.getCenter();
-          const z = map.getZoom().toFixed(2);
+          const bounds = map.getBounds();
           const b = map.getBearing().toFixed(1);
           const p = map.getPitch().toFixed(1);
-          const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
+          const latA = bounds.getSouth().toFixed(5);
+          const lonA = bounds.getWest().toFixed(5);
+          const latB = bounds.getNorth().toFixed(5);
+          const lonB = bounds.getEast().toFixed(5);
+          const cameraStr = `${latA},${lonA},${latB},${lonB},${b},${p}`;
           let hash = window.location.hash.replace('#', '');
           const parts = hash.split('/');
           let layersStr = parts[1] || '';
