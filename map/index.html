@@ -435,6 +435,25 @@
     #map-ui-controls button.fullscreen-exit:hover {
       background: rgba(255,100,100,0.4);
     }
+    
+    /* Bounds Indicator - shows safe area in standalone/edit mode */
+    #bounds-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      margin-left: -250px;
+      margin-top: -250px;
+      border: 3px solid #4A90E2;
+      box-shadow: 0 0 0 9999px rgba(0,0,0,0.3);
+      pointer-events: none;
+      z-index: 100;
+      display: none; /* Hidden by default, shown in standalone/edit mode */
+    }
+    #bounds-indicator.visible {
+      display: block;
+    }
   </style>
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -445,6 +464,7 @@
 </head>
 <body>
 <div id="map"></div>
+<div id="bounds-indicator"></div>
 <div id="layer-controls" class="hidden">
   <div id="layer-controls-header">
     <div class="title-row">
@@ -515,6 +535,12 @@ document.addEventListener('keydown', function(e) {
     if (controls) {
       const wasHidden = controls.classList.contains('hidden');
       controls.classList.toggle('hidden');
+      
+      // Update edit mode state
+      isEditMode = wasHidden;
+      
+      // Update bounds indicator visibility
+      updateBoundsIndicatorVisibility();
       
       // Tell parent about edit mode change
       if (window.parent && window.parent !== window) {
@@ -1067,6 +1093,12 @@ function removeMapUIControls() {
 // Reference safe area size (500x500px) - the area we want to keep visible across all screens
 const SAFE_AREA_SIZE = 500;
 
+// Detect if running in iframe
+const isInIframe = window.self !== window.top;
+
+// Track edit mode state
+let isEditMode = false;
+
 // Convert zoom level + center to geographic bounds that fit in safe area
 // Returns bounding box [[west, south], [east, north]]
 function zoomToBounds(center, zoom) {
@@ -1094,11 +1126,59 @@ function zoomToBounds(center, zoom) {
   ];
 }
 
-// Store the original hash zoom to prevent updates
+// Calculate reference zoom from current bounds (for standalone/edit mode)
+function boundsToZoom(bounds, center) {
+  const lat = Array.isArray(center) ? center[1] : center.lat;
+  const latRad = lat * Math.PI / 180;
+  
+  // Calculate the width of the bounds in degrees
+  const lngSpan = bounds[1][0] - bounds[0][0]; // east - west
+  
+  // Convert to meters
+  const metersPerDegreeLng = 111320 * Math.cos(latRad);
+  const boundsWidthMeters = lngSpan * metersPerDegreeLng;
+  
+  // Calculate meters per pixel needed to fit bounds in safe area
+  const metersPerPixel = boundsWidthMeters / SAFE_AREA_SIZE;
+  
+  // Calculate zoom
+  const worldCircumference = 40075017 * Math.cos(latRad);
+  const zoom = Math.log2(worldCircumference / (256 * metersPerPixel));
+  
+  // Round to 2 decimal places
+  const roundedZoom = Math.round(zoom * 100) / 100;
+  
+  return Math.max(0, Math.min(22, roundedZoom));
+}
+
+// Store the original hash zoom to prevent updates (iframe mode only)
 let originalHashZoom = null;
 
 // Flag to prevent hash updates during programmatic map moves
 let isFittingBounds = false;
+
+// Function to update bounds indicator visibility
+function updateBoundsIndicatorVisibility() {
+  const boundsIndicator = document.getElementById('bounds-indicator');
+  if (!boundsIndicator) return;
+  
+  // Check if /show-ui flag is present
+  const hash = window.location.hash.replace('#', '');
+  const parts = hash.split('/');
+  const trailing = parts.slice(2);
+  const hasShowUI = trailing.some(seg => seg === 'show-ui');
+  
+  // Show bounds indicator if:
+  // - NOT in iframe (standalone mode) OR in edit mode
+  // - AND NOT using /show-ui flag
+  const shouldShow = (!isInIframe || isEditMode) && !hasShowUI;
+  
+  if (shouldShow) {
+    boundsIndicator.classList.add('visible');
+  } else {
+    boundsIndicator.classList.remove('visible');
+  }
+}
 
 // ===== End FitBounds Helpers =====
 
@@ -1239,17 +1319,22 @@ function parseHash() {
   const bearing = pickNum(cameraParts[3], defaultCamera.bearing);
   const pitch = pickNum(cameraParts[4], defaultCamera.pitch);
   
-  // Store the original zoom from hash to prevent updates later
+  // Store the original zoom from hash to prevent updates later (iframe mode only)
   originalHashZoom = zoom;
   
-  // Convert reference zoom to geographic bounds for fitBounds
-  const bounds = zoomToBounds(center, zoom);
+  // Only use bounds for fitBounds in iframe mode without show-ui and not in edit mode
+  // In standalone or edit mode, use direct zoom instead
+  let bounds = null;
+  if (isInIframe && !showMapUI && !isEditMode) {
+    // Convert reference zoom to geographic bounds for fitBounds
+    bounds = zoomToBounds(center, zoom);
+  }
 
   return {
     camera: {
       center,
-      zoom,  // Keep original zoom for reference
-      bounds,  // Geographic bounds to use with fitBounds
+      zoom,  // Original zoom from hash
+      bounds,  // Geographic bounds (only set for iframe mode)
       bearing,
       pitch
     },
@@ -1890,19 +1975,36 @@ function updateHash(map, visibleLayers) {
   const b = map.getBearing().toFixed(1);
   const p = map.getPitch().toFixed(1);
   
-  // CRITICAL: Never update zoom in hash - use original zoom from hash to prevent loops
-  // This is the KEY to preventing zoom-out oscillation
   const hash = window.location.hash.replace('#', '');
   const parts = hash.split('/');
   const oldCameraStr = parts[0] || '';
   const layersStr = parts[1];
   const trailing = parts.slice(2);
   
-  // Parse old zoom and preserve it (NEVER recalculate)
-  const oldParts = oldCameraStr.split(',');
-  const z = oldParts.length >= 3 ? oldParts[2] : (originalHashZoom !== null ? originalHashZoom.toFixed(2) : '10.00');
+  // Check if /show-ui flag is present
+  const hasShowUI = trailing.some(seg => seg === 'show-ui');
   
-  // Build new camera string with SAME zoom as before
+  let z;
+  
+  // Determine zoom update strategy:
+  // - In iframe WITHOUT show-ui: preserve original zoom (prevent loops)
+  // - In standalone OR edit mode OR with show-ui: recalculate zoom from bounds
+  if (isInIframe && !hasShowUI && !isEditMode) {
+    // iframe mode: preserve original zoom to prevent loops
+    const oldParts = oldCameraStr.split(',');
+    z = oldParts.length >= 3 ? oldParts[2] : (originalHashZoom !== null ? originalHashZoom.toFixed(2) : '10.00');
+  } else {
+    // Standalone/edit mode: calculate zoom from current view bounds
+    const currentBounds = map.getBounds();
+    const boundsArray = [
+      [currentBounds.getWest(), currentBounds.getSouth()],
+      [currentBounds.getEast(), currentBounds.getNorth()]
+    ];
+    const referenceZoom = boundsToZoom(boundsArray, [c.lng, c.lat]);
+    z = referenceZoom.toFixed(2);
+  }
+  
+  // Build new camera string
   const cameraStr = `${c.lat.toFixed(5)},${c.lng.toFixed(5)},${z},${b},${p}`;
   
   // Only update if camera position actually changed
@@ -2868,6 +2970,9 @@ map.on('load', () => {
       }
     });
   }
+  
+  // Initialize bounds indicator visibility
+  updateBoundsIndicatorVisibility();
 
   // Do NOT trigger hashchange handler here; let user navigation or manual hash changes do it.
 });
@@ -3540,6 +3645,9 @@ window.addEventListener('hashchange', () => {
     }
   } else {
   }
+  
+  // Update bounds indicator visibility when hash changes
+  updateBoundsIndicatorVisibility();
 });
 
 // Solution 3: Add Map Resize Observer for orientation changes
