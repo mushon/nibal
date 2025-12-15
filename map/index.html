@@ -1154,8 +1154,9 @@ function boundsToZoom(bounds, center) {
 // Store the original hash zoom to prevent updates (iframe mode only)
 let originalHashZoom = null;
 
-// Flag to prevent hash updates during programmatic map moves
+// Flags to prevent hash updates during programmatic map moves
 let isFittingBounds = false;
+let isConvertingHash = false;
 
 // Function to update bounds indicator visibility
 function updateBoundsIndicatorVisibility() {
@@ -1357,6 +1358,7 @@ function parseHash() {
   // Schedule hash conversion if needed (after map loads)
   if (needsHashConversion && bounds) {
     // Convert to new bbox format: latA,lonA,latB,lonB,bearing,pitch
+    isConvertingHash = true;
     setTimeout(() => {
       const [[lonA, latA], [lonB, latB]] = bounds;
       const bboxCameraStr = `${latA.toFixed(5)},${lonA.toFixed(5)},${latB.toFixed(5)},${lonB.toFixed(5)},${bearing.toFixed(1)},${pitch.toFixed(1)}`;
@@ -1365,6 +1367,8 @@ function parseHash() {
       const trailing = parts.slice(1); // Preserve layers and flags
       const newHash = `#${bboxCameraStr}` + (trailing.length ? `/${trailing.join('/')}` : '');
       window.location.replace(newHash);
+      // Allow hash to settle before allowing updates
+      setTimeout(() => { isConvertingHash = false; }, 200);
     }, 100);
   }
 
@@ -2009,6 +2013,9 @@ async function loadWaybackLayer(dateStr, toLayer) {
 
 // Update hash from map state
 function updateHash(map, visibleLayers) {
+  // Don't update hash during format conversion
+  if (isConvertingHash) return;
+  
   const c = map.getCenter();
   const b = map.getBearing().toFixed(1);
   const p = map.getPitch().toFixed(1);
@@ -3594,7 +3601,7 @@ window.addEventListener('hashchange', () => {
   }
   
   // Reset flag after animation completes (allow time for 1200ms animation + settling)
-  setTimeout(() => { isFittingBounds = false; }, 1500);
+  setTimeout(() => { isFittingBounds = false; }, 2000);
 
   // Always start follow if followId is present after camera update
   if (followId) {
