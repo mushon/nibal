@@ -157,7 +157,7 @@ Five days later, Ahmad was issued a work permit and started a job as a construct
 {.meta no-h}
 #### Oct 23
 [](fg:blank)
-[](map/#31.40472,34.39359,10.01,-10.4,42.0/~labels_he,+oct7-hamas-en(label-focused))
+[](map/#31.38470,34.38001,10.37,-10.4,31.0/~labels_he,+oct7-hamas-en(label-focused))
 On 7 October 2023, Hamas and other armed Palestinian groups carried out the deadliest attack ever perpetrated against Israeli citizens.
 Entering from Gaza, the attackers killed 1,220 people, and injured tens of thousands. 
 They carried 252 people, some living and others dead, back to Gaza.
@@ -177,14 +177,14 @@ Ahmad was at work in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/0.82,1.09,3.68/+detainies-2,+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/0.89,1.19,4.02/+detainies-2,+detainies-1 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he)
 A few days later, Israel revoked the work permits of all tens of thousands of laborers from Gaza. Many were inside Israel and could not go home. 
 Ahmad and thousands of others instantly became “illegal aliens” in Israel.
 
 
 {.meta} 
-[](svg/#oct7.svg/1.13,1.4,3.68/+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
+[](svg/#oct7.svg/1.25,1.55,4.09/+detainies-2 "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
 [](map/#31.43482,34.38239,9.64,-10.4,42.0/+UNOSAT_gaza_23-10-15(poly-scale),~labels_he)
 Within days, he and thousands of other laborers were arrested inside Israel.
 
@@ -233,13 +233,13 @@ I was so scared something would happen to my baby.
 
 
 {.meta} 
-[](svg/#oct7.svg/0,-0.49,2/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
+[](svg/#oct7.svg/0.01,-0.39,2/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
 [](bg:blank)
 Several months of heavy bombardment left northern Gaza unrecognizable.
 
 
 {.meta} 
-[](svg/#oct7.svg/0,-0.49,2/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
+[](svg/#oct7.svg/0.01,-0.39,2/+ruined_jabalia "Searching among the ruins of a house bombed in Jabalya, 3 Jan. 2024 (Reuters/Emad Gabon)")
 [](bg:blank)
 Residents who stayed in Jabalya were documented trying to salvage what was left of their belongings from the rubble.
 
@@ -340,7 +340,7 @@ I was ashamed to tell my parents how I was living.
 
 {.meta thumb} 
 [](fg:blank)
-[](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),~labels_he,+labels_en,+rafah-mawasi-line(arrow))
+[](map/#31.44505,34.33883,10.45,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois(label-main,id=rafah),~labels_he,+labels_en,+rafah-mawasi-line(arrow))
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -711,7 +711,7 @@ My family welcomed us again with love, but the house was full of grief. My siste
 
 
 {.testimony typewriter}
-[](svg/#back_home.svg/0.94,-0.57,3.11/+nibal_home_smile3.heic)
+[](svg/#back_home.svg/1.07,-0.57,3.11/+nibal_home_smile3.heic)
 [](map/#31.52943,34.47873,16.78,38.4,0.0/+pois.csv(poi,id=home),~labels_he)
 I was frustrated because I couldn’t do anything on my own, and I struggled to care for Rita. It was hard to accept the breakup and I really missed Ahmad. 
 Even with all the support from my parents, I felt I was a burden for them, too.
@@ -962,7 +962,7 @@ For the full report on forced displacement in Gaza:
 
 
 {.meta closing}
-[](svg/#permanent_impermanence.svg/-0.95,-1.21,3.91/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
+[](svg/#permanent_impermanence.svg/-1.47,-1.81,5.96/+IMG-20250910-WA0107.jpg,+nibal_rita_nov_25.jpg)
 [](bg:blank)
 
 ## Nibal’s testimony was collected by B’Tselem field researcher Olfat al-Kurd.
