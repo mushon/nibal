@@ -2737,20 +2737,7 @@ map.on('load', () => {
     map.touchZoomRotate.disable();
   }
   
-  // Re-apply camera from hash after style load to ensure bearing/pitch/zoom are honored
-  try {
-    const { camera: parsedCamera } = parseHash();
-    if (parsedCamera) {
-      map.jumpTo({
-        center: parsedCamera.center,
-        zoom: parsedCamera.zoom + (window.innerWidth <= 1000 ? -1 : 0),
-        bearing: parsedCamera.bearing,
-        pitch: parsedCamera.pitch,
-        animate: false
-      });
-    }
-  } catch (e) {
-      }
+  // Camera will be applied by the hashchange event; no re-apply here
   // Load any dynamic layers requested in the hash
   const { dynamicGeojsonToLoad, layers: layersOn } = parseHash();
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
@@ -2779,7 +2766,15 @@ map.on('load', () => {
     });
   }
 
-  // Do NOT trigger hashchange handler here; let user navigation or manual hash changes do it.
+  // Fire initial hashchange once to apply camera and layers from URL
+  if (!window._initialHashApplied) {
+    window._initialHashApplied = true;
+    // Ensure the handler runs even if lastHashState was set earlier
+    window._lastHashState = '';
+    setTimeout(() => {
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    }, 100);
+  }
 });
 
 // Update hash on camera move
