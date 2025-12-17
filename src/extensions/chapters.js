@@ -293,16 +293,17 @@ window.initChapters = function initChapters() {
           btn.click();
         }
 
+
         const onStart = (ev) => {
           try { 
             // Do not block page scroll; just start hover mode
           } catch (e) {}
           isDragging = true;
+          nav.classList.add('nav-touching');
           recomputeCenters();
           const t = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
           hoverNearest(t.clientY);
         };
-
         const onMove = (ev) => {
           if (!isDragging) return;
           try { 
@@ -312,6 +313,7 @@ window.initChapters = function initChapters() {
           hoverNearest(t.clientY);
         };
 
+
         const onEnd = (ev) => {
           if (!isDragging) return;
           isDragging = false;
@@ -319,20 +321,26 @@ window.initChapters = function initChapters() {
             // Let tap/click propagate normally
           } catch (e) {}
           activateHovered();
-          // Keep the highlight briefly so the user sees what was chosen
-          setTimeout(clearHover, 300);
+          // Keep the highlight briefly so the user sees what was chosen, then clear
+          setTimeout(() => {
+            clearHover();
+            nav.classList.remove('nav-touching');
+          }, 150);
         };
 
         const onCancel = () => {
           isDragging = false;
           clearHover();
+          nav.classList.remove('nav-touching');
         };
-
         // Attach only to the transparent rail; keep listeners passive to avoid blocking scroll
         rail.addEventListener('touchstart', onStart, { passive: true });
         rail.addEventListener('touchmove', onMove, { passive: true });
         rail.addEventListener('touchend', onEnd, { passive: true });
         rail.addEventListener('touchcancel', onCancel, { passive: true });
+
+        // Also clear hover if finger leaves the rail without lifting
+        rail.addEventListener('touchleave', onCancel, { passive: true });
 
         // Also support mouse drag for small-screen simulators
         let mouseDown = false;

@@ -1278,22 +1278,11 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
         }
       }
     } else if (isCSV) {
-      try {
-        const r = await fetch(path);
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        const txt = await r.text();
-        return csvTextToGeoJSON(txt);
-      } catch (e) {
-        // Fallback to GeoJSON beside it
-        const gjPath = sameDirGeo;
-        try {
-          const r2 = await fetch(gjPath);
-          if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
-          return await r2.json();
-        } catch (e2) {
-          throw new Error(`Failed to load as CSV (${path}) or GeoJSON (${gjPath}).`);
-        }
-      }
+      // Explicit CSV extension: only try CSV, do not attempt GeoJSON
+      const r = await fetch(path);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const txt = await r.text();
+      return csvTextToGeoJSON(txt);
     } else {
       // No extension provided: try .geojson then .csv
       try {
@@ -2737,20 +2726,7 @@ map.on('load', () => {
     map.touchZoomRotate.disable();
   }
   
-  // Re-apply camera from hash after style load to ensure bearing/pitch/zoom are honored
-  try {
-    const { camera: parsedCamera } = parseHash();
-    if (parsedCamera) {
-      map.jumpTo({
-        center: parsedCamera.center,
-        zoom: parsedCamera.zoom + (window.innerWidth <= 1000 ? -1 : 0),
-        bearing: parsedCamera.bearing,
-        pitch: parsedCamera.pitch,
-        animate: false
-      });
-    }
-  } catch (e) {
-      }
+  // Camera will be applied by the hashchange event; no re-apply here
   // Load any dynamic layers requested in the hash
   const { dynamicGeojsonToLoad, layers: layersOn } = parseHash();
   if (dynamicGeojsonToLoad && dynamicGeojsonToLoad.length) {
@@ -2771,24 +2747,31 @@ map.on('load', () => {
           // Load ESRI Wayback layer
           loadWaybackLayer(waybackDate, { visibility, sourceHint, filter });
         } else {
-          // Load GeoJSON/CSV layer
-          // Pass the layer name without forcing an extension - loadAndAddOrReplaceGeoJSON will try .geojson then .csv
-          loadAndAddOrReplaceGeoJSON(name, { visibility, sourceHint, filter });
+          // Load GeoJSON/CSV layer - handle extension with optional #counter
+          const counterSuffixMatch = (name || '').match(/#\d+$/);
+          const counterSuffix = counterSuffixMatch ? counterSuffixMatch[0] : '';
+          const baseWithMaybeExt = counterSuffix ? name.slice(0, -counterSuffix.length) : name;
+          const hasExtension = /\.(geojson|json|csv)$/i.test(baseWithMaybeExt);
+          const fileName = hasExtension ? name : (baseWithMaybeExt + '.geojson' + counterSuffix);
+          loadAndAddOrReplaceGeoJSON(fileName, { visibility, sourceHint, filter });
         }
       }
     });
   }
 
-  // Do NOT trigger hashchange handler here; let user navigation or manual hash changes do it.
+  // Fire initial hashchange once to apply camera and layers from URL
+  if (!window._initialHashApplied) {
+    window._initialHashApplied = true;
+    // Ensure the handler runs even if lastHashState was set earlier
+    window._lastHashState = '';
+    setTimeout(() => {
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    }, 100);
+  }
 });
 
 // Update hash on camera move
 map.on('moveend', () => {
-  // Don't update hash if we just applied mobile zoom adjustment (prevents loop)
-  if (window._skipNextHashUpdate) {
-    window._skipNextHashUpdate = false;
-    return;
-  }
   // During free-camera follow animation, don't write to the hash —
   // it can re-introduce :follow and cause unintended restarts.
   if (isFreeCameraAnimating) return;
@@ -3116,9 +3099,7 @@ window.addEventListener('hashchange', () => {
   const currentHash = window.location.hash;
   if (window._lastHashState === currentHash) return;
   window._lastHashState = currentHash;
-  
-  // Reset mobile zoom adjustment flag for this new hash
-  window._mobileZoomAdjusted = false;
+
 
   // Always cancel any running follow immediately so we can apply new state
   if (isFreeCameraAnimating) {
@@ -3345,11 +3326,16 @@ window.addEventListener('hashchange', () => {
           loadWaybackLayer(waybackDate, { visibility, sourceHint, filter, waybackLayersInHashOrder });
         }
       } else {
-        // GeoJSON/CSV layer
+        // GeoJSON/CSV layer - handle extension with optional #counter
+        const counterSuffixMatch = (name || '').match(/#\d+$/);
+        const counterSuffix = counterSuffixMatch ? counterSuffixMatch[0] : '';
+        const baseWithMaybeExt = counterSuffix ? name.slice(0, -counterSuffix.length) : name;
+        const hasExtension = /\.(geojson|json|csv)$/i.test(baseWithMaybeExt);
+        const fileName = hasExtension ? name : (baseWithMaybeExt + '.geojson' + counterSuffix);
         if (!layerExists) {
-          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint, filter });
+          loadAndAddOrReplaceGeoJSON(fileName, { visibility, sourceHint, filter });
         } else if (sourceHint || filter) {
-          loadAndAddOrReplaceGeoJSON(name + '.geojson', { visibility, sourceHint, filter });
+          loadAndAddOrReplaceGeoJSON(fileName, { visibility, sourceHint, filter });
         }
       }
     });
@@ -3358,17 +3344,11 @@ window.addEventListener('hashchange', () => {
   // 5. Fly to hash geolocation (with animation), then start follow only after fly completes
   const flyOpts = {
     center: [camera.center[0], camera.center[1]],
-    zoom: camera.zoom + (window.innerWidth <= 1000 && !window._mobileZoomAdjusted ? -1 : 0),
+    zoom: camera.zoom,
     bearing: camera.bearing,
     pitch: camera.pitch,
     duration: 1200
   };
-  
-  // Mark that we've applied the mobile zoom adjustment for this hash
-  if (window.innerWidth <= 1000 && !window._mobileZoomAdjusted) {
-    window._mobileZoomAdjusted = true;
-    window._skipNextHashUpdate = true; // Prevent moveend from updating hash with new zoom
-  }
 
   // Always start follow if followId is present after camera update
   map.flyTo(flyOpts);
