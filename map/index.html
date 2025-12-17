@@ -3035,14 +3035,17 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
       lng: currentCameraCenter.lng + (targetCameraCenter.lng - currentCameraCenter.lng) * ease,
       lat: currentCameraCenter.lat + (targetCameraCenter.lat - currentCameraCenter.lat) * ease
     };
-    // Set camera to always keep the same bearing, pitch, and zoom as at start
-    map.jumpTo({
-      center: currentCameraCenter,
+    // Skip camera updates if we're exiting follow mode to let flyTo take over
+    if (!window._exitingFollowMode) {
+      // Set camera to always keep the same bearing, pitch, and zoom as at start
+      map.jumpTo({
+        center: currentCameraCenter,
       zoom: camZoom,
       bearing: camBearing,
       pitch: camPitch,
       animate: false
     });
+    }
     
     // Update distance ticker position and value
     if (ticker && ticker.classList.contains('active')) {
@@ -3102,6 +3105,8 @@ window.addEventListener('hashchange', () => {
 
 
   // Always cancel any running follow immediately so we can apply new state
+  // Set flag to prevent follow animation from updating camera after cancel
+  window._exitingFollowMode = true;
   if (isFreeCameraAnimating) {
     try { if (window._follow && typeof window._follow.cancel === 'function') window._follow.cancel(); }
     catch(e) { isFreeCameraAnimating = false; }
@@ -3351,6 +3356,10 @@ window.addEventListener('hashchange', () => {
   };
 
   // Always start follow if followId is present after camera update
+  // Clear exit flag when flyTo completes to allow follow to proceed normally
+  map.once('moveend', () => {
+    window._exitingFollowMode = false;
+  });
   map.flyTo(flyOpts);
   if (followId) {
     // Wait for both flyTo and source readiness before starting follow
