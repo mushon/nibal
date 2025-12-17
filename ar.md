@@ -157,7 +157,7 @@ zoom-to-viewport: true
 #### Oct 23
 
 [](fg:blank)
-[](map/#31.38470,34.38001,10.37,-10.4,31.0/~labels_he,+oct7-hamas-ar(label-focused))
+[](map/#31.38470,34.38001,10.37,-10.4,31.0/~labels_he,+oct7-hamas-ar.csv(label-focused))
 في 7 تشرين الأول 2023، نفذت حركة حماس وفصائل فلسطينية مسلحة أخرى من قطاع غزة الهجوم الأكثر دموية الذي وقع ضد مدنيين إسرائيليين، على الإطلاق.
 قُتل 1,220 شخصًا في ذلك الهجوم، بمن فيهم نساء ومسنون وأطفال. 
 أصيب آلاف واختُطف إلى قطاع غزة 252 شخصًا، أحياءً وجثثًا.
@@ -227,7 +227,7 @@ zoom-to-viewport: true
 
 {.testimony typewriter}
 [](svg/#oct7.svg/-1.6,1.15,3.54/+nibal_rita_hands-comp.jpg)
-[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-ar(label-main,id=home),~labels_he,+labels_ar)
+[](map/#31.53521,34.46697,12.90,-3.2,39.0/+UNOSAT_gaza_23-10-15(poly-scale),+pois-ar.csv(label-main,id=home),~labels_he,+labels_ar)
 بقينا رغم القصف والجوع والخوف. عانيتُ كثيرًا في تلك الفترة. اشتقتُ كثيرًا إلى أحمد ولم أستطع تخيّل النزوح بمفردي مع ريتا، بدونه وبدون دعم عائلتي.
 
 
@@ -251,7 +251,7 @@ zoom-to-viewport: true
 
 {.meta} 
 [](fg:blank)
-[](map/#31.41391,34.38595,10.45,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+pois-ar(label-main-ar,id=khan-yunis),+pois-ar#2(label-main-ar,id=home),~labels_he,+labels_ar)
+[](map/#31.41391,34.38595,10.45,-0.8,0.0/+pois.csv2(poi,id=khan-yunis),+arrow,+pois-ar.csv(label-main-ar,id=khan-yunis),+pois-ar.csv#2(label-main-ar,id=home),~labels_he,+labels_ar)
 في شباط 2024، أطلق الجيش الإسرائيلي سراح أحمد، فوصل إلى خان يونس في جنوب قطاع غزة. 
 
 على الرغم من معارضة والديها الشديدة، قررت نِبال التوجه جنوبًا، على أمل لم شملها بزوجها.
@@ -266,32 +266,32 @@ zoom-to-viewport: true
 {.meta no-h}
 ### النزوح الأول
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "من حساب نِبال على إنستغرام")
-[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar.csv(label-main-ar,id=home),+pois-ar.csv#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
 تبدأ نِبال رحلتها مع والدها، الذي يقلّها هي وريتا من منزلهما في جباليا إلى مدينة غزة. 
 
 
 {.meta}
 [](svg/#south.svg/-0.45,0.65,2.21/+@vimeo-1133751988 "من حساب نِبال على إنستغرام")
-[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
+[](map/#31.52797,34.46951,11.96,0.0,39.0/+jabalia-gaza(by-car):follow+,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois-ar.csv(label-main-ar,id=home),+pois-ar.csv#2(label-main-ar,id=gaza-2403),~labels_he,+labels_ar)
 في إفادتها، تحدثت نِبال عن رحلة مليئة بالرعب في طرقات مدمّرة، شاهدت خلالها من نافذة السيارة قصفًا عنيفًا على المناطق المحيطة بهم.
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois-ar(label-main-ar,id=gaza-2403),+pois-ar#2(label-main-ar,id=nuseirat),~labels_he,+labels_ar)
+[](map/#31.47949,34.42091,12.96,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot):follow+10100,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois-ar.csv(label-main-ar,id=gaza-2403),+pois-ar.csv#2(label-main-ar,id=nuseirat),~labels_he,+labels_ar)
 من مدينة غزة، تواصل نِبال رحلتها إلى جنوب القطاع سيرًا على الأقدام، حاملةً ريتا البالغة من العمر ستة أشهر بين ذراعيها.
 
 
 {.meta}
 [](fg:blank)
-[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois.csv#4(poi,id=rafah),+pois-ar(label-main-ar,id=nuseirat),+pois-ar#2(label-main-ar,id=rafah),~labels_he)
+[](map/#31.41663,34.36232,12,0.0,39.0/+jabalia-gaza(by-car),+gaza-nuseirat(by-foot),+nuseirat-rafah(2-by-foot):follow+16900,+family-home,+pois.csv(poi,id=home),+pois.csv#2(poi,id=gaza-2403),+pois.csv#3(poi,id=nuseirat),+pois.csv#4(poi,id=rafah),+pois-ar.csv(label-main-ar,id=nuseirat),+pois-ar.csv#2(label-main-ar,id=rafah),~labels_he)
 في منطقة النصيرات، تجتمعان مع أحمد، الذي لم تلتقياه منذ نحو ستة أشهر.
 من هناك، يواصل الثلاثة طريقهم إلى الخيمة التي أقامها أحمد في رفح.
 
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+pois.csv(poi,id=rafah),+pois-ar(label-main-ar,id=rafah),~labels_he) 
+[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+family-home,+pois.csv(poi,id=rafah),+pois-ar.csv(label-main-ar,id=rafah),~labels_he) 
 تأثرتُ كثيرًا برؤية أحمد. كان يعانق ريتا ويقبّلها بلا توقف.
 
 
@@ -349,7 +349,7 @@ zoom-to-viewport: true
 
 {.meta thumb} 
 [](fg:blank)
-[](map/#31.46027,34.34286,10.08,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main-ar,id=rafah),~labels_he,+labels_ar,+rafah-mawasi-line(arrow))
+[](map/#31.46027,34.34286,10.08,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar.csv(label-main-ar,id=rafah),~labels_he,+labels_ar,+rafah-mawasi-line(arrow))
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
 <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
@@ -371,13 +371,13 @@ zoom-to-viewport: true
 {.meta no-h}
 ### النزوح الثاني
 [](fg:blank)
-[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar(label-main-ar,id=rafah),+pois-ar#2(label-main-ar,id=bureij),~labels_he,+labels_ar)
+[](map/#31.35894,34.31925,10.36,0.0,39.0/+rafah-bureij(2-by-foot):follow+,+pois.csv(poi)[name=rafah],+pois.csv(poi)[name=bureij],+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar.csv(label-main-ar,id=rafah),+pois-ar.csv#2(label-main-ar,id=bureij),~labels_he,+labels_ar)
 اضطرت نِبال وأحمد وريتا إلى الفرار من رفح، مع حوالي مليون شخص آخر من السكان، غالبيتهم العظمى من المهجرين الذين جاؤوا إلى المدينة مثلهم خلال الأشهر التي سبقت ذلك، بأوامر من الجيش.
 
 
 {.meta} 
 [](fg:blank)
-[](map/#31.44175,34.39885,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois-ar(label-main-ar,id=bureij),~labels_he,+labels_ar)
+[](map/#31.44175,34.39885,13.00,0.0,39.0/+rafah-bureij(2-by-foot),+pois.csv(poi,id=bureij),+pois-ar.csv(label-main-ar,id=bureij),~labels_he,+labels_ar)
 اضطرت نِبال وعائلتها الصغيرة إلى الفرار مرة أخرى ووصلوا إلى مخيم البريج للاجئين في وسط القطاع، حيث استأجروا مستودعًا صغيرًا من أصدقاء.
 
 
@@ -468,20 +468,20 @@ zoom-to-viewport: true
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.41391,34.38595,10.45,-0.8,0.0/+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=home),~labels_he)
+[](map/#31.41391,34.38595,10.45,-0.8,0.0/+pois-ar.csv(label-main-ar,id=al-zawaida),+pois-ar.csv#2(label-main-ar,id=home),~labels_he)
 جُنَّ والداي من شدّة القلق. كانا يخشيان ألا أنجو، وكانا يتابعان حالتي باستمرار من خلال أحمد. 
 وعندما تحسّن وضعي قليلًا، تمكّنت أخيرًا من الاتصال بوالدتي بنفسي. أردتُ أن تسمع صوتي وتطمئن أنني على قيد الحياة. لم تصدّق أنني ما زلت حيّة وانفجرَت بالبكاء.
 
 {.meta no-h}
 ### النزوح الثالث
 [](fg:blank)
-[](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+idf-poly-outlines,+pois-ar(label-main-ar,id=al-zawaida),+pois-ar#2(label-main-ar,id=al-mawasi),~labels_he,+labels_ar)
+[](map/#31.38437,34.30257,11.63,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot):follow+,+al-zawaida,+al-mawasi,+idf-poly-outlines,+pois-ar.csv(label-main-ar,id=al-zawaida),+pois-ar.csv#2(label-main-ar,id=al-mawasi),~labels_he,+labels_ar)
 خرجت نِبال من المستشفى بعد 40 يومًا، وكان عليهم، هي وأحمد وريتا، أن يواجِهوا نزوحًا آخر.
 
 
 {.meta}
 [](fg:blank)
-[](map/#31.36106,34.26832,13.74,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot),+pois-ar(label-main-ar,id=al-mawasi),~labels_he)
+[](map/#31.36106,34.26832,13.74,0.0,39.0/+al-zawaida-al-mawasi(2-by-foot),+pois-ar.csv(label-main-ar,id=al-mawasi),~labels_he)
 وصلوا إلى "المنطقة الإنسانية" في المواصي، حيث أقاموا في خيمة، مرة أخرى.
 
 
@@ -594,32 +594,32 @@ zoom-to-viewport: true
 
 {.meta}
 [](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+idf-poly-outlines,+pois-ar(label-main-ar,id=jabalia),+pois-ar#2(label-main-ar,id=al-mawasi),~labels_he,+labels_ar)
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+al-mawasi-jabalia(by-car):follow+,+al-mawasi,+family-home,+idf-poly-outlines,+pois-ar.csv(label-main-ar,id=jabalia),+pois-ar.csv#2(label-main-ar,id=al-mawasi),~labels_he,+labels_ar)
 
 سارت نبال وأحمد، أيضًا، شمالًا، مع ريتا التي أصبح عمرها عامًا وأربعة أشهر. عند حاجز "نتساريم"، أخذهم أقارب نِبال من هناك. أخذوا أحمد إلى شقة الزوجين ونِبال وريتا إلى منزل والديها.
 
 
 {.testimony typewriter}
 [](svg/#ceasefire_hope.svg/-0.51,-0.49,1.93/+@vimeo-1129854927 "من حساب نبال على تيك توك")
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+al-mawasi-jabalia(by-car),+pois-ar(label-main-ar,id=home),~labels_he,+labels_ar)
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+al-mawasi-jabalia(by-car),+pois-ar.csv(label-main-ar,id=home),~labels_he,+labels_ar)
 استقبلتني العائلة بالأحضان والأغاني والبكاء. في الليالي، كنا نلتقي جميعًا، جميع الأخوة، في منزل والديّ.
 
 
 {.testimony typewriter}
 [](svg/#ceasefire_hope.svg/0.08,-0.47,2.32/+nibal_rita_happy.jpg)
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home),~labels_he)
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar.csv(label-main-ar,id=home),~labels_he)
 كانت أخواتي بجانبي طوال الوقت وساعدنني في كل شيء: الاستحمام، ارتداء الملابس، تناول الطعام والاعتناء بريتا. 
 
 
 {.testimony typewriter}
 [](svg/#ceasefire_hope.svg/0.69,-0.57,2.32/+nibal_rita_home.jpg)
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home),~labels_he)
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar.csv(label-main-ar,id=home),~labels_he)
 كنّ يغيرن حفاضاتها، يحتضنّها ويلعبن معها. بفضلهن، شعرت أن حياتي بدأت تعود إلى مسارها.
 
 
 {.meta}
 [](svg/#ceasefire_hope.svg/0.69,-0.57,2.32/+nibal_rita_home.jpg)
-[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar(label-main-ar,id=home),~labels_he)
+[](map/#31.53564,34.47997,11.77,0.0,39.0/+pois-ar.csv(label-main-ar,id=home),~labels_he)
 بعد حوالي شهر من الراحة والتعافي في منزل والديها، طلب أحمد من نِبال العودة إليه.
 استجابت نِبال لطلبه، رغم تحفظ والديها، وعادت مع ريتا إلى شقتهم، حيث استأجروا مساعِدة لها.
 
@@ -670,7 +670,7 @@ zoom-to-viewport: true
 
 {.meta}
 [](fg:blank)
-[](map/#31.52957,34.47929,18.39,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-ar(label-main-ar,id=alaa-home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he "تقييم الأضرار وشدّة الإصابات في المباني في جباليا حتى بداية نيسان 2025. المصدر: UNOSAT")
+[](map/#31.52957,34.47929,18.39,38.4,0.0/+UNOSAT_jabalia_25-04-04(poly-scale),+pois-ar.csv(label-main-ar,id=alaa-home),+pois-ar.csv#2(label-main-ar,id=couple-home),~labels_he "تقييم الأضرار وشدّة الإصابات في المباني في جباليا حتى بداية نيسان 2025. المصدر: UNOSAT")
 في نيسان 2025، قصف الجيش الإسرائيلي منزل آلاء، شقيقة نِبال، في جباليا. 
 
 
@@ -700,7 +700,7 @@ zoom-to-viewport: true
 
 {.meta}
 [](fg:blank)
-[](map/#31.52962,34.47878,18.34,38.4,0.0/+pois-ar(label-main-ar,id=home),+pois-ar#2(label-main-ar,id=couple-home),~labels_he)
+[](map/#31.52962,34.47878,18.34,38.4,0.0/+pois-ar.csv(label-main-ar,id=home),+pois-ar.csv#2(label-main-ar,id=couple-home),~labels_he)
 
 في بداية حزيران 2025، بعد بضعة أشهر من عودتها إلى شقتها وشقة أحمد، تركت نِبال منزلها وعادت مع ريتا إلى منزل والديها.
 
@@ -765,7 +765,7 @@ zoom-to-viewport: true
 {.meta no-h}
 ### النزوح الخامس
 [](fg:blank)
-[](map/#31.52064,34.46792,13.22,38.4,0.0/+home-gaza-city(2-by-foot),+pois-ar(label-main-ar,id=gaza-2509),+pois-ar#2(label-main-ar,id=home),~labels_he)
+[](map/#31.52064,34.46792,13.22,38.4,0.0/+home-gaza-city(2-by-foot),+pois-ar.csv(label-main-ar,id=gaza-2509),+pois-ar.csv#2(label-main-ar,id=home),~labels_he)
 نِبال، ريتا وحوالي 50 فردًا من عائلتهما الموسعة - والدا نِبال، أخواتها وإخوتها، أزواجهم وأطفالهم - ساروا على الأقدام من جباليا إلى مدينة غزة بحثًا عن مكان آمن.
 استقروا في مطعم مهجور تابع لأصدقاء، ثم في شقة مكتظة.
 
@@ -793,7 +793,7 @@ zoom-to-viewport: true
 {.meta no-h}
 ### النزوح السادس
 [](fg:blank)
-[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar,+pois-ar(label-main-ar,id=deir-al-balah))
+[](map/#31.43623,34.35063,10.79,0.0,39.0/+gaza-deir-al-balah(by-car):follow+,+IDF_zone_090925_NEW(idf-poly),+idf-poly-outlines,~labels_he,+labels_ar,+pois-ar.csv(label-main-ar,id=deir-al-balah))
 نزحت العائلة مرة أخرى، إلى الجنوب هذه المرة، إلى مجمع خيام في دير البلح.
 
 
@@ -825,7 +825,7 @@ zoom-to-viewport: true
 
 {.meta no-h}
 [](fg:blank)
-[](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),+pois-ar(label-main-ar,id=deir-al-balah),~labels_he,+labels_ar "بالأحمر: المساحة التي بقيت تحت سيطرة إسرائيل قبل المرحلة الأولى من اتفاق وقف إطلاق النار")
+[](map/#31.41505,34.39181,9.91,38.4,0.0/+IDF_zone_191025(idf-poly),+pois-ar.csv(label-main-ar,id=deir-al-balah),~labels_he,+labels_ar "بالأحمر: المساحة التي بقيت تحت سيطرة إسرائيل قبل المرحلة الأولى من اتفاق وقف إطلاق النار")
 #### Oct 25
 في 10 تشرين الأول 2025، دخل وقف إطلاق النار بين إسرائيل وحماس حيز التنفيذ.
 
