@@ -109,10 +109,25 @@
 }
 
 /* Timestamp items (sections with H3/H4) show labels by default */
-.sec-subheader .chapter-item.timestamp .chapter-label,
-#chapter-nav:hover .chapter-item.timestamp .chapter-label {
+.sec-subheader .chapter-item.timestamp .chapter-label {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
+}
+
+/* Desktop: keep nav:hover behavior intact */
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) {
+  #chapter-nav:hover .chapter-item.timestamp .chapter-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Mobile: show labels while touching the nav */
+@media (max-width: 800px) {
+  #chapter-nav.nav-touching .chapter-item.timestamp .chapter-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
 }
 
 .chapter-item.timestamp .chapter-dot {
