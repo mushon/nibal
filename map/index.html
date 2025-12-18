@@ -3015,7 +3015,13 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
       clearInterval(followCheckInterval);
       if (typeof originalOnComplete === 'function') originalOnComplete();
     };
-    if (!startTime) startTime = ts;
+    if (!startTime) {
+      startTime = ts;
+      // Make follow target layer visible now that animation is starting
+      if (layerId && map.getLayer(layerId)) {
+        map.setLayoutProperty(layerId, 'visibility', 'visible');
+      }
+    }
     let elapsed = ts - startTime;
     let t = Math.min(1, elapsed / duration);
     let tip = interpolateLine(coords, t);
@@ -3190,7 +3196,16 @@ window.addEventListener('hashchange', () => {
       const id = layer.id;
       const explicit = explicitState[id];
       const defaultVis = styleDefaultVisibility[id] || 'visible';
+      const isFollowTarget = (followId && id === followId);
       if (map.getLayer(id)) {
+        // Keep follow target hidden until animation starts (unless explicitly hidden via ~)
+        if (isFollowTarget && explicit !== '~') {
+          if (map.getLayoutProperty(id, 'visibility') !== 'none') {
+            map.setLayoutProperty(id, 'visibility', 'none');
+          }
+          return;
+        }
+        
         if (explicit === '+') {
           // Explicitly shown in hash
           if (map.getLayoutProperty(id, 'visibility') !== 'visible') {
