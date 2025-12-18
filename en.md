@@ -285,45 +285,45 @@ The young family went together to a tent Ahmad had set up in Rafah.
 
 
 {.testimony typewriter}
-[](fg:blank)
-[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+pois.csv(poi,id=rafah),+pois.csv(label-main,id=rafah),~labels_he) 
+[](svg/#south.svg/-0.9,-1.78,7.98/+prisoners_kid)
+[](bg:blank)
 I was overjoyed to see Ahmad. He hugged and kissed Rita again and again.
 
 
 {.testimony typewriter}
-[](svg/#south.svg/-0.9,-1.78,7.98/+prisoners_kid)
-[](map/#31.26859,34.25352,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
+[](svg/#south.svg/-1.26,-1.72,7.98/+prisoners_kid)
+[](bg:blank)
 But seeing him also shocked me. He had lost so much weight, and it looked like he’d lost his spark. 
 
 
 {.meta} 
 [](svg/#south.svg/-0.29,-1.02,3.82/+prisoners_kid "Palestinians released from Israeli prisons arrive outside the Nasser hospital in Khan Yunis, 13 Oct. 2025 (NurPhoto/Majdi Fathi)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
+[](bg:blank)
 Nibal and Rita met Ahmad after he had been held in an Israeli detention facility for months, without trial. 
 
 
 {.meta} 
 [](svg/#south.svg/-0.02,0.65,2.87/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
+[](bg:blank)
 Since the 7 October attack, B’Tselem and other human rights groups have documented a systemic Israeli policy of harsh violence, starvation and denial of medical care against Palestinian detainees, leading to dozens of deaths to date. 
 Israel continues to deny most detainees the right to due process and other basic rights, holding them in facilities run as a network of torture camps.
 
 
 {.meta} 
 [](svg/#south.svg/-0.82,2.16,7.52/+ahmed_detained-comp.jpg "Palestinians in Rafah released from Israeli detention, 28 Dec. 2023 (Reuters/Bassam Masoud)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
+[](bg:blank)
 Some of the Gazans detained inside Israel in October 2023 are still in custody. 
 
 
 {.meta}
 [](svg/#south.svg/-0.03,0.03,5.52/+rafah_tent_comp.jpg "IDPs shelter in a tent camp in Khan Yunis, 11 Dec. 2023 (Reuters/Ibraheem Abu Mustafa)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
+[](bg:blank)
 Despite the joyous reunion, Nibal struggled to adjust to life in a tent in Rafah. 
 
 
 {.meta thumb}
 [](svg/#south.svg/-0.03,0.03,5.52/+rafah_tent_comp.jpg "IDPs shelter in a tent camp in Khan Yunis, 11 Dec. 2023 (Reuters/Ibraheem Abu Mustafa)")
-[](map/#31.27110,34.25408,16.36,0.0,39.0/+pois.csv(poi,id=rafah),~labels_he) 
+[](bg:blank)
 Living crammed together without enough food and water, with no privacy and poor sanitation was unbearable – especially for women.
 
 <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
