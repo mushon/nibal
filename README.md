@@ -285,7 +285,7 @@ zoom-to-viewport: true
 
 {.testimony typewriter}
 [](fg:blank)
-[](map/#31.26998,34.25242,14.63,0.0,39.0/+nuseirat-rafah(2-by-foot),+pois.csv(poi,id=rafah),+pois-he.csv(label-main,id=rafah),~labels_he) 
+[](map/#31.26948,34.25382,14.35,0.0,39.0/+nuseirat-rafah(2-by-foot),+pois.csv(poi,id=rafah),+pois-he.csv(label-main,id=rafah),~labels_he)
 התרגשתי מאוד לראות את אחמד. הוא חיבק ונישק את ריתא בלי הפסקה. 
 
 
