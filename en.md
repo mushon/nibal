@@ -284,6 +284,11 @@ In the area of a-Nuseirat, the two reunited with Ahmad.
 The young family went together to a tent Ahmad had set up in Rafah. 
 
 
+{.meta}
+[](fg:blank)
+[](map/#31.26706,34.26417,12.10,1.6,36.5/+nuseirat-rafah(2-by-foot),+pois.csv(poi,id=rafah),+pois.csv(label-main,id=rafah),~labels_he)
+
+
 {.testimony typewriter}
 [](svg/#south.svg/-0.9,-1.78,7.98/+prisoners_kid)
 [](bg:blank)
