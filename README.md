@@ -290,7 +290,7 @@ zoom-to-viewport: true
 
 
 {.testimony typewriter}
-[](svg/#south.svg/1.3,-1.71,7.98/+prisoners_kid)
+[](svg/#south.svg/-1.26,-1.72,7.98/+prisoners_kid)
 [](bg:blank)
 אבל המפגש איתו היה גם מזעזע. הוא ירד המון במשקל, ונראה שהוא איבד את ניצוץ החיים שלו. 
 
