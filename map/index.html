@@ -1110,6 +1110,8 @@ function parseHash() {
   const cameraParts = cameraStr ? cameraStr.split(',').map(Number) : [];
   let layersOn = allStyleLayers.map(l => l.id);
   let dynamicGeojsonToLoad = [];
+  // Virtual layer tokens that should NOT trigger external data loads
+  const isVirtualLayerName = (name) => /^labels(?:_[a-z]+)?$/i.test(name);
   if (layersStr) {
     layersOn = [];
     const layerState = {};
@@ -1155,7 +1157,7 @@ function parseHash() {
         // 1. It's not a style layer (new external layer)
         // 2. It's an external layer and has a sourceHint (reload with new style)
         // 3. It's a wayback layer and there are multiple wayback layers (need repositioning)
-        if (!isStyleLayer || (isExternalLayer && sourceHint) || (isWaybackLayer && needWaybackRepositioning)) {
+        if (!isVirtualLayerName(lname) && (!isStyleLayer || (isExternalLayer && sourceHint) || (isWaybackLayer && needWaybackRepositioning))) {
           if (isWaybackLayer) {
             const dateStr = waybackMatch[1];
             dynamicGeojsonToLoad.push({ name: lname, sourceHint: sourceHint || 'overlay', filter, isWayback: true, waybackDate: dateStr });
@@ -1176,7 +1178,7 @@ function parseHash() {
         const isStyleLayer = allStyleLayers.some(l => l.id === lname);
         const isExternalLayer = externalLayers.has(lname);
         
-        if (!isStyleLayer || (isExternalLayer && sourceHint)) {
+        if (!isVirtualLayerName(lname) && (!isStyleLayer || (isExternalLayer && sourceHint))) {
           dynamicGeojsonToLoad.push({ name: lname, sourceHint, filter });
         }
         if (follow) {
@@ -1435,6 +1437,26 @@ async function loadAndAddOrReplaceGeoJSON(geojsonFile, toLayer) {
       // Failed to apply source hint style
     }
     
+    // Ensure paint properties match layer type to avoid Mapbox validation warnings
+    try {
+      if (layerDef && layerDef.paint) {
+        const paint = layerDef.paint;
+        if (layerDef.type === 'line') {
+          Object.keys(paint).forEach(k => {
+            if (k.startsWith('circle-') || k.startsWith('fill-')) delete paint[k];
+          });
+        } else if (layerDef.type === 'fill') {
+          Object.keys(paint).forEach(k => {
+            if (k.startsWith('circle-') || k.startsWith('line-')) delete paint[k];
+          });
+        } else if (layerDef.type === 'circle') {
+          Object.keys(paint).forEach(k => {
+            if (k.startsWith('line-') || k.startsWith('fill-')) delete paint[k];
+          });
+        }
+      }
+    } catch(e) {}
+
     // Add explicit filter if provided in hash (overrides sourceHint filter)
     if (filter) {
       layerDef.filter = filter;
@@ -2523,6 +2545,9 @@ const map = new mapboxgl.Map({
 // Expose map globally for add-layer UI logic
 window.map = map;
 
+// Initialize hashchange-in-progress flag
+window._isHashChangeInProgress = false;
+
 // Solution 5: Force immediate map resize with native resolution on mobile
 // This addresses portrait mode scaling where labels appear tiny
 if (window.innerWidth <= 1000) {
@@ -2774,14 +2799,22 @@ map.on('load', () => {
 map.on('moveend', () => {
   // During free-camera follow animation, don't write to the hash —
   // it can re-introduce :follow and cause unintended restarts.
-  if (isFreeCameraAnimating) return;
+  if (isFreeCameraAnimating) {
+    return;
+  }
   // Also avoid writing while :follow is present in the hash for any layer.
   try {
     const rawHash = window.location.hash.replace('#','');
     const parts = rawHash.split('/');
     const layersStr = parts[1] || '';
-  if (splitLayerTokens(layersStr).some(t => /:follow(?:\+\d+)?$/.test(t))) return;
+    if (splitLayerTokens(layersStr).some(t => /:follow(?:\+\d+)?$/.test(t))) {
+      return;
+    }
   } catch(e){}
+  // Don't update hash during hashchange-triggered flyTo operations
+  if (window._isHashChangeInProgress) {
+    return;
+  }
   // Only update camera part of hash, preserve layer toggles
   updateHash(map, []);
 });
@@ -3089,6 +3122,16 @@ function followPathWithFreeCamera(map, coords, onComplete, layerId, startOffset 
 }
 
 window.addEventListener('hashchange', () => {
+  try {
+  // Set flag to prevent global moveend handler from updating hash during this flyTo
+  window._isHashChangeInProgress = true;
+  
+  // Cancel any pending flag clear timeout from previous hash change  
+  if (window._pendingFlagClearTimeout) {
+    clearTimeout(window._pendingFlagClearTimeout);
+    window._pendingFlagClearTimeout = null;
+  }
+  
   // Invalidate hash parse cache on hashchange
   cachedHashString = '';
   cachedHashState = null;
@@ -3100,23 +3143,27 @@ window.addEventListener('hashchange', () => {
   }
   if (!window._lastHashState) window._lastHashState = '';
   const currentHash = window.location.hash;
-  if (window._lastHashState === currentHash) return;
+  if (window._lastHashState === currentHash) {
+    return;
+  }
   window._lastHashState = currentHash;
 
 
   // Always cancel any running follow immediately so we can apply new state
-  // Set flag to prevent follow animation from updating camera after cancel
-  window._exitingFollowMode = true;
+  // Only set exit flag if we're actually canceling an active follow animation
   if (isFreeCameraAnimating) {
+    window._exitingFollowMode = true;
     try { if (window._follow && typeof window._follow.cancel === 'function') window._follow.cancel(); }
-    catch(e) { isFreeCameraAnimating = false; }
+    catch(e) { 
+      console.error('Error canceling follow:', e);
+      isFreeCameraAnimating = false; 
+    }
     window._isFollowStarted = false; // Ensure new hash is processed after cancel
   }
   // Always reset follow started before processing new hash
   window._isFollowStarted = false;
 
   // ...existing code...
-
   const { camera, layers, dynamicGeojsonToLoad, followId, followOffset, showTicker, followHidden, showMapUI, isStatic } = parseHash();
 
   // Apply layer visibility from hash for all existing layers
@@ -3206,10 +3253,11 @@ window.addEventListener('hashchange', () => {
           }
           // Style layers always maintain their default filter (no hash modification)
         });
-      } else {
-        // Style not loaded yet, skipping filter application
       }
-    } catch(e) { /* ignore filter errors */ }
+    } catch(e) { 
+      console.error('❌ Error applying filters:', e);
+      /* ignore filter errors */ 
+    }
   } else {
     // No layers specified in hash - restore all layers to their style defaults
     allStyleLayers.forEach(layer => {
@@ -3247,7 +3295,10 @@ window.addEventListener('hashchange', () => {
   }
 
   // Update layer controls to reflect current state (after any removals)
-  createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
+  // Only update if style is loaded to avoid errors
+  if (map.isStyleLoaded()) {
+    createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
+  }
 
   // Toggle map UI controls based on flag
   if (showMapUI) ensureMapUIControls();
@@ -3356,10 +3407,49 @@ window.addEventListener('hashchange', () => {
   };
 
   // Always start follow if followId is present after camera update
-  // Clear exit flag when flyTo completes to allow follow to proceed normally
-  map.once('moveend', () => {
+  // Clear exit flag before flyTo and set timeout fallback in case moveend doesn't fire
+  window._exitingFollowMode = false;
+  
+  // Generate unique ID for this flyTo operation BEFORE stopping any previous movement
+  const flyToId = ++window._flyToCounter || (window._flyToCounter = 1);
+  window._currentFlyToId = flyToId;
+  
+  // Stop any in-progress flyTo/easeTo/panTo to prevent conflicts
+  // (this must happen AFTER setting new ID so stopped moveend won't match)
+  if (map.isMoving()) {
+    map.stop();
+  }
+  
+  // Backup: clear flag after reasonable timeout if moveend doesn't fire
+  window._pendingFlagClearTimeout = setTimeout(() => {
     window._exitingFollowMode = false;
-  });
+    window._isHashChangeInProgress = false;
+    window._pendingFlagClearTimeout = null;
+  }, 2000);
+  
+  // Attach moveend listener that checks if it's for the current flyTo
+  const onMoveEnd = () => {
+    if (flyToId === window._currentFlyToId) {
+      if (window._pendingFlagClearTimeout) {
+        clearTimeout(window._pendingFlagClearTimeout);
+        window._pendingFlagClearTimeout = null;
+      }
+      window._exitingFollowMode = false;
+      // Clear hashchange-in-progress flag so global moveend handler can resume updating hash
+      window._isHashChangeInProgress = false;
+    }
+  };
+  map.once('moveend', onMoveEnd);
+  
+  // Listen for style load if not already loaded
+  if (!map.isStyleLoaded()) {
+    map.once('styledata', () => {
+      if (map.isStyleLoaded()) {
+        createLayerControls(map, allStyleLayers.filter(l => map.getLayer(l.id) && map.getLayoutProperty(l.id, 'visibility') === 'visible').map(l => l.id));
+      }
+    });
+  }
+  
   map.flyTo(flyOpts);
   if (followId) {
     // Wait for both flyTo and source readiness before starting follow
@@ -3434,6 +3524,10 @@ window.addEventListener('hashchange', () => {
       tryStartFollow();
     }
   } else {
+  }
+  } catch(error) {
+    console.error('❌ Error in hashchange handler:', error);
+    console.error('Stack trace:', error.stack);
   }
 });
 
