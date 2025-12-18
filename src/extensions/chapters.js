@@ -417,7 +417,6 @@ window.initChapters = function initChapters() {
       }
       
       const target = document.getElementById(targetId);
-      console.log('[chapters-click] Button click targeting:', targetId, '- Found element:', target?.tagName, target?.id);
         if (!target) return;
         
         // Get scroll position and dimensions
@@ -442,8 +441,6 @@ window.initChapters = function initChapters() {
         const maxScroll = (scroller.scrollHeight || document.documentElement.scrollHeight) - viewportHeight;
         jumpScrollTop = Math.max(0, Math.min(jumpScrollTop, maxScroll));
         
-        console.log('[scroll-calc]', {targetId, targetTop, targetHeight, currentScrollTop, viewportHeight, isTargetBelow, calculatedJumpScrollTop: jumpScrollTop});
-        
         // Jump directly (instant scroll)
         // Apply animation AFTER scroll positioning, if enabled
         if (document.body.classList.contains('animate-sections')) {
@@ -461,12 +458,6 @@ window.initChapters = function initChapters() {
           }
           
           // Log final position after animation settles
-          setTimeout(() => {
-            const finalScroll = scroller.scrollTop || window.pageYOffset;
-            const targetRect2 = target.getBoundingClientRect();
-            console.log('[scroll-final]', {targetId, calculatedJumpScrollTop: jumpScrollTop, actualFinalScroll: finalScroll, targetRectTopAfter: targetRect2.top});
-          }, 700);
-          
           // Remove animation class after completion
           setTimeout(() => {
             target.classList.remove('slide-from-bottom', 'slide-from-top');
