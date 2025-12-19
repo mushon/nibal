@@ -233,10 +233,12 @@
     height: 100%;
     pointer-events: auto;
     background: transparent;
-    z-index: 1; /* Ensure it's above dots */
+    z-index: 1; /* Ensure it's above dots but below content */
     /* Allow native vertical panning while rail is active */
     touch-action: pan-y;
     -ms-touch-action: pan-y;
+    /* Ensure it doesn't interfere with content clicks */
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Chapter headings: same flex-grow as sections, but with transparent border for gap */

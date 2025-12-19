@@ -896,6 +896,9 @@
                 __iframeNextTimeout = null;
             }, delay);
         }
+        
+        // Expose setIframeNext globally for extensions (chapters navigation)
+        window.__setIframeNext = setIframeNext;
 
     // (typewriter functionality removed)
 

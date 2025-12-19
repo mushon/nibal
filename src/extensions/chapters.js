@@ -295,6 +295,11 @@ window.initChapters = function initChapters() {
 
 
         const onStart = (ev) => {
+          // Don't interfere with clicks on links or buttons in the content
+          if (ev.target && (ev.target.tagName === 'A' || ev.target.closest('a, button'))) {
+            return;
+          }
+          
           try { 
             // Do not block page scroll; just start hover mode
           } catch (e) {}
@@ -471,6 +476,46 @@ window.initChapters = function initChapters() {
         
         // Keep snap suppression active through animation completion
         window.__snapSuppressUntil = Math.max(window.__snapSuppressUntil || 0, Date.now() + 800);
+        
+        // Trigger inflection for the target section after animation settles
+        setTimeout(() => {
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            // Find ALL inflection links in the section (may have multiple in dual-iframe mode)
+            const inflectionLinks = targetSection.querySelectorAll('a:not(.dontinflect)');
+            if (inflectionLinks.length > 0) {
+              // Clear all active states first
+              document.querySelectorAll('a.active, [data-active="true"]').forEach(link => {
+                link.classList.remove('active');
+                link.removeAttribute('data-active');
+              });
+              
+              // Process each inflection link
+              inflectionLinks.forEach(inflectionLink => {
+                const href = inflectionLink.getAttribute('href');
+                if (href) {
+                  try {
+                    const fullUrl = new URL(href, window.location.href).href;
+                    // Update iframe directly
+                    if (window.__setIframeNext) {
+                      window.__setIframeNext(fullUrl);
+                    }
+                    // Mark link as active
+                    inflectionLink.classList.add('active');
+                    inflectionLink.setAttribute('data-active', 'true');
+                  } catch(e) {
+                    console.warn('[Chapters] Failed to apply inflection:', e);
+                  }
+                }
+              });
+              
+              // Update caption after all links processed
+              if (window.__updateInflectCaption) {
+                window.__updateInflectCaption();
+              }
+            }
+          }
+        }, 650); // After animation completes (600ms) plus small buffer
       };
     }
 
@@ -826,6 +871,46 @@ window.initChapters = function initChapters() {
     
     // Reset snap suppression flag to allow wheel snap immediately after jump
     window.__snapSuppressUntil = Date.now();
+    
+    // Trigger inflection for the target section after scroll settles
+    setTimeout(() => {
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        // Find ALL inflection links in the section (may have multiple in dual-iframe mode)
+        const inflectionLinks = targetSection.querySelectorAll('a:not(.dontinflect)');
+        if (inflectionLinks.length > 0) {
+          // Clear all active states first
+          document.querySelectorAll('a.active, [data-active="true"]').forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('data-active');
+          });
+          
+          // Process each inflection link
+          inflectionLinks.forEach(inflectionLink => {
+            const href = inflectionLink.getAttribute('href');
+            if (href) {
+              try {
+                const fullUrl = new URL(href, window.location.href).href;
+                // Update iframe directly
+                if (window.__setIframeNext) {
+                  window.__setIframeNext(fullUrl);
+                }
+                // Mark link as active
+                inflectionLink.classList.add('active');
+                inflectionLink.setAttribute('data-active', 'true');
+              } catch(e) {
+                console.warn('[Chapters] Failed to apply inflection in hash jump:', e);
+              }
+            }
+          });
+          
+          // Update caption after all links processed
+          if (window.__updateInflectCaption) {
+            window.__updateInflectCaption();
+          }
+        }
+      }
+    }, 100); // Small delay to ensure DOM is settled
   }
 
   // Listen for hash changes (but not the initial one)
