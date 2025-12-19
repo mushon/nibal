@@ -14,7 +14,7 @@ zoom-to-viewport: true
 [](svg/#intro-pre.svg/0,0.17,1.52/+nibal2023,+displacement)
 
 <div class="logo">
-<a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
+<a href="https://btselem.org" title="בצלם" class="dontinflect" target="_blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
 </div>
 
 # _The Displacement of_ Nibal Al-Hisi
@@ -25,7 +25,7 @@ zoom-to-viewport: true
     <a href="#ar" class="dontinflect" data-reload>عربي</a>
 </div>
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
     For the full report on forced displacement in Gaza:
     <strong>
     "No Place Under Heaven"
@@ -201,7 +201,7 @@ Meanwhile, the military began issuing orders for residents to evacuate throughou
 [](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_en)
 The first mass orders, issued on 13 October, ordered about 1 million people in northern Gaza to go south within 24 hours.
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="_blank" class="dontinflect thumb">
     For more information, see:
     <strong>
     Evacuation orders and “safe corridors”
@@ -331,7 +331,7 @@ Despite the joyous reunion, Nibal struggled to adjust to life in a tent in Rafah
 [](bg:blank)
 Living crammed together without enough food and water, with no privacy and poor sanitation was unbearable – especially for women.
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="_blank" class="dontinflect thumb">
     For more information, see:
     <strong>Conditions in IDP camps</strong>
 </a>
@@ -349,7 +349,7 @@ I was ashamed to tell my parents how I was living.
 [](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois.csv(label-main,id=rafah),~labels_he,+labels_en,+rafah-mawasi-line(arrow))
 Less than two months after the family arrived in Rafah, Israel ordered the city evacuated in early May 2024.
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="_blank" class="dontinflect thumb">
     For more information, see:
     <strong>
     May 2024: The invasion of Rafah
@@ -502,7 +502,7 @@ The sandy area was largely off the electricity, water and sewage grids.
 
 Within months, the area was crammed with tents sheltering over 1 million IDPs from throughout the Strip.
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="_blank" class="dontinflect thumb">
     For more information, see:
     <strong>
     Displacement waves and “humanitarian zones”
@@ -786,7 +786,7 @@ During those weeks, Israel launched another ground invasion into Gaza City.
 [](map/#31.51202,34.45029,14.69,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_en)
 In early September 2025, just weeks after Nibal arrived in Gaza City, Israel ordered about 1.2 million people to evacuate the city.
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="_blank" class="dontinflect thumb">
     For more information, see:
     <strong>
     August-September 2025: Destruction of Gaza City
@@ -875,7 +875,7 @@ Together, it is the story of how the Gaza Strip was destroyed.
 [](bg:blank)
 Nibal has recently shared her story with various media outlets and online, hoping to raise money for prosthetic limb surgery outside Gaza that will help her regain some independence.
 
-<a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="blank" class="thumb">
+<a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="_blank" class="thumb">
     Join the campaign:
     <strong>
     Reach out to Nibal
@@ -952,19 +952,19 @@ B’Tselem will follow their story and share any developments in our newsletter:
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 
-<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
 For the full report on forced displacement in Gaza:
     <strong>
     “No Place Under Heaven”
     </strong>
 </a>
 
-- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="blank" class="dontinflect">Legality of displacement</a>
-- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect">Displacement waves and “humanitarian zones”</a>
-- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect">Evacuation orders and “safe corridors”</a>
-- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect">Living conditions in IDP compounds</a>
-- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="blank" class="dontinflect">Airstrikes on IDP compounds</a>
-- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="blank" class="dontinflect">Erasure of civilian space</a>
+- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="_blank" class="dontinflect">Legality of displacement</a>
+- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="_blank" class="dontinflect">Displacement waves and “humanitarian zones”</a>
+- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="_blank" class="dontinflect">Evacuation orders and “safe corridors”</a>
+- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="_blank" class="dontinflect">Living conditions in IDP compounds</a>
+- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="_blank" class="dontinflect">Airstrikes on IDP compounds</a>
+- <a href="https://www.btselem.org/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="_blank" class="dontinflect">Erasure of civilian space</a>
 
 
 {.meta closing}
@@ -989,13 +989,13 @@ For the full report on forced displacement in Gaza:
 - Gazamap.com
 
 ## Product Design and Development
-- <a href="http://mushon.com" target="blank" class="dontinflect">Mushon Zer-Aviv</a>, Studio Shual
-- Built on top of  <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>
+- <a href="http://mushon.com" target="_blank" class="dontinflect">Mushon Zer-Aviv</a>, Studio Shual
+- Built on top of  <a href="https://uclab.fh-potsdam.de/inflect/" target="_blank" class="dontinflect">!nflect</a>
 
 
 {.meta end}
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
 <div class="logo">
-  <a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
+  <a href="https://btselem.org" title="בצלם" class="dontinflect" target="_blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
 </div>

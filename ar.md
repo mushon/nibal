@@ -14,7 +14,7 @@ zoom-to-viewport: true
 [](svg/#intro-pre.svg/0,0.17,1.52/+nibal2023,+displacement)
 
 <div class="logo">
-<a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
+<a href="https://btselem.org" title="בצלם" class="dontinflect" target="_blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
 </div>
 
 # _رحلة نزوح_ نِبال الهسي
@@ -25,7 +25,7 @@ zoom-to-viewport: true
     <a href="#ar" class="dontinflect" data-reload>عربي</a>
 </div>
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
    للتقرير الكامل حول التهجير في قطاع غزة:
     <strong>
    ״لا مكان تحت السماء״
@@ -205,7 +205,7 @@ zoom-to-viewport: true
 [](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow,~labels_he,+labels_ar)
 أوامر الإخلاء الجماعي الأولى، التي صدرت في 13 تشرين الأول، أمرت نحو مليون شخص من سكان شمال القطاع بمغادرة منازلهم والنزوح إلى جنوب القطاع في غضون 24 ساعة.
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="_blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
     أوامر الإخلاء و"الممرات الآمنة"
@@ -337,7 +337,7 @@ zoom-to-viewport: true
 
 الاكتظاظ، نقص المياه والغذاء، تردي ظروف الصرف الصحي وانعدام الخصوصية، جعلت الحياة في مراكز المهجّرين لا تطاق، وخاصة بالنسبة للنساء والفتيات.
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="_blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
         ظروف الحياة في مجمّعات المهجَّرين 
@@ -357,7 +357,7 @@ zoom-to-viewport: true
 [](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),~oct23-IDF_heatmap,+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-ar.csv(label-main-ar,id=rafah),~labels_he,+labels_ar,+rafah-mawasi-line(arrow))
 في بداية أيار 2024، بعد أقل من شهرين من وصول نِبال وأحمد وريتا إلى المدينة، وزّع الجيش الإسرائيلي أوامر إخلاء جديدة تطالب سكان رفح والمهجّرين المتواجدين فيها بإخلاء المنطقة.
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="_blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
    أيار 2024: اقتحام رفح
@@ -509,7 +509,7 @@ zoom-to-viewport: true
 
 خلال بضعة أشهر، امتلأت "المنطقة الإنسانية"، بالكامل، بالخيام التي اضطر أكثر من مليون شخص هُجِّروا من جميع أنحاء القطاع إلى العيش فيها.
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="_blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
     موجات الهجرة و״المناطق الإنسانية״
@@ -788,7 +788,7 @@ zoom-to-viewport: true
 [](map/#31.51202,34.45029,14.69,38.4,0.0/+IDF_zone_090925_NEW(idf-poly),~labels_he,+labels_ar)
 أوامر الإخلاء التي أصدرها الجيش الإسرائيلي في أوائل أيلول 2025، بعد أسابيع قليلة من وصول عائلة نِبال إلى المدينة، تأمر حوالي 1,2 مليون شخص بالنزوح من مكان إقامتهم، مرة أخرى.
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="_blank" class="dontinflect thumb">
     للمزيد، أنظروا:
     <strong>
     آب ـ أيلول 2025: تدمير مدينة غزة
@@ -876,7 +876,7 @@ zoom-to-viewport: true
 [](bg:blank)
 خلال الأشهر الأخيرة، نُشرت قصة نبال في الصحافة وعلى وسائل التواصل الاجتماعي. تأمل أن تتمكن بفضل النشر من جمع المال لمغادرة القطاع والخضوع لزراعة أطراف صناعية.
 
-<a href="https://www.gofundme.com/f/help-nebal-survive-in-gaza" target="blank" class="thumb">
+<a href="https://www.gofundme.com/f/help-nebal-survive-in-gaza" target="_blank" class="thumb">
     انضموا إلى الحملة:
     <strong>
     مد يد العون لنبال
@@ -956,19 +956,19 @@ zoom-to-viewport: true
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 
-<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
 للتقرير الكامل حول التهجير في قطاع غزة: 
     <strong>
     ״لا مكان تحت السماء״
     </strong>
 </a>
 
-- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="blank" class="dontinflect">قانونية الإخلاء</a>
-- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect">موجات التهجير و"المناطق الإنسانية"</a>
-- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect">أوامر الإخلاء و"الممرات الآمنة"</a>
-- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect">ظروف المعيشة في مجمعات المهجَّرين</a>
-- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="blank" class="dontinflect">القصف في مجمعات المهجَّرين</a>
-- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="blank" class="dontinflect">محو الحيّز المدني</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="_blank" class="dontinflect">قانونية الإخلاء</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="_blank" class="dontinflect">موجات التهجير و"المناطق الإنسانية"</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="_blank" class="dontinflect">أوامر الإخلاء و"الممرات الآمنة"</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="_blank" class="dontinflect">ظروف المعيشة في مجمعات المهجَّرين</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="_blank" class="dontinflect">القصف في مجمعات المهجَّرين</a>
+- <a href="https://www.btselem.org/arabic/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="_blank" class="dontinflect">محو الحيّز المدني</a>
 
 
 {.meta closing}
@@ -994,13 +994,13 @@ zoom-to-viewport: true
 
 ## تصميم وتطوير المنتج
  
-- <a href="http://mushon.com" target="blank" class="dontinflect">موشون زر- أفيف</a>, ستوديو شوعال
-- Built on top of <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>
+- <a href="http://mushon.com" target="_blank" class="dontinflect">موشون زر- أفيف</a>, ستوديو شوعال
+- Built on top of <a href="https://uclab.fh-potsdam.de/inflect/" target="_blank" class="dontinflect">!nflect</a>
 
 
 {.meta end}
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
 <div class="logo">
-  <a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
+  <a href="https://btselem.org" title="בצלם" class="dontinflect" target="_blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
 </div>

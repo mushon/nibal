@@ -13,7 +13,7 @@ zoom-to-viewport: true
 [](svg/#intro-pre.svg/0,0.17,1.52/+nibal2023,+displacement)
 
 <div class="logo">
-<a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
+<a href="https://btselem.org" title="בצלם" class="dontinflect" target="_blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
 </div>
 
 # _מסע העקירה של_ ניבאל אל-היסי
@@ -24,7 +24,7 @@ zoom-to-viewport: true
     <a href="#ar" class="dontinflect" data-reload>عربي</a>
 </div>
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
     לפרסום המלא על העברה בכפייה ברצועת עזה:
     <strong>
     ״אין מקום תחת השמיים״
@@ -200,7 +200,7 @@ zoom-to-viewport: true
 [](map/#31.41869,34.37279,10.00,37.6,0.0/+north,+arrow)
 צווי הפינוי ההמוניים הראשונים שהוציא הצבא ב-13 לאוקטובר הורו לכמיליון תושבי צפון הרצועה לעזוב את בתיהם ולעקור לדרום הרצועה תוך 24 שעות.
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="_blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     צווי הפינוי ו״המסדרונות הבטוחים״
@@ -335,7 +335,7 @@ zoom-to-viewport: true
 [](bg:blank)
 הצפיפות, המחסור במים ובמזון, תנאי הסניטציה הירודים והיעדר הפרטיות, הפכו את החיים במחנות העקורים לבלתי נסבלים, במיוחד עבור נשים ונערות.
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="_blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>תנאי החיים במתחמי העקורים</strong>
 </a>
@@ -353,7 +353,7 @@ zoom-to-viewport: true
 [](map/#31.45080,34.31559,9.93,-49.6,24.5/+IDF_zone_060524-110524(idf-poly),+idf-poly-outlines,+IDF_zone_060524-110524_NEW(idf-poly),+pois-he.csv(label-main,id=rafah),+rafah-mawasi-line(arrow) "באדום: האזורים שנכללו תחת צווי הפינוי של הצבא בין ה-6 ל-11 במאי 2024")
 בתחילת מאי 2024, פחות מחודשיים לאחר הגעתם של ניבאל, אחמד וריתא לעיר, הפיץ הצבא הישראלי צווי פינוי חדשים שדרשו מתושבי רפיח ומהעקורים השוהים בה להתפנות.  
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#rafah_invasion" target="_blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     מאי 2024: הפלישה לרפיח
@@ -503,7 +503,7 @@ zoom-to-viewport: true
 
 תוך מספר חודשים, ״האזור ההומניטרי״ התמלא עד אפס מקום באוהלים, בהם נאלצו לחיות מעל למיליון בני אדם שנעקרו מכל רחבי הרצועה.
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="_blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     גלי העקירה ו״האזורים ההומניטריים״
@@ -787,7 +787,7 @@ zoom-to-viewport: true
 [](map/#31.51202,34.45029,14.69,38.4,0.0/+IDF_zone_090925_NEW(idf-poly))
 צווי הפינוי שהוציא הצבא בתחילת ספטמבר 2025 לתושבי צפון הרצועה הורו לכ-1.2 מיליון בני אדם לעקור שוב ממקום מושבם.
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#destruction_of_gaza_city" target="_blank" class="dontinflect thumb">
     להרחבה, ראו:
     <strong>
     אוגוסט-ספטמבר 2025: הרס העיר עזה
@@ -877,7 +877,7 @@ zoom-to-viewport: true
 במהלך החודשים האחרונים, סיפורה של ניבאל פורסם בעיתונות וברשתות החברתיות. 
 היא מקווה שבעזרת הפרסום תצליח לגייס כסף כדי לצאת מהרצועה ולעבור השתלה של גפיים תותבות, שיעזרו לה להחזיר לעצמה מעט מהעצמאות שאיבדה.
 
-<a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="blank" class="alpha_0.25 thumb">
+<a href="https://www.gofundme.com/f/help-nebal-and-her-family-survive-in-gaza?attribution_id=sl%3Ac8f825db-4dc9-4cf2-aeea-40e4e79fb7ef&utm_campaign=natman_sharesheet_dash&utm_content=amp13_c&utm_medium=customer&utm_source=whatsapp&fbclid=PAb21jcAN4JUJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadzjiJkT7H9BLMjCNGSUD5VvOkcMtgK2I4dNb9OkV-9HZq4k7IwSljiCJ-xNw_aem_RLk6gsE3EAadchTzhrw3Gg`" target="_blank" class="alpha_0.25 thumb">
     הצטרפו לקמפיין:
     <strong>
     להושיט יד לניבאל
@@ -945,19 +945,19 @@ zoom-to-viewport: true
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he)
 
-<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="blank" class="dontinflect thumb">
+<a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
 לפרסום המלא על העברה בכפייה ברצועת עזה:
     <strong>
     ״אין מקום מתחת לשמיים״
     </strong>
 </a>
 
-- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="blank" class="dontinflect">חוקיות הפינוי</a>
-- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="blank" class="dontinflect">גלי העקירה וה"אזורים ההומניטריים"</a>
-- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="blank" class="dontinflect">צווי הפינוי וה"מסדרונות הבטוחים"</a>
-- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="blank" class="dontinflect">תנאי החיים במתחמי העקורים</a>
-- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="blank" class="dontinflect">הפצצות במתחמי העקורים</a>
-- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="blank" class="dontinflect">מחיקת המרחב האזרחי</a>
+- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#legality_of_displacement" target="_blank" class="dontinflect">חוקיות הפינוי</a>
+- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#displacement_waves" target="_blank" class="dontinflect">גלי העקירה וה"אזורים ההומניטריים"</a>
+- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#evacuation_orders" target="_blank" class="dontinflect">צווי הפינוי וה"מסדרונות הבטוחים"</a>
+- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#living_conditions" target="_blank" class="dontinflect">תנאי החיים במתחמי העקורים</a>
+- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#strikes_on_idp_sites" target="_blank" class="dontinflect">הפצצות במתחמי העקורים</a>
+- <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025#civilian_space_erasure" target="_blank" class="dontinflect">מחיקת המרחב האזרחי</a>
 
 
 {.meta closing}
@@ -983,13 +983,13 @@ zoom-to-viewport: true
 - Gazamap.com
 
 ## עיצוב ופיתוח מוצר
-- <a href="http://mushon.com" target="blank" class="dontinflect">מושון זר-אביב</a>, סטודיו שועל
-- Built on top of <a href="https://uclab.fh-potsdam.de/inflect/" target="blank" class="dontinflect">!nflect</a>
+- <a href="http://mushon.com" target="_blank" class="dontinflect">מושון זר-אביב</a>, סטודיו שועל
+- Built on top of <a href="https://uclab.fh-potsdam.de/inflect/" target="_blank" class="dontinflect">!nflect</a>
 
 
 {.meta end}
 [](fg:blank)
 [](map/#31.42216,34.36628,9.79,40.0,0.0/~labels_he,~Gaza_border_dash,~Gaza_border_base)
 <div class="logo">
-  <a href="https://btselem.org" title="בצלם" class="dontinflect" target="blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
+  <a href="https://btselem.org" title="בצלם" class="dontinflect" target="_blank"><img src="img/bts_logo.svg" alt="בצלם" style="max-width:100px;height:auto;"></a>
 </div>
