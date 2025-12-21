@@ -27,7 +27,7 @@ zoom-to-viewport: true
 <a href="https://www.btselem.org/hebrew/gaza_strip/202512_no_place_under_heaven_forced_displacement_in_the_gaza_strip_2023_2025" target="_blank" class="dontinflect thumb">
     לפרסום המלא על העברה בכפייה ברצועת עזה:
     <strong>
-    ״אין מקום תחת השמיים״
+    ״אין מקום מתחת לשמיים״
     </strong>
 </a>
 
